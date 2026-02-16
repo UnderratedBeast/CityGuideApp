@@ -1,0 +1,129 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
+import 'config/app_config.dart';
+import 'utils/theme.dart';
+import 'utils/routes.dart';
+import 'screens/splash/splash_screen.dart';
+import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/auth/login_screen.dart';
+import 'screens/auth/register_screen.dart';
+import 'screens/CityguideHome/CityListScreen.dart';
+import 'screens/CityguideHome/CityDetailScreen.dart';
+import 'screens/attraction/AttractionListScreen.dart';
+import 'screens/attraction/AttractionDetailScreen.dart';
+import 'screens/profile/profile_screen.dart';
+import 'screens/profile/edit_profile_screen.dart';
+import 'screens/profile/my_trips_screen.dart';
+import 'screens/profile/privacy_security_screen.dart';
+import 'screens/profile/account_management_screen.dart';
+import 'providers/auth_provider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: Platform.isIOS
+        ? AppConfig.iosFirebaseOptions
+        : AppConfig.androidFirebaseOptions,
+  );
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => AuthProvider(),
+      child: MaterialApp(
+        title: 'City Guide',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
+        initialRoute: AppRoutes.splash,
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case AppRoutes.splash:
+              return MaterialPageRoute(
+                builder: (_) => const SplashScreen(),
+              );
+
+            case AppRoutes.onboarding:
+              return MaterialPageRoute(
+                builder: (_) => const OnboardingScreen(),
+              );
+
+            case AppRoutes.login:
+              return MaterialPageRoute(
+                builder: (_) => const LoginScreen(),
+              );
+
+            case AppRoutes.signUp:
+              return MaterialPageRoute(
+                builder: (_) => const RegisterScreen(),
+              );
+
+            case AppRoutes.home:
+              return MaterialPageRoute(
+                builder: (_) => const CityListScreen(),
+              );
+
+            case AppRoutes.cityDetail:
+              final args = settings.arguments as Map<String, dynamic>;
+
+              return MaterialPageRoute(
+                builder: (_) => CityDetailScreen(
+                  cityName: args['cityName'],
+                  country: args['country'],
+                  heroImageUrl: args['heroImageUrl'],
+                ),
+              );
+
+            case AppRoutes.attractionList:
+              final args = settings.arguments as Map<String, dynamic>;
+
+              return MaterialPageRoute(
+                builder: (_) => AttractionListScreen(
+                  category: args['category'],
+                  cityName: args['cityName'],
+                ),
+              );
+
+            case AppRoutes.attractionDetail:
+              final args = settings.arguments as Map<String, dynamic>;
+
+              return MaterialPageRoute(
+                builder: (_) => AttractionDetailScreen(
+                  name: args['name'],
+                  imageUrl: args['imageUrl'],
+                  additionalImages: args['additionalImages'],
+                  rating: args['rating'],
+                  reviewCount: args['reviewCount'],
+                  priceLevel: args['priceLevel'],
+                  description: args['description'],
+                  address: args['address'],
+                  city: args['city'],
+                  website: args['website'],
+                  latitude: args['latitude'],
+                  longitude: args['longitude'],
+                ),
+              );
+
+            default:
+              return MaterialPageRoute(
+                builder: (_) => const Scaffold(
+                  body: Center(child: Text('Unknown Route')),
+                ),
+              );
+          }
+        },
+      ),
+    );
+  }
+}

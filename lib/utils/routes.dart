@@ -16,13 +16,21 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String editProfile = '/edit-profile';
   static const String preferences = '/preferences';
+  // static const String profile = '/profile';
+  // static const String editProfile = '/edit-profile';
+  // static const String preferences = '/preferences';
+  static const String accountManagement = '/account-management';
+  static const String privacySecurity = '/privacy-security';
 
   // ---------- FAVORITES ----------
   static const String favorites = '/favorites';
 
   // ---------- HOME ----------
-  static const String home = '/home';
+  static const String home = '/cities'; 
+  // static const String cityList = '/cities';
+  static const String cityDetail = '/city-detail';
 
-  // ---------- ATTRACTION DETAIL (reference for other team members) ----------
+  // ---------- ATTRACTION ----------
+  static const String attractionList = '/attractions';
   static const String attractionDetail = '/attraction-detail';
 }
