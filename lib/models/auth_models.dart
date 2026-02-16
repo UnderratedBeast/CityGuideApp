@@ -13,6 +13,7 @@ class UserModel {
   final String email;
   final String fullName;
   final String? photoUrl;
+  final String role; // ✅ NEW
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -21,16 +22,19 @@ class UserModel {
     required this.email,
     required this.fullName,
     this.photoUrl,
+    required this.role,
     required this.createdAt,
     required this.updatedAt,
   });
 
-  /// Create a copy of the user with updated fields
+  bool get isAdmin => role == 'admin'; // ✅ HELPER
+
   UserModel copyWith({
     String? uid,
     String? email,
     String? fullName,
     String? photoUrl,
+    String? role,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -39,24 +43,24 @@ class UserModel {
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
       photoUrl: photoUrl ?? this.photoUrl,
+      role: role ?? this.role,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
-  /// Convert UserModel to a Map for Firestore
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'email': email,
       'fullName': fullName,
       'photoUrl': photoUrl,
+      'role': role, // ✅ SAVE ROLE
       'createdAt': Timestamp.fromDate(createdAt),
       'updatedAt': Timestamp.fromDate(updatedAt),
     };
   }
 
-  /// Create UserModel from a Firestore DocumentSnapshot
   factory UserModel.fromDocument(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return UserModel(
@@ -64,12 +68,12 @@ class UserModel {
       email: data['email'] ?? '',
       fullName: data['fullName'] ?? '',
       photoUrl: data['photoUrl'],
+      role: data['role'] ?? 'user', // ✅ DEFAULT USER
       createdAt: (data['createdAt'] as Timestamp).toDate(),
       updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
   }
 
-  /// Create UserModel from Firebase Auth User + additional data
   factory UserModel.fromFirebaseUser(
     String uid,
     String email,
@@ -82,6 +86,7 @@ class UserModel {
       email: email,
       fullName: fullName,
       photoUrl: photoUrl,
+      role: 'user', // ✅ DEFAULT ROLE
       createdAt: now,
       updatedAt: now,
     );

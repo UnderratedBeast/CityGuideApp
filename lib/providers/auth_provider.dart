@@ -11,16 +11,17 @@ class AuthProvider extends ChangeNotifier {
   String? _errorMessage;
 
   UserModel? get user => _user;
+  String? get role => _user?.role;            // Add this getter
   AuthStatus get status => _status;
   String? get errorMessage => _errorMessage;
   bool get isLoading => _status == AuthStatus.loading;
   bool get isAuthenticated => _status == AuthStatus.authenticated;
+  bool get isAdmin => _user?.role == 'admin'; // keep this for quick checks
 
   AuthProvider() {
     _init();
   }
 
-  // Listen to Firebase auth state changes
   void _init() {
     _authService.authStateChanges.listen((User? firebaseUser) async {
       if (firebaseUser == null) {
@@ -31,7 +32,6 @@ class AuthProvider extends ChangeNotifier {
         _status = AuthStatus.loading;
         notifyListeners();
         try {
-          // ✅ CORRECT: Fetch Firestore data directly using the UID
           final userModel = await _authService.getUserData(firebaseUser.uid);
           _user = userModel;
           _status = AuthStatus.authenticated;
@@ -45,7 +45,6 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  // ------------------- Login -------------------
   Future<bool> login(String email, String password) async {
     _setLoading();
     try {
@@ -69,7 +68,6 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  // ------------------- Register -------------------
   Future<bool> register({
     required String email,
     required String password,
@@ -98,18 +96,15 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  // ------------------- Logout -------------------
   Future<void> logout() async {
     _setLoading();
     try {
       await _authService.signOut();
-      // Auth state listener will update the state
     } catch (e) {
       _setError(e.toString());
     }
   }
 
-  // ------------------- Helper Methods -------------------
   void _setLoading() {
     _status = AuthStatus.loading;
     _errorMessage = null;
