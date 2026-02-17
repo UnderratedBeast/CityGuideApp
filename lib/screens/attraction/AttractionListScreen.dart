@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
 
-class AttractionListScreen extends StatelessWidget {
+class AttractionListScreen extends StatefulWidget {
   final String category;
   final String cityName;
 
@@ -12,113 +12,379 @@ class AttractionListScreen extends StatelessWidget {
   });
 
   @override
+  State<AttractionListScreen> createState() => _AttractionListScreenState();
+}
+
+class _AttractionListScreenState extends State<AttractionListScreen> {
+  // Filter state variables
+  String _selectedPrice = 'Any Price';
+  String _selectedRating = 'Any Rating';
+  String _selectedCategory = 'All Categories';
+  String _selectedCuisine = 'All Cuisines';
+  String _selectedEventType = 'All Types';
+  String _selectedDate = 'Upcoming';
+  String _selectedFreePaid = 'All';
+  String _selectedDistance = 'Any Distance';
+  bool _openNow = false;
+
+  // Original items getter
+  List<AttractionItem> get _allItems => _getItemsForCategory();
+
+  List<AttractionItem> _getItemsForCategory() {
+    switch (widget.category) {
+      case 'Attractions':
+        return [
+          AttractionItem(
+            title: 'The Big Ben',
+            imageUrl: 'https://picsum.photos/id/1043/400/300', // working placeholder
+            additionalImages: [],
+            description: 'Iconic clock tower at the Palace of Westminster.',
+            phone: '+44 20 1234 5678',
+            website: 'parliament.uk/bigben',
+            openingHours: 'Mon–Sun 09:00–17:00',
+            rating: 4.8,
+            priceLevel: '££',
+            popularity: 'Most Visited',
+            cuisine: 'Landmark',
+            location: 'Westminster',
+            distance: '0.8 mi',
+            actions: ['Book Tour'],
+            isOpen: true,
+            reviewCount: 12400,
+            address: 'Westminster, London SW1A 0AA',
+            latitude: 51.5007,
+            longitude: -0.1246,
+            city: widget.cityName,
+          ),
+          AttractionItem(
+            title: 'London Eye',
+            imageUrl: 'https://picsum.photos/id/1043/400/300?random=2',
+            additionalImages: [],
+            description: 'Giant Ferris wheel on the South Bank.',
+            phone: '+44 20 1234 5679',
+            website: 'londoneye.com',
+            openingHours: 'Mon–Sun 10:00–20:30',
+            rating: 4.7,
+            priceLevel: '£££',
+            popularity: 'Very Popular',
+            cuisine: 'Landmark',
+            location: 'Lambeth',
+            distance: '1.2 mi',
+            actions: ['Buy Tickets'],
+            isOpen: true,
+            reviewCount: 8900,
+            address: 'Riverside Building, County Hall, London SE1 7PB',
+            latitude: 51.5033,
+            longitude: -0.1195,
+            city: widget.cityName,
+          ),
+        ];
+      case 'Restaurants':
+        return [
+          AttractionItem(
+            title: "L'Osteria Urbano",
+            imageUrl: 'https://picsum.photos/id/30/400/300',
+            additionalImages: [],
+            description: 'Authentic Italian pasta and wood‑fired pizza.',
+            phone: '+1 212-555-1234',
+            website: 'losteria.com',
+            openingHours: 'Mon–Sun 11:00–23:00',
+            rating: 4.8,
+            priceLevel: '\$\$\$',
+            popularity: 'Very Popular',
+            cuisine: 'Italian',
+            location: 'Downtown',
+            distance: '0.8 mi',
+            actions: ['Book Table'],
+            isOpen: true,
+            reviewCount: 1240,
+            address: '42nd Ave, Stay Tower',
+            latitude: 40.7580,
+            longitude: -73.9855,
+            city: widget.cityName,
+          ),
+          AttractionItem(
+            title: 'The Blue Grill',
+            imageUrl: 'https://picsum.photos/id/26/400/300',
+            additionalImages: [],
+            description: 'Premium steaks and seafood with panoramic waterfront views.',
+            phone: '+1 212-555-5678',
+            website: 'bluegrill.nyc',
+            openingHours: 'Tue–Sun 17:00–23:00',
+            rating: 4.5,
+            priceLevel: '\$\$\$\$',
+            popularity: 'Fine Dining',
+            cuisine: 'Steakhouse',
+            location: 'Waterfront',
+            distance: '1.2 mi',
+            actions: ['View Menu'],
+            isOpen: true,
+            reviewCount: 890,
+            address: '1 Waterfront Plaza, NYC',
+            latitude: 40.7050,
+            longitude: -74.0130,
+            city: widget.cityName,
+          ),
+        ];
+      case 'Hotels':
+        return [
+          AttractionItem(
+            title: 'The Ritz London',
+            imageUrl: 'https://picsum.photos/id/1081/400/300',
+            additionalImages: [],
+            description: 'Luxury hotel in the heart of London.',
+            phone: '+44 20 1234 5680',
+            website: 'theritzlondon.com',
+            openingHours: '24/7',
+            rating: 4.9,
+            priceLevel: '££££',
+            popularity: 'Luxury',
+            cuisine: 'Hotel',
+            location: 'Mayfair',
+            distance: '0.4 mi',
+            actions: ['Book Now'],
+            isOpen: true,
+            reviewCount: 3400,
+            address: '150 Piccadilly, London W1J 9BR',
+            latitude: 51.5074,
+            longitude: -0.1419,
+            city: widget.cityName,
+          ),
+        ];
+      case 'Events':
+        return [
+          AttractionItem(
+            title: 'Hyde Park Music Festival',
+            imageUrl: 'https://picsum.photos/id/15/400/300',
+            additionalImages: [],
+            description: 'Outdoor music festival with top artists.',
+            phone: '+44 20 1234 5681',
+            website: 'hydeparkfestival.com',
+            openingHours: '19:00–23:00',
+            rating: 4.6,
+            priceLevel: '££',
+            popularity: 'Trending',
+            cuisine: 'Festival',
+            location: 'Hyde Park',
+            distance: '2.0 mi',
+            actions: ['Get Tickets'],
+            isOpen: true,
+            reviewCount: 3200,
+            address: 'Hyde Park, London W2 2UH',
+            latitude: 51.5074,
+            longitude: -0.1657,
+            city: widget.cityName,
+          ),
+        ];
+      default:
+        return [];
+    }
+  }
+
+  List<AttractionItem> get _filteredItems {
+    return _allItems.where((item) {
+      if (_selectedRating != 'Any Rating') {
+        double minRating = double.parse(_selectedRating.replaceAll('+', ''));
+        if (item.rating < minRating) return false;
+      }
+      switch (widget.category) {
+        case 'Attractions':
+          if (_selectedCategory != 'All Categories' && item.cuisine != _selectedCategory) return false;
+          if (_openNow && !item.isOpen) return false;
+          break;
+        case 'Restaurants':
+          if (_selectedCuisine != 'All Cuisines' && item.cuisine != _selectedCuisine) return false;
+          if (_selectedPrice != 'Any Price' && !_matchesPriceLevel(item.priceLevel, _selectedPrice)) return false;
+          break;
+        case 'Hotels':
+          if (_selectedPrice != 'Any Price' && !_matchesPriceLevel(item.priceLevel, _selectedPrice)) return false;
+          break;
+        case 'Events':
+          if (_selectedEventType != 'All Types' && item.cuisine != _selectedEventType) return false;
+          if (_selectedFreePaid == 'Free' && item.priceLevel != 'Free') return false;
+          if (_selectedFreePaid == 'Paid' && item.priceLevel == 'Free') return false;
+          break;
+      }
+      return true;
+    }).toList();
+  }
+
+  bool _matchesPriceLevel(String priceLevel, String selected) {
+    if (selected == r'Budget ($)' && priceLevel == '\$') return true;
+    if (selected == r'Moderate ($$)' && priceLevel == '\$\$') return true;
+    if (selected == r'Luxury ($$$)' && priceLevel == '\$\$\$') return true;
+    if (selected == r'Ultra Luxury ($$$$)' && priceLevel == '\$\$\$\$') return true;
+    return false;
+  }
+
+  List<Widget> _buildFilterButtons() {
+    switch (widget.category) {
+      case 'Attractions':
+        return [
+          _buildDropdownButton(
+            label: _selectedCategory,
+            options: const ['All Categories', 'Museum', 'Park', 'Landmark', 'Beach'],
+            onSelected: (value) => setState(() => _selectedCategory = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedRating,
+            options: const ['Any Rating', '4.0+', '4.5+'],
+            onSelected: (value) => setState(() => _selectedRating = value!),
+          ),
+          _buildToggleButton(
+            label: 'Open Now',
+            value: _openNow,
+            onChanged: (value) => setState(() => _openNow = value),
+          ),
+        ];
+      case 'Restaurants':
+        return [
+          _buildDropdownButton(
+            label: _selectedCuisine,
+            options: const ['All Cuisines', 'Italian', 'Japanese', 'American', 'Steakhouse'],
+            onSelected: (value) => setState(() => _selectedCuisine = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedPrice,
+            options: const ['Any Price', r'Budget ($)', r'Moderate ($$)', r'Luxury ($$$)'],
+            onSelected: (value) => setState(() => _selectedPrice = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedRating,
+            options: const ['Any Rating', '4.0+', '4.5+'],
+            onSelected: (value) => setState(() => _selectedRating = value!),
+          ),
+        ];
+      case 'Hotels':
+        return [
+          _buildDropdownButton(
+            label: _selectedPrice,
+            options: const ['Any Price', r'Budget ($)', r'Moderate ($$)', r'Luxury ($$$)', r'Ultra Luxury ($$$$)'],
+            onSelected: (value) => setState(() => _selectedPrice = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedRating,
+            options: const ['Any Rating', '4.0+', '4.5+'],
+            onSelected: (value) => setState(() => _selectedRating = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedDistance,
+            options: const ['Any Distance', '<1 mi', '<2 mi', '<5 mi'],
+            onSelected: (value) => setState(() => _selectedDistance = value!),
+          ),
+        ];
+      case 'Events':
+        return [
+          _buildDropdownButton(
+            label: _selectedEventType,
+            options: const ['All Types', 'Concert', 'Festival', 'Conference'],
+            onSelected: (value) => setState(() => _selectedEventType = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedDate,
+            options: const ['Today', 'This Weekend', 'Upcoming'],
+            onSelected: (value) => setState(() => _selectedDate = value!),
+          ),
+          _buildDropdownButton(
+            label: _selectedFreePaid,
+            options: const ['All', 'Free', 'Paid'],
+            onSelected: (value) => setState(() => _selectedFreePaid = value!),
+          ),
+        ];
+      default:
+        return [];
+    }
+  }
+
+  Widget _buildDropdownButton({
+    required String label,
+    required List<String> options,
+    required Function(String?) onSelected,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: PopupMenuButton<String>(
+        onSelected: onSelected,
+        itemBuilder: (context) => options.map((option) {
+          return PopupMenuItem(
+            value: option,
+            child: Text(option),
+          );
+        }).toList(),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade100,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.shade300),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade800,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Icon(
+                Icons.arrow_drop_down,
+                size: 20,
+                color: Colors.grey.shade600,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildToggleButton({
+    required String label,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: GestureDetector(
+        onTap: () => onChanged(!value),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: value ? Colors.purple.shade100 : Colors.grey.shade100,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: value ? Colors.purple : Colors.grey.shade300,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: value ? Colors.purple.shade800 : Colors.grey.shade800,
+                ),
+              ),
+              if (value) ...[
+                const SizedBox(width: 4),
+                const Icon(Icons.check, size: 16, color: Colors.purple),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<AttractionItem> items = [
-      AttractionItem(
-        title: "L'Osteria Urbano",
-        imageUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format",
-        additionalImages: [
-          "https://images.unsplash.com/photo-1579684947550-22e945225d9a?w=500&auto=format",
-          "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&auto=format",
-          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&auto=format",
-        ],
-        description: "Authentic Italian pasta and wood‑fired pizza in a cozy downtown setting.",
-        phone: "+1 212-555-1234",
-        website: "losteria.com",
-        openingHours: "Mon–Sun 11:00–23:00",
-        rating: 4.8,
-        priceLevel: "\$\$\$",
-        popularity: "Very Popular",
-        cuisine: "Italian",
-        location: "Downtown",
-        distance: "0.8 mi",
-        actions: ["Book Table"],
-        isOpen: true,
-        reviewCount: 1240,
-        address: "42nd Ave, Stay Tower",
-        latitude: 40.7580,
-        longitude: -73.9855,
-        city: "New York City",
-      ),
-      AttractionItem(
-        title: "The Blue Grill",
-        imageUrl: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format",
-        additionalImages: [
-          "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=500&auto=format",
-          "https://images.unsplash.com/photo-1611143669185-5522241f25ab?w=500&auto=format",
-          "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=500&auto=format",
-        ],
-        description: "Premium steaks and seafood with panoramic waterfront views.",
-        phone: "+1 212-555-5678",
-        website: "bluegrill.nyc",
-        openingHours: "Tue–Sun 17:00–23:00",
-        rating: 4.5,
-        priceLevel: "\$\$\$\$",
-        popularity: "Fine Dining",
-        cuisine: "Steakhouse",
-        location: "Waterfront",
-        distance: "1.2 mi",
-        actions: ["View Menu"],
-        isOpen: true,
-        reviewCount: 890,
-        address: "1 Waterfront Plaza, NYC",
-        latitude: 40.7050,
-        longitude: -74.0130,
-        city: "New York City",
-      ),
-      AttractionItem(
-        title: "Neon Sushi",
-        imageUrl: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=500&auto=format",
-        additionalImages: [
-          "https://images.unsplash.com/photo-1617196035154-1e7e6e28b0db?w=500&auto=format",
-          "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=500&auto=format",
-          "https://images.unsplash.com/photo-1611143669185-5522241f25ab?w=500&auto=format",
-        ],
-        description: "Creative rolls and sake in a vibrant, artsy atmosphere.",
-        phone: "+1 212-555-9012",
-        website: "neonsushi.com",
-        openingHours: "Mon–Sat 12:00–22:30",
-        rating: 4.2,
-        priceLevel: "\$\$",
-        popularity: "Trendy",
-        cuisine: "Japanese",
-        location: "Arts District",
-        distance: "0.5 mi",
-        actions: ["Order Now"],
-        isOpen: false,
-        reviewCount: 562,
-        address: "45 Arts District Blvd, NYC",
-        latitude: 40.7290,
-        longitude: -73.9920,
-        city: "New York City",
-      ),
-      AttractionItem(
-        title: "The Patty Club",
-        imageUrl: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&auto=format",
-        additionalImages: [
-          "https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&auto=format",
-          "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format",
-          "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format",
-        ],
-        description: "Juicy burgers, craft beers, and retro vibes.",
-        phone: "+1 212-555-3456",
-        website: "pattyclub.nyc",
-        openingHours: "Mon–Sun 10:00–02:00",
-        rating: 4.3,
-        priceLevel: "\$\$",
-        popularity: "Casual",
-        cuisine: "American",
-        location: "Midtown",
-        distance: "2.1 mi",
-        actions: ["Map View", "Directions"],
-        isOpen: true,
-        reviewCount: 2100,
-        address: "123 Midtown Ave, NYC",
-        latitude: 40.7540,
-        longitude: -73.9840,
-        city: "New York City",
-      ),
-    ];
+    final items = _filteredItems;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
@@ -127,7 +393,7 @@ class AttractionListScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          "Top $category",
+          "Top ${widget.category}",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -145,42 +411,47 @@ class AttractionListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          // Filter Row
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey.shade200, width: 1),
+      body: items.isEmpty
+          ? Center(
+              child: Text(
+                'No ${widget.category} found in ${widget.cityName}',
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            )
+          : Column(
               children: [
-                _FilterChip(label: "Price"),
-                Container(width: 1, height: 20, color: Colors.grey.shade300),
-                _FilterChip(label: "Rating"),
-                Container(width: 1, height: 20, color: Colors.grey.shade300),
-                _FilterChip(label: "Category"),
+                // Horizontally scrollable filter row
+                Container(
+                  height: 56,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.grey.shade200, width: 1),
+                    ),
+                  ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    itemCount: _buildFilterButtons().length,
+                    itemBuilder: (context, index) {
+                      return _buildFilterButtons()[index];
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: _AttractionCard(item: item),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final item = items[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: _AttractionCard(item: item),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
@@ -198,44 +469,7 @@ class AttractionListScreen extends StatelessWidget {
 }
 
 // ------------------------------------------------------------
-// Filter Chip
-// ------------------------------------------------------------
-class _FilterChip extends StatelessWidget {
-  final String label;
-  const _FilterChip({required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey.shade800,
-              ),
-            ),
-            const SizedBox(width: 4),
-            Icon(
-              Icons.arrow_drop_down,
-              size: 20,
-              color: Colors.grey.shade600,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// ------------------------------------------------------------
-// Attraction Card – with navigation to detail screen
+// Attraction Card (unchanged)
 // ------------------------------------------------------------
 class _AttractionCard extends StatefulWidget {
   final AttractionItem item;
@@ -301,7 +535,7 @@ class _AttractionCardState extends State<_AttractionCard> {
                     errorBuilder: (_, __, ___) => Container(
                       height: 180,
                       color: Colors.grey.shade300,
-                      child: const Icon(Icons.image_not_supported),
+                      child: const Icon(Icons.image_not_supported, color: Colors.grey),
                     ),
                   ),
                 ),
@@ -390,22 +624,32 @@ class _AttractionCardState extends State<_AttractionCard> {
                     children: [
                       Icon(Icons.phone, size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
-                      Text(
-                        item.phone,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.grey.shade800,
+                      Expanded(
+                        child: Text(
+                          item.phone,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey.shade800,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(width: 16),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
                       Icon(Icons.language, size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
-                      Text(
-                        item.website,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.blue.shade700,
-                          decoration: TextDecoration.underline,
+                      Expanded(
+                        child: Text(
+                          item.website,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.blue.shade700,
+                            decoration: TextDecoration.underline,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
@@ -416,11 +660,14 @@ class _AttractionCardState extends State<_AttractionCard> {
                     children: [
                       Icon(Icons.access_time, size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
-                      Text(
-                        item.openingHours,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.grey.shade800,
+                      Expanded(
+                        child: Text(
+                          item.openingHours,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey.shade800,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
@@ -455,27 +702,29 @@ class _AttractionCardState extends State<_AttractionCard> {
                           ),
                         ],
                       ),
-                      // Action button
-                      ElevatedButton(
-                        onPressed: () {
-                          // Button action (book, order, etc.)
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
-                              ? Colors.grey.shade100
-                              : Colors.purple.shade600,
-                          foregroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
-                              ? Colors.grey.shade800
-                              : Colors.white,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                      // Action button – fixed width
+                      SizedBox(
+                        width: 100,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
+                                ? Colors.grey.shade100
+                                : Colors.purple.shade600,
+                            foregroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
+                                ? Colors.grey.shade800
+                                : Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          item.actions.first,
-                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                          child: Text(
+                            item.actions.first,
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
