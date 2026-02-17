@@ -21,7 +21,6 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     'Events',
   ];
 
-  // Icons corresponding to each category
   final List<IconData> _categoryIcons = [
     Icons.attractions,
     Icons.restaurant,
@@ -52,6 +51,17 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Determine greeting based on current hour
+    final hour = DateTime.now().hour;
+    String greeting;
+    if (hour < 12) {
+      greeting = 'Good Morning';
+    } else if (hour < 17) {
+      greeting = 'Good Afternoon';
+    } else {
+      greeting = 'Good Evening';
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -85,16 +95,16 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             children: [
               const SizedBox(height: 10),
 
-              // Greeting with avatar
+              // Greeting with avatar (dynamic greeting)
               Row(
                 children: [
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Good Morning,',
-                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        Text(
+                          '$greeting,',  // Dynamic greeting
+                          style: const TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                         const Text(
                           'Hi, Erioluwa',

@@ -369,7 +369,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: value ? Colors.purple.shade100 : Colors.grey.shade100,
+            color: value ? const Color.fromARGB(255, 190, 197, 231) : Colors.grey.shade100,
             borderRadius: BorderRadius.circular(13),
             border: Border.all(
               color: value ? AppTheme.primaryBlue: Colors.grey.shade300,
