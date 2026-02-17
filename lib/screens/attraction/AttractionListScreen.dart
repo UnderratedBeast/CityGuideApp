@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
-
+import '../../utils/theme.dart';
 class AttractionListScreen extends StatefulWidget {
   final String category;
   final String cityName;
@@ -36,7 +36,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         return [
           AttractionItem(
             title: 'The Big Ben',
-            imageUrl: 'https://picsum.photos/id/1043/400/300', // working placeholder
+            imageUrl: 'https://picsum.photos/id/1043/400/300',
             additionalImages: [],
             description: 'Iconic clock tower at the Palace of Westminster.',
             phone: '+44 20 1234 5678',
@@ -217,6 +217,21 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     return false;
   }
 
+  // Reset all filters to default
+  void _resetFilters() {
+    setState(() {
+      _selectedPrice = 'Any Price';
+      _selectedRating = 'Any Rating';
+      _selectedCategory = 'All Categories';
+      _selectedCuisine = 'All Cuisines';
+      _selectedEventType = 'All Types';
+      _selectedDate = 'Upcoming';
+      _selectedFreePaid = 'All';
+      _selectedDistance = 'Any Distance';
+      _openNow = false;
+    });
+  }
+
   List<Widget> _buildFilterButtons() {
     switch (widget.category) {
       case 'Attractions':
@@ -315,7 +330,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(13),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
@@ -355,9 +370,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: value ? Colors.purple.shade100 : Colors.grey.shade100,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(13),
             border: Border.all(
-              color: value ? Colors.purple : Colors.grey.shade300,
+              color: value ? AppTheme.primaryBlue: Colors.grey.shade300,
             ),
           ),
           child: Row(
@@ -368,12 +383,12 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: value ? Colors.purple.shade800 : Colors.grey.shade800,
+                  color: value ? AppTheme.primaryBlue : Colors.grey.shade800,
                 ),
               ),
               if (value) ...[
                 const SizedBox(width: 4),
-                const Icon(Icons.check, size: 16, color: Colors.purple),
+                const Icon(Icons.check, size: 16, color: AppTheme.primaryBlue),
               ],
             ],
           ),
@@ -411,34 +426,73 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           ),
         ],
       ),
-      body: items.isEmpty
-          ? Center(
-              child: Text(
-                'No ${widget.category} found in ${widget.cityName}',
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
+      body: Column(
+        children: [
+          // Filter row – always visible
+          Container(
+            height: 56,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey.shade200, width: 1),
               ),
-            )
-          : Column(
-              children: [
-                // Horizontally scrollable filter row
-                Container(
-                  height: 56,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey.shade200, width: 1),
+            ),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              itemCount: _buildFilterButtons().length,
+              itemBuilder: (context, index) => _buildFilterButtons()[index],
+            ),
+          ),
+          // Content area – either list or empty state
+          Expanded(
+            child: items.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.search_off,
+                          size: 80,
+                          color: Colors.grey.shade400,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'No ${widget.category} match your filters',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade700,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Try adjusting your filters',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        ElevatedButton(
+                          onPressed: _resetFilters,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.primaryBlue,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 12,
+                            ),
+                            
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                          ),
+                          child: const Text('Clear Filters'),
+                        ),
+                      ],
                     ),
-                  ),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    itemCount: _buildFilterButtons().length,
-                    itemBuilder: (context, index) {
-                      return _buildFilterButtons()[index];
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
+                  )
+                : ListView.builder(
                     padding: const EdgeInsets.all(16),
                     itemCount: items.length,
                     itemBuilder: (context, index) {
@@ -449,13 +503,13 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                       );
                     },
                   ),
-                ),
-              ],
-            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.purple.shade700,
+        selectedItemColor: AppTheme.primaryBlue,
         unselectedItemColor: Colors.grey.shade500,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: "Explore"),
@@ -510,7 +564,7 @@ class _AttractionCardState extends State<_AttractionCard> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -567,7 +621,7 @@ class _AttractionCardState extends State<_AttractionCard> {
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: item.isOpen ? Colors.green : Colors.red,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(13),
                     ),
                     child: Text(
                       item.isOpen ? "OPEN" : "CLOSED",
@@ -710,14 +764,14 @@ class _AttractionCardState extends State<_AttractionCard> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
                                 ? Colors.grey.shade100
-                                : Colors.purple.shade600,
+                                : AppTheme.primaryBlue,
                             foregroundColor: item.actions.contains("Map") || item.actions.contains("Directions")
                                 ? Colors.grey.shade800
                                 : Colors.white,
                             elevation: 0,
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(13),
                             ),
                           ),
                           child: Text(

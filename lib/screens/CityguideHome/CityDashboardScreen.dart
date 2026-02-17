@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utils/theme.dart';
-import '../../screens/attraction/AttractionListScreen.dart'; // 👈 import added
+import '../../screens/attraction/AttractionListScreen.dart';
 
 class CityDashboardScreen extends StatefulWidget {
   final String cityName;
@@ -19,6 +19,14 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     'Restaurants',
     'Hotels',
     'Events',
+  ];
+
+  // Icons corresponding to each category
+  final List<IconData> _categoryIcons = [
+    Icons.attractions,
+    Icons.restaurant,
+    Icons.hotel,
+    Icons.event,
   ];
 
   final List<Map<String, String>> _events = [
@@ -77,7 +85,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             children: [
               const SizedBox(height: 10),
 
-              // Greeting with avatar (updated)
+              // Greeting with avatar
               Row(
                 children: [
                   Expanded(
@@ -135,7 +143,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
 
               const SizedBox(height: 24),
 
-              // Horizontally scrollable category buttons
+              // Horizontally scrollable category buttons with icons
               SizedBox(
                 height: 48,
                 child: ListView.builder(
@@ -144,16 +152,17 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
                   itemBuilder: (context, index) {
                     final category = _categories[index];
                     final isSelected = index == _selectedCategoryIndex;
+                    final icon = _categoryIcons[index];
                     return Padding(
                       padding: const EdgeInsets.only(right: 12),
                       child: _CategoryButton(
                         label: category,
+                        icon: icon,
                         isSelected: isSelected,
                         onTap: () {
                           setState(() {
                             _selectedCategoryIndex = index;
                           });
-                          // 👇 Navigate to AttractionListScreen with the selected category
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -547,11 +556,13 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
 
 class _CategoryButton extends StatelessWidget {
   final String label;
+  final IconData icon;
   final bool isSelected;
   final VoidCallback onTap;
 
   const _CategoryButton({
     required this.label,
+    required this.icon,
     required this.isSelected,
     required this.onTap,
   });
@@ -562,20 +573,29 @@ class _CategoryButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 48,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: isSelected ? AppTheme.primaryBlue : Colors.grey.shade100,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              color: isSelected ? Colors.white : Colors.grey.shade800,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 20,
+              color: isSelected ? Colors.white : Colors.grey.shade700,
             ),
-          ),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.grey.shade800,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ),
     );
