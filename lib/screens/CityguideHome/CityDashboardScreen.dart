@@ -1,6 +1,6 @@
-// import 'package:flutter/material.dart';
-// import '../../utils/theme.dart';
-// import '../../screens/attraction/AttractionListScreen.dart'; // 👈 import added
+import 'package:flutter/material.dart';
+import '../../utils/theme.dart';
+import '../../screens/attraction/AttractionListScreen.dart';
 
 // class CityDashboardScreen extends StatefulWidget {
 //   final String cityName;
@@ -14,12 +14,19 @@
 // class _CityDashboardScreenState extends State<CityDashboardScreen> {
 //   int _selectedCategoryIndex = 0;
 
-//   final List<String> _categories = [
-//     'Attractions',
-//     'Restaurants',
-//     'Hotels',
-//     'Events',
-//   ];
+  final List<String> _categories = [
+    'Attractions',
+    'Restaurants',
+    'Hotels',
+    'Events',
+  ];
+
+  final List<IconData> _categoryIcons = [
+    Icons.attractions,
+    Icons.restaurant,
+    Icons.hotel,
+    Icons.event,
+  ];
 
 //   final List<Map<String, String>> _events = [
 //     {
@@ -42,77 +49,88 @@
 //     },
 //   ];
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       appBar: AppBar(
-//         backgroundColor: Colors.transparent,
-//         elevation: 0,
-//         leading: IconButton(
-//           icon: Icon(Icons.arrow_back_ios_new, color: Colors.grey.shade800),
-//           onPressed: () => Navigator.pop(context),
-//         ),
-//         title: Text(
-//           widget.cityName,
-//           style: const TextStyle(
-//             fontSize: 20,
-//             fontWeight: FontWeight.w600,
-//             color: Colors.black87,
-//           ),
-//         ),
-//         centerTitle: true,
-//         actions: [
-//           IconButton(
-//             icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
-//             onPressed: () {},
-//           ),
-//         ],
-//       ),
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           padding: const EdgeInsets.symmetric(horizontal: 20),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               const SizedBox(height: 10),
+  @override
+  Widget build(BuildContext context) {
+    // Determine greeting based on current hour
+    final hour = DateTime.now().hour;
+    String greeting;
+    if (hour < 12) {
+      greeting = 'Good Morning';
+    } else if (hour < 17) {
+      greeting = 'Good Afternoon';
+    } else {
+      greeting = 'Good Evening';
+    }
 
-//               // Greeting with avatar (updated)
-//               Row(
-//                 children: [
-//                   Expanded(
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         const Text(
-//                           'Good Morning,',
-//                           style: TextStyle(fontSize: 18, color: Colors.grey),
-//                         ),
-//                         const Text(
-//                           'Hi, Erioluwa',
-//                           style: TextStyle(
-//                             fontSize: 28,
-//                             fontWeight: FontWeight.bold,
-//                             color: Colors.black87,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                   CircleAvatar(
-//                     radius: 28,
-//                     backgroundColor: AppTheme.primaryBlue,
-//                     child: const Text(
-//                       'E',
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                         fontSize: 24,
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.grey.shade800),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          widget.cityName,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+
+              // Greeting with avatar (dynamic greeting)
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$greeting,',  // Dynamic greeting
+                          style: const TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                        const Text(
+                          'Hi, Erioluwa',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: AppTheme.primaryBlue,
+                    child: const Text(
+                      'E',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
 
 //               const SizedBox(height: 24),
 
@@ -135,40 +153,41 @@
 
 //               const SizedBox(height: 24),
 
-//               // Horizontally scrollable category buttons
-//               SizedBox(
-//                 height: 48,
-//                 child: ListView.builder(
-//                   scrollDirection: Axis.horizontal,
-//                   itemCount: _categories.length,
-//                   itemBuilder: (context, index) {
-//                     final category = _categories[index];
-//                     final isSelected = index == _selectedCategoryIndex;
-//                     return Padding(
-//                       padding: const EdgeInsets.only(right: 12),
-//                       child: _CategoryButton(
-//                         label: category,
-//                         isSelected: isSelected,
-//                         onTap: () {
-//                           setState(() {
-//                             _selectedCategoryIndex = index;
-//                           });
-//                           // 👇 Navigate to AttractionListScreen with the selected category
-//                           Navigator.push(
-//                             context,
-//                             MaterialPageRoute(
-//                               builder: (_) => AttractionListScreen(
-//                                 category: category,
-//                                 cityName: widget.cityName,
-//                               ),
-//                             ),
-//                           );
-//                         },
-//                       ),
-//                     );
-//                   },
-//                 ),
-//               ),
+              // Horizontally scrollable category buttons with icons
+              SizedBox(
+                height: 48,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _categories.length,
+                  itemBuilder: (context, index) {
+                    final category = _categories[index];
+                    final isSelected = index == _selectedCategoryIndex;
+                    final icon = _categoryIcons[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: _CategoryButton(
+                        label: category,
+                        icon: icon,
+                        isSelected: isSelected,
+                        onTap: () {
+                          setState(() {
+                            _selectedCategoryIndex = index;
+                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => AttractionListScreen(
+                                category: category,
+                                cityName: widget.cityName,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
 
 //               const SizedBox(height: 24),
 
@@ -545,39 +564,50 @@
 //   }
 // }
 
-// class _CategoryButton extends StatelessWidget {
-//   final String label;
-//   final bool isSelected;
-//   final VoidCallback onTap;
+class _CategoryButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
 
-//   const _CategoryButton({
-//     required this.label,
-//     required this.isSelected,
-//     required this.onTap,
-//   });
+  const _CategoryButton({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onTap: onTap,
-//       child: Container(
-//         height: 48,
-//         padding: const EdgeInsets.symmetric(horizontal: 20),
-//         decoration: BoxDecoration(
-//           color: isSelected ? AppTheme.primaryBlue : Colors.grey.shade100,
-//           borderRadius: BorderRadius.circular(12),
-//         ),
-//         child: Center(
-//           child: Text(
-//             label,
-//             style: TextStyle(
-//               color: isSelected ? Colors.white : Colors.grey.shade800,
-//               fontWeight: FontWeight.w600,
-//               fontSize: 16,
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 48,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.primaryBlue : Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 20,
+              color: isSelected ? Colors.white : Colors.grey.shade700,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.grey.shade800,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
