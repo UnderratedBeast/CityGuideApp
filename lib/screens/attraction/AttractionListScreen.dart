@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
 import '../../utils/theme.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
+
 class AttractionListScreen extends StatefulWidget {
   final String category;
   final String cityName;
@@ -396,12 +398,13 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
       ),
     );
   }
-
+int _currentNavIndex = 0;
   @override
   Widget build(BuildContext context) {
     final items = _filteredItems;
 
     return Scaffold(
+      extendBody: true, // 2. Essential for the glass/transparent effect
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
         elevation: 0,
@@ -431,6 +434,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           // Filter row – always visible
           Container(
             height: 56,
+            
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: Colors.grey.shade200, width: 1),
@@ -493,8 +497,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                     ),
                   )
                 : ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: items.length,
+                // Added 100px bottom padding to clear the floating nav bar
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 100), 
+                  itemCount: items.length,
                     itemBuilder: (context, index) {
                       final item = items[index];
                       return Padding(
@@ -506,18 +511,14 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: AppTheme.primaryBlue,
-        unselectedItemColor: Colors.grey.shade500,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.explore), label: "Explore"),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: "General"),
-          BottomNavigationBarItem(icon: Icon(Icons.info_outline), label: "About"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profile"),
-        ],
-      ),
+      bottomNavigationBar: FloatingBottomNavBar(
+      currentIndex: _currentNavIndex,
+      onTap: (index) {
+        setState(() {
+          _currentNavIndex = index;
+        });
+      },
+    ),
     );
   }
 }

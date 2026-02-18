@@ -1,8 +1,12 @@
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import '../../utils/theme.dart';
 import '../../screens/attraction/AttractionListScreen.dart';
+import 'dart:ui';
 
 class CityDashboardScreen extends StatefulWidget {
+
+
   final String cityName;
 
   const CityDashboardScreen({super.key, required this.cityName});
@@ -51,10 +55,16 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
           'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop',
     },
   ];
+   int _currentIndex = 0; 
+    final List<Widget> _pages = [   // 2️⃣ Pages for each tab
+    const Center(child: Text("Home Page")),
+    const Center(child: Text("Favorites Page")),
+    const Center(child: Text("Bookmarks Page")),
+    const Center(child: Text("Profile Page")),
+  ];
 
-  @override
+@override
   Widget build(BuildContext context) {
-    // Determine greeting based on current hour
     final hour = DateTime.now().hour;
     String greeting;
     if (hour < 12) {
@@ -66,9 +76,18 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     }
 
     return Scaffold(
+      extendBody: true, // 2. Keep this true
       backgroundColor: Colors.white,
+      bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(2, 0, 0, 0),
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new, color: Colors.grey.shade800),
@@ -90,51 +109,50 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-
-              // Greeting with avatar (dynamic greeting)
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '$greeting,', // Dynamic greeting
-                          style:
-                              const TextStyle(fontSize: 18, color: Colors.grey),
-                        ),
-                        const Text(
-                          'Hi, Erioluwa',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: AppTheme.primaryBlue,
-                    child: const Text(
-                      'E',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+      // 3. REMOVED SafeArea from here
+      body: SingleChildScrollView(
+        // 4. Added bottom padding (100) so content clears the floating bar
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 100), 
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            // Greeting with avatar
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '$greeting,',
+                        style: const TextStyle(fontSize: 18, color: Colors.grey),
                       ),
+                      const Text(
+                        'Hi, Erioluwa',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                CircleAvatar(
+                  radius: 28,
+                  backgroundColor: AppTheme.primaryBlue,
+                  child: const Text(
+                    'E',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
 
               const SizedBox(height: 24),
 
@@ -350,8 +368,9 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    
+   
   }
 
   Widget _buildHighlightCard({

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../screens/map/MapScreen.dart';
 import '../../utils/theme.dart';
+import '../../screens/review/WriteReviewScreen.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 
 class AttractionDetailScreen extends StatefulWidget {
   final String name;
@@ -82,10 +84,11 @@ class _AttractionDetailScreenState
     _pageController.dispose();
     super.dispose();
   }
-
+int _currentNavIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       extendBody: true,
       backgroundColor: Colors.grey.shade50,
 
       /// ✅ STATIC TOP BAR
@@ -334,11 +337,24 @@ class _AttractionDetailScreenState
                               fontSize: 18,
                               fontWeight:
                                   FontWeight.bold)),
-                      Text("Write a review",
-                          style: TextStyle(
-                              color: AppTheme.primaryBlue,
-                              fontWeight:
-                                  FontWeight.w600)),
+                      GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WriteReviewScreen(
+          attractionName: widget.name,
+        ),
+      ),
+    );
+  },
+  child: Text(
+    "Write a review",
+    style: TextStyle(
+        color: AppTheme.primaryBlue,
+        fontWeight: FontWeight.w600),
+  ),
+),
                     ],
                   ),
 
@@ -432,7 +448,14 @@ class _AttractionDetailScreenState
           ],
         ),
       ),
-   
+      bottomNavigationBar: FloatingBottomNavBar(
+      currentIndex: _currentNavIndex,
+      onTap: (index) {
+        setState(() {
+          _currentNavIndex = index;
+        });
+      },
+    ),
    
     );
   }
