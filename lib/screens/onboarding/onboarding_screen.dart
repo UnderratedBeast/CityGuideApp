@@ -1,256 +1,7 @@
-// // lib/screens/onboarding/onboarding_screen.dart
-
-// import 'package:flutter/material.dart';
-// import '../../utils/routes.dart';
-// import '../../utils/theme.dart';
-
-// class OnboardingScreen extends StatefulWidget {
-//   const OnboardingScreen({super.key});
-
-//   @override
-//   State<OnboardingScreen> createState() => _OnboardingScreenState();
-// }
-
-// class _OnboardingScreenState extends State<OnboardingScreen> {
-//   final PageController _pageController = PageController();
-//   int _currentPage = 0;
-
-//   final List<OnboardingPage> _pages = [
-//     OnboardingPage(
-//       icon: Icons.explore,
-//       title: 'Discover Amazing Places',
-//       description: 'Find the best attractions, restaurants, and hidden gems in your city with personalized recommendations.',
-//       gradient: [AppTheme.primaryPurple, AppTheme.primaryBlue],
-//     ),
-//     OnboardingPage(
-//       icon: Icons.map,
-//       title: 'Navigate with Ease',
-//       description: 'Get detailed directions and real-time navigation to any location. Never get lost again!',
-//       gradient: [AppTheme.primaryBlue, AppTheme.primaryPurple],
-//     ),
-//     OnboardingPage(
-//       icon: Icons.favorite,
-//       title: 'Save Your Favorites',
-//       description: 'Create personalized lists of your favorite places and share them with friends and family.',
-//       gradient: [AppTheme.primaryPurple, AppTheme.primaryBlue],
-//     ),
-//     OnboardingPage(
-//       icon: Icons.star,
-//       title: 'Rate & Review',
-//       description: 'Share your experiences and help others discover the best spots in town.',
-//       gradient: [AppTheme.primaryBlue, AppTheme.primaryPurple],
-//     ),
-//   ];
-
-//   void _onPageChanged(int page) {
-//     setState(() {
-//       _currentPage = page;
-//     });
-//   }
-
-//   void _nextPage() {
-//     if (_currentPage < _pages.length - 1) {
-//       _pageController.animateToPage(
-//         _currentPage + 1,
-//         duration: const Duration(milliseconds: 300),
-//         curve: Curves.easeInOut,
-//       );
-//     } else {
-//       _completeOnboarding();
-//     }
-//   }
-
-//   void _skipOnboarding() {
-//     _completeOnboarding();
-//   }
-
-//   void _completeOnboarding() {
-//     // TODO: Save onboarding completion status to shared preferences
-//     Navigator.of(context).pushReplacementNamed(AppRoutes.login);
-//   }
-
-//   @override
-//   void dispose() {
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: AppTheme.white,
-//       body: SafeArea(
-//         child: Column(
-//           children: [
-//             // Skip Button
-//             Padding(
-//               padding: const EdgeInsets.all(16.0),
-//               child: Align(
-//                 alignment: Alignment.topRight,
-//                 child: TextButton(
-//                   onPressed: _skipOnboarding,
-//                   child: const Text(
-//                     'Skip',
-//                     style: TextStyle(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w600,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ),
-
-//             // PageView
-//             Expanded(
-//               child: PageView.builder(
-//                 controller: _pageController,
-//                 onPageChanged: _onPageChanged,
-//                 itemCount: _pages.length,
-//                 itemBuilder: (context, index) {
-//                   return _buildPage(_pages[index]);
-//                 },
-//               ),
-//             ),
-
-//             // Page Indicators
-//             Padding(
-//               padding: const EdgeInsets.symmetric(vertical: 16.0),
-//               child: Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: List.generate(
-//                   _pages.length,
-//                   (index) => _buildIndicator(index),
-//                 ),
-//               ),
-//             ),
-
-//             // Next/Get Started Button
-//             Padding(
-//               padding: const EdgeInsets.all(24.0),
-//               child: SizedBox(
-//                 width: double.infinity,
-//                 child: ElevatedButton(
-//                   onPressed: _nextPage,
-//                   style: ElevatedButton.styleFrom(
-//                     padding: const EdgeInsets.symmetric(vertical: 16),
-//                   ),
-//                   child: Text(
-//                     _currentPage == _pages.length - 1
-//                         ? 'Get Started'
-//                         : 'Next',
-//                     style: const TextStyle(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w600,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildPage(OnboardingPage page) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           // Icon with Gradient Background
-//           Container(
-//             width: 140,
-//             height: 140,
-//             decoration: BoxDecoration(
-//               gradient: LinearGradient(
-//                 begin: Alignment.topLeft,
-//                 end: Alignment.bottomRight,
-//                 colors: page.gradient,
-//               ),
-//               borderRadius: BorderRadius.circular(35),
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: page.gradient[0].withOpacity(0.3),
-//                   blurRadius: 20,
-//                   offset: const Offset(0, 10),
-//                 ),
-//               ],
-//             ),
-//             child: Icon(
-//               page.icon,
-//               size: 70,
-//               color: AppTheme.white,
-//             ),
-//           ),
-
-//           const SizedBox(height: 48),
-
-//           // Title
-//           Text(
-//             page.title,
-//             textAlign: TextAlign.center,
-//             style: const TextStyle(
-//               fontSize: 28,
-//               fontWeight: FontWeight.bold,
-//               color: AppTheme.black,
-//             ),
-//           ),
-
-//           const SizedBox(height: 16),
-
-//           // Description
-//           Text(
-//             page.description,
-//             textAlign: TextAlign.center,
-//             style: const TextStyle(
-//               fontSize: 16,
-//               color: AppTheme.darkGrey,
-//               height: 1.5,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildIndicator(int index) {
-//     final isActive = index == _currentPage;
-    
-//     return AnimatedContainer(
-//       duration: const Duration(milliseconds: 300),
-//       margin: const EdgeInsets.symmetric(horizontal: 4),
-//       width: isActive ? 24 : 8,
-//       height: 8,
-//       decoration: BoxDecoration(
-//         color: isActive ? AppTheme.primaryPurple : AppTheme.lightGrey,
-//         borderRadius: BorderRadius.circular(4),
-//       ),
-//     );
-//   }
-// }
-
-// class OnboardingPage {
-//   final IconData icon;
-//   final String title;
-//   final String description;
-//   final List<Color> gradient;
-
-//   OnboardingPage({
-//     required this.icon,
-//     required this.title,
-//     required this.description,
-//     required this.gradient,
-//   });
-// }
-
-// ###############################
-
-
-
-// lib/screens/onboarding/onboarding_screen.dart
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../utils/routes.dart';
 import '../../utils/theme.dart';
 
@@ -268,21 +19,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<_OnboardingData> _pages = const [
     _OnboardingData(
       imageUrl:
-          'https://img.freepik.com/premium-vector/illustration-person-going-holiday-flat-minimalist-design-concept-travel-lifestyle_1140815-198.jpg?semt=ais_hybrid&w=740',
+          'https://img.freepik.com/premium-vector/illustration-person-going-holiday-flat-minimalist-design-concept-travel-lifestyle_1140815-198.jpg',
       title: 'Discover New Adventures',
       description:
           'Plan trips effortlessly and explore destinations curated just for you.',
     ),
     _OnboardingData(
       imageUrl:
-          'https://img.freepik.com/free-photo/top-view-paper-style-community-map_23-2149377697.jpg?t=st=1771260111~exp=1771263711~hmac=480df07af662cbf7cd702ac37477d80e847e3b95cd94ffbedfcfef29f9393e82',
+          'https://img.freepik.com/free-photo/top-view-paper-style-community-map_23-2149377697.jpg',
       title: 'Smart Navigation',
       description:
           'Move around the city confidently with intelligent routes and insights.',
     ),
     _OnboardingData(
       imageUrl:
-          'https://img.freepik.com/premium-photo/isometric-view-3d-rendering-neon-city_978521-41846.jpg?semt=ais_hybrid&w=740&q=80',
+          'https://img.freepik.com/premium-photo/isometric-view-3d-rendering-neon-city_978521-41846.jpg',
       title: 'Experience the City Like a Local',
       description:
           'Find hidden gems, local favorites, and authentic urban experiences.',
@@ -297,6 +48,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
   }
 
+  Future<void> _finishOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_completed', true);
+
+    if (!mounted) return;
+    Navigator.pushReplacementNamed(context, AppRoutes.login);
+  }
+
   void _next() {
     if (_page.round() < _pages.length - 1) {
       _controller.nextPage(
@@ -304,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeOutCubic,
       );
     } else {
-      Navigator.pushReplacementNamed(context, AppRoutes.login);
+      _finishOnboarding();
     }
   }
 
@@ -318,8 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Align(
               alignment: Alignment.topRight,
               child: TextButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, AppRoutes.login),
+                onPressed: _finishOnboarding,
                 child: Text(
                   'Skip',
                   style: TextStyle(
@@ -351,7 +109,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       borderRadius: BorderRadius.circular(18),
                     ),
                     elevation: 8,
-                    shadowColor: AppTheme.primaryBlue.withOpacity(0.35),
                   ),
                   child: Text(
                     _page.round() == _pages.length - 1
@@ -373,6 +130,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 }
 
+/* ---------------- CARD ---------------- */
+
 class _OnboardingCard extends StatelessWidget {
   final _OnboardingData data;
   final int index;
@@ -386,8 +145,8 @@ class _OnboardingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double delta = page - index;
-    final double scale = 1 - (delta.abs() * 0.12).clamp(0, 0.12);
+    final delta = page - index;
+final scale = 1.0 - (delta.abs() * 0.12).clamp(0.0, 0.12).toDouble();
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -400,10 +159,7 @@ class _OnboardingCard extends StatelessWidget {
                 offset: Offset(delta * 40, 0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(32),
-                  child: Image.network(
-                    data.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network(data.imageUrl, fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -418,14 +174,7 @@ class _OnboardingCard extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.white.withOpacity(0.75),
-                          Colors.white.withOpacity(0.55),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+                      color: Colors.white.withOpacity(0.65),
                       borderRadius: BorderRadius.circular(26),
                       border: Border.all(
                         color: AppTheme.primaryBlue.withOpacity(0.25),
@@ -439,16 +188,12 @@ class _OnboardingCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: AppTheme.black,
                           ),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           data.description,
-                          style: const TextStyle(
-                            color: AppTheme.darkGrey,
-                            height: 1.45,
-                          ),
+                          style: const TextStyle(height: 1.45),
                         ),
                       ],
                     ),
@@ -463,6 +208,8 @@ class _OnboardingCard extends StatelessWidget {
   }
 }
 
+/* ---------------- INDICATORS ---------------- */
+
 class _Indicators extends StatelessWidget {
   final int length;
   final double page;
@@ -474,7 +221,7 @@ class _Indicators extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(length, (i) {
-        final active = (page.round() == i);
+        final active = page.round() == i;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -491,6 +238,8 @@ class _Indicators extends StatelessWidget {
     );
   }
 }
+
+/* ---------------- MODEL ---------------- */
 
 class _OnboardingData {
   final String imageUrl;

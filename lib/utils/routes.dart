@@ -19,6 +19,14 @@ class AppRoutes {
   static const String adminReviews = '/admin-reviews';
   static const String adminSettings = '/admin-settings';
   
+  static const String adminDining = '/admin-dining';
+  static const String adminEvents = '/admin-events';
+  static const String adminHotels = '/admin-hotels';
+
+  // Admin add/edit screens
+  static const String adminAddListing = '/admin-add-listing';
+  static const String adminEditListing = '/admin-edit-listing';
+  
 
   // ---------- PROFILE ----------
   static const String profile = '/profile';
@@ -37,4 +45,7 @@ class AppRoutes {
   // ---------- ATTRACTION ----------
   static const String attractionList = '/attractions';
   static const String attractionDetail = '/attraction-detail';
+
+  // ---------- NOTIFICATIONS ----------
+  static const String notifications = '/notifications';
 }
