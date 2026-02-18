@@ -21,6 +21,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     'Events',
   ];
 
+
   final List<IconData> _categoryIcons = [
     Icons.attractions,
     Icons.restaurant,
