@@ -21,6 +21,7 @@ import '../../screens/attraction/AttractionListScreen.dart';
     'Events',
   ];
 
+
   final List<IconData> _categoryIcons = [
     Icons.attractions,
     Icons.restaurant,
