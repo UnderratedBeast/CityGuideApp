@@ -1,0 +1,527 @@
+{
+  "name": "Kaduna",
+  "description": "Kaduna is the capital of Kaduna State in northwestern Nigeria and one of the country's most important historical and commercial cities. Formerly the administrative capital of the Northern Region during colonial times, it features grand colonial buildings, wide boulevards, the Kaduna River, vibrant markets (like Central Market), and a rich multicultural heritage with Hausa, Fulani, and other ethnic influences. Known for its textile industry, educational institutions (e.g., Ahmadu Bello University nearby), and attractions like Kajuru Castle, Matsirga Waterfalls, and the National Museum, Kaduna blends history, culture, and natural beauty.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kaduna_cityscape.jpg/800px-Kaduna_cityscape.jpg",
+  "ratings": 4.2,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/kajuru-castle.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Matsirga_Waterfalls_Kaduna.jpg/800px-Matsirga_Waterfalls_Kaduna.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/national-museum-kaduna.jpg",
+    "https://www.trip.com/moments/detail/kaduna-20063-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Kajuru Castle – Historic castle-turned-hotel with panoramic views",
+    "Matsirga Waterfalls – Scenic waterfall and picnic spot",
+    "National Museum Kaduna – Exhibits on Nigerian archaeology and culture",
+    "Lord Lugard Bridge – Iconic colonial bridge over the Kaduna River"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan)",
+    "averageHigh": "34°C (93°F)",
+    "averageLow": "18°C (64°F)",
+    "humidity": "Low to moderate (around 25-50%)",
+    "rainfall": "Very low (around 0-5 mm for the month)",
+    "note": "Warm days, cool nights; Harmattan dust common; pack light layers, sunglasses, scarf for dust, and moisturizer."
+  },
+  "attractions": [
+    {
+      "name": "Kajuru Castle",
+      "details": "A historic castle built in the 1970s in a medieval European style, now a hotel and tourist site with stunning hilltop views, towers, and a unique architectural blend – great for photos and relaxation.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/kajuru-castle.jpg?w=900&h=500&s=1",
+      "rating": 4.4,
+      "address": "Kajuru LGA, near Kaduna, Kaduna State",
+      "location": { "latitude": 10.3667, "longitude": 7.6167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM (day visits)",
+      "hashtag": "castle history viewpoint",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Kajuru_Castle_towers.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/castle-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/kajuru-panorama.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Entry fee ~₦1000-3000 (or hotel stay)",
+      "reviews": [
+        {
+          "profileName": "Aisha S.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Magical castle with incredible views – feels like Europe in Nigeria!",
+          "profileImage": "https://example.com/aisha.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "Matsirga Waterfalls",
+      "details": "A beautiful multi-tiered waterfall surrounded by rocks and greenery – a popular picnic and relaxation spot near Kaduna, with natural pools for swimming.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Matsirga_Waterfalls_Kaduna.jpg/800px-Matsirga_Waterfalls_Kaduna.jpg",
+      "rating": 4.5,
+      "address": "Matsirga, near Kaduna, Kaduna State",
+      "location": { "latitude": 10.4167, "longitude": 7.6333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM",
+      "hashtag": "waterfall nature picnic",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/matsirga-falls.jpg?w=800",
+        "https://cdn.tripadvisor.com/matsirga-pools.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦500 - ₦2000 entry",
+      "reviews": [
+        {
+          "profileName": "Yusuf A.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Refreshing waterfall and peaceful environment – perfect getaway!",
+          "profileImage": "https://example.com/yusuf.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "National Museum Kaduna",
+      "details": "Museum displaying Nigerian artifacts, Nok terracotta figures, traditional crafts, and historical exhibits – a key cultural site in the city.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/national-museum-kaduna.jpg?w=900&h=500&s=1",
+      "rating": 4.1,
+      "address": "No. 1 Ali Akilu Road, Kaduna",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
+      "hashtag": "museum archaeology culture",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/National_Museum_Kaduna_exhibits.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-artifacts.jpg?w=900",
+        "https://cdn.tripadvisor.com/nok-figures-kaduna.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦500 - ₦1500 entry",
+      "reviews": [
+        {
+          "profileName": "Hauwa K.",
+          "createdAt": "2026-01-20",
+          "starRatings": 4,
+          "reviewDetails": "Interesting collection of Nigerian heritage – worth a visit.",
+          "profileImage": "https://example.com/hauwa.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Lord Lugard Bridge",
+      "details": "Historic colonial bridge over the Kaduna River, a landmark connecting parts of the city and offering scenic views – great for photos and walks.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/lugard-bridge.jpg?w=900&h=500&s=1",
+      "rating": 4.0,
+      "address": "Kaduna River, Kaduna, Kaduna State",
+      "location": { "latitude": 10.5333, "longitude": 7.4500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Viewable 24/7 (traffic-dependent)",
+      "hashtag": "bridge history landmark",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Lord_Lugard_Bridge_Kaduna.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/bridge-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/lugard-sunset.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free",
+      "reviews": [
+        {
+          "profileName": "Ibrahim T.",
+          "createdAt": "2026-01-10",
+          "starRatings": 4,
+          "reviewDetails": "Iconic bridge with nice river views – historic spot.",
+          "profileImage": "https://example.com/ibrahim.jpg",
+          "likes": 22
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Crystal Garden Hotel",
+      "details": "Well-rated hotel with comfortable rooms, pool, restaurant, and event facilities – popular for business and leisure stays in Kaduna.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/crystal-garden-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.4,
+      "address": "No. 1 Wurno Road, Kaduna",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "comfort business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/crystal-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-crystal.jpg",
+        "https://cdn.crystalgardenhotel.com/lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$60 - $160 per night",
+      "reviews": [
+        {
+          "profileName": "Zainab M.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Clean, friendly staff, and good location!",
+          "profileImage": "https://example.com/zainab.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "Asaa Pyramid Hotel",
+      "details": "Iconic pyramid-shaped hotel with modern rooms, pool, conference facilities, and dining – a landmark in Kaduna.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/asaa-pyramid-hero.jpg?w=900",
+      "rating": 4.3,
+      "address": "L3A Independence Way, Kaduna",
+      "location": { "latitude": 10.5333, "longitude": 7.4500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "luxury landmark",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/asaa-pyramid-room.jpg",
+        "https://cdn.asaapyramid.com/pool-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$80 - $200 per night",
+      "reviews": [
+        {
+          "profileName": "Ahmed B.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Unique design and comfortable stay – great views!",
+          "profileImage": "https://example.com/ahmed.jpg",
+          "likes": 42
+        }
+      ]
+    },
+    {
+      "name": "Hamdala Hotel",
+      "details": "Classic hotel with rooms, pool, restaurant, and event spaces – long-standing and centrally located.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/hamdala-hotel.jpg?w=900&h=-1&s=1",
+      "rating": 4.2,
+      "address": "Ahmadu Bello Way, Kaduna",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "classic comfort",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/hamdala-room.jpg",
+        "https://cdn.hamdala.com/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/lobby.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$50 - $140 per night",
+      "reviews": [
+        {
+          "profileName": "Maryam S.",
+          "createdAt": "2025-12-15",
+          "starRatings": 4,
+          "reviewDetails": "Reliable and convenient – good for business trips.",
+          "profileImage": "https://example.com/maryam.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Royal Tropicana Hotel",
+      "details": "Modern hotel offering rooms, dining, and amenities – well-reviewed for comfort and service.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/royal-tropicana.jpg?w=900",
+      "rating": 4.3,
+      "address": "Kaduna, Kaduna State",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "modern luxury",
+      "extraImages": [
+        "https://cdn.royaltropicana.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$70 - $170 per night",
+      "reviews": [
+        {
+          "profileName": "Sani U.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Nice facilities and welcoming staff.",
+          "profileImage": "https://example.com/sani.jpg",
+          "likes": 32
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "The Kilimanjaro Restaurant",
+      "details": "Popular spot for local Nigerian, continental, and Chinese cuisine – known for good food and ambiance.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/kilimanjaro.jpg?w=900&h=500&s=1",
+      "rating": 4.4,
+      "address": "Kaduna, Kaduna State",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 10:00 PM",
+      "hashtag": "nigerian continental chinese",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/kilimanjaro-dining.jpg",
+        "https://cdn.tripadvisor.com/kilimanjaro-meals.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Tasty variety and nice atmosphere!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Mama Cass Restaurant",
+      "details": "Well-known chain offering Nigerian and continental dishes – reliable for local favorites like jollof rice and soups.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/mama-cass.jpg?w=900",
+      "rating": 4.2,
+      "address": "Kaduna branches",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 7:00 AM - 10:00 PM",
+      "hashtag": "nigerian local chain",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/mama-cass-meals.jpg",
+        "https://cdn.tripadvisor.com/mama-cass-interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 4,
+          "reviewDetails": "Consistent quality and good service.",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Chicken Republic",
+      "details": "Popular fast-food chain specializing in fried chicken, burgers, and local twists – quick and affordable.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/chicken-republic.jpg?w=900",
+      "rating": 4.0,
+      "address": "Kaduna branches",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "fast food chicken",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/chicken-republic-meals.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 4,
+          "reviewDetails": "Quick bites and tasty chicken.",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "The Grill House",
+      "details": "Restaurant specializing in grilled meats, barbecue, and local dishes – good for casual dining.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/grill-house.jpg?w=900",
+      "rating": 4.3,
+      "address": "Kaduna, Kaduna State",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "grill barbecue local",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/grill-dining.jpg",
+        "https://cdn.tripadvisor.com/grill-meats.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Delicious grilled food and friendly vibe.",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 30
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Kaduna International Trade Fair 2026",
+      "details": "Major annual trade fair showcasing commerce, industry, agriculture, and culture with exhibitors, business networking, and entertainment.",
+      "imageUrl": "https://example.com/kaduna-trade-fair.jpg",
+      "rating": 4.5,
+      "address": "Kaduna Trade Fair Complex",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 18:00 daily",
+      "hashtag": "trade fair business expo",
+      "extraImages": [
+        "https://example.com/trade-fair-booths.jpg",
+        "https://example.com/exhibitors.jpg",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/fair-crowd.jpg"
+      ],
+      "ticketPrice": "Entry fee varies",
+      "eventDate": "2026-02-20 to 2026-03-01",
+      "eventStartTime": "10:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Business Visitor",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Great for networking and discovering products.",
+          "profileImage": "https://example.com/business.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Zaria Road Carnival / Cultural Parade",
+      "details": "Street carnival and cultural parade featuring music, dances, and costumes – a vibrant community event.",
+      "imageUrl": "https://example.com/zaria-road-carnival.jpg",
+      "rating": 4.4,
+      "address": "Zaria Road, Kaduna",
+      "location": { "latitude": 10.5333, "longitude": 7.4500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Afternoon to evening",
+      "hashtag": "carnival culture parade",
+      "extraImages": [
+        "https://example.com/parade-dancers.jpg",
+        "https://example.com/costumes.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/carnival-crowd.jpg"
+      ],
+      "ticketPrice": "Free / community-based",
+      "eventDate": "2026-03-15 (example recurring style)",
+      "eventStartTime": "14:00",
+      "eventEndTime": "20:00",
+      "reviews": [
+        {
+          "profileName": "Local",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Colorful and full of energy!",
+          "profileImage": "https://example.com/local.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Kaduna Fashion Week 2026",
+      "details": "Fashion showcase with runway shows, designers, and exhibitions – highlighting northern Nigerian and contemporary styles.",
+      "imageUrl": "https://example.com/kaduna-fashion-week.jpg",
+      "rating": 4.5,
+      "address": "Kaduna venue (hotel or convention center)",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various sessions",
+      "hashtag": "fashion runway event",
+      "extraImages": [
+        "https://example.com/runway-show.jpg",
+        "https://example.com/designers.jpg",
+        "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/fashion-crowd.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "2026-04-10 to 2026-04-12",
+      "eventStartTime": "various",
+      "eventEndTime": "late",
+      "reviews": [
+        {
+          "profileName": "Fashion Fan",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Stunning designs and creative energy.",
+          "profileImage": "https://example.com/fashion.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Plateau-Kaduna Cultural Exchange Festival",
+      "details": "Cultural festival celebrating diversity between Plateau and Kaduna states with music, dance, food, and displays.",
+      "imageUrl": "https://example.com/cultural-exchange-festival.jpg",
+      "rating": 4.6,
+      "address": "Kaduna venue",
+      "location": { "latitude": 10.5167, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "cultural exchange festival",
+      "extraImages": [
+        "https://example.com/dance-performance.jpg",
+        "https://example.com/food-stalls.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/festival-crowd.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "2026-05-20 (example recurring style)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Culture Lover",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Beautiful celebration of unity and heritage.",
+          "profileImage": "https://example.com/culture.jpg",
+          "likes": 28
+        }
+      ]
+    }
+  ]
+}

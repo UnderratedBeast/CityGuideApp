@@ -129,3 +129,38 @@ class MyApp extends StatelessWidget {
 }
 
 
+
+
+LAGOS.JSON:
+// {
+//   "cities": {
+//     "lagos": {
+//       "name": "Lagos",
+//       "description": "Lagos is Nigeria’s largest city and economic powerhouse, known for its vibrant nightlife, beautiful beaches, rich culture, and thriving entertainment industry. From luxury hotels in Victoria Island to bustling markets in Balogun, Lagos offers a blend of tradition and modern urban life.",
+//       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Lagos_Island_Skyline.jpg",
+//       "rating": 4.8,
+//       "totalReviews": 1243,
+
+//       "extraImages": [
+//         "https://upload.wikimedia.org/wikipedia/commons/5/5a/Lekki_Ikoyi_Link_Bridge.jpg",
+//         "https://upload.wikimedia.org/wikipedia/commons/f/f2/Tarkwa_Bay_Beach.jpg",
+//         "https://upload.wikimedia.org/wikipedia/commons/3/35/Nike_Art_Gallery_Lagos.jpg",
+//         "https://upload.wikimedia.org/wikipedia/commons/4/4d/Victoria_Island_Lagos.jpg",
+//         "https://upload.wikimedia.org/wikipedia/commons/2/2a/Lekki_Conservation_Centre.jpg"
+//       ],
+
+//       "topHighlights": {
+//         "attraction": "Lekki Conservation Centre",
+//         "hotel": "Eko Hotels & Suites",
+//         "dining": "Yellow Chilli Restaurant",
+//         "event": "Lagos Fashion Week"
+//       },
+
+//       "weather": {
+//         "condition": "Partly Cloudy",
+//         "temperature": 29,
+//         "humidity": 78
+//       }
+//     }
+//   }
+// }

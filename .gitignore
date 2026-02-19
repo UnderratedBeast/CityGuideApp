@@ -12,6 +12,10 @@
 .swiftpm/
 migrate_working_dir/
 
+/node_modules/
+
+echo serviceAccountKey.json.json >> .gitignore
+
 # IntelliJ related
 *.iml
 *.ipr

@@ -1,0 +1,535 @@
+{
+  "name": "Abuja",
+  "description": "Abuja is the planned capital city of Nigeria, strategically located at the geographic center of the country in the Federal Capital Territory. Known as the 'Centre of Unity,' it features modern architecture, wide boulevards, green spaces, key government buildings like Aso Rock, diverse cultural sites, mosques, churches, parks, and a growing urban lifestyle with malls, lakes, and art scenes. It's a blend of planned order, ethnic diversity, and natural beauty.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Abuja_City_Gate.jpg/800px-Abuja_City_Gate.jpg",
+  "ratings": 4.4,
+  "extraImages": [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/National_Mosque_Abuja.jpg/800px-National_Mosque_Abuja.jpg",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/jabi-lake-mall.jpg?w=1200&h=800&s=1",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Aso_Rock.jpg/800px-Aso_Rock.jpg",
+    "https://www.trip.com/moments/detail/abuja-20058-12345678?locale=en-XX",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  "topHighlights": [
+    "Abuja National Mosque – Iconic Islamic architecture",
+    "Millennium Park – Largest urban park in Nigeria",
+    "Jabi Lake Mall – Modern shopping and entertainment",
+    "Nike Art Gallery Abuja – Vibrant cultural art collection"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan)",
+    "averageHigh": "35°C (95°F)",
+    "averageLow": "21°C (70°F)",
+    "humidity": "Moderate to low (around 30-50%)",
+    "rainfall": "Very low (around 5-10 mm for the month)",
+    "note": "Hot days, cooler nights; dusty Harmattan winds possible; pack light clothing, sunglasses, and moisturizer."
+  },
+  "attractions": [
+    {
+      "name": "Abuja National Mosque",
+      "details": "Also known as the Nigerian National Mosque, this stunning architectural landmark features four minarets and a large central dome, open to visitors (respect dress code and prayer times). A symbol of Islamic heritage in the capital.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/National_Mosque_Abuja.jpg/800px-National_Mosque_Abuja.jpg",
+      "rating": 4.5,
+      "address": "Mohammadu Buhari Way, Central Business District, Abuja",
+      "location": { "latitude": 9.0556, "longitude": 7.4951 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 9:00 AM - 6:00 PM (non-prayer times)",
+      "hashtag": "architecture religion culture",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/national-mosque-abuja.jpg?w=800&h=500&s=1",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Abuja_National_Mosque_interior.jpg/800px-Abuja_National_Mosque_interior.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/8f/2d/4a.jpg",
+        "https://cdn.getyourguide.com/img/tour/5f8b0e0e0e0e0e0e0e0e0e0e.jpg"
+      ],
+      "price": "Free (donations appreciated)",
+      "reviews": [
+        {
+          "profileName": "Aisha K.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Beautiful architecture and peaceful atmosphere. A must-visit for anyone in Abuja!",
+          "profileImage": "https://example.com/aisha.jpg",
+          "likes": 28
+        },
+        {
+          "profileName": "Emeka T.",
+          "createdAt": "2025-12-15",
+          "starRatings": 4,
+          "reviewDetails": "Impressive from outside; respectful entry required.",
+          "profileImage": "https://example.com/emeka.jpg",
+          "likes": 12
+        }
+      ]
+    },
+    {
+      "name": "Millennium Park",
+      "details": "Nigeria's largest urban park with lush greenery, walking paths, playgrounds, and open spaces ideal for picnics, jogging, or relaxation in the city center.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/millennium-park-abuja.jpg?w=1200",
+      "rating": 4.6,
+      "address": "Maitama District, Abuja",
+      "location": { "latitude": 9.0833, "longitude": 7.4833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 6:00 AM - 8:00 PM",
+      "hashtag": "nature park relaxation",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Millennium_Park_Abuja.jpg/800px-Millennium_Park_Abuja.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/89/ab/cd.jpg",
+        "https://cdn.penguintravel.com/images/abuja-park.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free",
+      "reviews": [
+        {
+          "profileName": "Fatima M.",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Great place to unwind; clean and family-friendly.",
+          "profileImage": "https://example.com/fatima.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Jabi Lake Mall",
+      "details": "Modern shopping mall with stores, cinemas, restaurants, and lake views; popular for leisure, shopping, and events.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/jabi-lake-mall.jpg?w=1200",
+      "rating": 4.4,
+      "address": "Jabi District, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "shopping mall entertainment",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/jabi-lake.jpg?w=800",
+        "https://cdn.trip.com/images/abuja-jabi-mall-interior.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free entry (paid activities vary)",
+      "reviews": [
+        {
+          "profileName": "Chidi O.",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Best mall in Abuja – great food court and views!",
+          "profileImage": "https://example.com/chidi.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Nike Art Gallery Abuja",
+      "details": "Branch of the famous Nike Art Gallery featuring thousands of Nigerian artworks, textiles, sculptures, and cultural exhibits.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/nike-art-abuja.jpg?w=900",
+      "rating": 4.7,
+      "address": "Maitama or Guzape District, Abuja",
+      "location": { "latitude": 9.0833, "longitude": 7.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
+      "hashtag": "art culture heritage",
+      "extraImages": [
+        "https://nikeartgallery.com/wp-content/uploads/abuja-gallery.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/nike-art-abuja.jpg?w=900",
+        "https://cdn.tripadvisor.com/nike-art-abuja-exhibits.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Entry fee ~₦1000-3000",
+      "reviews": [
+        {
+          "profileName": "Ngozi P.",
+          "createdAt": "2025-11-20",
+          "starRatings": 5,
+          "reviewDetails": "Incredible Nigerian art collection – very inspiring!",
+          "profileImage": "https://example.com/ngozi.jpg",
+          "likes": 30
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Transcorp Hilton Abuja",
+      "details": "Iconic luxury hotel with spacious rooms, multiple restaurants, pool, casino, and central location near government areas.",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/transcorp-hilton-hero.jpg?w=900",
+      "rating": 4.5,
+      "address": "1 Aguiyi Ironsi Street, Maitama, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4833 },
+      "isActive": true,
+      "website": "https://transcorphotels.com/hilton-abuja",
+      "phoneNumber": "+234 9 461 8888",
+      "openHours": "24/7",
+      "hashtag": "luxury business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/transcorp-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room.jpg",
+        "https://cdn.transcorphotels.com/hilton-lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$250 - $500 per night",
+      "reviews": [
+        {
+          "profileName": "Tunde A.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Excellent service and facilities – top choice in Abuja!",
+          "profileImage": "https://example.com/tunde.jpg",
+          "likes": 50
+        }
+      ]
+    },
+    {
+      "name": "Abuja Continental Hotel",
+      "details": "Former Sheraton; offers elegant rooms, fine dining, pool, and event spaces in a prime location.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/continental-hero.jpg?w=900",
+      "rating": 4.6,
+      "address": "Central Business District, Abuja",
+      "location": { "latitude": 9.0556, "longitude": 7.4951 },
+      "isActive": true,
+      "website": "https://abujacontinental.com",
+      "phoneNumber": "+234 9 461 0000",
+      "openHours": "24/7",
+      "hashtag": "luxury",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/continental-room.jpg",
+        "https://cdn.abujacontinental.com/pool-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lobby.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$200 - $450 per night",
+      "reviews": [
+        {
+          "profileName": "Ada E.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Luxurious and comfortable – great for business trips.",
+          "profileImage": "https://example.com/ada.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "The Nordic Villa",
+      "details": "Boutique hotel with modern Scandinavian-inspired design, excellent service, and peaceful ambiance.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/nordic-villa.jpg?w=900",
+      "rating": 4.8,
+      "address": "Maitama District, Abuja",
+      "location": { "latitude": 9.0833, "longitude": 7.4833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "boutique luxury",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/nordic-room.jpg",
+        "https://cdn.nordicvilla.com/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/pool.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$150 - $350 per night",
+      "reviews": [
+        {
+          "profileName": "Oluwaseun B.",
+          "createdAt": "2025-12-10",
+          "starRatings": 5,
+          "reviewDetails": "Stylish and serene – one of the best in Abuja!",
+          "profileImage": "https://example.com/oluwaseun.jpg",
+          "likes": 55
+        }
+      ]
+    },
+    {
+      "name": "Wells Carlton Hotel",
+      "details": "Luxury boutique hotel with elegant rooms, spa, and fine dining in a quiet upscale area.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/wells-carlton.jpg?w=900",
+      "rating": 4.7,
+      "address": "Asokoro or Maitama, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.5167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "boutique luxury",
+      "extraImages": [
+        "https://cdn.wellscarlton.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/dining.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$180 - $400 per night",
+      "reviews": [
+        {
+          "profileName": "Ifeanyi C.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Exceptional service and beautiful design.",
+          "profileImage": "https://example.com/ifeanyi.jpg",
+          "likes": 42
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "BluCabana Restaurant & Cafe",
+      "details": "Popular spot for Mediterranean and bar food with outdoor seating and vibrant atmosphere.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/blucabana.jpg?w=900",
+      "rating": 4.5,
+      "address": "Jabi or Maitama, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 11:00 PM",
+      "hashtag": "mediterranean bar",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/outdoor-seating.jpg",
+        "https://cdn.tripadvisor.com/blucabana-food.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 5,
+          "reviewDetails": "Great food and vibes – highly recommended!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "The Bukka Restaurant",
+      "details": "Authentic African and international dishes in a cozy setting; known for local flavors.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/bukka.jpg?w=900",
+      "rating": 4.6,
+      "address": "Wuse or Central Area, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 10:00 AM - 10:00 PM",
+      "hashtag": "african local",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/dishes.jpg",
+        "https://cdn.tripadvisor.com/bukka-interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/food.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 5,
+          "reviewDetails": "Best Nigerian food in the city!",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Cilantro Abuja",
+      "details": "Fine dining with fusion cuisine, elegant ambiance, and excellent service.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/cilantro.jpg?w=900",
+      "rating": 4.7,
+      "address": "Maitama, Abuja",
+      "location": { "latitude": 9.0833, "longitude": 7.4833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 12:00 PM - 11:00 PM",
+      "hashtag": "fine dining fusion",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/dining-area.jpg",
+        "https://cdn.tripadvisor.com/cilantro-plates.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$$ - $$$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Amazing flavors and presentation!",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 50
+        }
+      ]
+    },
+    {
+      "name": "Gusto Restaurant",
+      "details": "Stylish spot offering Italian, Japanese, and international dishes in Wuse II.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/gusto.jpg?w=900",
+      "rating": 4.6,
+      "address": "Wuse II, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 11:00 PM",
+      "hashtag": "italian japanese international",
+      "extraImages": [
+        "https://cdn.nordichotelsnigeria.com/gusto-dining.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/sushi.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/pasta.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2025-12-20",
+          "starRatings": 5,
+          "reviewDetails": "Diverse menu and great quality!",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 32
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Nigeria International Energy Summit (NIES) 2026",
+      "details": "Major energy conference focusing on Africa's sustainable energy future with global leaders, panels, and networking.",
+      "imageUrl": "https://nigeriaenergysummit.com/wp-content/uploads/2025/ nies-banner.jpg",
+      "rating": 4.7,
+      "address": "Bola Ahmed Tinubu International Conference Centre, Abuja",
+      "location": { "latitude": 9.0556, "longitude": 7.4951 },
+      "isActive": true,
+      "website": "https://nigeriaenergysummit.com",
+      "phoneNumber": "N/A (ticket-based)",
+      "openHours": "09:00 - 18:00",
+      "hashtag": "energy business summit",
+      "extraImages": [
+        "https://nigeriaenergysummit.com/images/speakers.jpg",
+        "https://cdn.eventbrite.com/ nies-stage.jpg",
+        "https://nigeriaenergysummit.com/networking.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "ticketPrice": "Varies (premium passes ₦100,000+)",
+      "eventDate": "2026-02-02 to 2026-02-05",
+      "eventStartTime": "09:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Industry Pro",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Insightful discussions on energy transition.",
+          "profileImage": "https://example.com/industry.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Workerlink Business Summit 2026",
+      "details": "Business summit for professionals focusing on innovation, networking, and growth opportunities.",
+      "imageUrl": "https://www.eventbrite.com/wp-content/uploads/ workerlink-summit.jpg",
+      "rating": 4.5,
+      "address": "Abuja Continental Hotel, Abuja",
+      "location": { "latitude": 9.0556, "longitude": 7.4951 },
+      "isActive": true,
+      "website": "https://eventbrite.com/workerlink-2026",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 17:00",
+      "hashtag": "business networking",
+      "extraImages": [
+        "https://cdn.eventbrite.com/summit-stage.jpg",
+        "https://www.eventbrite.com/networking-event.jpg",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.eventbrite.com/panels.jpg"
+      ],
+      "ticketPrice": "₦50,000 - ₦150,000",
+      "eventDate": "2026-04-24",
+      "eventStartTime": "10:00",
+      "eventEndTime": "17:00",
+      "reviews": [
+        {
+          "profileName": "Entrepreneur",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Great connections and speakers!",
+          "profileImage": "https://example.com/entrepreneur.jpg",
+          "likes": 20
+        }
+      ]
+    },
+    {
+      "name": "THE ELYSIAN SUMMIT AND EXHIBITION 2026",
+      "details": "Elite summit and exhibition on business, innovation, and luxury lifestyle.",
+      "imageUrl": "https://www.eventbrite.com/wp-content/uploads/elysian-summit.jpg",
+      "rating": 4.6,
+      "address": "Nicon Luxury Hotel, Abuja",
+      "location": { "latitude": 9.0667, "longitude": 7.4333 },
+      "isActive": true,
+      "website": "https://eventbrite.com/elysian-2026",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 18:00",
+      "hashtag": "luxury business exhibition",
+      "extraImages": [
+        "https://cdn.eventbrite.com/exhibition-booths.jpg",
+        "https://www.eventbrite.com/speakers-elysian.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.eventbrite.com/audience.jpg"
+      ],
+      "ticketPrice": "₦80,000+",
+      "eventDate": "2026-03-09",
+      "eventStartTime": "10:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Executive",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Premium event with high-value insights.",
+          "profileImage": "https://example.com/executive.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Bulletproof & Security Tech Abuja Expo 2026",
+      "details": "Expo on security technology, protection solutions, and family safety innovations.",
+      "imageUrl": "https://www.eventbrite.com/wp-content/uploads/security-expo.jpg",
+      "rating": 4.5,
+      "address": "Abuja Continental Hotel, Abuja",
+      "location": { "latitude": 9.0556, "longitude": 7.4951 },
+      "isActive": true,
+      "website": "https://eventbrite.com/bulletproof-expo-2026",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 17:00",
+      "hashtag": "security tech expo",
+      "extraImages": [
+        "https://cdn.eventbrite.com/tech-demos.jpg",
+        "https://www.eventbrite.com/expo-booths.jpg",
+        "https://images.unsplash.com/photo-1556155099-490a1ba16284?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.eventbrite.com/speakers-security.jpg"
+      ],
+      "ticketPrice": "₦30,000 - ₦100,000",
+      "eventDate": "2026-03-07",
+      "eventStartTime": "10:00",
+      "eventEndTime": "17:00",
+      "reviews": [
+        {
+          "profileName": "Tech Enthusiast",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Informative and practical for security needs.",
+          "profileImage": "https://example.com/tech.jpg",
+          "likes": 18
+        }
+      ]
+    }
+  ]
+}

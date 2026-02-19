@@ -1,0 +1,528 @@
+{
+  "name": "Bauchi",
+  "description": "Bauchi is the capital of Bauchi State in northeastern Nigeria, a historic city with deep roots in the Bauchi Emirate and Hausa-Fulani culture. It is famous as the gateway to Yankari National Park (one of Nigeria's best wildlife reserves with elephants, lions, baboons, and hot springs), ancient rock paintings at the Wikki Warm Springs area, traditional markets, the Emir's Palace, and colonial-era buildings. Bauchi blends rich Islamic heritage, natural beauty, and rural charm with a cooler climate due to its location on the Jos Plateau fringes.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Bauchi_city_view.jpg/800px-Bauchi_city_view.jpg",
+  "ratings": 4.3,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/yankari-game-reserve.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Wikki_Warm_Springs_Yankari.jpg/800px-Wikki_Warm_Springs_Yankari.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/bauchi-emir-palace.jpg",
+    "https://www.trip.com/moments/detail/bauchi-20064-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Yankari National Park & Wikki Warm Springs – Wildlife safaris and natural hot springs",
+    "Bauchi Emir's Palace – Historic seat of the Emirate with traditional architecture",
+    "Lame-Burra Game Reserve – Wildlife viewing and nature trails",
+    "Rock Paintings at Kariya Wuro – Ancient cave art and archaeological site"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan)",
+    "averageHigh": "34°C (93°F)",
+    "averageLow": "18°C (64°F)",
+    "humidity": "Low to moderate (around 25-50%)",
+    "rainfall": "Very low (around 0-5 mm for the month)",
+    "note": "Warm days, cool nights; Harmattan dust common; pack light layers, sunglasses, scarf for dust, and moisturizer."
+  },
+  "attractions": [
+    {
+      "name": "Yankari National Park & Wikki Warm Springs",
+      "details": "One of Nigeria's premier wildlife reserves featuring elephants, lions, baboons, hippos, and over 350 bird species; the famous Wikki Warm Springs offer year-round swimming in natural 31°C water.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/yankari-park.jpg?w=900&h=500&s=1",
+      "rating": 4.6,
+      "address": "Yankari, Alkaleri LGA, Bauchi State",
+      "location": { "latitude": 10.3833, "longitude": 9.7500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 6:00 AM - 6:00 PM",
+      "hashtag": "wildlife safari nature",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Yankari_elephants.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/wikki-springs.jpg?w=900",
+        "https://cdn.tripadvisor.com/yankari-lions.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦2000 - ₦5000 entry + safari",
+      "reviews": [
+        {
+          "profileName": "Aminu B.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Best wildlife experience in Nigeria – saw elephants and swam in warm springs!",
+          "profileImage": "https://example.com/aminu.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Bauchi Emir's Palace",
+      "details": "The historic residence of the Emir of Bauchi, featuring traditional Hausa architecture, courtyards, and cultural significance – a symbol of the emirate's heritage.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/emirs-palace-bauchi.jpg?w=900&h=500&s=1",
+      "rating": 4.2,
+      "address": "Emir's Palace Road, Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Exterior viewable daily; interior by arrangement",
+      "hashtag": "history palace culture",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Bauchi_Emirs_Palace.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/palace-gate.jpg?w=900",
+        "https://cdn.tripadvisor.com/bauchi-palace-courtyard.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free (exterior); guided tours vary",
+      "reviews": [
+        {
+          "profileName": "Hauwa K.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Majestic and full of history – a must-see in Bauchi.",
+          "profileImage": "https://example.com/hauwa.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "Lame-Burra Game Reserve",
+      "details": "Smaller wildlife reserve near Bauchi with antelopes, monkeys, birds, and scenic landscapes – good for day safaris and nature walks.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/lame-burra-reserve.jpg?w=900&h=500&s=1",
+      "rating": 4.1,
+      "address": "Lame-Burra, near Bauchi, Bauchi State",
+      "location": { "latitude": 10.5833, "longitude": 9.6667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 7:00 AM - 5:00 PM",
+      "hashtag": "wildlife reserve nature",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Lame_Burra_antelopes.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/reserve-trail.jpg?w=900",
+        "https://cdn.tripadvisor.com/lame-burra-birds.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦3000 entry/safari",
+      "reviews": [
+        {
+          "profileName": "Sani U.",
+          "createdAt": "2026-01-20",
+          "starRatings": 4,
+          "reviewDetails": "Quiet and authentic wildlife experience.",
+          "profileImage": "https://example.com/sani.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Kariya Wuro Rock Paintings",
+      "details": "Ancient rock art site with prehistoric paintings depicting animals and human figures – an archaeological treasure near Bauchi.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/kariya-wuro.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Kariya Wuro, near Bauchi, Bauchi State",
+      "location": { "latitude": 10.4500, "longitude": 9.7000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Viewable daily (guided)",
+      "hashtag": "rock art archaeology",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Kariya_Wuro_paintings.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/rock-art.jpg?w=900",
+        "https://cdn.tripadvisor.com/kariya-cave.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦2000 guided tour",
+      "reviews": [
+        {
+          "profileName": "Ibrahim T.",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Fascinating ancient art – a hidden gem.",
+          "profileImage": "https://example.com/ibrahim.jpg",
+          "likes": 30
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Zaranda Hotel Bauchi",
+      "details": "One of Bauchi's top hotels with comfortable rooms, pool, restaurant, and conference facilities – central and well-rated.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/zaranda-hotel-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Jos Road, Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "comfort business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/zaranda-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-zaranda.jpg",
+        "https://cdn.zarandahotel.com/lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$50 - $140 per night",
+      "reviews": [
+        {
+          "profileName": "Auwal M.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Clean, good service, and convenient location.",
+          "profileImage": "https://example.com/auwal.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Hazibal Hotel & Suites",
+      "details": "Modern hotel offering suites, restaurant, pool, and event spaces – popular for comfort and business stays.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/hazibal-hero.jpg?w=900",
+      "rating": 4.4,
+      "address": "Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "suites luxury",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/hazibal-room.jpg",
+        "https://cdn.hazibal.com/pool-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$60 - $160 per night",
+      "reviews": [
+        {
+          "profileName": "Maryam S.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Comfortable and well-maintained – great stay.",
+          "profileImage": "https://example.com/maryam.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "White House Hotel Bauchi",
+      "details": "Affordable yet comfortable hotel with rooms, restaurant, and central location – good value option.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/white-house-hotel.jpg?w=900&h=-1&s=1",
+      "rating": 4.1,
+      "address": "Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "budget comfort",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/white-room.jpg",
+        "https://cdn.whitehousebauchi.com/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/dining.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$40 - $120 per night",
+      "reviews": [
+        {
+          "profileName": "Usman J.",
+          "createdAt": "2025-12-15",
+          "starRatings": 4,
+          "reviewDetails": "Decent and affordable – good for short stays.",
+          "profileImage": "https://example.com/usman.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Grand Ibro Hotel Bauchi",
+      "details": "Mid-range hotel with rooms, conference facilities, and dining – reliable and centrally located.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/grand-ibro.jpg?w=900",
+      "rating": 4.0,
+      "address": "Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "mid-range comfort",
+      "extraImages": [
+        "https://cdn.grandibro.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$45 - $130 per night",
+      "reviews": [
+        {
+          "profileName": "Fatima A.",
+          "createdAt": "2026-01-20",
+          "starRatings": 4,
+          "reviewDetails": "Satisfactory stay with good service.",
+          "profileImage": "https://example.com/fatima.jpg",
+          "likes": 22
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "The Royal Restaurant",
+      "details": "Popular spot for Nigerian, continental, and local Hausa dishes – known for good quality and ambiance.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/royal-restaurant.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 10:00 PM",
+      "hashtag": "nigerian continental",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/royal-dining.jpg",
+        "https://cdn.tripadvisor.com/royal-meals.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Tasty food and welcoming environment.",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "Mama Put (Local Eateries)",
+      "details": "Authentic local bukas offering Hausa and northern Nigerian dishes like tuwo shinkafa, miyan kuka, and suya – affordable and flavorful.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/mama-put.jpg?w=900",
+      "rating": 4.5,
+      "address": "Various locations in Bauchi",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 7:00 AM - 9:00 PM",
+      "hashtag": "local hausa mama-put",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/mama-put-food.jpg",
+        "https://cdn.tripadvisor.com/mama-put-suya.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 5,
+          "reviewDetails": "Best local food – authentic and cheap!",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Chicken Republic Bauchi",
+      "details": "Popular fast-food chain offering fried chicken, burgers, and sides – quick and consistent.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/chicken-republic-bauchi.jpg?w=900",
+      "rating": 4.0,
+      "address": "Bauchi branches",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "fast food chicken",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/chicken-republic-meals.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 4,
+          "reviewDetails": "Quick and tasty – reliable chain.",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "The Grill Spot",
+      "details": "Restaurant specializing in grilled meats, barbecue, and local dishes – good for casual meals.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/grill-spot.jpg?w=900",
+      "rating": 4.3,
+      "address": "Bauchi, Bauchi State",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "grill barbecue local",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/grill-dining.jpg",
+        "https://cdn.tripadvisor.com/grill-meats.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Great grilled food and friendly service.",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 28
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Bauchi International Trade Fair 2026",
+      "details": "Annual trade fair showcasing commerce, agriculture, crafts, and industry from Bauchi and beyond with exhibitors and entertainment.",
+      "imageUrl": "https://example.com/bauchi-trade-fair.jpg",
+      "rating": 4.5,
+      "address": "Bauchi Trade Fair Complex",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 18:00 daily",
+      "hashtag": "trade fair business expo",
+      "extraImages": [
+        "https://example.com/trade-fair-booths.jpg",
+        "https://example.com/exhibitors.jpg",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/fair-crowd.jpg"
+      ],
+      "ticketPrice": "Entry fee varies",
+      "eventDate": "2026-03-01 to 2026-03-08",
+      "eventStartTime": "10:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Business Visitor",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Excellent for networking and local products.",
+          "profileImage": "https://example.com/business.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Durbar Festival Bauchi 2026",
+      "details": "Traditional Durbar festival with horse parades, colorful costumes, music, and cultural displays – usually held during Eid or special occasions.",
+      "imageUrl": "https://example.com/bauchi-durbar-festival.jpg",
+      "rating": 4.7,
+      "address": "Emir's Palace area, Bauchi",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "durbar festival culture",
+      "extraImages": [
+        "https://example.com/horse-parade.jpg",
+        "https://example.com/costumes.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/durbar-crowd.jpg"
+      ],
+      "ticketPrice": "Free / community-based",
+      "eventDate": "2026-04-05 (Eid-related or similar)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Cultural Fan",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Colorful and majestic – a true Hausa-Fulani experience!",
+          "profileImage": "https://example.com/cultural.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Bauchi Cultural Day / Yam Festival",
+      "details": "Annual cultural celebration featuring traditional dances, food (especially yam dishes), crafts, and community events.",
+      "imageUrl": "https://example.com/bauchi-cultural-day.jpg",
+      "rating": 4.5,
+      "address": "Bauchi venues",
+      "location": { "latitude": 10.3167, "longitude": 9.8333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "cultural festival yam",
+      "extraImages": [
+        "https://example.com/traditional-dance.jpg",
+        "https://example.com/food-display.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/festival-crowd.jpg"
+      ],
+      "ticketPrice": "Free / donation",
+      "eventDate": "2026-08-15 (example recurring style)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Local",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Vibrant celebration of Bauchi heritage.",
+          "profileImage": "https://example.com/local.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Yankari Eco-Tourism & Conservation Event",
+      "details": "Seasonal eco-event or guided safari awareness program at Yankari Park – focused on wildlife conservation and nature education.",
+      "imageUrl": "https://example.com/yankari-eco-event.jpg",
+      "rating": 4.6,
+      "address": "Yankari National Park",
+      "location": { "latitude": 10.3833, "longitude": 9.7500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various tour times",
+      "hashtag": "eco tourism conservation",
+      "extraImages": [
+        "https://example.com/safari-group.jpg",
+        "https://example.com/wildlife-talk.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/nature-walk.jpg"
+      ],
+      "ticketPrice": "Varies (tour packages)",
+      "eventDate": "2026-03-10 (example seasonal event)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Eco Traveler",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Informative and inspiring for conservation.",
+          "profileImage": "https://example.com/eco.jpg",
+          "likes": 25
+        }
+      ]
+    }
+  ]
+}
+
