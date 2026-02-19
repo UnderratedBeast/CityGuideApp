@@ -1,5 +1,6 @@
-import 'dart:ui'; 
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import '../../utils/theme.dart';
@@ -27,33 +28,61 @@ class _CityListScreenState extends State<CityListScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  // Track selected navigation index
   int _selectedNavIndex = 0;
 
-  // Nigerian cities with their zones and image URLs
-  final List<City> allCities = [
-    City(name: 'Abuja', zone: 'North Central', country: 'Nigeria', imageUrl: 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1OcNq3.img?w=1600&h=1066&m=4&q=67'),
-    City(name: 'Lokoja', zone: 'North Central', country: 'Nigeria', imageUrl: 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1OcNq3.img?w=1600&h=1066&m=4&q=67'),
-    City(name: 'Minna', zone: 'North Central', country: 'Nigeria', imageUrl: 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1OcNq3.img?w=1600&h=1066&m=4&q=67'),
-    City(name: 'Maiduguri', zone: 'North East', country: 'Nigeria', imageUrl: 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1OcNq3.img?w=1600&h=1066&m=4&q=67'),
-    City(name: 'Yola', zone: 'North East', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Gombe', zone: 'North East', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Kano', zone: 'North West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Kaduna', zone: 'North West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Sokoto', zone: 'North West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Enugu', zone: 'South East', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Aba', zone: 'South East', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Onitsha', zone: 'South East', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Port Harcourt', zone: 'South South', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Calabar', zone: 'South South', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Uyo', zone: 'South South', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Lagos', zone: 'South West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Ibadan', zone: 'South West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-    City(name: 'Abeokuta', zone: 'South West', country: 'Nigeria', imageUrl: 'https://images.unsplash.com/photo-1586260828725-8c99f9b4d0e4?w=400&h=300&fit=crop'),
-  ];
+  // Firestore data
+  List<City> _cities = [];
+  bool _isLoading = true;
+  String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCitiesFromFirestore();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  /// Fetches cities from Firestore collection "cities"
+  Future<void> _fetchCitiesFromFirestore() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      // Replace "cities" with your actual collection name
+      final QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection('cities').get();
+
+      final List<City> fetchedCities = snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return City(
+          name: data['name'] ?? '',
+          zone: data['zone'] ?? '',
+          country: data['country'] ?? 'Nigeria',
+          imageUrl: data['imageUrl'] ?? '',
+        );
+      }).toList();
+
+      setState(() {
+        _cities = fetchedCities;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load cities: $e';
+        _isLoading = false;
+      });
+    }
+  }
 
   List<City> get filteredCities {
-    return allCities.where((city) {
+    return _cities.where((city) {
       if (selectedZone != 'All' && city.zone != selectedZone) return false;
       if (_searchQuery.isNotEmpty &&
           !city.name.toLowerCase().contains(_searchQuery.toLowerCase())) {
@@ -66,7 +95,7 @@ class _CityListScreenState extends State<CityListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBody: true,
+      extendBody: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -94,7 +123,7 @@ class _CityListScreenState extends State<CityListScreen> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Discovery your next adventure',
+                    'Discover your next adventure',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -130,7 +159,7 @@ class _CityListScreenState extends State<CityListScreen> {
               ),
             ),
 
-            // Horizontally scrollable zone filters as buttons
+            // Zone filters
             SizedBox(
               height: 40,
               child: ListView.builder(
@@ -154,129 +183,149 @@ class _CityListScreenState extends State<CityListScreen> {
 
             const SizedBox(height: 16),
 
-            // Grid of cities (2 per row)
+            // Grid of cities
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.9,
-                  ),
-                  itemCount: filteredCities.length,
-                  itemBuilder: (context, index) {
-                    final city = filteredCities[index];
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => CityDetailScreen(
-                              cityName: city.name,
-                              country: city.country,
-                              heroImageUrl: city.imageUrl,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          image: DecorationImage(
-                            image: NetworkImage(city.imageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade300,
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Stack(
-                          children: [
-                            // Dark gradient overlay
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Colors.transparent,
-                                    Colors.black.withOpacity(0.6),
-                                  ],
+                child: _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : _errorMessage != null
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  _errorMessage!,
+                                  style: const TextStyle(color: Colors.red),
+                                  textAlign: TextAlign.center,
                                 ),
-                              ),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: _fetchCitiesFromFirestore,
+                                  child: const Text('Retry'),
+                                ),
+                              ],
                             ),
-                            // City name and country
-                            Positioned(
-                              bottom: 12,
-                              left: 12,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    city.name,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                          )
+                        : filteredCities.isEmpty
+                            ? const Center(
+                                child: Text(
+                                  'No cities found',
+                                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                                ),
+                              )
+                            : GridView.builder(
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: 0.9,
+                                ),
+                                itemCount: filteredCities.length,
+                                itemBuilder: (context, index) {
+                                  final city = filteredCities[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => CityDetailScreen(
+                                            cityName: city.name,
+                                            country: city.country,
+                                            heroImageUrl: city.imageUrl,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        image: DecorationImage(
+                                          image: NetworkImage(city.imageUrl),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade300,
+                                            blurRadius: 6,
+                                            offset: const Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(16),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Colors.transparent,
+                                                  Colors.black.withOpacity(0.6),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            bottom: 12,
+                                            left: 12,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  city.name,
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  city.country,
+                                                  style: const TextStyle(
+                                                    color: Colors.white70,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    city.country,
-                                    style: const TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
+                                  );
+                                },
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
               ),
             ),
           ],
         ),
       ),
-      // Custom floating bottom navigation bar
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: _selectedNavIndex,
         onTap: (index) {
           setState(() {
             _selectedNavIndex = index;
           });
-          if (index == 3) { // Profile tab
+          if (index == 3) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
             );
           }
-            if (index == 0) { // Profile tab
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const CityListScreen()),
-            );
+          if (index == 0) {
+            // Already on home, maybe do nothing or scroll to top
           }
-          // Handle navigation for other tabs if needed (e.g., Home, Favorites, Bookmarks)
         },
       ),
     );
   }
 }
 
-// Custom button widget for zone filters
+// FilterButton stays the same
 class FilterButton extends StatelessWidget {
   final String label;
   final bool isSelected;
@@ -316,97 +365,7 @@ class FilterButton extends StatelessWidget {
   }
 }
 
-// // Custom floating bottom navigation bar with frosted glass effect
-// class FloatingBottomNavBar extends StatelessWidget {
-//   final int currentIndex;
-//   final ValueChanged<int> onTap;
-
-//   const FloatingBottomNavBar({
-//     super.key,
-//     required this.currentIndex,
-//     required this.onTap,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final items = [
-//       {'icon': Icons.home, 'label': 'Home'},
-//       {'icon': Icons.favorite_border, 'label': 'Favorites'},
-//       {'icon': Icons.bookmark_border, 'label': 'Bookmarks'},
-//       {'icon': Icons.person_outline, 'label': 'Profile'},
-//     ];
-
-//     return Padding(
-//       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-//       child: ClipRRect(
-//         borderRadius: BorderRadius.circular(35), // Pill shape
-//         child: BackdropFilter(
-//           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-//           child: Container(
-//             height: 70,
-//             decoration: BoxDecoration(
-//               color: Colors.transparent, // Semi-transparent
-//               borderRadius: BorderRadius.circular(35),
-//               border: Border.all(
-//                 color: Colors.white.withOpacity(0.3),
-//                 width: 1.5,
-//               ),
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: Colors.black.withOpacity(0.1),
-//                   blurRadius: 20,
-//                   offset: const Offset(0, 5),
-//                 ),
-//               ],
-//             ),
-//             child: Row(
-//               children: List.generate(items.length, (index) {
-//                 final isSelected = index == currentIndex;
-//                 return Expanded(
-//                   child: GestureDetector(
-//                     onTap: () => onTap(index),
-//                     child: Container(
-                     
-//                       margin: const EdgeInsets.symmetric(
-//                           horizontal: 6, vertical: 8),
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           Icon(
-//                             items[index]['icon'] as IconData,
-//                             color: isSelected
-//                                 ? AppTheme.primaryBlue
-//                                 : Colors.white,
-//                             size: 26,
-//                           ),
-//                           const SizedBox(height: 4),
-//                           Text(
-//                             items[index]['label'] as String,
-//                             style: TextStyle(
-//                               color: isSelected
-//                                   ? AppTheme.primaryBlue
-//                                   : Colors.white,
-//                               fontSize: 12,
-//                               fontWeight: isSelected
-//                                   ? FontWeight.w600
-//                                   : FontWeight.normal,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 );
-//               }),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
+// City model (unchanged)
 class City {
   final String name;
   final String zone;

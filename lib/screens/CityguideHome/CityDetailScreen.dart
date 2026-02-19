@@ -1,8 +1,10 @@
-import 'package:city_guide_app/screens/CityguideHome/CityDashboardScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import '../../utils/theme.dart';
-class CityDetailScreen extends StatelessWidget {
+import 'CityDashboardScreen.dart';
+
+class CityDetailScreen extends StatefulWidget {
   final String cityName;
   final String country;
   final String heroImageUrl;
@@ -14,31 +16,170 @@ class CityDetailScreen extends StatelessWidget {
     required this.heroImageUrl,
   });
 
-  // Example highlights – you can make these dynamic later
-  final List<String> highlights = const [
-    'University of Ibadan',
-    "Bower's Tower",
-    'Cocoa House',
-    'Agodi Gardens',
-    'Mapo Hall',
-  ];
+  @override
+  State<CityDetailScreen> createState() => _CityDetailScreenState();
+}
 
-  // Gallery images – you can replace with city-specific images later
-  final List<String> galleryImages = const [
-    'https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg',
-    'https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg',
-    'https://images.pexels.com/photos/1796727/pexels-photo-1796727.jpeg',
-    'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
-    'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg',
-  ];
+class _CityDetailScreenState extends State<CityDetailScreen> {
+  bool _isLoading = true;
+  String? _errorMessage;
+
+  // City data from Firestore
+  String _description = '';
+  List<String> _highlights = [];
+  List<String> _extraImages = [];
+  double _rating = 0.0;
+  int _reviewCount = 0;
+  String _simpleWeather = 'Clear  22°C'; // for backward compatibility
+
+  // NEW: detailed weather map
+  Map<String, String> _weatherDetails = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCityData();
+  }
+
+  Future<void> _fetchCityData() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('cities')
+          .where('name', isEqualTo: widget.cityName)
+          .limit(1)
+          .get();
+
+      if (querySnapshot.docs.isEmpty) {
+        throw Exception('City not found');
+      }
+
+      final doc = querySnapshot.docs.first;
+      final data = doc.data();
+
+      setState(() {
+        _description = _parseString(data['description']) ?? 'No description available.';
+        _highlights = _parseListOfStrings(data['highlights']) ?? [];
+        _extraImages = _parseListOfStrings(data['extraImages']) ?? [];
+        _rating = _parseDouble(data['ratings']) ?? 0.0;
+        _reviewCount = _parseInt(data['reviewCount']) ?? 0;
+        _simpleWeather = _parseString(data['weatherSimple']) ?? 'Clear  22°C';
+
+        // NEW: parse detailed weather map
+        final weatherMap = data['weather'];
+        if (weatherMap is Map) {
+          _weatherDetails = Map.fromEntries(
+            weatherMap.entries.map((e) => MapEntry(
+                  e.key.toString(),
+                  e.value?.toString() ?? '',
+                )),
+          );
+        }
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load data: $e';
+        _isLoading = false;
+      });
+    }
+  }
+
+  // ... (keep your existing parse helpers: _parseString, _parseListOfStrings, _parseDouble, _parseInt)
+
+  String? _parseString(dynamic value) {
+    if (value == null) return null;
+    if (value is String) return value;
+    return value.toString();
+  }
+
+  List<String>? _parseListOfStrings(dynamic value) {
+    if (value == null) return null;
+    if (value is List) {
+      try {
+        return value.map((e) => e.toString()).toList();
+      } catch (_) {
+        return [];
+      }
+    }
+    if (value is Map) {
+      return value.values.map((e) => e.toString()).toList();
+    }
+    return [];
+  }
+
+  double? _parseDouble(dynamic value) {
+    if (value == null) return null;
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.tryParse(value) ?? 0.0;
+    return 0.0;
+  }
+
+  int? _parseInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is double) return value.toInt();
+    if (value is String) return int.tryParse(value) ?? 0;
+    return 0;
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_errorMessage != null) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Error: $_errorMessage'),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _fetchCityData,
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final gallery = _extraImages.isNotEmpty
+        ? _extraImages
+        : [
+            'https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg',
+            'https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg',
+            'https://images.pexels.com/photos/1796727/pexels-photo-1796727.jpeg',
+            'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
+            'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg',
+          ];
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(56, 24, 5, 5),
       body: CustomScrollView(
         slivers: [
-          // Collapsing header with image and styled icons
           SliverAppBar(
             expandedHeight: 280,
             pinned: true,
@@ -83,7 +224,7 @@ class CityDetailScreen extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    heroImageUrl, // Use the passed image
+                    widget.heroImageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
                       color: Colors.grey.shade300,
@@ -106,15 +247,13 @@ class CityDetailScreen extends StatelessWidget {
               ),
             ),
             backgroundColor: Colors.blue.shade800,
-            title: Text(cityName), // Use city name
+            title: Text(widget.cityName),
             titleTextStyle: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),
-
-          // Main content card
           SliverToBoxAdapter(
             child: Stack(
               clipBehavior: Clip.none,
@@ -144,14 +283,13 @@ class CityDetailScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            cityName,
+                            widget.cityName,
                             style: const TextStyle(
                               fontSize: 34,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 12),
 
                         // Rating row
@@ -162,74 +300,74 @@ class CityDetailScreen extends StatelessWidget {
                               const Icon(Icons.star,
                                   color: Colors.amber, size: 22),
                               const SizedBox(width: 6),
-                              const Text(
-                                '4.9',
-                                style: TextStyle(
+                              Text(
+                                _rating.toStringAsFixed(1),
+                                style: const TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '(12.4k Reviews)',
+                                '($_reviewCount Reviews)',
                                 style: TextStyle(
                                     color: Colors.grey.shade700, fontSize: 15),
                               ),
                               const Spacer(),
-                            Container(
-  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-  child: const Text(
-    'Most Visited 2024',
-    style: TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.w600,
-      color: AppTheme.primaryBlue, // set the text color to blue
-    ),
-  ),
-)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 6),
+                                child: const Text(
+                                  'Most Visited 2024',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.primaryBlue,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-
                         const SizedBox(height: 24),
 
                         // Top Highlights
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            'Top Highlights',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                        if (_highlights.isNotEmpty) ...[
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              'Top Highlights',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-
-                        const SizedBox(height: 12),
-
-                        SizedBox(
-                          height: 40,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            itemCount: highlights.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: const EdgeInsets.only(right: 12),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade100,
-                                  borderRadius: BorderRadius.circular(30),
-                                  border:
-                                      Border.all(color: Colors.grey.shade300),
-                                ),
-                                child: Text(
-                                  highlights[index],
-                                  style: const TextStyle(fontSize: 14),
-                                ),
-                              );
-                            },
+                          const SizedBox(height: 12),
+                          SizedBox(
+                            height: 40,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              itemCount: _highlights.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: const EdgeInsets.only(right: 12),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade100,
+                                    borderRadius: BorderRadius.circular(30),
+                                    border:
+                                        Border.all(color: Colors.grey.shade300),
+                                  ),
+                                  child: Text(
+                                    _highlights[index],
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-
-                        const SizedBox(height: 24),
+                          const SizedBox(height: 24),
+                        ],
 
                         // About the City
                         const Padding(
@@ -240,58 +378,55 @@ class CityDetailScreen extends StatelessWidget {
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                         ),
-
                         const SizedBox(height: 8),
-
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            // Use city name in description
-                            '$cityName, the largest city in West Africa, is the capital of Oyo State in Nigeria. '
-                            'Known for its rich history, traditional arts, and vibrant culture, $cityName offers a unique '
-                            'blend of ancient and modern attractions.',
+                            _description,
                             style: const TextStyle(
                                 fontSize: 15,
                                 height: 1.4,
                                 color: Colors.black87),
                           ),
                         ),
-
                         const SizedBox(height: 20),
 
-                        // Weather
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 16),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade50,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.grey.shade200),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(Icons.wb_sunny,
-                                    color: Colors.orange.shade700),
-                                const SizedBox(width: 12),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('WEATHER',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.grey)),
-                                    Text('Clear  22°C',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500)),
-                                  ],
-                                ),
-                              ],
+                        // ----- DETAILED WEATHER CARD -----
+                        if (_weatherDetails.isNotEmpty)
+                          WeatherDetailsCard(weather: _weatherDetails)
+                        else
+                          // Fallback simple weather row
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade50,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: Colors.grey.shade200),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.wb_sunny,
+                                      color: Colors.orange.shade700),
+                                  const SizedBox(width: 12),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text('WEATHER',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.grey)),
+                                      Text(_simpleWeather,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500)),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-
                         const SizedBox(height: 24),
 
                         // Photo Gallery
@@ -303,20 +438,18 @@ class CityDetailScreen extends StatelessWidget {
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                         ),
-
                         const SizedBox(height: 8),
-
                         SizedBox(
                           height: 120,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             padding: const EdgeInsets.symmetric(horizontal: 16),
-                            itemCount: galleryImages.length,
+                            itemCount: gallery.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
                                   _showFullScreenGallery(
-                                      context, galleryImages, index);
+                                      context, gallery, index);
                                 },
                                 child: Container(
                                   width: 120,
@@ -324,7 +457,7 @@ class CityDetailScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
                                     image: DecorationImage(
-                                      image: NetworkImage(galleryImages[index]),
+                                      image: NetworkImage(gallery[index]),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -333,51 +466,53 @@ class CityDetailScreen extends StatelessWidget {
                             },
                           ),
                         ),
-
                         const SizedBox(height: 30),
 
                         // Explore Button
-                      Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 16),
-  child: SizedBox(
-    width: double.infinity,
-    child: ElevatedButton(
-   onPressed: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (_) => CityDashboardScreen(cityName: cityName),
-    ),
-  );
-},
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        backgroundColor: AppTheme.primaryBlue,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Transform.rotate(
-            angle: -pi / 4, // tilt 30 degrees counter-clockwise
-            child: const Icon(
-              Icons.send, // paper plane icon
-              color: Colors.white,
-              size: 17,
-            ),
-          ),
-          const SizedBox(width: 8),
-          const Text(
-            'Explore City',
-            style: TextStyle(fontSize: 18, color: Colors.white),
-          ),
-        ],
-      ),
-    ),
-  ),
-),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => CityDashboardScreen(
+                                        cityName: widget.cityName),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                backgroundColor: AppTheme.primaryBlue,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Transform.rotate(
+                                    angle: -pi / 4,
+                                    child: const Icon(
+                                      Icons.send,
+                                      color: Colors.white,
+                                      size: 17,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    'Explore City',
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 20),
                       ],
                     ),
@@ -434,6 +569,160 @@ class CityDetailScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+// ------------------------------------------------------------
+// WeatherDetailsCard – displays the structured weather info
+// ------------------------------------------------------------
+class WeatherDetailsCard extends StatelessWidget {
+  final Map<String, String> weather;
+
+  const WeatherDetailsCard({super.key, required this.weather});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade50,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.grey.shade200),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.wb_sunny, color: Colors.orange, size: 24),
+                SizedBox(width: 8),
+                Text(
+                  'Weather',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+
+            // High / Low
+            if (weather.containsKey('averageHigh') || weather.containsKey('averageLow'))
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildInfoRow(
+                        icon: Icons.arrow_upward,
+                        label: 'High',
+                        value: weather['averageHigh'] ?? '--',
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildInfoRow(
+                        icon: Icons.arrow_downward,
+                        label: 'Low',
+                        value: weather['averageLow'] ?? '--',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+            // Humidity
+            if (weather.containsKey('humidity'))
+              _buildInfoRow(
+                icon: Icons.water_drop,
+                label: 'Humidity',
+                value: weather['humidity']!,
+              ),
+
+            // Rainfall
+            if (weather.containsKey('rainfall'))
+              _buildInfoRow(
+                icon: Icons.umbrella,
+                label: 'Rainfall',
+                value: weather['rainfall']!,
+              ),
+
+            // Season
+            if (weather.containsKey('season'))
+              _buildInfoRow(
+                icon: Icons.calendar_today,
+                label: 'Season',
+                value: weather['season']!,
+              ),
+
+            // Note (special styling)
+            if (weather.containsKey('note'))
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.blue.shade200),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.info_outline,
+                          color: Colors.blue.shade700, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          weather['note']!,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.blue.shade900,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow({
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: Colors.grey.shade700),
+          const SizedBox(width: 8),
+          Text(
+            '$label: ',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade800,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey.shade700,
+              ),
+              softWrap: true,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
