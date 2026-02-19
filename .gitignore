@@ -16,6 +16,12 @@ migrate_working_dir/
 
 echo serviceAccountKey.json.json >> .gitignore
 
+# Service account keys
+serviceAccountKey.json
+*.json.json
+.env
+
+
 # IntelliJ related
 *.iml
 *.ipr
