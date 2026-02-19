@@ -1,0 +1,527 @@
+{
+  "name": "Yola",
+  "description": "Yola is the capital of Adamawa State in northeastern Nigeria and the seat of the historic Adamawa Emirate. It lies along the Benue River and serves as a major commercial and cultural hub in the region. Known for its Fulani heritage, traditional markets (e.g., Jimeta Modern Market), colonial-era buildings, the American University of Nigeria (AUN), and scenic river views, Yola blends Islamic culture, diverse ethnic influences, and natural beauty. Nearby attractions include the Gashaka-Gumti National Park (one of Africa's largest), the Upper Benue River, and historical sites tied to the 19th-century jihad and emirate history.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Yola_cityscape.jpg/800px-Yola_cityscape.jpg",
+  "ratings": 4.1,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/jimeta-modern-market.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Upper_Benue_River_Yola.jpg/800px-Upper_Benue_River_Yola.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/gashaka-gumti-national-park.jpg",
+    "https://www.trip.com/moments/detail/yola-20066-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Jimeta Modern Market – Bustling commercial hub for goods and culture",
+    "Upper Benue River – Scenic river views and boat activities",
+    "Gashaka-Gumti National Park – Wildlife safaris and biodiversity (nearby)",
+    "Lamurde Park & Zoo – Local recreation and animal viewing"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan)",
+    "averageHigh": "36°C (97°F)",
+    "averageLow": "20°C (68°F)",
+    "humidity": "Low to moderate (around 30-55%)",
+    "rainfall": "Very low (around 0-10 mm for the month)",
+    "note": "Hot days, cooler nights; Harmattan dust common; pack light layers, sunglasses, scarf for dust, and moisturizer."
+  },
+  "attractions": [
+    {
+      "name": "Jimeta Modern Market",
+      "details": "One of the largest and most vibrant markets in northeastern Nigeria, offering everything from foodstuffs, fabrics, electronics, and traditional crafts – a cultural and commercial center of Yola.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/jimeta-market.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Jimeta, Yola North, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 6:00 AM - 8:00 PM",
+      "hashtag": "market shopping culture",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Jimeta_Market_stalls.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/market-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/jimeta-fabric.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Varies (bargaining essential)",
+      "reviews": [
+        {
+          "profileName": "Aisha M.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Lively market with everything you need – authentic Yola experience!",
+          "profileImage": "https://example.com/aisha.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "Upper Benue River",
+      "details": "Scenic stretch of the Benue River offering boat rides, fishing, and riverbank relaxation – a natural feature that shapes Yola's geography and economy.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Upper_Benue_River_Yola.jpg/800px-Upper_Benue_River_Yola.jpg",
+      "rating": 4.2,
+      "address": "Yola, Adamawa State (riverfront areas)",
+      "location": { "latitude": 9.2167, "longitude": 12.4833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Viewable daily (boat rides vary)",
+      "hashtag": "river nature boat",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/benue-river.jpg?w=800",
+        "https://cdn.tripadvisor.com/yola-river-sunset.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free (boat rides ~₦1000-3000)",
+      "reviews": [
+        {
+          "profileName": "Bala U.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Beautiful river views – peaceful and refreshing!",
+          "profileImage": "https://example.com/bala.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Gashaka-Gumti National Park (accessible from Yola)",
+      "details": "One of Nigeria's largest national parks with diverse wildlife (elephants, chimpanzees, antelopes), rainforests, savannas, and the Taraba/Adamawa border region – a major eco-tourism destination near Yola.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/gashaka-gumti.jpg?w=900&h=500&s=1",
+      "rating": 4.6,
+      "address": "Gashaka-Gumti, near Yola (Adamawa/Taraba border)",
+      "location": { "latitude": 7.3333, "longitude": 11.3333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 6:00 AM - 6:00 PM",
+      "hashtag": "national park wildlife safari",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Gashaka_elephants.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/park-trail.jpg?w=900",
+        "https://cdn.tripadvisor.com/gashaka-chimps.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦3000 - ₦8000 entry + safari",
+      "reviews": [
+        {
+          "profileName": "Fatima J.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Incredible wildlife and untouched nature – unforgettable!",
+          "profileImage": "https://example.com/fatima.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "Lamurde Park & Zoo",
+      "details": "Local recreational park with a small zoo, playgrounds, and green spaces – good for families and casual outings in Yola.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/lamurde-park.jpg?w=900&h=500&s=1",
+      "rating": 4.0,
+      "address": "Lamurde, near Yola, Adamawa State",
+      "location": { "latitude": 9.2667, "longitude": 12.4333 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM",
+      "hashtag": "park zoo family",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Lamurde_Park.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/zoo-animals.jpg?w=900",
+        "https://cdn.tripadvisor.com/lamurde-playground.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦500 - ₦1500 entry",
+      "reviews": [
+        {
+          "profileName": "Ibrahim A.",
+          "createdAt": "2026-01-10",
+          "starRatings": 4,
+          "reviewDetails": "Nice spot for family relaxation and kids.",
+          "profileImage": "https://example.com/ibrahim.jpg",
+          "likes": 25
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "AUN Guest House / American University of Nigeria Lodging",
+      "details": "Modern and comfortable accommodation on the AUN campus, with clean rooms, dining, and university facilities – popular for visitors and business travelers.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/aun-guest-house-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "American University of Nigeria Campus, Yola",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "https://aun.edu.ng",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "campus comfort",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/aun-room.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/aun-view.jpg",
+        "https://cdn.aun.edu.ng/guest-house-lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$60 - $160 per night",
+      "reviews": [
+        {
+          "profileName": "Fatima B.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Quiet, clean, and well-managed – excellent!",
+          "profileImage": "https://example.com/fatima.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Royal Palace Hotel Yola",
+      "details": "Mid-range hotel with rooms, restaurant, and basic amenities – centrally located and reliable.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/royal-palace-hero.jpg?w=900",
+      "rating": 4.1,
+      "address": "Yola, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "mid-range comfort",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/royal-room.jpg",
+        "https://cdn.royalpalaceyola.com/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$40 - $120 per night",
+      "reviews": [
+        {
+          "profileName": "Adamu S.",
+          "createdAt": "2026-02-01",
+          "starRatings": 4,
+          "reviewDetails": "Decent stay – good location and service.",
+          "profileImage": "https://example.com/adamu.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Yola International Hotel",
+      "details": "Standard hotel offering rooms, conference facilities, and dining – suitable for business and transit.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/yola-international.jpg?w=900&h=-1&s=1",
+      "rating": 4.0,
+      "address": "Yola, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "business transit",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/yola-room.jpg",
+        "https://cdn.yolainternational.com/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/lobby.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$45 - $130 per night",
+      "reviews": [
+        {
+          "profileName": "Hauwa J.",
+          "createdAt": "2025-12-15",
+          "starRatings": 4,
+          "reviewDetails": "Convenient and satisfactory.",
+          "profileImage": "https://example.com/hauwa.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Benue Guest Inn",
+      "details": "Affordable guesthouse with basic rooms and proximity to the river – good for budget travelers.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/benue-guest-inn.jpg?w=900",
+      "rating": 3.9,
+      "address": "Yola, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "budget guest house",
+      "extraImages": [
+        "https://cdn.benueguestinn.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/lobby.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$30 - $100 per night",
+      "reviews": [
+        {
+          "profileName": "Usman K.",
+          "createdAt": "2026-01-20",
+          "starRatings": 4,
+          "reviewDetails": "Affordable and clean – good for short stays.",
+          "profileImage": "https://example.com/usman.jpg",
+          "likes": 22
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "The Royal Restaurant Yola",
+      "details": "Popular spot for Nigerian, Hausa, and continental dishes – known for good service and local flavors.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/royal-yola.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Yola, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 10:00 PM",
+      "hashtag": "nigerian hausa continental",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/royal-dining.jpg",
+        "https://cdn.tripadvisor.com/royal-meals-yola.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Delicious and welcoming – great local food!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "Mama Put (Local Eateries)",
+      "details": "Authentic local bukas offering Hausa and northern Nigerian dishes like tuwo, miya, and suya – affordable and flavorful.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/mama-put-yola.jpg?w=900",
+      "rating": 4.5,
+      "address": "Various locations in Yola",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 7:00 AM - 9:00 PM",
+      "hashtag": "local hausa mama-put",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/mama-put-food.jpg",
+        "https://cdn.tripadvisor.com/mama-put-suya.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 5,
+          "reviewDetails": "Best authentic northern food – cheap and tasty!",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Chicken Republic Yola",
+      "details": "Fast-food chain specializing in fried chicken, burgers, and sides – quick and consistent.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/chicken-republic-yola.jpg?w=900",
+      "rating": 4.0,
+      "address": "Yola branches",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "fast food chicken",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/chicken-republic-meals.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 4,
+          "reviewDetails": "Quick and reliable – good for fast meals.",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "The Grill Spot Yola",
+      "details": "Restaurant specializing in grilled meats, barbecue, and local dishes – good for casual dining.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/grill-spot-yola.jpg?w=900",
+      "rating": 4.2,
+      "address": "Yola, Adamawa State",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "grill barbecue local",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/grill-dining.jpg",
+        "https://cdn.tripadvisor.com/grill-meats.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Excellent grilled food and friendly vibe.",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 28
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Yola International Trade Fair 2026",
+      "details": "Annual trade fair showcasing commerce, agriculture, crafts, and industry in Adamawa State and beyond.",
+      "imageUrl": "https://example.com/yola-trade-fair.jpg",
+      "rating": 4.4,
+      "address": "Yola Trade Fair Complex",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 - 18:00 daily",
+      "hashtag": "trade fair business expo",
+      "extraImages": [
+        "https://example.com/trade-fair-booths.jpg",
+        "https://example.com/exhibitors.jpg",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/fair-crowd.jpg"
+      ],
+      "ticketPrice": "Entry fee varies",
+      "eventDate": "2026-03-10 to 2026-03-17",
+      "eventStartTime": "10:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Business Visitor",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Great for networking and local trade.",
+          "profileImage": "https://example.com/business.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Lamido Durbar Festival 2026",
+      "details": "Traditional Durbar festival of the Lamido of Adamawa with horse parades, music, colorful costumes, and cultural displays.",
+      "imageUrl": "https://example.com/lamido-durbar.jpg",
+      "rating": 4.7,
+      "address": "Lamido's Palace area, Yola",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "durbar festival culture",
+      "extraImages": [
+        "https://example.com/horse-parade.jpg",
+        "https://example.com/costumes.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/durbar-crowd.jpg"
+      ],
+      "ticketPrice": "Free / community-based",
+      "eventDate": "2026-04-20 (Eid-related or similar)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Cultural Fan",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Majestic and full of tradition – beautiful!",
+          "profileImage": "https://example.com/cultural.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Adamawa Cultural Festival",
+      "details": "Annual festival celebrating Adamawa's diverse ethnic groups with dances, music, food, and crafts.",
+      "imageUrl": "https://example.com/adamawa-cultural-festival.jpg",
+      "rating": 4.5,
+      "address": "Yola venues",
+      "location": { "latitude": 9.2333, "longitude": 12.4667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "cultural festival diversity",
+      "extraImages": [
+        "https://example.com/traditional-dance.jpg",
+        "https://example.com/food-stalls.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/festival-crowd.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "2026-11-15 (example recurring style)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Local",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Celebrating Adamawa's rich heritage – vibrant!",
+          "profileImage": "https://example.com/local.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Yankari Safari & Conservation Event",
+      "details": "Seasonal eco-tourism or conservation awareness event at Yankari National Park – guided safaris and wildlife education.",
+      "imageUrl": "https://example.com/yankari-safari-event.jpg",
+      "rating": 4.6,
+      "address": "Yankari National Park (accessible from Yola)",
+      "location": { "latitude": 10.3833, "longitude": 9.7500 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various tour times",
+      "hashtag": "eco safari conservation",
+      "extraImages": [
+        "https://example.com/safari-group.jpg",
+        "https://example.com/wildlife-talk.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/nature-walk.jpg"
+      ],
+      "ticketPrice": "Varies (tour packages)",
+      "eventDate": "2026-03-15 (example seasonal event)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Eco Traveler",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Informative and exciting wildlife experience.",
+          "profileImage": "https://example.com/eco.jpg",
+          "likes": 28
+        }
+      ]
+    }
+  ]
+}

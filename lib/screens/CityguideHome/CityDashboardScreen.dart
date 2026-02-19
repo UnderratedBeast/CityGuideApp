@@ -2,11 +2,9 @@ import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import '../../utils/theme.dart';
 import '../../screens/attraction/AttractionListScreen.dart';
-import 'dart:ui';
+import '../../screens/notificationS/notification_Screen.dart'; 
 
 class CityDashboardScreen extends StatefulWidget {
-
-
   final String cityName;
 
   const CityDashboardScreen({super.key, required this.cityName});
@@ -17,6 +15,7 @@ class CityDashboardScreen extends StatefulWidget {
 
 class _CityDashboardScreenState extends State<CityDashboardScreen> {
   int _selectedCategoryIndex = 0;
+  int _currentIndex = 0;
 
   final List<String> _categories = [
     'Attractions',
@@ -55,15 +54,15 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
           'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop',
     },
   ];
-   int _currentIndex = 0; 
-    final List<Widget> _pages = [   // 2️⃣ Pages for each tab
+
+  final List<Widget> _pages = [
     const Center(child: Text("Home Page")),
     const Center(child: Text("Favorites Page")),
     const Center(child: Text("Bookmarks Page")),
     const Center(child: Text("Profile Page")),
   ];
 
-@override
+  @override
   Widget build(BuildContext context) {
     final hour = DateTime.now().hour;
     String greeting;
@@ -76,7 +75,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     }
 
     return Scaffold(
-      extendBody: true, // 2. Keep this true
+      extendBody: true,
       backgroundColor: Colors.white,
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: _currentIndex,
@@ -105,14 +104,19 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationsScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
-      // 3. REMOVED SafeArea from here
       body: SingleChildScrollView(
-        // 4. Added bottom padding (100) so content clears the floating bar
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 100), 
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -154,224 +158,213 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
               ],
             ),
 
-              const SizedBox(height: 24),
-
-              // Search bar
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Discover ${widget.cityName}...',
-                    hintStyle: TextStyle(color: Colors.grey.shade500),
-                    prefixIcon: Icon(Icons.search, color: Colors.grey.shade600),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
+            const SizedBox(height: 24),
+            // Search bar
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Discover ${widget.cityName}...',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey.shade600),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 ),
               ),
+            ),
 
-              const SizedBox(height: 24),
-
-              // Horizontally scrollable category buttons with icons
-              SizedBox(
-                height: 48,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _categories.length,
-                  itemBuilder: (context, index) {
-                    final category = _categories[index];
-                    final isSelected = index == _selectedCategoryIndex;
-                    final icon = _categoryIcons[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: _CategoryButton(
-                        label: category,
-                        icon: icon,
-                        isSelected: isSelected,
-                        onTap: () {
-                          setState(() {
-                            _selectedCategoryIndex = index;
-                          });
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => AttractionListScreen(
-                                category: category,
-                                cityName: widget.cityName,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Featured Highlights header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Featured Highlights',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'See all',
-                      style: TextStyle(color: AppTheme.primaryBlue),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // Horizontal scroll of highlights
-              SizedBox(
-                height: 300,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildHighlightCard(
-                      title: 'The Big Ben',
-                      location: 'Westernmost, London',
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
-                    ),
-                    const SizedBox(width: 16),
-                    _buildHighlightCard(
-                      title: 'Towne',
-                      location: 'Southwark',
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
-                    ),
-                    const SizedBox(width: 16),
-                    _buildHighlightCard(
-                      title: 'London Eye',
-                      location: 'Lambeth',
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Popular Near You header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Popular Near You',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'View Map',
-                      style: TextStyle(color: AppTheme.primaryBlue),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // Popular items list
-              _buildPopularItem(
-                title: 'The Ritz London',
-                category: 'Luxury Hotel',
-                distance: '0.4 miles away',
-                rating: 4.9,
-                reviews: 1240,
-                imageUrl:
-                    'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop',
-              ),
-              const SizedBox(height: 16),
-              _buildPopularItem(
-                title: "Gordon Ramsay Bar & Grill",
-                category: 'Steakhouse',
-                distance: '1.2 miles away',
-                rating: 4.7,
-                reviews: 856,
-                imageUrl:
-                    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop',
-              ),
-
-              const SizedBox(height: 24),
-
-              // Upcoming Events header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Upcoming Events',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Calendar',
-                      style: TextStyle(color: AppTheme.primaryBlue),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // Horizontally scrollable events
-              SizedBox(
-                height: 220,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _events.length,
-                  itemBuilder: (context, index) {
-                    final event = _events[index];
-                    return Container(
-                      width: 280,
-                      margin: const EdgeInsets.only(right: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            event['date']!,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+            const SizedBox(height: 24),
+            // Category buttons
+            SizedBox(
+              height: 48,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _categories.length,
+                itemBuilder: (context, index) {
+                  final category = _categories[index];
+                  final isSelected = index == _selectedCategoryIndex;
+                  final icon = _categoryIcons[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: _CategoryButton(
+                      label: category,
+                      icon: icon,
+                      isSelected: isSelected,
+                      onTap: () {
+                        setState(() {
+                          _selectedCategoryIndex = index;
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => AttractionListScreen(
+                              category: category,
+                              cityName: widget.cityName,
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Expanded(
-                            child: _buildEventCard(
-                              title: event['title']!,
-                              time: event['time']!,
-                              imageUrl: event['imageUrl']!,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
+            ),
 
-              const SizedBox(height: 30),
-            ],
-          ),
+            const SizedBox(height: 24),
+            // Featured Highlights
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Featured Highlights',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'See all',
+                    style: TextStyle(color: AppTheme.primaryBlue),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 300,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _buildHighlightCard(
+                    title: 'The Big Ben',
+                    location: 'Westernmost, London',
+                    imageUrl:
+                        'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
+                  ),
+                  const SizedBox(width: 16),
+                  _buildHighlightCard(
+                    title: 'Towne',
+                    location: 'Southwark',
+                    imageUrl:
+                        'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
+                  ),
+                  const SizedBox(width: 16),
+                  _buildHighlightCard(
+                    title: 'London Eye',
+                    location: 'Lambeth',
+                    imageUrl:
+                        'https://images.unsplash.com/photo-1577538920781-5d5f2b8b4b8c?w=400&h=300&fit=crop',
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+            // Popular Near You
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Popular Near You',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'View Map',
+                    style: TextStyle(color: AppTheme.primaryBlue),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+            _buildPopularItem(
+              title: 'The Ritz London',
+              category: 'Luxury Hotel',
+              distance: '0.4 miles away',
+              rating: 4.9,
+              reviews: 1240,
+              imageUrl:
+                  'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop',
+            ),
+            const SizedBox(height: 16),
+            _buildPopularItem(
+              title: "Gordon Ramsay Bar & Grill",
+              category: 'Steakhouse',
+              distance: '1.2 miles away',
+              rating: 4.7,
+              reviews: 856,
+              imageUrl:
+                  'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop',
+            ),
+
+            const SizedBox(height: 24),
+            // Upcoming Events
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Upcoming Events',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Calendar',
+                    style: TextStyle(color: AppTheme.primaryBlue),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 220,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _events.length,
+                itemBuilder: (context, index) {
+                  final event = _events[index];
+                  return Container(
+                    width: 280,
+                    margin: const EdgeInsets.only(right: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          event['date']!,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Expanded(
+                          child: _buildEventCard(
+                            title: event['title']!,
+                            time: event['time']!,
+                            imageUrl: event['imageUrl']!,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 30),
+          ],
         ),
-      );
-    
-   
+      ),
+    );
   }
+
+  // -------------------- Helper Widgets --------------------
 
   Widget _buildHighlightCard({
     required String title,
@@ -594,6 +587,8 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     );
   }
 }
+
+// -------------------- Category Button Widget --------------------
 
 class _CategoryButton extends StatelessWidget {
   final String label;

@@ -1,0 +1,535 @@
+{
+  "name": "Onitsha",
+  "description": "Onitsha is a vibrant commercial metropolis on the eastern bank of the Niger River in Anambra State, southeastern Nigeria. Known as one of Africa's largest markets by volume and size, it's a major trade hub for goods, electronics, textiles, and more. The city features the iconic Niger Bridge connecting to western Nigeria, historic churches like All Saints Cathedral and St. Mary's, the bustling Main Market (Ose Market), riverfront jetties, and nearby attractions like Ogbunike Caves. It's a dynamic Igbo cultural center with rich history, lively commerce, and a blend of tradition and urban energy.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Onitsha_Niger_Bridge.jpg/800px-Onitsha_Niger_Bridge.jpg",
+  "ratings": 4.2,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/onitsha-main-market.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Onitsha_River_Port.jpg/800px-Onitsha_River_Port.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/ogbunike-caves.jpg",
+    "https://www.trip.com/moments/detail/onitsha-2185366-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Onitsha Main Market – One of Africa's largest markets",
+    "Niger Bridge – Iconic landmark connecting east and west Nigeria",
+    "Ogbunike Caves – Ancient natural caves with cultural significance",
+    "All Saints Cathedral – Historic Anglican cathedral"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan influence)",
+    "averageHigh": "35°C (95°F)",
+    "averageLow": "22°C (72°F)",
+    "humidity": "High (around 70-85%)",
+    "rainfall": "Low (around 20-40 mm for the month)",
+    "note": "Hot and humid; occasional dust from Harmattan; pack light clothing, sunscreen, and stay hydrated."
+  },
+  "attractions": [
+    {
+      "name": "Onitsha Main Market (Ose Market)",
+      "details": "One of the largest markets in West Africa, a chaotic yet efficient hub for electronics, fabrics, foodstuffs, and everyday goods – the commercial heart of the city.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/onitsha-main-market.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Main Market Road, Onitsha, Anambra State",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 6:00 AM - 8:00 PM",
+      "hashtag": "market shopping commerce",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Onitsha_market_stalls.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/market-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/onitsha-electronics.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Varies (bargaining essential)",
+      "reviews": [
+        {
+          "profileName": "Chukwuemeka I.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Endless variety – the ultimate shopping experience in Nigeria!",
+          "profileImage": "https://example.com/chukwuemeka.jpg",
+          "likes": 35
+        },
+        {
+          "profileName": "Trader A.",
+          "createdAt": "2025-12-20",
+          "starRatings": 4,
+          "reviewDetails": "Crowded but unbeatable for deals.",
+          "profileImage": "https://example.com/trader.jpg",
+          "likes": 22
+        }
+      ]
+    },
+    {
+      "name": "Niger Bridge (Onitsha Side)",
+      "details": "Iconic bridge spanning the Niger River, offering scenic views and a symbol of connection between eastern and western Nigeria; great for photos and riverfront vibes.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Onitsha_Niger_Bridge.jpg/800px-Onitsha_Niger_Bridge.jpg",
+      "rating": 4.4,
+      "address": "Head Bridge/Upper Iweka, Onitsha",
+      "location": { "latitude": 6.1500, "longitude": 6.7667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Viewable 24/7 (traffic-dependent)",
+      "hashtag": "landmark bridge views",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/niger-bridge.jpg?w=800",
+        "https://cdn.tripadvisor.com/onitsha-bridge-sunset.jpg",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free",
+      "reviews": [
+        {
+          "profileName": "Adaobi N.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Stunning views of the Niger – a must-see landmark!",
+          "profileImage": "https://example.com/adaobi.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "Ogbunike Caves",
+      "details": "Ancient network of caves in a rainforest valley with spiritual significance; features tunnels, streams, and bats – a natural and cultural wonder near Onitsha.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ogbunike-caves.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Ogbunike, near Onitsha, Anambra State",
+      "location": { "latitude": 6.1833, "longitude": 6.8833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 5:00 PM",
+      "hashtag": "nature caves adventure",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ogbunike_Caves_entrance.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/cave-interior.jpg?w=900",
+        "https://cdn.tripadvisor.com/ogbunike-stream.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦3000 (guided tour)",
+      "reviews": [
+        {
+          "profileName": "Ifeoma C.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Mystical and beautiful – rich in Igbo history!",
+          "profileImage": "https://example.com/ifeoma.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "All Saints Cathedral",
+      "details": "Historic Anglican cathedral with beautiful architecture, a landmark of Christian heritage in Onitsha and a peaceful site for reflection.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/all-saints-cathedral.jpg?w=900&h=500&s=1",
+      "rating": 4.2,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM (services vary)",
+      "hashtag": "history religion architecture",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/All_Saints_Cathedral_Onitsha.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/cathedral-interior.jpg?w=900",
+        "https://cdn.tripadvisor.com/all-saints-exterior.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Free (donations appreciated)",
+      "reviews": [
+        {
+          "profileName": "Chinelo O.",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Peaceful and architecturally stunning – a historic gem.",
+          "profileImage": "https://example.com/chinelo.jpg",
+          "likes": 28
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Vegas Astoria Hotel & Suites Ltd",
+      "details": "Modern hotel with comfortable rooms, pool, restaurant, and event facilities – one of the top-rated options in Onitsha.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/vegas-astoria-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "luxury business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/vegas-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-vegas.jpg",
+        "https://cdn.vegasastoria.com/lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$80 - $200 per night",
+      "reviews": [
+        {
+          "profileName": "Emeka N.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Great service and comfortable stay – highly recommend!",
+          "profileImage": "https://example.com/emeka.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "Dolly Hills Hotel Limited",
+      "details": "Well-regarded hotel offering rooms, dining (including Indian/Chinese options), and amenities – popular for business travelers.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/dolly-hills-hero.jpg?w=900",
+      "rating": 4.4,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1500, "longitude": 6.7667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "business comfort",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/dolly-room.jpg",
+        "https://cdn.dollyhills.com/pool-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$60 - $180 per night",
+      "reviews": [
+        {
+          "profileName": "Ngozi E.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Excellent restaurant and relaxing environment.",
+          "profileImage": "https://example.com/ngozi.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "The Violets Hotel and Apartments",
+      "details": "Aparthotel-style accommodation with apartments, parking, and garden – good for longer stays or families.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/violets-hotel.jpg?w=900&h=-1&s=1",
+      "rating": 4.3,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "aparthotel family",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/violets-apartment.jpg",
+        "https://cdn.violets.com/garden-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/kitchenette.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$50 - $150 per night",
+      "reviews": [
+        {
+          "profileName": "Obinna C.",
+          "createdAt": "2025-12-15",
+          "starRatings": 5,
+          "reviewDetails": "Spacious and convenient – perfect for extended visits.",
+          "profileImage": "https://example.com/obinna.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "GRACE LODGE ONITSHA",
+      "details": "Affordable lodge with basic amenities, 24-hour front desk, and free WiFi – good value option in the city.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/grace-lodge.jpg?w=900",
+      "rating": 4.0,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1500, "longitude": 6.7667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "budget comfort",
+      "extraImages": [
+        "https://cdn.gracelodge.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/lobby.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$40 - $120 per night",
+      "reviews": [
+        {
+          "profileName": "Chiamaka U.",
+          "createdAt": "2026-01-20",
+          "starRatings": 4,
+          "reviewDetails": "Clean and affordable – solid choice for short stays.",
+          "profileImage": "https://example.com/chiamaka.jpg",
+          "likes": 25
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "Platters Food & Cocktails",
+      "details": "Premium restaurant and lounge offering meals, cocktails, and a good atmosphere – popular for family and friends.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/platters.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Onitsha, Anambra State",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "fine dining cocktails",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/platters-dining.jpg",
+        "https://cdn.tripadvisor.com/platters-cocktails.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Premium meals and refreshing cocktails – love it!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "Crunchies Fried Chicken",
+      "details": "Fast-food spot specializing in fried chicken and local favorites – vibrant and popular for quick bites.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/crunchies.jpg?w=900",
+      "rating": 4.4,
+      "address": "Awada Layout, Onitsha",
+      "location": { "latitude": 6.1833, "longitude": 6.8000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "fast food chicken",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/crunchies-chicken.jpg",
+        "https://cdn.tripadvisor.com/crunchies-meals.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 5,
+          "reviewDetails": "Crispy and flavorful – best fried chicken spot!",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 32
+        }
+      ]
+    },
+    {
+      "name": "Flavour City Creamery Foods",
+      "details": "Restaurant offering ice cream, local dishes, and fusion food – known for variety and taste.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/flavour-city.jpg?w=900",
+      "rating": 4.8,
+      "address": "Modebe Ave, Onitsha",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 10:00 AM - 9:00 PM",
+      "hashtag": "desserts local fusion",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/flavour-icecream.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/food.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 5,
+          "reviewDetails": "Delicious treats and great service!",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Stone Cave Bistro",
+      "details": "Modern bistro in a mall setting with meals, drinks, and a contemporary vibe – good for casual dining.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/stone-cave.jpg?w=900",
+      "rating": 4.5,
+      "address": "Shop 51 Mall (Shoprite), Onitsha",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 9:00 AM - 10:00 PM",
+      "hashtag": "bistro casual",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/stone-cave-dining.jpg",
+        "https://cdn.tripadvisor.com/stone-cave-meals.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Nice spot for meals and hangouts!",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 35
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Candle Night 2026 with Prophet Odumeje",
+      "details": "Spiritual event focused on destiny and light, held at the church auditorium – a major gathering with teachings and prayers.",
+      "imageUrl": "https://example.com/candle-night-2026.jpg",
+      "rating": 4.7,
+      "address": "Mountain of Holy Ghost Intervention Deliverance Ministry, No 88b Bida Road, Modebe Avenue, Onitsha",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "10:00 AM onwards",
+      "hashtag": "spiritual gathering prayer",
+      "extraImages": [
+        "https://example.com/church-auditorium.jpg",
+        "https://example.com/prayer-event.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/crowd-spiritual.jpg"
+      ],
+      "ticketPrice": "Free / donation-based",
+      "eventDate": "2026-02-06",
+      "eventStartTime": "10:00",
+      "eventEndTime": "evening",
+      "reviews": [
+        {
+          "profileName": "Attendee",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Powerful and uplifting – life-changing!",
+          "profileImage": "https://example.com/attendee.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Face of Nigeria Anambra 2026",
+      "details": "Beauty pageant and event celebrating talent and culture at The Gathering Tent – a glamorous showcase.",
+      "imageUrl": "https://example.com/face-of-nigeria-anambra.jpg",
+      "rating": 4.6,
+      "address": "The Gathering Tent, GRA Road, Onitsha",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Evening event",
+      "hashtag": "pageant culture beauty",
+      "extraImages": [
+        "https://example.com/pageant-stage.jpg",
+        "https://example.com/models-runway.jpg",
+        "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/audience-pageant.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "2026-02-07",
+      "eventStartTime": "evening",
+      "eventEndTime": "late",
+      "reviews": [
+        {
+          "profileName": "Fan",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Exciting and glamorous – great showcase!",
+          "profileImage": "https://example.com/fan.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Onitsha Youth Carnival",
+      "details": "Vibrant carnival featuring youth performances, music, and culture – one of the best in southeast Nigeria.",
+      "imageUrl": "https://example.com/onitsha-youth-carnival.jpg",
+      "rating": 4.5,
+      "address": "Onitsha venues",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "carnival youth culture",
+      "extraImages": [
+        "https://example.com/carnival-parade.jpg",
+        "https://example.com/music-dance.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/crowd-carnival.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "Upcoming (recurring style)",
+      "eventStartTime": "various",
+      "eventEndTime": "late",
+      "reviews": [
+        {
+          "profileName": "Youth Participant",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Fun, energetic, and full of culture!",
+          "profileImage": "https://example.com/youth.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Ofala Festival (Onicha Ado N'Idu Cycle)",
+      "details": "Traditional festival honoring the Obi of Onitsha with ceremonies, cultural displays, and celebrations – a major annual event in the ceremonial cycle.",
+      "imageUrl": "https://example.com/ofala-festival.jpg",
+      "rating": 4.8,
+      "address": "Onitsha Kingdom venues",
+      "location": { "latitude": 6.1667, "longitude": 6.7833 },
+      "isActive": true,
+      "website": "https://ofala.org",
+      "phoneNumber": "N/A",
+      "openHours": "Various dates in cycle",
+      "hashtag": "tradition festival culture",
+      "extraImages": [
+        "https://example.com/ofala-ceremony.jpg",
+        "https://example.com/king-blessing.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/cultural-display.jpg"
+      ],
+      "ticketPrice": "Free / community-based",
+      "eventDate": "Ongoing ceremonial cycle (e.g., October dates in 2026)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Cultural Enthusiast",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Rich in Igbo tradition – unforgettable!",
+          "profileImage": "https://example.com/cultural.jpg",
+          "likes": 35
+        }
+      ]
+    }
+  ]
+}

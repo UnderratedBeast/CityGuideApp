@@ -1,0 +1,535 @@
+{
+  "name": "Calabar",
+  "description": "Calabar is the capital of Cross River State in southeastern Nigeria, celebrated as the 'Tourism Capital of Nigeria' and home to Africa's largest street party, the Calabar Carnival. Nestled along the Calabar River, it features colonial-era architecture, historic sites tied to the transatlantic slave trade, lush rainforests, waterfalls like Kwa Falls, wildlife sanctuaries (e.g., Drill Monkey Rehabilitation Centre), the Tinapa Resort, and vibrant Efik culture. Known for its hospitality, seafood cuisine, and natural beauty, it's a gateway to eco-tourism in the Cross River National Park region.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Calabar_River_View.jpg/800px-Calabar_River_View.jpg",
+  "ratings": 4.5,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/kwa-falls.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Tinapa_Resort_Calabar.jpg/800px-Tinapa_Resort_Calabar.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/slave-history-museum-calabar.jpg",
+    "https://www.trip.com/moments/detail/calabar-20070-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Carnival Calabar – Africa's biggest street party (December)",
+    "Kwa Falls – Scenic waterfall and nature escape",
+    "Slave History Museum – Poignant look at transatlantic slave trade",
+    "Tinapa Resort – Business, leisure, and entertainment complex"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan influence)",
+    "averageHigh": "33°C (91°F)",
+    "averageLow": "24°C (75°F)",
+    "humidity": "High (around 80-90%)",
+    "rainfall": "Moderate (around 60-100 mm for the month)",
+    "note": "Hot and humid; occasional showers; pack light clothing, insect repellent, and stay hydrated."
+  },
+  "attractions": [
+    {
+      "name": "Kwa Falls",
+      "details": "A stunning waterfall in a lush rainforest setting with clear pools for swimming, hiking trails, and serene natural beauty – a top eco-tourism spot near Calabar.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/56/f6/d9/kwa-falls.jpg?w=800&h=500&s=1",
+      "rating": 4.4,
+      "address": "Akamkpa LGA, near Calabar, Cross River State",
+      "location": { "latitude": 5.0833, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 5:00 PM",
+      "hashtag": "nature waterfall adventure",
+      "extraImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/3f/69/9e/kwa-falls-pool.jpg?w=800&h=800&s=1",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/3c/fb/dd.jpg",
+        "https://cdn.punchng.com/wp-content/uploads/2024/03/kwa-falls-calabar.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Kwa_Falls_Calabar.jpg/800px-Kwa_Falls_Calabar.jpg"
+      ],
+      "price": "₦1000 - ₦3000 (entry + guide)",
+      "reviews": [
+        {
+          "profileName": "Ekaette B.",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Refreshing waterfall and peaceful hike – pure nature escape!",
+          "profileImage": "https://example.com/ekaette.jpg",
+          "likes": 30
+        },
+        {
+          "profileName": "Nature Lover",
+          "createdAt": "2025-12-20",
+          "starRatings": 4,
+          "reviewDetails": "Beautiful but slippery paths after rain.",
+          "profileImage": "https://example.com/nature.jpg",
+          "likes": 18
+        }
+      ]
+    },
+    {
+      "name": "Slave History Museum",
+      "details": "Poignant museum documenting the transatlantic slave trade history in Calabar, with exhibits on the 'Point of No Return' and artifacts – educational and reflective.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/slave-history-museum.jpg?w=900&h=500&s=1",
+      "rating": 4.3,
+      "address": "Marina Resort, Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 9:00 AM - 5:00 PM",
+      "hashtag": "history museum heritage",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Slave_History_Museum_Calabar.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-exhibits.jpg?w=900",
+        "https://cdn.tripadvisor.com/slave-history-artifacts.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦500 - ₦1500 entry",
+      "reviews": [
+        {
+          "profileName": "Emmanuel O.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Eye-opening and emotional – important history lesson.",
+          "profileImage": "https://example.com/emmanuel.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Tinapa Resort",
+      "details": "Business and leisure resort with free trade zone, hotel, water park, golf course, and entertainment – a modern getaway near Calabar.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/tinapa-resort.jpg?w=900&h=500&s=1",
+      "rating": 3.8,
+      "address": "Tinapa, near Calabar, Cross River State",
+      "location": { "latitude": 4.9833, "longitude": 8.3000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 8:00 PM (varies by facility)",
+      "hashtag": "resort leisure entertainment",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Tinapa_water_park.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/tinapa-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/tinapa-golf.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Entry varies (₦1000+); activities extra",
+      "reviews": [
+        {
+          "profileName": "Family Fun",
+          "createdAt": "2026-01-15",
+          "starRatings": 4,
+          "reviewDetails": "Great for relaxation and family activities.",
+          "profileImage": "https://example.com/family.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Cross River National Park (Oban Sector)",
+      "details": "Prime rainforest park with biodiversity, hiking trails, primates, and eco-tourism – a haven for nature lovers near Calabar.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/cross-river-park.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Oban Sector, near Calabar, Cross River State",
+      "location": { "latitude": 5.0000, "longitude": 8.5000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 5:00 PM",
+      "hashtag": "national park wildlife eco",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Cross_River_National_Park_forest.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/park-trail.jpg?w=900",
+        "https://cdn.tripadvisor.com/cross-river-primates.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "Entry + guide ₦2000+",
+      "reviews": [
+        {
+          "profileName": "Eco Traveler",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Incredible biodiversity and peaceful trails.",
+          "profileImage": "https://example.com/eco.jpg",
+          "likes": 32
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Monty Suites Calabar",
+      "details": "Luxury hotel with elegant rooms, pool, spa, restaurant, and event facilities – consistently top-rated for comfort and service.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/monty-suites-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.6,
+      "address": "Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "luxury business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/monty-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-monty.jpg",
+        "https://cdn.montysuites.com/lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$100 - $250 per night",
+      "reviews": [
+        {
+          "profileName": "Eno M.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Elegant, clean, and exceptional service!",
+          "profileImage": "https://example.com/eno.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Marian Hotels Limited",
+      "details": "Well-established hotel with comfortable rooms, dining options, pool, and central location – popular for business and leisure.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/marian-hotels.jpg?w=900",
+      "rating": 4.4,
+      "address": "Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "comfort business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/marian-room.jpg",
+        "https://cdn.marianhotels.com/pool-view.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$70 - $180 per night",
+      "reviews": [
+        {
+          "profileName": "Bassey E.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Reliable and welcoming – great value.",
+          "profileImage": "https://example.com/bassey.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "The Metropolitan Hotel Calabar",
+      "details": "Modern hotel offering spacious rooms, restaurant, bar, and conference facilities – convenient and comfortable.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/metropolitan-hotel.jpg?w=900&h=-1&s=1",
+      "rating": 4.3,
+      "address": "Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "modern comfort",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/met-room.jpg",
+        "https://cdn.metropolitan.com/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/lobby.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$60 - $160 per night",
+      "reviews": [
+        {
+          "profileName": "Uduak A.",
+          "createdAt": "2025-12-15",
+          "starRatings": 5,
+          "reviewDetails": "Clean and professional – excellent stay.",
+          "profileImage": "https://example.com/uduak.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "Calabar Harbour Resort & Spa",
+      "details": "Riverside resort with spa, pool, dining, and scenic views – ideal for relaxation and leisure.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/calabar-harbour.jpg?w=900",
+      "rating": 4.4,
+      "address": "Marina Resort area, Calabar",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "resort spa leisure",
+      "extraImages": [
+        "https://cdn.calabarharbour.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/river-view.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$90 - $220 per night",
+      "reviews": [
+        {
+          "profileName": "Ekomobong P.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Relaxing with beautiful river views.",
+          "profileImage": "https://example.com/ekomobong.jpg",
+          "likes": 38
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "The Slessor Restaurant",
+      "details": "Highly rated spot for Chinese, African, and fusion cuisine – praised for amazing service and quality.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/slessor-restaurant.jpg?w=900&h=500&s=1",
+      "rating": 5.0,
+      "address": "Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - 10:00 PM",
+      "hashtag": "chinese african fusion",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/slessor-dishes.jpg",
+        "https://cdn.tripadvisor.com/slessor-interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/food.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Amazing service and delicious food!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 42
+        }
+      ]
+    },
+    {
+      "name": "Happy Food",
+      "details": "Popular Chinese and Asian restaurant with tasty meals, bakery items, and attractive ambiance.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/happy-food.jpg?w=900",
+      "rating": 4.0,
+      "address": "Calabar, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 10:00 AM - 10:00 PM",
+      "hashtag": "chinese asian bakery",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/happy-food-dining.jpg",
+        "https://cdn.tripadvisor.com/happy-food-noodles.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 4,
+          "reviewDetails": "Tasty and welcoming – a local favorite.",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Native Delicacies Restaurant",
+      "details": "Authentic Nigerian and Efik cuisine spot with traditional flavors – great environment and staff.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/native-delicacies.jpg?w=900",
+      "rating": 4.2,
+      "address": "Murtala Mohammed Hwy, Calabar",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 10:00 AM - 10:00 PM",
+      "hashtag": "nigerian efik local",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/native-dishes.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/food.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 5,
+          "reviewDetails": "Authentic and delicious – must-try!",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "E3 Restaurant",
+      "details": "Modern restaurant with local and international dishes – welcoming and flavorful.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/e3-restaurant.jpg?w=900",
+      "rating": 4.4,
+      "address": "Duke Town area, Calabar",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "local international",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/e3-dining.jpg",
+        "https://cdn.tripadvisor.com/e3-meals.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Great variety and excellent taste!",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 35
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Calabar Carnival 2026",
+      "details": "Africa's largest street party – month-long festival in December with colorful parades, bands, music, costumes, and cultural displays; themed events throughout the yuletide season.",
+      "imageUrl": "https://www.carnival.crossriverstate.gov.ng/images/carnival-banner.jpg",
+      "rating": 4.8,
+      "address": "Calabar streets and venues, Cross River State",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "https://carnival.crossriverstate.gov.ng",
+      "phoneNumber": "N/A",
+      "openHours": "Various daily events",
+      "hashtag": "carnival festival culture",
+      "extraImages": [
+        "https://cdn.carnival.crossriverstate.gov.ng/parade.jpg",
+        "https://www.carnival.crossriverstate.gov.ng/bands.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.eventbrite.com/carnival-crowd.jpg"
+      ],
+      "ticketPrice": "Varies by event (free street viewing; premium ₦10,000+)",
+      "eventDate": "December 1 - December 31, 2026",
+      "eventStartTime": "various",
+      "eventEndTime": "late",
+      "reviews": [
+        {
+          "profileName": "Festival Goer",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Unbelievable energy and colors – Africa's best!",
+          "profileImage": "https://example.com/festival.jpg",
+          "likes": 50
+        }
+      ]
+    },
+    {
+      "name": "Calabar Love Festival 2026",
+      "details": "Romantic evening event with music, connection, and celebration – part of the yuletide festivities.",
+      "imageUrl": "https://example.com/calabar-love-festival.jpg",
+      "rating": 4.6,
+      "address": "Millennium Park, Calabar",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "19:00 onwards",
+      "hashtag": "love festival romance",
+      "extraImages": [
+        "https://example.com/love-event-stage.jpg",
+        "https://example.com/couples-night.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/romantic-crowd.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "February 14, 2026",
+      "eventStartTime": "19:00",
+      "eventEndTime": "late",
+      "reviews": [
+        {
+          "profileName": "Couple",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Romantic and joyful – perfect date night!",
+          "profileImage": "https://example.com/couple.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Calabar Carnival Funfest / Related Events",
+      "details": "Family-oriented festival week with games, entertainment, and cultural activities – part of the broader Carnival season.",
+      "imageUrl": "https://www.carnival.crossriverstate.gov.ng/images/funfest.jpg",
+      "rating": 4.5,
+      "address": "Calabar venues",
+      "location": { "latitude": 4.9667, "longitude": 8.3167 },
+      "isActive": true,
+      "website": "https://carnival.crossriverstate.gov.ng",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "funfest family carnival",
+      "extraImages": [
+        "https://cdn.carnival.crossriverstate.gov.ng/games.jpg",
+        "https://www.carnival.crossriverstate.gov.ng/family-event.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.eventbrite.com/kids-fun.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "December (specific weeks)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Family",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Fun for all ages – great carnival vibes!",
+          "profileImage": "https://example.com/family.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Cross River National Park Eco-Events / Wildlife Tours",
+      "details": "Guided eco-tours, birdwatching, or conservation events in the park – seasonal nature-focused activities.",
+      "imageUrl": "https://example.com/cross-river-eco-event.jpg",
+      "rating": 4.5,
+      "address": "Cross River National Park, near Calabar",
+      "location": { "latitude": 5.0000, "longitude": 8.5000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various tour times",
+      "hashtag": "eco wildlife tour",
+      "extraImages": [
+        "https://example.com/park-tour-group.jpg",
+        "https://example.com/wildlife-viewing.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/nature-walk.jpg"
+      ],
+      "ticketPrice": "Varies (tour packages)",
+      "eventDate": "Ongoing / seasonal",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Eco Enthusiast",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Amazing wildlife and peaceful tours.",
+          "profileImage": "https://example.com/eco.jpg",
+          "likes": 25
+        }
+      ]
+    }
+  ]
+}

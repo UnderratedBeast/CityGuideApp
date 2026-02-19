@@ -1,4 +1,4 @@
-import 'dart:ui'; // Required for ImageFilter
+import 'dart:ui'; 
 import 'package:flutter/material.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';

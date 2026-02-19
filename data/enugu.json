@@ -1,0 +1,527 @@
+{
+  "name": "Enugu",
+  "description": "Enugu is the capital of Enugu State in southeastern Nigeria, famously called the 'Coal City' due to its historical coal mining industry that shaped its early development. Nestled among scenic hills, it's a cultural and educational hub with the prestigious University of Nigeria (Nsukka nearby), vibrant markets, colonial-era architecture, and natural attractions like waterfalls (Awhum, Ngwo Pine Forest), caves, and parks. Known for its cool climate compared to other Nigerian cities, rich Igbo heritage, delicious local cuisine (e.g., abacha, nkwobi), and growing tourism around history and nature.",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Enugu_cityscape.jpg/800px-Enugu_cityscape.jpg",
+  "ratings": 4.3,
+  "extraImages": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/ngwo-pine-forest.jpg?w=1200",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Centre_for_Memories_Enugu.jpg/800px-Centre_for_Memories_Enugu.jpg",
+    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cdn.getyourguide.com/img/tour/awhum-waterfall-enugu.jpg",
+    "https://www.trip.com/moments/detail/enugu-20059-12345678?locale=en-XX"
+  ],
+  "topHighlights": [
+    "Centre for Memories – Museum on Igbo history and Biafran War",
+    "Ngwo Pine Forest & Cave – Scenic pine trees, waterfall, and hiking",
+    "Awhum Waterfall and Cave – Natural wonder with spiritual significance",
+    "Ezeagu Tourist Complex – Waterfalls, lakes, and recreational spots"
+  ],
+  "weather": {
+    "season": "Dry season (Harmattan influence)",
+    "averageHigh": "35°C (95°F)",
+    "averageLow": "23°C (73°F)",
+    "humidity": "Moderate (around 50-70%)",
+    "rainfall": "Low (around 15-30 mm for the month)",
+    "note": "Hot days, cooler nights; dusty Harmattan possible; pack light clothing, sunglasses, and moisturizer."
+  },
+  "attractions": [
+    {
+      "name": "Centre for Memories",
+      "details": "A modern museum and cultural center preserving Igbo history, artifacts from the Biafran War, and exhibits on leadership and heritage – educational and reflective.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/centre-for-memories.jpg?w=900&h=500&s=1",
+      "rating": 4.7,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
+      "hashtag": "museum history culture",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Centre_for_Memories_exhibits.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-interior.jpg?w=900",
+        "https://cdn.tripadvisor.com/centre-memories-artifacts.jpg",
+        "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦3000 entry/tour",
+      "reviews": [
+        {
+          "profileName": "Chijioke O.",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Powerful and informative – a must-visit for understanding Igbo history.",
+          "profileImage": "https://example.com/chijioke.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Ngwo Pine Forest & Cave",
+      "details": "Scenic pine forest with hiking trails, a small waterfall, cave, and fresh air – a peaceful natural escape on the outskirts of Enugu.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ngwo-pine-forest.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Ngwo, near Enugu, Enugu State",
+      "location": { "latitude": 6.5333, "longitude": 7.4167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM",
+      "hashtag": "nature forest hiking",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ngwo_Pine_Forest.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/pine-trail.jpg?w=900",
+        "https://cdn.tripadvisor.com/ngwo-cave.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦500 - ₦2000 entry",
+      "reviews": [
+        {
+          "profileName": "Adaora N.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Cool, green escape – perfect for nature walks!",
+          "profileImage": "https://example.com/adaora.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Awhum Waterfall and Cave",
+      "details": "Beautiful waterfall cascading into a natural pool, with an adjacent cave – a spiritual and scenic site popular for picnics and relaxation.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/awhum-waterfall.jpg?w=900&h=500&s=1",
+      "rating": 4.6,
+      "address": "Awhum, near Enugu, Enugu State",
+      "location": { "latitude": 6.3000, "longitude": 7.5000 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 5:00 PM",
+      "hashtag": "nature waterfall cave",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Awhum_Waterfall.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/awhum-pool.jpg?w=900",
+        "https://cdn.tripadvisor.com/awhum-cave.jpg",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦3000 entry/guide",
+      "reviews": [
+        {
+          "profileName": "Ikechukwu E.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Refreshing and serene – great natural spot!",
+          "profileImage": "https://example.com/ikechukwu.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "Ezeagu Tourist Complex",
+      "details": "Recreational complex with waterfalls, lakes, picnic areas, and leisure facilities – ideal for family outings and relaxation.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ezeagu-complex.jpg?w=900&h=500&s=1",
+      "rating": 4.2,
+      "address": "Ezeagu LGA, near Enugu, Enugu State",
+      "location": { "latitude": 6.3167, "longitude": 7.3167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 6:00 PM",
+      "hashtag": "tourist complex nature",
+      "extraImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ezeagu_waterfall.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/lake-view.jpg?w=900",
+        "https://cdn.tripadvisor.com/ezeagu-picnic.jpg",
+        "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "₦1000 - ₦4000 entry/activities",
+      "reviews": [
+        {
+          "profileName": "Family Outing",
+          "createdAt": "2026-01-10",
+          "starRatings": 4,
+          "reviewDetails": "Fun day out with water features and green spaces.",
+          "profileImage": "https://example.com/family.jpg",
+          "likes": 25
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Hotel Sunshine",
+      "details": "Modern hotel with comfortable rooms, pool, restaurant, and central location – highly rated for service and value.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/hotel-sunshine-hero.jpg?w=900&h=500&s=1",
+      "rating": 4.5,
+      "address": "Presidential Road, Enugu",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "modern comfort",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/sunshine-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-sunshine.jpg",
+        "https://cdn.hotelsunshine.com/lobby.jpg",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$50 - $150 per night",
+      "reviews": [
+        {
+          "profileName": "Chinonso U.",
+          "createdAt": "2026-01-05",
+          "starRatings": 5,
+          "reviewDetails": "Clean, welcoming, and great facilities!",
+          "profileImage": "https://example.com/chinonso.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "BON Hotel Platinum Enugu",
+      "details": "Contemporary hotel offering stylish rooms, dining, pool, and business amenities – top choice for comfort.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/bon-platinum-hero.jpg?w=900",
+      "rating": 4.4,
+      "address": "Platinum Close, Enugu",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "https://bonhotels.com",
+      "phoneNumber": "+234 803 123 4567",
+      "openHours": "24/7",
+      "hashtag": "luxury business",
+      "extraImages": [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/bon-platinum-room.jpg",
+        "https://cdn.bonhotels.com/platinum-pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$70 - $180 per night",
+      "reviews": [
+        {
+          "profileName": "Ifunanya O.",
+          "createdAt": "2026-02-01",
+          "starRatings": 5,
+          "reviewDetails": "Stylish and professional – excellent stay.",
+          "profileImage": "https://example.com/ifunanya.jpg",
+          "likes": 35
+        }
+      ]
+    },
+    {
+      "name": "Nike Lake Resort",
+      "details": "Scenic lakeside resort with rooms, pool, golf course, and leisure facilities – ideal for relaxation.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/nike-lake-resort.jpg?w=900&h=-1&s=1",
+      "rating": 4.2,
+      "address": "Nike Lake Road, Abakpa Nike, Enugu",
+      "location": { "latitude": 6.5000, "longitude": 7.5667 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "resort nature",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/nike-lake-view.jpg",
+        "https://cdn.nikelakeresort.com/pool.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/golf.jpg",
+        "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$80 - $200 per night",
+      "reviews": [
+        {
+          "profileName": "Kenechukwu E.",
+          "createdAt": "2025-12-15",
+          "starRatings": 5,
+          "reviewDetails": "Beautiful lake views and relaxing atmosphere.",
+          "profileImage": "https://example.com/kenechukwu.jpg",
+          "likes": 38
+        }
+      ]
+    },
+    {
+      "name": "Lunar Signature Hotel & Suites",
+      "details": "Elegant hotel with suites, restaurant, and modern amenities – praised for awesome experiences.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lunar-signature.jpg?w=900",
+      "rating": 4.5,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "24/7",
+      "hashtag": "luxury suites",
+      "extraImages": [
+        "https://cdn.lunarsignature.com/room-view.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$90 - $220 per night",
+      "reviews": [
+        {
+          "profileName": "Nneka C.",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Awesome experience – highly recommended!",
+          "profileImage": "https://example.com/nneka.jpg",
+          "likes": 42
+        }
+      ]
+    }
+  ],
+  "dining": [
+    {
+      "name": "Shanghai Octopus - Oriental Cuisine",
+      "details": "Top-rated Chinese and Oriental restaurant offering fine dining with excellent service and flavorful dishes.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/shanghai-octopus.jpg?w=900&h=500&s=1",
+      "rating": 5.0,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 12:00 PM - 10:00 PM",
+      "hashtag": "chinese oriental fine dining",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/shanghai-dishes.jpg",
+        "https://cdn.tripadvisor.com/octopus-interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/food.jpg",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-05",
+          "starRatings": 5,
+          "reviewDetails": "Best Chinese in Enugu – outstanding!",
+          "profileImage": "https://example.com/anonymous.jpg",
+          "likes": 45
+        }
+      ]
+    },
+    {
+      "name": "Open Sharaton",
+      "details": "Popular fast-food and casual dining spot with quality meals and great service – a local favorite.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/open-sharaton.jpg?w=900",
+      "rating": 4.0,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 8:00 AM - 10:00 PM",
+      "hashtag": "casual fast food",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/sharaton-meals.jpg",
+        "https://cdn.tripadvisor.com/open-sharaton-food.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-25",
+          "starRatings": 4,
+          "reviewDetails": "Spoiled with good food and care!",
+          "profileImage": "https://example.com/anonymous2.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Aarons Signature Restaurant",
+      "details": "Fine dining with signature dishes and elegant ambiance – well-reviewed for quality.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/aarons-signature.jpg?w=900",
+      "rating": 3.9,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 12:00 PM - 11:00 PM",
+      "hashtag": "fine dining signature",
+      "extraImages": [
+        "https://cdn.tripadvisor.com/aarons-plates.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-02-10",
+          "starRatings": 4,
+          "reviewDetails": "Great signature meals and service.",
+          "profileImage": "https://example.com/anonymous3.jpg",
+          "likes": 28
+        }
+      ]
+    },
+    {
+      "name": "7th Planet International Ltd",
+      "details": "International cuisine with Italian influences – rated as one of the best in Enugu.",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/7th-planet.jpg?w=900",
+      "rating": 5.0,
+      "address": "Enugu, Enugu State",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "",
+      "openHours": "Daily: 11:00 AM - late",
+      "hashtag": "international italian",
+      "extraImages": [
+        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/7th-planet-dining.jpg",
+        "https://cdn.tripadvisor.com/7th-planet-pasta.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "price": "$$ - $$$",
+      "reviews": [
+        {
+          "profileName": "Anonymous",
+          "createdAt": "2026-01-30",
+          "starRatings": 5,
+          "reviewDetails": "Best restaurant in Enugu – delicious!",
+          "profileImage": "https://example.com/anonymous4.jpg",
+          "likes": 40
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Enugu Tech Festival (ETF) 2026",
+      "details": "Premier technology conference uniting innovators, investors, startups, and leaders for talks, demos, networking, and building sessions on AI, blockchain, Web3, and more.",
+      "imageUrl": "https://enugutechfest.com/images/etf-banner.jpg",
+      "rating": 4.7,
+      "address": "International Conference Centre, Enugu",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "https://enugutechfest.com",
+      "phoneNumber": "N/A",
+      "openHours": "Various sessions",
+      "hashtag": "tech festival innovation",
+      "extraImages": [
+        "https://enugutechfest.com/images/speakers.jpg",
+        "https://enugutechfest.com/networking.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://enugutechfest.com/demos.jpg"
+      ],
+      "ticketPrice": "Varies (registration required)",
+      "eventDate": "2026-02-24 to 2026-02-27",
+      "eventStartTime": "09:00",
+      "eventEndTime": "18:00",
+      "reviews": [
+        {
+          "profileName": "Tech Enthusiast",
+          "createdAt": "2026-01-01",
+          "starRatings": 5,
+          "reviewDetails": "Impactful and inspiring – must-attend!",
+          "profileImage": "https://example.com/tech.jpg",
+          "likes": 40
+        }
+      ]
+    },
+    {
+      "name": "Iheaneke Cultural Festival 2026",
+      "details": "Traditional cultural festival in Umuaga Obodoeze, Udi LGA, featuring dances, displays, and community celebrations.",
+      "imageUrl": "https://example.com/iheaneke-festival.jpg",
+      "rating": 4.5,
+      "address": "Umuaga Obodoeze, Udi LGA, Enugu State",
+      "location": { "latitude": 6.3167, "longitude": 7.4167 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "cultural festival tradition",
+      "extraImages": [
+        "https://example.com/dance-performance.jpg",
+        "https://example.com/community-event.jpg",
+        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/festival-crowd.jpg"
+      ],
+      "ticketPrice": "Community-based / free",
+      "eventDate": "2026 (specific dates in May or similar)",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Cultural Participant",
+          "createdAt": "2026-01-15",
+          "starRatings": 5,
+          "reviewDetails": "Vibrant and full of heritage!",
+          "profileImage": "https://example.com/cultural.jpg",
+          "likes": 25
+        }
+      ]
+    },
+    {
+      "name": "Oganihu Ndi Igbo Festival 2026",
+      "details": "Major Igbo cultural festival with traditional dances, ceremonies, and celebrations at Enugu State College of Education Technical.",
+      "imageUrl": "https://example.com/oganihu-festival.jpg",
+      "rating": 4.6,
+      "address": "Enugu State College of Education Technical, Enugu",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "",
+      "phoneNumber": "N/A",
+      "openHours": "Various",
+      "hashtag": "igbo festival culture",
+      "extraImages": [
+        "https://example.com/traditional-dance.jpg",
+        "https://example.com/ceremony.jpg",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/festival-display.jpg"
+      ],
+      "ticketPrice": "Varies",
+      "eventDate": "2026-03-27 to 2026-03-29",
+      "eventStartTime": "various",
+      "eventEndTime": "various",
+      "reviews": [
+        {
+          "profileName": "Igbo Pride",
+          "createdAt": "2026-01-20",
+          "starRatings": 5,
+          "reviewDetails": "Celebrating our roots – beautiful!",
+          "profileImage": "https://example.com/igbo.jpg",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "name": "Enugu International Conference on Future Directions in E-Learning and Pedagogy",
+      "details": "Academic conference on education technology, e-learning innovations, and pedagogy with global speakers.",
+      "imageUrl": "https://example.com/e-learning-conference.jpg",
+      "rating": 4.5,
+      "address": "Enugu conference venue",
+      "location": { "latitude": 6.4584, "longitude": 7.5464 },
+      "isActive": true,
+      "website": "https://internationalconferencealerts.com",
+      "phoneNumber": "N/A",
+      "openHours": "09:00 - 17:00",
+      "hashtag": "education conference tech",
+      "extraImages": [
+        "https://example.com/conference-panel.jpg",
+        "https://example.com/speakers.jpg",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://example.com/networking-session.jpg"
+      ],
+      "ticketPrice": "Varies (academic registration)",
+      "eventDate": "2026-03-27",
+      "eventStartTime": "09:00",
+      "eventEndTime": "17:00",
+      "reviews": [
+        {
+          "profileName": "Educator",
+          "createdAt": "2026-01-10",
+          "starRatings": 5,
+          "reviewDetails": "Insightful on future of learning.",
+          "profileImage": "https://example.com/educator.jpg",
+          "likes": 20
+        }
+      ]
+    }
+  ]
+}
