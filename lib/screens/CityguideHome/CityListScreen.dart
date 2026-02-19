@@ -263,6 +263,12 @@ class _CityListScreenState extends State<CityListScreen> {
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
             );
           }
+            if (index == 0) { // Profile tab
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
           // Handle navigation for other tabs if needed (e.g., Home, Favorites, Bookmarks)
         },
       ),
