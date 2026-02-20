@@ -8,6 +8,7 @@ class AppRoutes {
   // ---------- AUTH ----------
   static const String login = '/login';
   static const String signUp = '/signup';
+  // static const forgotPassword = '/forgot-password';
   static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
   static const String changePassword = '/change-password';

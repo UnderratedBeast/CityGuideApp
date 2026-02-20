@@ -55,7 +55,8 @@ class UserModel {
       'email': email,
       'fullName': fullName,
       'photoUrl': photoUrl,
-      'role': role, // ✅ SAVE ROLE
+      'role': role,
+      'isAdmin': role == 'admin',  
       'createdAt': Timestamp.fromDate(createdAt),
       'updatedAt': Timestamp.fromDate(updatedAt),
     };

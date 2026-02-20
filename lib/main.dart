@@ -220,6 +220,7 @@ import 'screens/splash/splash_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
+import 'screens/auth/forgot_password_screen.dart';
 import 'screens/CityguideHome/CityListScreen.dart';
 import 'screens/CityguideHome/CityDetailScreen.dart';
 import 'screens/attraction/AttractionListScreen.dart';
@@ -293,6 +294,10 @@ class MyApp extends StatelessWidget {
 
       case AppRoutes.signUp:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
+
+      case AppRoutes.forgotPassword:
+  return MaterialPageRoute(
+      builder: (_) => const ForgotPasswordScreen());
 
       // ---------------- HOME ----------------
       case AppRoutes.home:

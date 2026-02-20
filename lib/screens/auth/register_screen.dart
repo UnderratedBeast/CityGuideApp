@@ -1,4 +1,3 @@
-// // lib/screens/auth/register_screen.dart
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> _handleRegister() async {
     if (!_formKey.currentState!.validate()) return;
+
     if (!_acceptTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
-    final auth = Provider.of<AuthProvider>(context, listen: false);
+    final auth = context.read<AuthProvider>();
 
     final success = await auth.register(
       fullName: _nameController.text.trim(),
@@ -57,7 +57,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!mounted) return;
 
     if (success) {
-      Navigator.pushReplacementNamed(context, AppRoutes.home);
+      // ✅ Show verification message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Account created successfully! Please verify your email before logging in.",
+          ),
+          backgroundColor: Colors.green,
+        ),
+      );
+
+      // ✅ Redirect to login
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -117,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   const SizedBox(height: 80),
 
-                  // 🔷 Logo & App Name
+                  // 🔷 Logo
                   Column(
                     children: const [
                       Icon(
@@ -140,21 +151,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   const SizedBox(height: 150),
 
-                  // 🧊 Glassmorphism Register Card
+                  // 🧊 Glassmorphism Card
                   ClipRRect(
                     borderRadius: BorderRadius.circular(28),
                     child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 30,
-                        sigmaY: 30,
-                      ),
+                      filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
                       child: Container(
                         padding: const EdgeInsets.all(28),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(28),
                           gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
                             colors: [
                               Colors.white.withOpacity(0.30),
                               Colors.white.withOpacity(0.18),
@@ -238,7 +244,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 label: "Confirm Password",
                                 icon: Icons.lock_outline,
                                 obscure: _obscureConfirm,
-                                validator: (v) => Validator.validateConfirmPassword(
+                                validator: (v) =>
+                                    Validator.validateConfirmPassword(
                                   v,
                                   _passwordController.text,
                                 ),
@@ -269,7 +276,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   const Expanded(
                                     child: Text(
                                       'I agree to the Terms and Conditions',
-                                      style: TextStyle(color: Colors.black87),
+                                      style:
+                                          TextStyle(color: Colors.black87),
                                     ),
                                   ),
                                 ],
@@ -286,7 +294,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
-                                  onPressed: auth.isLoading ? null : _handleRegister,
+                                  onPressed: auth.isLoading
+                                      ? null
+                                      : _handleRegister,
                                   child: auth.isLoading
                                       ? const CircularProgressIndicator(
                                           color: Colors.white,
@@ -309,7 +319,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 children: [
                                   const Text(
                                     "Already have an account? ",
-                                    style: TextStyle(color: Colors.black87),
+                                    style:
+                                        TextStyle(color: Colors.black87),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -382,7 +393,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-// 🔵 Header Curved Clipper
 class HeaderClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
