@@ -1,6 +1,8 @@
 import 'package:city_guide_app/screens/CityguideHome/SearchScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../models//auth_models.dart';
 import 'dart:math';
 import '../../utils/theme.dart';
 import '../../screens/attraction/AttractionListScreen.dart';
@@ -67,6 +69,8 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
   String? _cityId;
   bool _isLoading = true;
   String? _errorMessage;
+  UserModel? _currentUser;
+  bool _isUserLoading = true;
 
   List<PopularListing> _popularListings = [];
   List<PopularListing> _featuredAttractions = [];
@@ -85,6 +89,34 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     Icons.hotel,
     Icons.event,
   ];
+
+Future<void> _loadCurrentUser() async {
+  try {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+
+    if (firebaseUser == null) {
+      setState(() => _isUserLoading = false);
+      return;
+    }
+
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .get();
+
+    if (doc.exists) {
+      setState(() {
+        _currentUser = UserModel.fromDocument(doc);
+        _isUserLoading = false;
+      });
+    } else {
+      setState(() => _isUserLoading = false);
+    }
+  } catch (e) {
+    debugPrint('Error loading user: $e');
+    setState(() => _isUserLoading = false);
+  }
+}
 
   // ---------- Safe Parsing Helpers ----------
   String _safeString(dynamic value, {String defaultValue = ''}) {
@@ -128,6 +160,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
   @override
   void initState() {
     super.initState();
+      _loadCurrentUser(); 
     _loadData();
   }
 
@@ -574,28 +607,32 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
                                   '$greeting,',
                                   style: const TextStyle(fontSize: 18, color: Colors.grey),
                                 ),
-                                const Text(
-                                  'Hi, Erioluwa',
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
-                                  ),
-                                ),
+                                Text(
+_isUserLoading
+      ? 'Hi...'
+      : 'Hi, ${_currentUser?.fullName ?? 'Guest'}',
+  style: const TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  ),
+),
                               ],
                             ),
                           ),
                           CircleAvatar(
                             radius: 28,
                             backgroundColor: AppTheme.primaryBlue,
-                            child: const Text(
-                              'E',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            child: Text(
+  _isUserLoading || _currentUser?.fullName.isEmpty == true
+      ? '?'
+      : _currentUser!.fullName[0].toUpperCase(),
+  style: const TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  ),
+),
                           ),
                         ],
                       ),
