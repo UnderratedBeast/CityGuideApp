@@ -365,27 +365,46 @@ class MyApp extends StatelessWidget {
 
       // Admin listing lists by category
       case AppRoutes.adminAttractions:
-        return _adminGuard(
-          authProvider,
-          AdminListingListScreen(collectionName: 'attractions'),
-        );
+  final args = settings.arguments as Map<String, dynamic>;
+  return _adminGuard(
+    authProvider,
+    AdminListingTabbedScreen(
+      cityId: args['cityId'] as String,
+      // collectionName: 'attractions',
+    ),
+  );
 
       case AppRoutes.adminDining:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'dining'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+          ),
+          // AdminListingTabbedScreen(
+          //   cityId: args['cityId'] as String,
+          //   collectionName: 'dining',
+          // ),
         );
 
       case AppRoutes.adminEvents:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'events'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: 'events',
+          ),
         );
 
       case AppRoutes.adminHotels:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'hotels'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: 'hotels'
+          ),
         );
 
       // Admin add/edit listing
@@ -393,9 +412,10 @@ class MyApp extends StatelessWidget {
         final args = settings.arguments as Map<String, dynamic>? ?? {};
         return _adminGuard(
           authProvider,
-          AdminListingFormScreen(
-            collectionName: args['collectionName'] as String,
-          ),
+          AdminListingTabbedScreen(
+          cityId: args['cityId'] as String,
+          // collectionName: args['collectionName'] as String,
+),
         );
 
       case AppRoutes.adminEditListing:
@@ -403,6 +423,7 @@ class MyApp extends StatelessWidget {
         return _adminGuard(
           authProvider,
           AdminListingFormScreen(
+            cityId: args['cityId'] as String,
             collectionName: args['collectionName'] as String,
             listingId: args['listingId'] as String,
             existingData: args['existingData'] as Map<String, dynamic>?,

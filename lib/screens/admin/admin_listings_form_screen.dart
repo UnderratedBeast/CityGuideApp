@@ -156,12 +156,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/admin_notification_service.dart';
 
 class AdminListingFormScreen extends StatefulWidget {
-  final String collectionName; // attractions, hotels, dining, events
-  final String? listingId; // null = create
+  final String cityId;
+  final String collectionName; // attractions | hotels | dining | events
+  final String? listingId;
   final Map<String, dynamic>? existingData;
 
   const AdminListingFormScreen({
     super.key,
+    required this.cityId,
     required this.collectionName,
     this.listingId,
     this.existingData,
@@ -174,154 +176,105 @@ class AdminListingFormScreen extends StatefulWidget {
 
 class _AdminListingFormScreenState
     extends State<AdminListingFormScreen> {
+
   final _formKey = GlobalKey<FormState>();
 
   late CollectionReference listingsRef;
 
-  late TextEditingController _nameController;
-  late TextEditingController _cityController;
-  late TextEditingController _descriptionController;
-  late TextEditingController _addressController;
-  late TextEditingController _websiteController;
-  late TextEditingController _imageUrlController;
-  late TextEditingController _additionalImagesController;
-  late TextEditingController _priceLevelController;
-  late TextEditingController _ratingController;
+  late TextEditingController _name;
+  late TextEditingController _description;
+  late TextEditingController _imageUrl;
 
   @override
   void initState() {
     super.initState();
 
-    listingsRef =
-        FirebaseFirestore.instance.collection(widget.collectionName);
+    listingsRef = FirebaseFirestore.instance
+        .collection('cities')
+        .doc(widget.cityId)
+        .collection(widget.collectionName);
 
-    final data = widget.existingData ?? {};
+    final d = widget.existingData ?? {};
 
-    _nameController = TextEditingController(text: data['name'] ?? '');
-    _cityController = TextEditingController(text: data['city'] ?? '');
-    _descriptionController =
-        TextEditingController(text: data['description'] ?? '');
-    _addressController = TextEditingController(text: data['address'] ?? '');
-    _websiteController = TextEditingController(text: data['website'] ?? '');
-    _imageUrlController = TextEditingController(text: data['imageUrl'] ?? '');
-    _additionalImagesController = TextEditingController(
-      text: (data['additionalImages'] as List<dynamic>?)?.join(', ') ?? '',
-    );
-    _priceLevelController =
-        TextEditingController(text: data['priceLevel']?.toString() ?? '0');
-    _ratingController =
-        TextEditingController(text: data['rating']?.toString() ?? '0');
+    _name = TextEditingController(text: d['name'] ?? '');
+    _description = TextEditingController(text: d['description'] ?? '');
+    _imageUrl = TextEditingController(text: d['imageUrl'] ?? '');
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _cityController.dispose();
-    _descriptionController.dispose();
-    _addressController.dispose();
-    _websiteController.dispose();
-    _imageUrlController.dispose();
-    _additionalImagesController.dispose();
-    _priceLevelController.dispose();
-    _ratingController.dispose();
+    _name.dispose();
+    _description.dispose();
+    _imageUrl.dispose();
     super.dispose();
   }
 
-  Future<void> _saveListing() async {
+  Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
     final data = {
-      'name': _nameController.text.trim(),
-      'city': _cityController.text.trim(),
-      'description': _descriptionController.text.trim(),
-      'address': _addressController.text.trim(),
-      'website': _websiteController.text.trim(),
-      'imageUrl': _imageUrlController.text.trim(),
-      'additionalImages': _additionalImagesController.text
-          .split(',')
-          .map((e) => e.trim())
-          .where((e) => e.isNotEmpty)
-          .toList(),
-      'priceLevel': int.tryParse(_priceLevelController.text.trim()) ?? 0,
-      'rating': double.tryParse(_ratingController.text.trim()) ?? 0.0,
+      'name': _name.text.trim(),
+      'description': _description.text.trim(),
+      'imageUrl': _imageUrl.text.trim(),
       'updatedAt': FieldValue.serverTimestamp(),
     };
 
     try {
       if (widget.listingId != null) {
-        // 🔁 UPDATE
         await listingsRef.doc(widget.listingId).update(data);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Listing updated')),
-        );
       } else {
-        // ➕ CREATE
         data['createdAt'] = FieldValue.serverTimestamp();
+        final doc = await listingsRef.add(data);
 
-        final docRef = await listingsRef.add(data);
-
-        // 🔔 SEND NOTIFICATION BASED ON CATEGORY
-        await _sendNotification(
-          name: _nameController.text.trim(),
-          description: _descriptionController.text.trim(),
-          imageUrl: _imageUrlController.text.trim(),
-          listingId: docRef.id,
-        );
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Listing created')),
-        );
+        await _sendNotification(doc.id);
       }
 
       Navigator.pop(context);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
-  Future<void> _sendNotification({
-    required String name,
-    required String description,
-    required String imageUrl,
-    required String listingId,
-  }) async {
+  Future<void> _sendNotification(String listingId) async {
     switch (widget.collectionName) {
       case 'attractions':
         await NotificationService.newAttraction(
-          name: name,
-          description: description,
-          imageUrl: imageUrl,
+          cityId: widget.cityId,
+          name: _name.text.trim(),
+          description: _description.text.trim(),
           listingId: listingId,
+          imageUrl: _imageUrl.text.trim(),
         );
         break;
 
       case 'hotels':
         await NotificationService.newHotel(
-          name: name,
-          description: description,
-          imageUrl: imageUrl,
+          cityId: widget.cityId,
+          name: _name.text.trim(),
+          description: _description.text.trim(),
           listingId: listingId,
+          imageUrl: _imageUrl.text.trim(),
         );
         break;
 
       case 'dining':
         await NotificationService.newDining(
-          name: name,
-          description: description,
-          imageUrl: imageUrl,
+          cityId: widget.cityId,
+          name: _name.text.trim(),
+          description: _description.text.trim(),
           listingId: listingId,
+          imageUrl: _imageUrl.text.trim(),
         );
         break;
 
       case 'events':
         await NotificationService.newEvent(
-          name: name,
-          description: description,
-          imageUrl: imageUrl,
+          cityId: widget.cityId,
+          name: _name.text.trim(),
+          description: _description.text.trim(),
           listingId: listingId,
+          imageUrl: _imageUrl.text.trim(),
         );
         break;
     }
@@ -333,44 +286,22 @@ class _AdminListingFormScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          isEdit
-              ? 'Edit ${widget.collectionName}'
-              : 'Add ${widget.collectionName}',
-        ),
+        title: Text(isEdit ? 'Edit Listing' : 'Add Listing'),
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              _buildTextField(_nameController, 'Name'),
-              _buildTextField(_cityController, 'City'),
-              _buildTextField(_descriptionController, 'Description',
-                  maxLines: 3),
-              _buildTextField(_addressController, 'Address'),
-              _buildTextField(_websiteController, 'Website'),
-              _buildTextField(_imageUrlController, 'Main Image URL'),
-              _buildTextField(
-                _additionalImagesController,
-                'Additional Image URLs (comma separated)',
-              ),
-              _buildTextField(
-                _priceLevelController,
-                'Price Level',
-                inputType: TextInputType.number,
-              ),
-              _buildTextField(
-                _ratingController,
-                'Rating',
-                inputType: TextInputType.number,
-              ),
+              _field(_name, 'Name'),
+              _field(_description, 'Description', maxLines: 3),
+              _field(_imageUrl, 'Image URL'),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _saveListing,
+                onPressed: _save,
                 child: Text(isEdit ? 'Update' : 'Create'),
-              ),
+              )
             ],
           ),
         ),
@@ -378,20 +309,15 @@ class _AdminListingFormScreenState
     );
   }
 
-  Widget _buildTextField(
-    TextEditingController controller,
-    String label, {
-    int maxLines = 1,
-    TextInputType inputType = TextInputType.text,
-  }) {
+  Widget _field(TextEditingController c, String label,
+      {int maxLines = 1}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
-        controller: controller,
-        keyboardType: inputType,
+        controller: c,
         maxLines: maxLines,
-        validator: (value) =>
-            value == null || value.isEmpty ? 'Required' : null,
+        validator: (v) =>
+            v == null || v.isEmpty ? 'Required' : null,
         decoration: InputDecoration(
           labelText: label,
           border: const OutlineInputBorder(),
@@ -400,4 +326,3 @@ class _AdminListingFormScreenState
     );
   }
 }
-  

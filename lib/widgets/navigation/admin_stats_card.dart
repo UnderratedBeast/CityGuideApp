@@ -5,7 +5,10 @@ class StatsCard extends StatelessWidget {
   final String value;
   final IconData icon;
   final Color color;
-  final double? trend; // Optional trend percentage
+  final double? trend;
+  final bool isLarge;
+  final double? progress;
+  final List<Color>? gradient;
 
   const StatsCard({
     super.key,
@@ -14,91 +17,115 @@ class StatsCard extends StatelessWidget {
     required this.icon,
     required this.color,
     this.trend,
+    this.isLarge = false,
+    this.progress,
+    this.gradient,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+    return Container(
+      width: isLarge ? 300 : 180,
+      height: isLarge ? 180 : 120,
+      decoration: BoxDecoration(
+        color: gradient != null ? null : Colors.white,
+        gradient: gradient != null
+            ? LinearGradient(
+                colors: gradient!,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )
+            : null,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: color.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+      child: Stack(
+        children: [
+          // Background Icon Pattern
+          Positioned(
+            right: -20,
+            bottom: -20,
+            child: Icon(
+              icon,
+              size: 150,
+              color: (gradient != null ? Colors.white : color).withOpacity(0.05),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(icon, color: color, size: 28),
-                if (trend != null)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: gradient != null
+                            ? Colors.white.withOpacity(0.8)
+                            : Colors.grey[600],
+                        fontSize: isLarge ? 16 : 14,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      // Using withValues(alpha: 0.1) instead of withOpacity(0.1) as per new Flutter API
-                      color: trend! >= 0
-                          ? Colors.green.withValues(alpha: 0.1)
-                          : Colors.red.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          trend! >= 0
-                              ? Icons.arrow_upward
-                              : Icons.arrow_downward,
-                          size: 12,
-                          color: trend! >= 0
-                              ? Colors.green
-                              : Colors.red,
+                    if (trend != null)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${trend!.abs()}%',
-                          style: TextStyle(
-                            color: trend! >= 0
-                                ? Colors.green
-                                : Colors.red,
+                        child: Text(
+                          '${trend! >= 0 ? '+' : ''}$trend%',
+                          style: const TextStyle(
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  value,
-                  style: Theme.of(context).textTheme.headlineMedium
-                      ?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
                       ),
-                  overflow: TextOverflow.ellipsis,
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyMedium
-                      ?.copyWith(color: Colors.grey[600]),
-                  overflow: TextOverflow.ellipsis,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      value,
+                      style: TextStyle(
+                        color: gradient != null ? Colors.white : Colors.black87,
+                        fontSize: isLarge ? 36 : 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (isLarge && progress != null) ...[
+                      const SizedBox(height: 16),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(2),
+                        child: LinearProgressIndicator(
+                          value: progress,
+                          backgroundColor: Colors.white.withOpacity(0.2),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white.withOpacity(0.8),
+                          ),
+                          minHeight: 4,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
