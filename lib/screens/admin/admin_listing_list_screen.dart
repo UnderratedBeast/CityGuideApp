@@ -82,7 +82,6 @@
 //   }
 // }
 
-
 // import 'package:flutter/material.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'admin_listings_form_screen.dart';
@@ -221,7 +220,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'admin_listings_form_screen.dart';
@@ -236,18 +234,26 @@ class AdminListingTabbedScreen extends StatefulWidget {
       _AdminListingTabbedScreenState();
 }
 
-class _AdminListingTabbedScreenState extends State<AdminListingTabbedScreen>
+class _AdminListingTabbedScreenState
+    extends State<AdminListingTabbedScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> categories = ['attractions', 'events', 'dining', 'hotels'];
+  final List<String> categories = [
+    'attractions',
+    'events',
+    'dining',
+    'hotels'
+  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: categories.length, vsync: this);
+    _tabController =
+        TabController(length: categories.length, vsync: this);
   }
 
-  Future<void> _deleteListing(String collectionName, String listingId) async {
+  Future<void> _deleteListing(
+      String collectionName, String listingId) async {
     final subCollection = FirebaseFirestore.instance
         .collection('cities')
         .doc(widget.cityId)
@@ -285,7 +291,8 @@ class _AdminListingTabbedScreenState extends State<AdminListingTabbedScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Delete Listing'),
-        content: const Text('Are you sure you want to delete this listing?'),
+        content: const Text(
+            'Are you sure you want to delete this listing?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
@@ -345,52 +352,171 @@ class _AdminListingTabbedScreenState extends State<AdminListingTabbedScreen>
               if (extraImages.isNotEmpty) imageUrl = extraImages[0];
             }
 
-            return Card(
-              elevation: 3,
-              margin: const EdgeInsets.only(bottom: 12),
-              child: ListTile(
-                leading: imageUrl != null && imageUrl.isNotEmpty
-                    ? CircleAvatar(
-                        backgroundImage: NetworkImage(imageUrl),
-                      )
-                    : const CircleAvatar(
-                        child: Icon(Icons.image),
-                      ),
-                title: Text(
-                  data['name'] ?? 'No Name',
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                subtitle: Text(
-                  data['details'] ?? data['description'] ?? '',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
+            return Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 20,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Column(
                   children: [
-                    // EDIT
-                    IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.blue),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => AdminListingFormScreen(
-                              cityId: widget.cityId,
-                              collectionName: collectionName,
-                              listingId: doc.id,
-                              existingData: data,
+                    // IMAGE AND TEXT ROW (50/50)
+                    IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.stretch,
+                        children: [
+                          // 50% IMAGE
+                          Expanded(
+                            flex: 1,
+                            child: imageUrl != null &&
+                                    imageUrl.isNotEmpty
+                                ? Image.network(
+                                    imageUrl,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error,
+                                            stackTrace) =>
+                                        Container(
+                                      color: Colors.grey[200],
+                                      child: const Icon(
+                                          Icons.image_not_supported,
+                                          size: 40),
+                                    ),
+                                  )
+                                : Container(
+                                    color: Colors.blue[50],
+                                    child: const Icon(Icons.image,
+                                        size: 40, color: Colors.blue),
+                                  ),
+                          ),
+                          // 50% TEXT
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    data['name'] ?? 'No Name',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black87,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    data['details'] ??
+                                        data['description'] ??
+                                        '',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 13,
+                                      height: 1.4,
+                                    ),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        );
-                      },
+                        ],
+                      ),
                     ),
-
-                    // DELETE
-                    IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: () =>
-                          _confirmDelete(collectionName, doc.id),
+                    const Divider(height: 1),
+                    // BUTTONS ROW (50/50)
+                    Row(
+                      children: [
+                        // EDIT BUTTON
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      AdminListingFormScreen(
+                                    cityId: widget.cityId,
+                                    collectionName: collectionName,
+                                    listingId: doc.id,
+                                    existingData: data,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(
+                                      color: Colors.grey[200]!),
+                                ),
+                              ),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.edit,
+                                      size: 18, color: Colors.blue),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    'Edit',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        // DELETE BUTTON
+                        Expanded(
+                          child: InkWell(
+                            onTap: () => _confirmDelete(
+                                collectionName, doc.id),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.delete,
+                                      size: 18, color: Colors.red),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -410,13 +536,15 @@ class _AdminListingTabbedScreenState extends State<AdminListingTabbedScreen>
         bottom: TabBar(
           controller: _tabController,
           tabs: categories
-              .map((e) => Tab(text: e[0].toUpperCase() + e.substring(1)))
+              .map((e) =>
+                  Tab(text: e[0].toUpperCase() + e.substring(1)))
               .toList(),
         ),
       ),
       body: TabBarView(
         controller: _tabController,
-        children: categories.map((c) => _buildListingList(c)).toList(),
+        children:
+            categories.map((c) => _buildListingList(c)).toList(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -89,7 +89,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'admin_dashboard.dart';
@@ -109,7 +108,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String _selectedCollection = 'attractions';
   String? _selectedCityId;
 
-  final List<String> collections = ['attractions', 'hotels', 'dining', 'events'];
+  final List<String> collections = [
+    'attractions',
+    'hotels',
+    'dining',
+    'events'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -215,117 +219,178 @@ class _DashboardScreenState extends State<DashboardScreen> {
   //   }
   // }
   Widget _buildBody() {
-  switch (_selectedIndex) {
-    case 0:
-      return const DashboardHome();
+    switch (_selectedIndex) {
+      case 0:
+        return const DashboardHome();
 
-    case 1:
-      // LISTINGS TAB
-      if (_selectedCityId == null) {
-        // Step 1: Show all cities
-        return StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('cities').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Center(child: Text('Something went wrong'));
-            }
+      case 1:
+        // LISTINGS TAB
+        if (_selectedCityId == null) {
+          // Step 1: Show all cities
+          return StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('cities')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(
+                    child: Text('Something went wrong'));
+              }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
+              if (snapshot.connectionState ==
+                  ConnectionState.waiting) {
+                return const Center(
+                    child: CircularProgressIndicator());
+              }
 
-            final cities = snapshot.data!.docs;
-            if (cities.isEmpty) {
-              return const Center(child: Text('No cities found'));
-            }
+              final cities = snapshot.data!.docs;
+              if (cities.isEmpty) {
+                return const Center(child: Text('No cities found'));
+              }
 
-            return ListView.builder(
-              itemCount: cities.length,
-              itemBuilder: (context, index) {
-                final city = cities[index];
-                final cityData = city.data() as Map<String, dynamic>;
-                return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: ListTile(
-                    title: Text(cityData['name'] ?? 'Unnamed City'),
-                    subtitle: Text('City ID: ${city.id}'),
-                    trailing: const Icon(Icons.arrow_forward),
+              return GridView.builder(
+                padding: const EdgeInsets.all(16),
+                gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 0.85,
+                ),
+                itemCount: cities.length,
+                itemBuilder: (context, index) {
+                  final city = cities[index];
+                  final cityData =
+                      city.data() as Map<String, dynamic>;
+                  return InkWell(
                     onTap: () {
                       setState(() {
-                        _selectedCityId = city.id; // Step 2: select city
+                        _selectedCityId = city.id;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF6200EE)
+                                .withOpacity(0.08),
+                            blurRadius: 15,
+                            offset: const Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF6200EE)
+                                  .withOpacity(0.1),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.location_city,
+                              color: Color(0xFF6200EE),
+                              size: 32,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            cityData['name'] ?? 'Unnamed City',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.black87,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'ID: ${city.id}',
+                            style: TextStyle(
+                              color: Colors.grey[500],
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        }
+
+        // Step 2: Show selected city's listings with collection dropdown
+        return Column(
+          children: [
+            // AppBar-like back button for the listings view
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 12, vertical: 8),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      setState(() {
+                        _selectedCityId =
+                            null; // go back to cities list
                       });
                     },
                   ),
-                );
-              },
-            );
-          },
-        );
-      }
+                  Text(
+                    'Listings for City: $_selectedCityId',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
 
-      // Step 2: Show selected city's listings with collection dropdown
-      return Column(
-        children: [
-          // AppBar-like back button for the listings view
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
+            // Collection dropdown
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: DropdownButton<String>(
+                value: _selectedCollection,
+                items: collections
+                    .map((e) => DropdownMenuItem(
+                          value: e,
+                          child: Text(
+                              e[0].toUpperCase() + e.substring(1)),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  if (value != null) {
                     setState(() {
-                      _selectedCityId = null; // go back to cities list
+                      _selectedCollection = value;
                     });
-                  },
-                ),
-                Text(
-                  'Listings for City: $_selectedCityId',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
+                  }
+                },
+              ),
             ),
-          ),
 
-          // Collection dropdown
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: DropdownButton<String>(
-              value: _selectedCollection,
-              items: collections
-                  .map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e[0].toUpperCase() + e.substring(1)),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    _selectedCollection = value;
-                  });
-                }
-              },
+            // Listings
+            Expanded(
+              child: AdminListingTabbedScreen(
+                cityId: _selectedCityId!,
+              ),
             ),
-          ),
+          ],
+        );
 
-          // Listings
-          Expanded(
-            child: AdminListingTabbedScreen(
-              cityId: _selectedCityId!,
-            ),
-          ),
-        ],
-      );
+      case 2:
+        return const ReviewListScreen();
 
-    case 2:
-      return const ReviewListScreen();
+      case 3:
+        return const SettingsScreen();
 
-    case 3:
-      return const SettingsScreen();
-
-    default:
-      return const DashboardHome();
+      default:
+        return const DashboardHome();
+    }
   }
-}
 }

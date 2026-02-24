@@ -204,7 +204,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import '../../widgets/navigation/admin_stats_card.dart';
 
@@ -271,14 +270,26 @@ class DashboardHome extends StatelessWidget {
                   title: 'Page Views',
                   value: '48.2k',
                   icon: Icons.visibility,
-                  color: Colors.blue.shade100,
+                  color: const Color(0xFF00B4DB),
+                  isLarge: true,
+                  progress: 0.8,
+                  gradient: const [
+                    Color(0xFF00B4DB),
+                    Color(0xFF0083B0)
+                  ],
                 ),
                 const SizedBox(width: 16),
                 StatsCard(
                   title: 'Verifications',
                   value: '124',
                   icon: Icons.verified,
-                  color: Colors.green.shade100,
+                  color: const Color(0xFF00F260),
+                  isLarge: true,
+                  progress: 0.3,
+                  gradient: const [
+                    Color(0xFF00F260),
+                    Color(0xFF0575E6)
+                  ],
                 ),
               ],
             ),
@@ -313,7 +324,8 @@ class DashboardHome extends StatelessWidget {
             icon: Icons.add_location_alt_rounded,
             iconColor: Colors.blue,
             title: 'New attraction added',
-            subtitle: 'Skyline Observatory was added by @alex_travels',
+            subtitle:
+                'Skyline Observatory was added by @alex_travels',
             time: '2 mins ago',
           ),
           _buildActivityItem(
@@ -321,7 +333,8 @@ class DashboardHome extends StatelessWidget {
             icon: Icons.report_problem_rounded,
             iconColor: Colors.red,
             title: 'Reported review resolved',
-            subtitle: "Flagged review on 'Central Park' has been manually hidden",
+            subtitle:
+                "Flagged review on 'Central Park' has been manually hidden",
             time: '1 hour ago',
           ),
           _buildActivityItem(
@@ -329,7 +342,8 @@ class DashboardHome extends StatelessWidget {
             icon: Icons.system_update_rounded,
             iconColor: Colors.orange,
             title: 'System update: v2.4',
-            subtitle: 'Core engine successfully updated to the latest stable build',
+            subtitle:
+                'Core engine successfully updated to the latest stable build',
             time: '4 hours ago',
           ),
           _buildActivityItem(
@@ -337,7 +351,8 @@ class DashboardHome extends StatelessWidget {
             icon: Icons.person_add_rounded,
             iconColor: Colors.deepPurple,
             title: 'New Editor Role',
-            subtitle: '@maria_design has been promoted to City Editor',
+            subtitle:
+                '@maria_design has been promoted to City Editor',
             time: 'Yesterday',
           ),
         ],
