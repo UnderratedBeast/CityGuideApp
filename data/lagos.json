@@ -1,648 +1,575 @@
 {
-  "name": "Lagos",
-  "description": "Lagos is Nigeria's largest city and economic hub, a vibrant coastal metropolis known for its energetic nightlife, rich Yoruba culture, bustling markets, beautiful beaches, world-class art galleries, and growing tech and entertainment scene. It's a city of contrasts — from luxury Victoria Island to historic Lagos Island and lively Lekki.",
-  "imageUrl": "https://images.squarespace-cdn.com/content/v1/5e82525c522ae05d82b4bbb9/1612263913874-TDX913N0ZIZG3PGGN918/Marina-at-Dusk.jpg",
-  "ratings": 4.5,
-  "zone": "South West",
-  "extraImages": [
-    "https://thefintechtimes.com/wp-content/uploads/2021/10/iStock-542958716.jpg",
-    "https://i.pinimg.com/736x/ce/88/fe/ce88fe9b420a69ab20d16521d4150310.jpg",
-    "https://live.staticflickr.com/8450/8066451729_7503ca9c99_b.jpg",
-    "https://images.photowall.com/products/77907/lagos-nigeria-skyline-1.jpg?h=699&q=85",
-    "https://c8.alamy.com/comp/2DA45NG/lagos-nigeria-city-skyline-with-color-buildings-and-reflections-isolated-on-white-vector-illustration-lagos-cityscape-with-landmarks-business-2DA45NG.jpg"
-  ],
-  "topHighlights": [
-    "Lekki Conservation Centre – Longest canopy walkway in Africa",
-    "Nike Art Gallery – West Africa's largest art collection",
-    "Tarkwa Bay Beach – Relaxed beach vibes and water activities",
-    "Terra Kulture – Cultural center with art, food, and performances"
-  ],
-  "weather": {
-    "season": "Dry season (Harmattan influence)",
-    "averageHigh": "33°C (91°F)",
-    "averageLow": "24°C (75°F)",
-    "humidity": "High (around 75-85%)",
-    "rainfall": "Low (around 40-60 mm for the month)",
-    "note": "Hot and humid; pack light clothing, sunscreen, and stay hydrated."
-  },
-  "attractions": [
-    {
-      "name": "Lekki Conservation Centre",
-      "details": "Located in the middle of Lagos, this conservation center is home to abundant plants and wildlife and plays a vital role in preserving the region’s ecosystem. Sign up for a guided tour with transportation.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/A_pathway_in_the_Lekki_Convention_Center.jpg",
-      "rating": 5.0,
-      "address": "Lekki, Lagos, Nigeria",
-      "location": { "latitude": 6.4450, "longitude": 3.5120 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "",
-      "hashtag": "nature wildlife conservation",
-      "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/56/f6/d9/the-swaying-of-the-walkways.jpg?w=800&h=500&s=1",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/3f/69/9e/caption.jpg?w=800&h=800&s=1",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/3c/fb/dd.jpg",
-        "https://cdn.punchng.com/wp-content/uploads/2024/03/24184843/97984ca2-7cc7-4778-b3e3-ab84e7488633-1080x630.webp"
-      ],
-      "price": "From $120 per adult (sightseeing pass)",
-      "reviews": [
-        {
-          "profileName": "Adenike A",
-          "createdAt": "2026-01-04",
-          "starRatings": 5,
-          "reviewDetails": "We took the kids to see what a conservation Center looks like. We saw the monkeys and crocodile, walked the 2.4km walk through the forest. It was a nice outing. The tour guides were nice friendly and helpful. They answered the questions the childern asked to give them a better understanding of why the area was protected. It’s a must see and if you’re not afraid of heights then you would definitely love the four level high walks. The experience was well worth it for the family.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        },
-        {
-          "profileName": "Alamezie P",
-          "createdAt": "2024-11-01",
-          "starRatings": 5,
-          "reviewDetails": "It was a beautiful place filled with nature , there was a lot of trees on both sides of the walkway, there was a lot of monkeys jumping on the trees ,the canopy walk was a great experience.lol.the first walk was not so scary ,it got scarier from the 3rd walk okay let’s go,ur heart is gonna raise and if u are afraid of heights don’t bother going because it gets higher as you. Go ,finishing the canopy walk makes u tough .lol u will just feel happy like you have accomplished something and deserves a medal .lol. It was great experience",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 5
-        }
-      ]
+  "lagos": {
+    "name": "Lagos",
+    "description": "Lagos is the most populous city in Nigeria and the African continent, serving as a major financial center and economic hub known for its vibrant culture, bustling tech scene, and energetic nightlife.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lagos_Island.jpg/800px-Lagos_Island.jpg",
+    "ratings": 4.5,
+    "extraImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Lekki-Ikoyi_Link_Bridge.jpg/800px-Lekki-Ikoyi_Link_Bridge.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Eko_Atlantic_City.jpg/800px-Eko_Atlantic_City.jpg",
+      "https://images.unsplash.com/photo-1616853502598-1a525b6a71ab?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1620021644078-d56df935ec9c?q=80&w=800&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/National_Arts_Theatre_Lagos.jpg/800px-National_Arts_Theatre_Lagos.jpg"
+    ],
+    "topHighlights": [
+      "Lekki Conservation Centre",
+      "Lagos Continental Hotel",
+      "Shiro Lagos",
+      "Access Bank Lagos City Marathon 2026"
+    ],
+    "weather": {
+      "temperature": "28°C",
+      "condition": "Partly Cloudy",
+      "humidity": "78%",
+      "windSpeed": "14 km/h"
     },
-    {
-      "name": "Nike Centre For Art And Culture",
-      "details": "Nike Art Centre, Lagos, is one of Nigeria's hidden treasures. Located in Lekki, Lagos, the four-story building compromises of an art gallery and textile museum featuring over 7,000 pieces and soon…",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/nike-art-centre.jpg?w=900&h=500&s=1",
-      "rating": 4.5,
-      "address": "Lekki, Lagos, Nigeria",
-      "location": { "latitude": 6.4450, "longitude": 3.5120 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "",
-      "hashtag": "art culture museum",
-      "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Outside_Nike_Art_Gallery_%284202980259%29.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/nike-art-gallery.jpg?w=900&h=500&s=1",
-        "https://nikeartfoundation.com/wp-content/uploads/2023/12/nike-art-gallery-oshogbo.jpg",
-        "https://live.staticflickr.com/65535/48187102311_f32fcb0ac2_b.jpg"
-      ],
-      "price": "",
-      "reviews": [
-        {
-          "profileName": "Trea N",
-          "createdAt": "2025-10-17",
-          "starRatings": 5,
-          "reviewDetails": "I had such a good time here, and it’s so beautiful because it’s free and so people like me can come here and experience beautiful art. I hope to come back really soon . Thank you so much. I also met Timothy, he was really helpful!!",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 8
+    "attractions": [
+      {
+        "name": "Lekki Conservation Centre",
+        "details": "A 78-hectare natural resource conservation center in Lekki. It features the longest canopy walkway in Africa, offering a panoramic view of the reserve and encounters with monkeys, birds, and giant tortoises.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lekki_Conservation_Centre_Canopy_Walkway.jpg/800px-Lekki_Conservation_Centre_Canopy_Walkway.jpg",
+        "rating": 4.6,
+        "address": "Km 19 Lekki - Epe Expy, Lekki Peninsula II, Lekki, Nigeria",
+        "location": {
+          "latitude": 6.4382,
+          "longitude": 3.5350
         },
-        {
-          "profileName": "Dummy User 1",
-          "createdAt": "2025-09-01",
-          "starRatings": 4,
-          "reviewDetails": "Enjoyed the extensive collection of art and textiles; a great spot for cultural immersion in Lagos.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 3
-        }
-      ]
-    },
-    {
-      "name": "Freedom Park",
-      "details": "If you are an art lover, visit Freedom park. If you are a historian, visit Freedom park. If you are a photographer...",
-      "imageUrl": "https://cdn.guardian.ng/wp-content/uploads/2020/05/Freedom-Park-Lagos.-Photo-VisitNigeriaNow-897x598.jpg",
-      "rating": 4.5,
-      "address": "Lagos Island, Lagos, Nigeria",
-      "location": { "latitude": 6.4550, "longitude": 3.3950 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "",
-      "hashtag": "history art photography",
-      "extraImages": [
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/659512f32d110c13ee14f335/wUOry0Cej8.jpeg",
-        "https://glorioushotelng.com/uploads/destination_images/freedom-park-lagos.jpg",
-        "https://cdn.guardian.ng/wp-content/uploads/2020/05/Freedom-Park-Lagos.-Photo-VisitNigeriaNow-897x598.jpg",
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/659512f32d110c13ee14f335/wUOry0Cej8.jpeg"
-      ],
-      "price": "",
-      "reviews": [
-        {
-          "profileName": "Yinka W",
-          "createdAt": "2025-12-05",
-          "starRatings": 5,
-          "reviewDetails": "I accompanied the team from Decorex in South Africa on a guided tour of Freedom Park. I did add more knowledge to the historical account of the Park which I assumed that I already knew to an extent during this tour. I had visited the museum, the amphitheater, the preserved cells and all other parts of park over the years and I am very proud to see that the entire facility has taken shape and have emerged into a brilliant centre of learning that Nigeria is proud of. My favourite spot was the fish pond. I will recommend that Nigerians should endeavour to visit with family and friends often and take their visitors for the diverse enriching experience. Students at all levels will love it. Of course Detty December here will be fun.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 12
+        "isActive": true,
+        "website": "https://ncfnigeria.org",
+        "phoneNumber": "+234 812 751 7987",
+        "openHours": "08:30 AM - 05:00 PM",
+        "hashtag": "#NatureAndAdventure",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1547629555-d3c267b14d5e?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1596700593452-fbc9584b4dd2?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1533514114760-4389f572ae26?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1601002360812-32b0a688172c?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 2000",
+        "reviews": [
+          {
+            "profileName": "Tunde Bakare",
+            "createdAt": "2026-01-15T10:30:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The canopy walk is thrilling! Highly recommend going early to avoid the heat.",
+            "profileImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop",
+            "likes": 24
+          }
+        ]
+      },
+      {
+        "name": "Nike Art Gallery",
+        "details": "One of the largest collections of indigenous Nigerian artwork, currently the largest privately owned art gallery in Africa, featuring over 8,000 diverse artworks.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Nike_Art_Gallery_Lagos.jpg/800px-Nike_Art_Gallery_Lagos.jpg",
+        "rating": 4.8,
+        "address": "No. 2, Elegushi Road, 3rd Roundabout, Lekki Phase 1, Lagos",
+        "location": {
+          "latitude": 6.4334,
+          "longitude": 3.4811
         },
-        {
-          "profileName": "Dummy User 2",
-          "createdAt": "2025-10-01",
-          "starRatings": 5,
-          "reviewDetails": "A historic site with rich cultural significance; perfect for learning and photography.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 4
-        }
-      ]
-    },
-    {
-      "name": "Makoko Floating Community",
-      "details": "Explore Makoko, a floating community in Lagos, often visited through guided tours.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Tarkwa_Bay_Beach_Tire_shot.jpg",
-      "rating": 5.0,
-      "address": "Makoko, Lagos, Nigeria",
-      "location": { "latitude": 6.4650, "longitude": 3.4500 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "",
-      "hashtag": "adventure culture community",
-      "extraImages": [
-        "https://visaliv.s3.ap-south-1.amazonaws.com/Tarkwa-Bay-Beach-Nigeria.jpg",
-        "https://articles.connectnigeria.com/wp-content/uploads/2024/03/60091_1650_1100.webp",
-        "https://i.ytimg.com/vi/g9zGfQ3-EH0/maxresdefault.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/8a/20/72/img-20180331-141830-largejpg.jpg?w=900&h=500&s=1"
-      ],
-      "price": "From $174 per adult (tour)",
-      "reviews": [
-        {
-          "profileName": "Pioneer36006157814",
-          "createdAt": "2025-10-28",
-          "starRatings": 5,
-          "reviewDetails": "An unforgettable 40th anniversary tour for 21 days, in Ghana, Togo, Benin and Nigeria... to name some of the remarkable sites we got to explore. ... the incredible experience in Makoko, the floating city of Lagos.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 15
+        "isActive": true,
+        "website": "https://nikeart.com",
+        "phoneNumber": "+234 803 409 6656",
+        "openHours": "10:00 AM - 06:00 PM",
+        "hashtag": "#ArtAndCulture",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1561053720-76cd73ff22c3?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "Free",
+        "reviews": [
+          {
+            "profileName": "Amina Usman",
+            "createdAt": "2025-12-10T14:20:00Z",
+            "starRatings": 5,
+            "reviewDetails": "A beautiful deep dive into Nigerian heritage and art. Mama Nike is very welcoming.",
+            "profileImage": "https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?q=80&w=150&auto=format&fit=crop",
+            "likes": 56
+          }
+        ]
+      },
+      {
+        "name": "Freedom Park",
+        "details": "A memorial and leisure park area in the middle of downtown Lagos, built on the site of the colonial-era Broad Street Prison. It serves as a national memorial, historical landmark, and arts center.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Freedom_Park_Lagos.jpg/800px-Freedom_Park_Lagos.jpg",
+        "rating": 4.3,
+        "address": "Old Prison Ground, Broad St, Lagos Island, Lagos",
+        "location": {
+          "latitude": 6.4497,
+          "longitude": 3.3963
         },
-        {
-          "profileName": "christian",
-          "createdAt": "2025-02-24",
-          "starRatings": 5,
-          "reviewDetails": "... Not to mention the stunning Idanre Hills, the Oshogbo Shrine and the incredible experience in Makoko, the floating city of Lagos.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        }
-      ]
-    }
-  ],
-  "hotels": [
-    {
-      "name": "Lagos Continental Hotel",
-      "details": "Elegant hotel offering exceptional customer service, spacious and comfortable rooms, and top-tier dining with diverse local and international cuisine. Highlights include a cozy club lounge with stunning views, attentive staff, and excellent facilities for events and gatherings.",
-      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/eko-hotel-hero-image.jpg?w=900&h=500&s=1",
-      "rating": 4.7,
-      "address": "Lagos, Lagos State",
-      "location": { "latitude": 6.4500, "longitude": 3.4000 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "24/7",
-      "hashtag": "luxury",
-      "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/528219752.jpg?k=986ec4239d3e5002ed4ec410b68e84bbc80a8376a572d200d37ad08308aba1c0&o=",
-        "https://i.pinimg.com/736x/ce/88/fe/ce88fe9b420a69ab20d16521d4150310.jpg",
-        "https://www.ekohotels.com/assets/img/gallery/ga-hotel-5.jpg",
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/528187902.jpg?k=f4af19cd1f1dd6254ca55804e020fc73d94ffe10b3acd46ec722ee7745d047d9&o="
-      ],
-      "price": "$203 average per night",
-      "reviews": [
-        {
-          "profileName": "Fritzline B",
-          "createdAt": "2024-08-05",
-          "starRatings": 5,
-          "reviewDetails": "House keeping did a good job keeping the room clean and spotless all through my stay, clean sheets, towels and all was perfect, they made my first visit to Nigeria comfortable, thanks to Emeka Ayogu too for always...",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 0
+        "isActive": true,
+        "website": "https://freedomparklagos.com",
+        "phoneNumber": "+234 809 500 6567",
+        "openHours": "11:00 AM - 10:00 PM",
+        "hashtag": "#HistoryAndLeisure",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1584345604325-f5091269a0d1?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1531584288426-382f7fc53df6?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 500",
+        "reviews": [
+          {
+            "profileName": "David Smith",
+            "createdAt": "2026-02-01T09:15:00Z",
+            "starRatings": 4,
+            "reviewDetails": "Great place to relax with friends, grab some food, and enjoy live music.",
+            "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop",
+            "likes": 12
+          }
+        ]
+      },
+      {
+        "name": "National Museum Lagos",
+        "details": "The museum houses a significant collection of Nigerian art, including pieces of statuary and carvings, archaeological and ethnographic exhibits, and the famous Jemaa Head.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/National_Museum_Lagos.jpg/800px-National_Museum_Lagos.jpg",
+        "rating": 4.1,
+        "address": "Onikan Rd, Ikoyi, Lagos",
+        "location": {
+          "latitude": 6.4430,
+          "longitude": 3.4034
         },
-        {
-          "profileName": "Ngozi M.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Incredible collection! A must for art lovers.",
-          "profileImage": "https://example.com/ngozi.jpg",
-          "likes": 35
-        }
-      ]
-    },
-    {
-      "name": "Four Points By Sheraton Lagos",
-      "details": "Spacious rooms with dehumidifiers and purifiers, a rooftop bar with a sheltered terrace, conference facilities, and an excellent Indian restaurant. Bar and lounge areas provide relaxing spaces for guests.",
-      "imageUrl": "https://radissonhotels.iceportal.com/image/radisson-blu-hotel-lagos-ikeja/pool-outdoor/16256-116550-f63888592_3XL.jpg",
-      "rating": 4.4,
-      "address": "Lagos, Lagos State",
-      "location": { "latitude": 6.4271, "longitude": 3.4182 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "24/7",
-      "hashtag": "business",
-      "extraImages": [
-        "https://images.trvl-media.com/lodging/17000000/16730000/16721800/16721751/7853bc4c.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-        "https://images.trvl-media.com/lodging/3000000/2670000/2667300/2667222/0a978132.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-        "https://www.ahstatic.com/photos/c0s0_ho_00_p_1024x768.jpg",
-        "https://www.ahstatic.com/photos/c0s0_ho_01_p_1024x768.jpg"
-      ],
-      "price": "$194 average per night",
-      "reviews": [
-        {
-          "profileName": "Anthony B",
-          "createdAt": "2025-11-28",
-          "starRatings": 5,
-          "reviewDetails": "Immediately at check-in, Cynthia recognized my Bonvoy loyalty, clearly outlined the benefits and proceeded to consult with her manager in order to assure a room upgrade despite very high occupancy.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 0
+        "isActive": true,
+        "website": "https://ncmm.gov.ng",
+        "phoneNumber": "+234 802 312 3456",
+        "openHours": "09:30 AM - 03:30 PM",
+        "hashtag": "#Museums",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1574343884814-118bdce66d1d?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540324155970-143f527c11f5?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584652868574-0669f4292976?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1563532731674-a62edabfa1eb?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 500",
+        "reviews": [
+          {
+            "profileName": "Chiamaka Eze",
+            "createdAt": "2025-11-20T11:45:00Z",
+            "starRatings": 4,
+            "reviewDetails": "Rich in history, though the facility itself could use some modernization.",
+            "profileImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop",
+            "likes": 30
+          }
+        ]
+      }
+    ],
+    "hotels": [
+      {
+        "name": "Lagos Continental Hotel",
+        "details": "The tallest hotel in West Africa, offering luxurious 5-star accommodations, panoramic views of the Atlantic Ocean, and premium facilities right in the heart of Victoria Island.",
+        "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.5,
+        "address": "Plot 52A Kofo Abayomi St, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4326,
+          "longitude": 3.4214
         },
-        {
-          "profileName": "Chidi E.",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Top-tier service and amazing skyline views!",
-          "profileImage": "https://example.com/chidi.jpg",
-          "likes": 50
-        }
-      ]
-    },
-    {
-      "name": "The Federal Palace Hotel",
-      "details": "Scenic hotel with lagoon views, vibrant atmosphere, live music, and great food. Features a well-equipped gym and professional staff. Offers upgraded facilities and beautiful surroundings.",
-      "imageUrl": "https://yampahotels.com/wp-content/uploads/2023/10/over-view-of-the-hotel-1.jpg",
-      "rating": 4.0,
-      "address": "Lagos, Lagos State",
-      "location": { "latitude": 6.4347, "longitude": 3.4158 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "24/7",
-      "hashtag": "luxury",
-      "extraImages": [
-        "https://www.ahstatic.com/photos/c0s0_roqec_00_p_1024x768.jpg",
-        "https://www.ahstatic.com/photos/c0s0_ho_00_p_1024x768.jpg",
-        "https://images.trvl-media.com/lodging/17000000/16730000/16721800/16721751/7853bc4c.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-        "https://images.trvl-media.com/lodging/3000000/2670000/2667300/2667222/0a978132.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill"
-      ],
-      "price": "$191 average per night",
-      "reviews": [
-        {
-          "profileName": "Voyage28134920069",
-          "createdAt": "2025-03-08",
-          "starRatings": 4,
-          "reviewDetails": "This hotel has made significant improvements. The staff is friendly, creating an enjoyable and welcoming experience. While there are a few minor areas that could be refined, management is actively addressing them to...",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 0
+        "isActive": true,
+        "website": "https://thelagoscontinental.com",
+        "phoneNumber": "+234 1 236 6666",
+        "openHours": "24 Hours",
+        "hashtag": "#LuxuryStay",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1551882547-ff40c0d13c05?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1542314831-c6a4d14b0320?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "From NGN 250,000 / Night",
+        "reviews": [
+          {
+            "profileName": "James Coleman",
+            "createdAt": "2026-02-18T16:00:00Z",
+            "starRatings": 5,
+            "reviewDetails": "Impeccable service and the views from the upper floors are breathtaking.",
+            "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+            "likes": 88
+          }
+        ]
+      },
+      {
+        "name": "Eko Hotels & Suites",
+        "details": "A premier conference and leisure destination in Nigeria, boasting several world-class restaurants, a massive swimming pool, and extensive event spaces.",
+        "imageUrl": "https://images.unsplash.com/photo-1551882547-ff40c0d13c05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.4,
+        "address": "Plot 1415 Adetokunbo Ademola Street, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4258,
+          "longitude": 3.4309
         },
-        {
-          "profileName": "Fatima A.",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "Best sushi in Lagos! Fresh and beautifully presented.",
-          "profileImage": "https://example.com/fatima.jpg",
-          "likes": 28
-        }
-      ]
-    },
-    {
-      "name": "Hotelinn Oniru",
-      "details": "Excellent hotel boasting professional staff, clean, comfortable rooms, and high-quality services. Offers a peaceful environment near a conference center. Noted for its hospitality and good meal options.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/hotel-exterior-ariel.jpg?w=900&h=-1&s=1",
-      "rating": 4.7,
-      "address": "Lagos, Lagos State",
-      "location": { "latitude": 6.4436, "longitude": 3.4278 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "24/7",
-      "hashtag": "business",
-      "extraImages": [
-        "https://radissonhotels.iceportal.com/image/radisson-blu-hotel-lagos-ikeja/pool-outdoor/16256-116550-f63888592_3XL.jpg",
-        "https://images.trvl-media.com/lodging/17000000/16730000/16721800/16721751/7853bc4c.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-        "https://images.trvl-media.com/lodging/3000000/2670000/2667300/2667222/0a978132.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-        "https://yampahotels.com/wp-content/uploads/2023/10/over-view-of-the-hotel-1.jpg"
-      ],
-      "price": "$57 average per night",
-      "reviews": [
-        {
-          "profileName": "Nnanna J",
-          "createdAt": "2024-10-18",
-          "starRatings": 5,
-          "reviewDetails": "Comfortable room and bed , functional heaters and wonderful staff (reception to restaurant) The dishes at the restaurant were tasty and willingness of the staff to provide help when needed.",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 0
+        "isActive": true,
+        "website": "https://ekohotels.com",
+        "phoneNumber": "+234 1 277 2700",
+        "openHours": "24 Hours",
+        "hashtag": "#PremiumLeisure",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "From NGN 200,000 / Night",
+        "reviews": [
+          {
+            "profileName": "Ngozi Okafor",
+            "createdAt": "2026-01-22T08:20:00Z",
+            "starRatings": 4,
+            "reviewDetails": "The Sunday buffet is unparalleled. The rooms in Eko Signature are exceptionally good.",
+            "profileImage": "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=150&auto=format&fit=crop",
+            "likes": 42
+          }
+        ]
+      },
+      {
+        "name": "Radisson Blu Anchorage Hotel",
+        "details": "A luxury hotel located along the edge of the Lagos Lagoon, offering scenic waterfront views, an infinity pool, and excellent dining options.",
+        "imageUrl": "https://images.unsplash.com/photo-1542314831-c6a4d14b0320?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.5,
+        "address": "1a Ozumba Mbadiwe Ave, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4374,
+          "longitude": 3.4225
         },
-        {
-          "profileName": "Emeka O.",
-          "createdAt": "2025-12-01",
-          "starRatings": 5,
-          "reviewDetails": "Inspiring talks and great connections last year — can't wait for 2026!",
-          "profileImage": "https://example.com/emeka.jpg",
-          "likes": 30
-        }
-      ]
-    }
-  ],
-  "dining": [
-    {
-      "name": "Shiro Lagos",
-      "details": "Japanese, Sushi",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/let-us-welcome-you.jpg?w=900&h=500&s=1",
-      "rating": 4.8,
-      "address": "Victoria Island, Lagos",
-      "location": { "latitude": 6.430, "longitude": 3.425 },
-      "isActive": true,
-      "website": "https://shirolagos.com",
-      "phoneNumber": "+234 809 999 8888",
-      "openHours": "12:00 PM - 11:00 PM",
-      "hashtag": "japanese",
-      "extraImages": [
-        "https://italawa.com.ng/wp-content/uploads/2025/08/Shiro-Lagos-1.jpeg",
-        "https://newreistyfilestorage.blob.core.windows.net/restaurantphotos/ebb0efde-a123-419b-8df0-c234b04f39f7DSC09692-Enhanced-NR-min.jpg",
-        "https://reviewit.ng/wp-content/uploads/2024/08/Shiro-restaurant-Victoria-Island-Lagos-12.jpg",
-        "https://reviewit.ng/wp-content/uploads/2024/08/Untitled-design-2024-01-10T094118.675_11zon.jpg"
-      ],
-      "price": "₦20,000 - ₦80,000 per person",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "I loved the sushi I had, Gabriel was also an excellent attendant, very polite!",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 42
+        "isActive": true,
+        "website": "https://radissonhotels.com",
+        "phoneNumber": "+234 1 461 8888",
+        "openHours": "24 Hours",
+        "hashtag": "#WaterfrontVibes",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1535827841776-24afc1e255ac?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1559841644-08984562005a?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "From NGN 240,000 / Night",
+        "reviews": [
+          {
+            "profileName": "Liam Richards",
+            "createdAt": "2025-12-05T19:45:00Z",
+            "starRatings": 5,
+            "reviewDetails": "Waking up to the view of the lagoon is so relaxing. The staff were very accommodating.",
+            "profileImage": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=150&auto=format&fit=crop",
+            "likes": 19
+          }
+        ]
+      },
+      {
+        "name": "Lagos Marriott Hotel Ikeja",
+        "details": "A stylish, contemporary hotel catering to business and leisure travelers in Ikeja, located close to the airport and featuring an excellent spa and wellness center.",
+        "imageUrl": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.6,
+        "address": "122 Joel Ogunnaike St, Ikeja GRA, Ikeja, Lagos",
+        "location": {
+          "latitude": 6.5888,
+          "longitude": 3.3562
         },
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2025-12-20",
-          "starRatings": 4,
-          "reviewDetails": "Best teppanyaki experience",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 18
-        }
-      ]
-    },
-    {
-      "name": "Ekaabo Restaurant",
-      "details": "Healthy",
-      "imageUrl": "https://images.squarespace-cdn.com/content/v1/567409e1c21b86d850440d99/1511842095310-T9CODFZAIOCRGXLVVOEL/Nok%2B22.jpg?format=2500w",
-      "rating": 4.8,
-      "address": "Lagos, Nigeria",
-      "location": { "latitude": 6.4500, "longitude": 3.4000 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "Open now",
-      "hashtag": "healthy",
-      "extraImages": [
-        "https://images.squarespace-cdn.com/content/v1/567409e1c21b86d850440d99/1512227755213-8JG7WJXK25DB5JWE3VUN/Nok%2B6ed.jpg?format=2500w",
-        "https://alaralagos.com/wp-content/uploads/2019/11/4B9A4551-1024x683.jpg",
-        "https://media.cntraveler.com/photos/6667c01ebbd95252e986b775/16:9/w_2560,c_limit/NOK%20Exterior(1).jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/94/57/fa/nok-s-outside-garden.jpg?w=800&h=500&s=1"
-      ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Ada O.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "The canopy walk is thrilling! Great escape from city noise.",
-          "profileImage": "https://example.com/ada.jpg",
-          "likes": 42
-        }
-      ]
-    },
-    {
-      "name": "Hard Rock Cafe",
-      "details": "American, Bar",
-      "imageUrl": "https://cafe.hardrock.com/lagos/files/5411/9973864_ImageLargeWidth.jpeg",
-      "rating": 4.6,
-      "address": "Lagos, Nigeria",
-      "location": { "latitude": 6.4347, "longitude": 3.4158 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "Closed now",
-      "hashtag": "american",
-      "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/32/88/hard-rock-cafe-lagos.jpg?w=900&h=500&s=1",
-        "https://cafe.hardrock.com/lagos/files/5411/HRC_Lagos_Patio.jpeg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/32/8b/hard-rock-cafe-lagos.jpg?w=900&h=500&s=1",
-        "https://bobbymukherji.com/wp-content/uploads/2025/10/HARD-ROCK-CAFE-LAGOS-NIGERIA-INTERIOR-1-scaled.jpg"
-      ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Hardrock Lagos is underrated the, rhe calm atmosphere thr foods and drinks t...",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 50
+        "isActive": true,
+        "website": "https://marriott.com",
+        "phoneNumber": "+234 1 236 0000",
+        "openHours": "24 Hours",
+        "hashtag": "#BusinessAndLeisure",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1590490359683-658d3d23f972?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1572987669554-0ba2ba9aee1f?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1560662105-57f8ad6ae2d1?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "From NGN 280,000 / Night",
+        "reviews": [
+          {
+            "profileName": "Sarah Davies",
+            "createdAt": "2026-02-10T12:00:00Z",
+            "starRatings": 5,
+            "reviewDetails": "Easily the best hotel on the mainland. The buffet spread is incredible.",
+            "profileImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
+            "likes": 105
+          }
+        ]
+      }
+    ],
+    "dining": [
+      {
+        "name": "Shiro Lagos",
+        "details": "An upscale Pan-Asian dining establishment in Victoria Island boasting massive ceilings, an immersive ambiance, and top-tier sushi, Japanese, and Korean cuisine.",
+        "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.6,
+        "address": "Block XI Water Corporation Rd, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4243,
+          "longitude": 3.4429
         },
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2025-12-01",
-          "starRatings": 5,
-          "reviewDetails": "Nachos like no other",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 30
-        }
-      ]
-    },
-    {
-      "name": "SOHO Restaurant",
-      "details": "Chinese, Asian",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/rsvp-lagos.jpg?w=900&h=500&s=1",
-      "rating": 4.9,
-      "address": "Lagos, Nigeria",
-      "location": { "latitude": 6.4550, "longitude": 3.3950 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "Closed now",
-      "hashtag": "chinese",
-      "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/dining.jpg?w=900&h=500&s=1",
-        "https://www.theworlds50best.com/discovery/filestore/jpg/Screen-Shot-2022-08-30-at-5.jpg",
-        "https://1.bp.blogspot.com/-6vd_8ffpAB4/VyItnrf99-I/AAAAAAAALyE/YocnTiQZfaguYsh4jLYId087sxaJ3yVtACLcB/s1600/R.S.V.P%2Brestaurant%2Blagos.jpg",
-        "https://www.theworlds50best.com/discovery/filestore/jpg/_MG_9223.jpg"
-      ],
-      "price": "$$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "The food was soooo good!! My husband and I absolutely enjoyed the meal. The...",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 28
+        "isActive": true,
+        "website": "https://shirolagos.com",
+        "phoneNumber": "+234 818 623 3333",
+        "openHours": "12:00 PM - 01:00 AM",
+        "hashtag": "#PanAsianFineDining",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 40,000 avg/person",
+        "reviews": [
+          {
+            "profileName": "Musa Alabi",
+            "createdAt": "2026-02-12T20:30:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The sushi rolls here are out of this world, and the decor is stunning.",
+            "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
+            "likes": 67
+          }
+        ]
+      },
+      {
+        "name": "RSVP Lagos",
+        "details": "A chic, Manhattan-style restaurant offering modern American and international cuisine in an industrial-chic setting, complete with a pool bar at the back.",
+        "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.5,
+        "address": "9 Eletu Ogabi St, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4297,
+          "longitude": 3.4208
         },
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2025-12-20",
-          "starRatings": 4,
-          "reviewDetails": "Great Asian Food",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 18
-        }
-      ]
-    }
-  ],
-  "events": [
-    {
-      "name": "Real Estate Nexus Conference",
-      "details": "REX 3.0 is a pivotal conference in Nigeria's real estate sector, uniting industry leaders to address challenges and opportunities in the market. It serves as a platform for discussions that influence the future of technology in Nigeria.",
-      "imageUrl": "https://pbs.twimg.com/media/HBKP8f7WIAAlfgD.jpg",
-      "rating": 4.5,
-      "address": "Landmark Centre, Lagos",
-      "location": { "latitude": 6.5244, "longitude": 3.3792 },
-      "isActive": true,
-      "website": "https://10times.com/e1hr-gf14-1gxz-8-real-estate-nexus-conference",
-      "phoneNumber": "N/A",
-      "openHours": "09:00-17:00",
-      "hashtag": "business",
-      "extraImages": [
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/659512f32d110c13ee14f335/wUOry0Cej8.jpeg",
-        "https://glorioushotelng.com/uploads/destination_images/freedom-park-lagos.jpg",
-        "https://cdn.guardian.ng/wp-content/uploads/2020/05/Freedom-Park-Lagos.-Photo-VisitNigeriaNow-897x598.jpg",
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/659512f32d110c13ee14f335/wUOry0Cej8.jpeg"
-      ],
-      "ticketPrice": "5000",
-      "eventDate": "2026-02-20",
-      "eventStartTime": "09:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "John D.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "excited for event",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
+        "isActive": true,
+        "website": "https://rsvplagos.com",
+        "phoneNumber": "+234 818 616 6666",
+        "openHours": "12:00 PM - 11:30 PM",
+        "hashtag": "#ChicEats",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1414235077428-33898f991ab4?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 35,000 avg/person",
+        "reviews": [
+          {
+            "profileName": "Bisi Ojo",
+            "createdAt": "2026-01-28T18:15:00Z",
+            "starRatings": 4,
+            "reviewDetails": "Great spot for a dinner date. The cocktails are perfectly mixed.",
+            "profileImage": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
+            "likes": 34
+          }
+        ]
+      },
+      {
+        "name": "Ocean Basket Victoria Island",
+        "details": "A popular South African seafood chain offering fresh, generously portioned seafood platters, sushi, and a family-friendly atmosphere.",
+        "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.4,
+        "address": "35 Akin Adesola St, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4320,
+          "longitude": 3.4190
         },
-        {
-          "profileName": "Jane S.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "looking forward to networking",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        }
-      ]
-    },
-    {
-      "name": "Green Agric West Africa Expo (GAWA Expo)",
-      "details": "Promoting West African agriculture excellence globally",
-      "imageUrl": "https://images.squarespace-cdn.com/content/v1/567409e1c21b86d850440d99/1512227755213-8JG7WJXK25DB5JWE3VUN/Nok%2B6ed.jpg?format=2500w",
-      "rating": 4.5,
-      "address": "Lagos Oriental Hotel, Lagos",
-      "location": { "latitude": 6.4541, "longitude": 3.3947 },
-      "isActive": true,
-      "website": "https://10times.com/e1d1-3k3k-0psp-k",
-      "phoneNumber": "N/A",
-      "openHours": "10:00-18:00",
-      "hashtag": "agriculture",
-      "extraImages": [
-        "https://alaralagos.com/wp-content/uploads/2019/11/4B9A4551-1024x683.jpg",
-        "https://media.cntraveler.com/photos/6667c01ebbd95252e986b775/16:9/w_2560,c_limit/NOK%20Exterior(1).jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/94/57/fa/nok-s-outside-garden.jpg?w=800&h=500&s=1",
-        "https://images.squarespace-cdn.com/content/v1/567409e1c21b86d850440d99/1511842095310-T9CODFZAIOCRGXLVVOEL/Nok%2B22.jpg?format=2500w"
-      ],
-      "ticketPrice": "3000",
-      "eventDate": "2026-02-25",
-      "eventStartTime": "10:00",
-      "eventEndTime": "18:00",
-      "reviews": [
-        {
-          "profileName": "John D.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "excited for event",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
+        "isActive": true,
+        "website": "https://nigeria.oceanbasket.com",
+        "phoneNumber": "+234 816 059 1821",
+        "openHours": "10:30 AM - 10:30 PM",
+        "hashtag": "#SeafoodLovers",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1599084990807-3ea2351afcbb?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1521510344421-2e65d214a1a5?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 20,000 avg/person",
+        "reviews": [
+          {
+            "profileName": "Kemi Adeleke",
+            "createdAt": "2025-11-09T14:10:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The platter for 2 is always my go-to. Extremely fresh prawns and calamari.",
+            "profileImage": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&auto=format&fit=crop",
+            "likes": 51
+          }
+        ]
+      },
+      {
+        "name": "Talindo Steak House",
+        "details": "One of the oldest and most respected steakhouses in Lagos. Known for an old-school, premium dining experience with top-tier cuts of meat and classic desserts.",
+        "imageUrl": "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.5,
+        "address": "7B Karimu Kotun St, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4312,
+          "longitude": 3.4180
         },
-        {
-          "profileName": "Jane S.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "looking forward to networking",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        }
-      ]
-    },
-    {
-      "name": "CEO Success Summit",
-      "details": "The summit focuses on transforming businesses through proven systems, addressing common challenges faced by entrepreneurs. Attendees will receive personalized growth blueprints, actionable plans, and practical...",
-      "imageUrl": "https://pbs.twimg.com/media/HBCT7iTaoAA069i.jpg",
-      "rating": 4.5,
-      "address": "Lagos Oriental Hotel, Lagos",
-      "location": { "latitude": 6.4541, "longitude": 3.3947 },
-      "isActive": true,
-      "website": "https://10times.com/e1hk-3rk6-xd5r-9-ceo-success-summit",
-      "phoneNumber": "N/A",
-      "openHours": "09:00-16:00",
-      "hashtag": "business",
-      "extraImages": [
-        "https://cdn.guardian.ng/wp-content/uploads/2020/05/Freedom-Park-Lagos.-Photo-VisitNigeriaNow-897x598.jpg",
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/659512f32d110c13ee14f335/wUOry0Cej8.jpeg",
-        "https://glorioushotelng.com/uploads/destination_images/freedom-park-lagos.jpg",
-        "https://cdn.guardian.ng/wp-content/uploads/2020/05/Freedom-Park-Lagos.-Photo-VisitNigeriaNow-897x598.jpg"
-      ],
-      "ticketPrice": "4000",
-      "eventDate": "2026-02-21",
-      "eventStartTime": "09:00",
-      "eventEndTime": "16:00",
-      "reviews": [
-        {
-          "profileName": "John D.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "excited for event",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
+        "isActive": true,
+        "website": "https://talindosteakhouse.com",
+        "phoneNumber": "+234 802 222 2026",
+        "openHours": "01:00 PM - 11:00 PM",
+        "hashtag": "#PremiumSteak",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop"
+        ],
+        "price": "NGN 45,000 avg/person",
+        "reviews": [
+          {
+            "profileName": "Emeka Nwafor",
+            "createdAt": "2026-02-15T21:05:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The Ribeye is cooked to absolute perfection. High standard consistently maintained for years.",
+            "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop",
+            "likes": 40
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "Access Bank Lagos City Marathon 2026",
+        "details": "One of Africa's top marathon events drawing tens of thousands of international and local runners, starting from Surulere and ending at Eko Atlantic City.",
+        "imageUrl": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.8,
+        "address": "National Stadium, Surulere to Eko Atlantic, Lagos",
+        "location": {
+          "latitude": 6.4950,
+          "longitude": 3.3600
         },
-        {
-          "profileName": "Jane S.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "looking forward to networking",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        }
-      ]
-    },
-    {
-      "name": "Digital Agriculture Revolution Expo",
-      "details": "The Digital Agriculture Revolution Expo is set to take place on February 25-26, 2026, at the prestigious LCCI Conference and Exhibition Centre in Lagos, Nigeria. This innovative event will serve as a dynamic...",
-      "imageUrl": "https://martechafrica.com/wp-content/uploads/2026/01/The-Best-Social-Content-Platforms-in-Nigeria-Africa-in-2026.png",
-      "rating": 4.5,
-      "address": "Lcci Conference And Exhibition Centre, Lagos",
-      "location": { "latitude": 6.4416, "longitude": 3.4317 },
-      "isActive": true,
-      "website": "https://10times.com/e10h-khfs-4h5g-6-digital-agriculture-revolution-expo",
-      "phoneNumber": "N/A",
-      "openHours": "10:00-17:00",
-      "hashtag": "agriculture",
-      "extraImages": [
-        "https://charismatanews.org/wp-content/uploads/2023/08/img_7251-e1691428909289.jpg",
-        "https://pbs.twimg.com/media/HBKP8f7WIAAlfgD.jpg",
-        "https://www.naijapreneur.com/wp-content/uploads/2025/02/cover-image-naijapreneur-2048-x-1366-px-56.jpg",
-        "https://pbs.twimg.com/media/G62OIEyX0AApcXn.jpg"
-      ],
-      "ticketPrice": "2500",
-      "eventDate": "2026-02-25",
-      "eventStartTime": "10:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "John D.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "excited for event",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
+        "isActive": false,
+        "website": "https://lagoscitymarathon.com",
+        "phoneNumber": "+234 811 111 1111",
+        "openHours": "Event Specific",
+        "hashtag": "#LagosMarathon",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1530143311094-34d807799e8f?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=800&auto=format&fit=crop"
+        ],
+        "ticketPrice": "Free to Spectate / NGN 5000 Runner Registration",
+        "eventDate": "2026-02-14",
+        "eventStartTime": "06:30 AM",
+        "eventEndTime": "12:30 PM",
+        "reviews": [
+          {
+            "profileName": "Chidi Okonkwo",
+            "createdAt": "2026-02-15T12:00:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The energy of the crowd and the organization this year was spectacular!",
+            "profileImage": "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=150&auto=format&fit=crop",
+            "likes": 110
+          }
+        ]
+      },
+      {
+        "name": "Investopia Global Africa Summit 2026",
+        "details": "A major summit bringing together global policymakers, finance leaders, and development experts focusing on mobilizing sustainable investment and global capital flows in Africa.",
+        "imageUrl": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.7,
+        "address": "Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4281,
+          "longitude": 3.4219
         },
-        {
-          "profileName": "Jane S.",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "looking forward to networking",
-          "profileImage": "https://example.com/profile.jpg",
-          "likes": 10
-        }
-      ]
-    }
-  ]
+        "isActive": true,
+        "website": "https://investopia.ae",
+        "phoneNumber": "+234 800 123 4567",
+        "openHours": "09:00 AM - 05:00 PM",
+        "hashtag": "#InvestInAfrica",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1515169067868-5387ec356754?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1475721025592-56c802280d87?q=80&w=800&auto=format&fit=crop"
+        ],
+        "ticketPrice": "Invitation Only",
+        "eventDate": "2026-02-16",
+        "eventStartTime": "09:00 AM",
+        "eventEndTime": "05:00 PM",
+        "reviews": [
+          {
+            "profileName": "Tariq Mansour",
+            "createdAt": "2026-02-17T14:22:00Z",
+            "starRatings": 5,
+            "reviewDetails": "Phenomenal networking opportunities and deeply insightful panel discussions on sustainable infrastructure.",
+            "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop",
+            "likes": 84
+          }
+        ]
+      },
+      {
+        "name": "REAL ESTATE NEXUS CONFERENCE (REX 3.0)",
+        "details": "A premier real estate gathering discussing infrastructure, investment models, housing, and the future of urbanization in Nigeria.",
+        "imageUrl": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.5,
+        "address": "Landmark Centre, Water Corporation Drive, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4245,
+          "longitude": 3.4430
+        },
+        "isActive": true,
+        "website": "https://eventbrite.com/rex3",
+        "phoneNumber": "+234 803 555 1234",
+        "openHours": "10:00 AM - 04:00 PM",
+        "hashtag": "#RealEstateLagos",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1516156008625-3a9d045f6926?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop"
+        ],
+        "ticketPrice": "NGN 15,000",
+        "eventDate": "2026-02-27",
+        "eventStartTime": "10:00 AM",
+        "eventEndTime": "04:00 PM",
+        "reviews": [
+          {
+            "profileName": "Olumide Peters",
+            "createdAt": "2026-02-10T11:00:00Z",
+            "starRatings": 4,
+            "reviewDetails": "Looking forward to REX 3.0 after the major success of 2.0 last year.",
+            "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+            "likes": 22
+          }
+        ]
+      },
+      {
+        "name": "Tech Unite Africa 5.0",
+        "details": "A convergence of tech enthusiasts, startups, developers, and investors aimed at fostering technological innovation and networking across the continent.",
+        "imageUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "rating": 4.6,
+        "address": "Lagos Oriental Hotel, 3 Lekki - Epe Expy, Victoria Island, Lagos",
+        "location": {
+          "latitude": 6.4357,
+          "longitude": 3.4475
+        },
+        "isActive": true,
+        "website": "https://techuniteafrica.com",
+        "phoneNumber": "+234 908 765 4321",
+        "openHours": "09:00 AM - 06:00 PM",
+        "hashtag": "#TechUniteAfrica",
+        "extraImages": [
+          "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop"
+        ],
+        "ticketPrice": "From $5.80",
+        "eventDate": "2026-03-26",
+        "eventStartTime": "09:00 AM",
+        "eventEndTime": "06:00 PM",
+        "reviews": [
+          {
+            "profileName": "Aisha Mohammed",
+            "createdAt": "2026-02-05T09:40:00Z",
+            "starRatings": 5,
+            "reviewDetails": "The ultimate tech gathering in West Africa. Secured funding for my startup here previously.",
+            "profileImage": "https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?q=80&w=150&auto=format&fit=crop",
+            "likes": 145
+          }
+        ]
+      }
+    ]
+  }
 }

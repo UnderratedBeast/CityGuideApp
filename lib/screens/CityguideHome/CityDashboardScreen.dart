@@ -10,7 +10,7 @@ import '../../screens/notificationS/notification_Screen.dart';
 import '../../screens/attraction/AttractionDetailScreen.dart';
 import '../../widgets/floating_bottom_nav_bar.dart';
 
-// ---------- Data Models ----------
+
 class PopularListing {
   final String id;
   final String title;
@@ -90,33 +90,33 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     Icons.event,
   ];
 
-Future<void> _loadCurrentUser() async {
-  try {
-    final firebaseUser = FirebaseAuth.instance.currentUser;
+  Future<void> _loadCurrentUser() async {
+    try {
+      final firebaseUser = FirebaseAuth.instance.currentUser;
 
-    if (firebaseUser == null) {
+      if (firebaseUser == null) {
+        setState(() => _isUserLoading = false);
+        return;
+      }
+
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseUser.uid)
+          .get();
+
+      if (doc.exists) {
+        setState(() {
+          _currentUser = UserModel.fromDocument(doc);
+          _isUserLoading = false;
+        });
+      } else {
+        setState(() => _isUserLoading = false);
+      }
+    } catch (e) {
+      debugPrint('Error loading user: $e');
       setState(() => _isUserLoading = false);
-      return;
     }
-
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(firebaseUser.uid)
-        .get();
-
-    if (doc.exists) {
-      setState(() {
-        _currentUser = UserModel.fromDocument(doc);
-        _isUserLoading = false;
-      });
-    } else {
-      setState(() => _isUserLoading = false);
-    }
-  } catch (e) {
-    debugPrint('Error loading user: $e');
-    setState(() => _isUserLoading = false);
   }
-}
 
   // ---------- Safe Parsing Helpers ----------
   String _safeString(dynamic value, {String defaultValue = ''}) {
@@ -157,10 +157,26 @@ Future<void> _loadCurrentUser() async {
     return _safeString(value, defaultValue: '0.5 mi');
   }
 
+  // ===== NEW: Extract latitude & longitude from either top-level or nested location =====
+  (double?, double?) _extractLatLng(Map<String, dynamic> data) {
+    // Check for top-level fields
+    if (data.containsKey('latitude') && data.containsKey('longitude')) {
+      return (data['latitude']?.toDouble(), data['longitude']?.toDouble());
+    }
+    // Check for nested location map
+    if (data.containsKey('location') && data['location'] is Map) {
+      final loc = data['location'] as Map;
+      if (loc.containsKey('latitude') && loc.containsKey('longitude')) {
+        return (loc['latitude']?.toDouble(), loc['longitude']?.toDouble());
+      }
+    }
+    return (null, null);
+  }
+
   @override
   void initState() {
     super.initState();
-      _loadCurrentUser(); 
+    _loadCurrentUser();
     _loadData();
   }
 
@@ -171,7 +187,6 @@ Future<void> _loadCurrentUser() async {
     });
 
     try {
-      // 1. Get cityId from city name
       final cityQuery = await FirebaseFirestore.instance
           .collection('cities')
           .where('name', isEqualTo: widget.cityName)
@@ -183,7 +198,6 @@ Future<void> _loadCurrentUser() async {
       }
       _cityId = cityQuery.docs.first.id;
 
-      // 2. Fetch data from subcollections in parallel
       final futures = await Future.wait([
         _fetchAttractions(),
         _fetchDining(),
@@ -198,7 +212,6 @@ Future<void> _loadCurrentUser() async {
 
       print('Fetched: attractions=${attractions.length}, dining=${dining.length}, hotels=${hotels.length}, events=${events.length}');
 
-      // 3. Build popular listings: 2 random from each type (if available)
       final random = Random();
       List<PopularListing> popular = [];
       if (attractions.isNotEmpty) popular.addAll(_getRandomItems(attractions, min(2, attractions.length), random));
@@ -207,32 +220,43 @@ Future<void> _loadCurrentUser() async {
       if (events.isNotEmpty) popular.addAll(_getRandomItems(events, min(2, events.length), random));
       popular.shuffle(random);
 
-      // 4. Featured attractions: 3 random attractions (or all if less)
       final featured = _getRandomItems(attractions, min(3, attractions.length), random);
 
-      // 5. Upcoming events: fetch from events subcollection, order by date
       final eventDocs = await FirebaseFirestore.instance
           .collection('cities')
           .doc(_cityId)
           .collection('events')
-          .where('date', isGreaterThan: Timestamp.now())
-          .orderBy('date')
-          .limit(10)
           .get();
 
-      print('Found ${eventDocs.docs.length} upcoming events'); // Debug print
+      print('Found ${eventDocs.docs.length} total events');
 
-      final upcoming = eventDocs.docs.map((doc) {
-        final data = doc.data();
-        return Event(
-          id: doc.id,
-          title: _safeString(data['title'], defaultValue: 'Untitled Event'),
-          date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
-          time: _safeString(data['time']),
-          imageUrl: _safeString(data['imageUrl']),
-          location: _safeString(data['location']),
-        );
-      }).toList();
+      final now = DateTime.now();
+      final upcoming = eventDocs.docs
+          .map((doc) {
+            final data = doc.data();
+            DateTime? eventDate;
+            final dateStr = _safeString(data['eventDate']);
+            if (dateStr.isNotEmpty) {
+              try {
+                eventDate = DateTime.parse(dateStr);
+              } catch (e) {
+                print('Error parsing date $dateStr: $e');
+              }
+            }
+            return Event(
+              id: doc.id,
+              title: _safeString(data['name'], defaultValue: 'Untitled Event'),
+              date: eventDate ?? DateTime.now(),
+              time: _safeString(data['eventStartTime']),
+              imageUrl: _safeString(data['imageUrl']),
+              location: _safeString(data['address']),
+            );
+          })
+          .where((event) => event.date.isAfter(now))
+          .toList()
+        ..sort((a, b) => a.date.compareTo(b.date));
+
+      print('Upcoming events after filtering: ${upcoming.length}');
 
       setState(() {
         _popularListings = popular;
@@ -249,14 +273,12 @@ Future<void> _loadCurrentUser() async {
     }
   }
 
-  // Helper to fetch attractions
   Future<List<PopularListing>> _fetchAttractions() async {
     final snapshot = await FirebaseFirestore.instance
         .collection('cities')
         .doc(_cityId)
         .collection('attractions')
         .get();
-
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return PopularListing(
@@ -272,14 +294,12 @@ Future<void> _loadCurrentUser() async {
     }).toList();
   }
 
-  // Fetch dining (formerly restaurants)
   Future<List<PopularListing>> _fetchDining() async {
     final snapshot = await FirebaseFirestore.instance
         .collection('cities')
         .doc(_cityId)
         .collection('dining')
         .get();
-
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return PopularListing(
@@ -301,7 +321,6 @@ Future<void> _loadCurrentUser() async {
         .doc(_cityId)
         .collection('hotels')
         .get();
-
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return PopularListing(
@@ -323,19 +342,27 @@ Future<void> _loadCurrentUser() async {
         .doc(_cityId)
         .collection('events')
         .get();
-
     return snapshot.docs.map((doc) {
       final data = doc.data();
+      DateTime? eventDate;
+      final dateStr = _safeString(data['eventDate']);
+      if (dateStr.isNotEmpty) {
+        try {
+          eventDate = DateTime.parse(dateStr);
+        } catch (e) {
+          print('Error parsing date in _fetchEvents: $e');
+        }
+      }
       return PopularListing(
         id: doc.id,
-        title: _safeString(data['title'], defaultValue: 'Unknown Event'),
+        title: _safeString(data['name'], defaultValue: 'Unknown Event'),
         type: 'event',
         category: 'Event',
-        rating: 0,
-        reviewCount: 0,
-        distance: _parseDistance(data['location']),
+        rating: _safeDouble(data['rating']),
+        reviewCount: _safeInt(data['reviewCount']),
+        distance: _parseDistance(data['address']),
         imageUrl: _safeString(data['imageUrl']),
-        eventDate: (data['date'] as Timestamp?)?.toDate(),
+        eventDate: eventDate,
       );
     }).toList();
   }
@@ -352,7 +379,7 @@ Future<void> _loadCurrentUser() async {
 
   int min(int a, int b) => a < b ? a : b;
 
-  // ---------- NAVIGATION HELPERS (USING AttractionDetailScreen) ----------
+  // ===== UPDATED NAVIGATION WITH COORDINATE EXTRACTION =====
   Future<void> _navigateToPopularListing(PopularListing item) async {
     if (_cityId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -360,7 +387,6 @@ Future<void> _loadCurrentUser() async {
       );
       return;
     }
-
     try {
       DocumentSnapshot doc;
       switch (item.type) {
@@ -399,43 +425,28 @@ Future<void> _loadCurrentUser() async {
         default:
           return;
       }
-
       if (!doc.exists) return;
       final data = doc.data() as Map<String, dynamic>;
 
-      // Build parameters for AttractionDetailScreen
-      String name = data['name'] ?? item.title;
-      String imageUrl = data['imageUrl'] ?? item.imageUrl;
-      double rating = (data['rating'] as num?)?.toDouble() ?? item.rating;
-      int reviewCount = data['reviewCount'] as int? ?? item.reviewCount;
-      String priceLevel = data['priceLevel'] ?? item.category; // fallback
-      String description = data['description'] ?? '';
-      String address = data['address'] ?? item.distance; // fallback
-      String city = widget.cityName;
-      String website = data['website'] ?? '';
-      double? latitude = data['latitude']?.toDouble();
-      double? longitude = data['longitude']?.toDouble();
-      List<String>? additionalImages;
-      if (data['additionalImages'] != null) {
-        additionalImages = List<String>.from(data['additionalImages']);
-      }
+      // Extract coordinates using the helper
+      final (lat, lng) = _extractLatLng(data);
 
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => AttractionDetailScreen(
-            name: name,
-            imageUrl: imageUrl,
-            rating: rating,
-            reviewCount: reviewCount,
-            priceLevel: priceLevel,
-            description: description,
-            address: address,
-            city: city,
-            website: website,
-            latitude: latitude,
-            longitude: longitude,
-            additionalImages: additionalImages,
+            name: _safeString(data['name'], defaultValue: item.title),
+            imageUrl: _safeString(data['imageUrl'], defaultValue: item.imageUrl),
+            rating: _safeDouble(data['rating'], defaultValue: item.rating),
+            reviewCount: _safeInt(data['reviewCount'], defaultValue: item.reviewCount),
+            priceLevel: _safeString(data['priceLevel'], defaultValue: item.category),
+            description: _safeString(data['details']),
+            address: _safeString(data['address'], defaultValue: item.distance),
+            city: widget.cityName,
+            website: _safeString(data['website']),
+            latitude: lat,
+            longitude: lng,
+            additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
           ),
         ),
       );
@@ -454,7 +465,6 @@ Future<void> _loadCurrentUser() async {
       );
       return;
     }
-
     try {
       final doc = await FirebaseFirestore.instance
           .collection('cities')
@@ -462,43 +472,28 @@ Future<void> _loadCurrentUser() async {
           .collection('events')
           .doc(event.id)
           .get();
-
       if (!doc.exists) return;
       final data = doc.data() as Map<String, dynamic>;
 
-      // Map event data to AttractionDetailScreen parameters
-      String name = data['title'] ?? event.title;
-      String imageUrl = data['imageUrl'] ?? event.imageUrl;
-      double rating = (data['rating'] as num?)?.toDouble() ?? 0.0;
-      int reviewCount = data['reviewCount'] as int? ?? 0;
-      String priceLevel = data['priceLevel'] ?? 'Event';
-      String description = data['description'] ?? '';
-      String address = data['address'] ?? event.location ?? '';
-      String city = widget.cityName;
-      String website = data['website'] ?? '';
-      double? latitude = data['latitude']?.toDouble();
-      double? longitude = data['longitude']?.toDouble();
-      List<String>? additionalImages;
-      if (data['additionalImages'] != null) {
-        additionalImages = List<String>.from(data['additionalImages']);
-      }
+      // Extract coordinates using the helper
+      final (lat, lng) = _extractLatLng(data);
 
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => AttractionDetailScreen(
-            name: name,
-            imageUrl: imageUrl,
-            rating: rating,
-            reviewCount: reviewCount,
-            priceLevel: priceLevel,
-            description: description,
-            address: address,
-            city: city,
-            website: website,
-            latitude: latitude,
-            longitude: longitude,
-            additionalImages: additionalImages,
+            name: _safeString(data['name'], defaultValue: event.title),
+            imageUrl: _safeString(data['imageUrl'], defaultValue: event.imageUrl),
+            rating: _safeDouble(data['rating']),
+            reviewCount: _safeInt(data['reviewCount']),
+            priceLevel: _safeString(data['priceLevel'], defaultValue: 'Event'),
+            description: _safeString(data['details']),
+            address: _safeString(data['address'], defaultValue: event.location ?? ''),
+            city: widget.cityName,
+            website: _safeString(data['website']),
+            latitude: lat,
+            longitude: lng,
+            additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
           ),
         ),
       );
@@ -550,16 +545,24 @@ Future<void> _loadCurrentUser() async {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationsScreen(),
-                ),
-              );
-            },
+          // Notification icon with grey border
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey.shade300, width: 1.5),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen(),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -608,15 +611,15 @@ Future<void> _loadCurrentUser() async {
                                   style: const TextStyle(fontSize: 18, color: Colors.grey),
                                 ),
                                 Text(
-_isUserLoading
-      ? 'Hi...'
-      : 'Hi, ${_currentUser?.fullName ?? 'Guest'}',
-  style: const TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.bold,
-    color: Colors.black87,
-  ),
-),
+                                  _isUserLoading
+                                      ? 'Hi...'
+                                      : 'Hi, ${_currentUser?.fullName ?? 'Guest'}',
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -624,50 +627,50 @@ _isUserLoading
                             radius: 28,
                             backgroundColor: AppTheme.primaryBlue,
                             child: Text(
-  _isUserLoading || _currentUser?.fullName.isEmpty == true
-      ? '?'
-      : _currentUser!.fullName[0].toUpperCase(),
-  style: const TextStyle(
-    color: Colors.white,
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  ),
-),
+                              _isUserLoading || _currentUser?.fullName.isEmpty == true
+                                  ? '?'
+                                  : _currentUser!.fullName[0].toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),
 
-                      const SizedBox(height: 24),
-                      // Search bar – now tappable
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => SearchScreen(cityName: widget.cityName),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: const TextField(
-                            enabled: false,
-                            decoration: InputDecoration(
-                              hintText: 'Discover...',
-                              hintStyle: TextStyle(color: Colors.grey),
-                              prefixIcon: Icon(Icons.search, color: Colors.grey),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(vertical: 16),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const SizedBox(height: 5),
+                      // // Search bar
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (_) => SearchScreen(cityName: widget.cityName),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //       color: Colors.grey.shade100,
+                      //       borderRadius: BorderRadius.circular(16),
+                      //     ),
+                      //     child: const TextField(
+                      //       enabled: false,
+                      //       decoration: InputDecoration(
+                      //         hintText: 'Discover...',
+                      //         hintStyle: TextStyle(color: Colors.grey),
+                      //         prefixIcon: Icon(Icons.search, color: Colors.grey),
+                      //         border: InputBorder.none,
+                      //         contentPadding: EdgeInsets.symmetric(vertical: 16),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
                       const SizedBox(height: 24),
-                      // Category buttons
+                      // Category buttons – all same style
                       SizedBox(
                         height: 48,
                         child: ListView.builder(
@@ -675,14 +678,12 @@ _isUserLoading
                           itemCount: _categories.length,
                           itemBuilder: (context, index) {
                             final category = _categories[index];
-                            final isSelected = index == _selectedCategoryIndex;
                             final icon = _categoryIcons[index];
                             return Padding(
                               padding: const EdgeInsets.only(right: 12),
                               child: _CategoryButton(
                                 label: category,
                                 icon: icon,
-                                isSelected: isSelected,
                                 onTap: () {
                                   setState(() {
                                     _selectedCategoryIndex = index;
@@ -704,7 +705,7 @@ _isUserLoading
                       ),
 
                       const SizedBox(height: 24),
-                      // Popular Listings – "See all" removed
+                      // Popular Listings
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -712,7 +713,6 @@ _isUserLoading
                             'Popular Listings',
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          // 👈 "See all" button removed
                         ],
                       ),
 
@@ -838,7 +838,6 @@ _isUserLoading
     return '${months[date.month - 1]} ${date.day}';
   }
 
-  // Card for Popular Listings (horizontal scroll) – IMPROVED: title below image
   Widget _buildPopularListingCard(PopularListing item) {
     return Container(
       width: 200,
@@ -846,7 +845,6 @@ _isUserLoading
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image with rating overlay
           Stack(
             children: [
               ClipRRect(
@@ -894,7 +892,6 @@ _isUserLoading
             ],
           ),
           const SizedBox(height: 8),
-          // Title (now outside image)
           Text(
             item.title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -902,7 +899,6 @@ _isUserLoading
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
-          // Category
           Text(
             item.category,
             style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
@@ -910,7 +906,6 @@ _isUserLoading
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 2),
-          // Distance
           Row(
             children: [
               Icon(Icons.location_on, size: 14, color: Colors.grey.shade500),
@@ -930,7 +925,6 @@ _isUserLoading
     );
   }
 
-  // Row for Featured Attractions (unchanged)
   Widget _buildAttractionRow(PopularListing item) {
     return Row(
       children: [
@@ -1011,7 +1005,6 @@ _isUserLoading
     );
   }
 
-  // Event card (unchanged)
   Widget _buildEventCard({
     required String title,
     required String time,
@@ -1089,17 +1082,15 @@ _isUserLoading
   }
 }
 
-// Category Button Widget (unchanged)
+// Category Button with uniform style
 class _CategoryButton extends StatelessWidget {
   final String label;
   final IconData icon;
-  final bool isSelected;
   final VoidCallback onTap;
 
   const _CategoryButton({
     required this.label,
     required this.icon,
-    required this.isSelected,
     required this.onTap,
   });
 
@@ -1111,24 +1102,21 @@ class _CategoryButton extends StatelessWidget {
         height: 48,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primaryBlue : Colors.grey.shade100,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color.fromARGB(174, 46, 91, 255), width: 1.5),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: 20,
-              color: isSelected ? Colors.white : Colors.grey.shade700,
-            ),
+            Icon(icon, size: 20, color: AppTheme.primaryBlue),
             const SizedBox(width: 8),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Colors.white : Colors.grey.shade800,
+                color: const Color.fromARGB(176, 0, 0, 0),
                 fontWeight: FontWeight.w600,
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ],

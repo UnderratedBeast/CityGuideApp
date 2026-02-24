@@ -1,6 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as latLng;
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/theme.dart';
 
@@ -10,6 +10,8 @@ class MapScreen extends StatefulWidget {
   final String address;
   final double latitude;
   final double longitude;
+  final double? userLatitude;   // optional: user's current location
+  final double? userLongitude;  // optional: user's current location
 
   const MapScreen({
     super.key,
@@ -18,6 +20,8 @@ class MapScreen extends StatefulWidget {
     required this.address,
     required this.latitude,
     required this.longitude,
+    this.userLatitude,
+    this.userLongitude,
   });
 
   @override
@@ -25,15 +29,18 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  final Completer<GoogleMapController> _mapController = Completer();
-  static const LatLng _center = LatLng(40.7128, -74.0060); // fallback
-  late LatLng _position;
+  final MapController _mapController = MapController();
+  late latLng.LatLng _destination;
+  latLng.LatLng? _userLocation;
   bool _isSaved = false;
 
   @override
   void initState() {
     super.initState();
-    _position = LatLng(widget.latitude, widget.longitude);
+    _destination = latLng.LatLng(widget.latitude, widget.longitude);
+    if (widget.userLatitude != null && widget.userLongitude != null) {
+      _userLocation = latLng.LatLng(widget.userLatitude!, widget.userLongitude!);
+    }
   }
 
   @override
@@ -60,23 +67,62 @@ class _MapScreenState extends State<MapScreen> {
       ),
       body: Stack(
         children: [
-          // Map
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: _position,
-              zoom: 15,
+          FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: _userLocation ?? _destination,
+              initialZoom: 13,
             ),
-            markers: {
-              Marker(
-                markerId: MarkerId(widget.name),
-                position: _position,
-                infoWindow: InfoWindow(title: widget.name),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}.png?key=hEMxVy08camnprepOea3',
+                userAgentPackageName: 'com.example.app',
               ),
-            },
-            onMapCreated: (controller) => _mapController.complete(controller),
+              // Destination marker
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    point: _destination,
+                    width: 40,
+                    height: 40,
+                    child: const Icon(Icons.location_pin, color: Colors.red, size: 40),
+                  ),
+                ],
+              ),
+              // User location marker (if available)
+              if (_userLocation != null)
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: _userLocation!,
+                      width: 30,
+                      height: 30,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                        child: const Icon(Icons.navigation, color: Colors.white, size: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              // Polyline (straight line) between user and destination
+              if (_userLocation != null)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: [_userLocation!, _destination],
+                      color: Colors.blue,
+                      strokeWidth: 4.0,
+                    ),
+                  ],
+                ),
+            ],
           ),
 
-          // Bottom card
+          // Bottom info card
           Positioned(
             left: 16,
             right: 16,
@@ -99,26 +145,9 @@ class _MapScreenState extends State<MapScreen> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Two-line suggestion (just for design)
+                    // Rating badge
                     Row(
                       children: [
-                        const Text(
-                          'The Neon Museum',
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(width: 16),
-                        Text(
-                          'Golden Grill',
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-
-                    // Main attraction card
-                    Row(
-                      children: [
-                        // Rating badge
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
@@ -153,34 +182,19 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                         ),
                         const Spacer(),
-                        Text(
-                          '0.4 miles away', // static for demo
-                          style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
-                        ),
                       ],
                     ),
                     const SizedBox(height: 12),
 
-                    // Attraction name and "View Details"
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            widget.name,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Navigate back to detail screen or show full details
-                            Navigator.pop(context);
-                          },
-                          child: const Text('View Details →'),
-                        ),
-                      ],
+                    // Attraction name and address
+                    Text(
+                      widget.name,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.address,
+                      style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
                     ),
                     const SizedBox(height: 16),
 
@@ -191,20 +205,15 @@ class _MapScreenState extends State<MapScreen> {
                         _buildActionButton(
                           icon: Icons.directions,
                           label: 'ROUTE',
-                          onTap: () async {
-                            final url = Uri.parse(
-                                'https://www.google.com/maps/dir/?api=1&destination=${widget.latitude},${widget.longitude}');
-                            if (await canLaunchUrl(url)) {
-                              await launchUrl(url, mode: LaunchMode.externalApplication);
-                            }
+                          onTap: () {
+                            // Already on map, maybe show route info or do nothing
                           },
                         ),
                         _buildActionButton(
                           icon: Icons.phone,
                           label: 'CALL',
                           onTap: () async {
-                            // Replace with actual phone if available
-                            final phone = '+1234567890';
+                            const phone = '+1234567890'; // replace with actual
                             final url = Uri.parse('tel:$phone');
                             if (await canLaunchUrl(url)) {
                               await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -215,8 +224,7 @@ class _MapScreenState extends State<MapScreen> {
                           icon: Icons.share,
                           label: 'SHARE',
                           onTap: () {
-                            // Share attraction info
-                            // You can implement share logic here
+                            // Implement share
                           },
                         ),
                         _buildActionButton(

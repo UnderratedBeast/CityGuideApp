@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as latLng;
+import 'package:geolocator/geolocator.dart';
 import '../../screens/map/MapScreen.dart';
 import '../../utils/theme.dart';
 import '../../screens/review/WriteReviewScreen.dart';
@@ -54,11 +57,14 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   List<Map<String, dynamic>> _reviews = [];
   bool _loadingReviews = true;
   String? _reviewsError;
-  List<bool> _expandedReviews = []; // for expand/collapse
-  Set<int> _likedReviews = {}; // indices of liked reviews
+  List<bool> _expandedReviews = [];
+  Set<int> _likedReviews = {};
 
   // Hashtag (for badge)
   String _hashtag = '';
+
+  // Phone number (optional, from Firestore)
+  String _phoneNumber = '';
 
   @override
   void initState() {
@@ -97,7 +103,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     super.dispose();
   }
 
-  /// Fetch attraction document to get reviews array and hashtag
+  /// Fetch attraction document to get reviews array, hashtag, and phone
   Future<void> _fetchAttractionData() async {
     setState(() {
       _loadingReviews = true;
@@ -108,26 +114,34 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       // 1. Find city document by name
       final cityQuery = await FirebaseFirestore.instance
           .collection('cities')
-          .where('name', isEqualTo: widget.city)
+          .where('name', isEqualTo: widget.city.trim())
           .limit(1)
           .get();
 
       if (cityQuery.docs.isEmpty) {
-        throw Exception('City not found');
+        throw Exception('City "${widget.city}" not found.');
       }
       final cityId = cityQuery.docs.first.id;
 
-      // 2. Find attraction document (assuming 'attractions' subcollection)
-      final attractionQuery = await FirebaseFirestore.instance
-          .collection('cities')
-          .doc(cityId)
-          .collection('attractions')
-          .where('name', isEqualTo: widget.name)
-          .limit(1)
-          .get();
+      // 2. Find attraction document in any subcollection (attractions, dining, hotels, events)
+      // Try each collection until found
+      final collections = ['attractions', 'dining', 'hotels', 'events'];
+      DocumentSnapshot? doc;
+      for (final collection in collections) {
+        final query = await FirebaseFirestore.instance
+            .collection('cities')
+            .doc(cityId)
+            .collection(collection)
+            .where('name', isEqualTo: widget.name.trim())
+            .limit(1)
+            .get();
+        if (query.docs.isNotEmpty) {
+          doc = query.docs.first;
+          break;
+        }
+      }
 
-      if (attractionQuery.docs.isEmpty) {
-        // Maybe it's in a different subcollection? We'll just return empty.
+      if (doc == null) {
         setState(() {
           _reviews = [];
           _loadingReviews = false;
@@ -135,26 +149,39 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         return;
       }
 
-      final doc = attractionQuery.docs.first;
-      final data = doc.data();
+      final data = doc.data() as Map<String, dynamic>;
 
-      // Extract hashtag
+      // Extract hashtag and phone
       _hashtag = data['hashtag'] ?? '';
+      _phoneNumber = data['phoneNumber'] ?? '';
 
-      // Extract reviews array (if any)
+      // Extract reviews array
       final List<dynamic>? reviewsArray = data['reviews'];
-      if (reviewsArray != null) {
+      if (reviewsArray != null && reviewsArray.isNotEmpty) {
         _reviews = reviewsArray.map<Map<String, dynamic>>((review) {
+          // Handle createdAt which could be Timestamp or String
+          String timeAgo;
+          final createdAt = review['createdAt'];
+          if (createdAt is Timestamp) {
+            timeAgo = _formatDate(createdAt.toDate());
+          } else if (createdAt is String) {
+            timeAgo = _formatDateString(createdAt);
+          } else {
+            timeAgo = 'Recently';
+          }
+
           return {
-            'userName': review['profileName'] ?? 'Anonymous',
-            'timeAgo': _formatDateString(review['createdAt']),
-            'rating': review['starRatings'] ?? 0,
-            'comment': review['reviewDetails'] ?? '',
+            'userName': review['profileName']?.toString() ?? 'Anonymous',
+            'timeAgo': timeAgo,
+            'rating': (review['starRatings'] ?? 0).toDouble(),
+            'comment': review['reviewDetails']?.toString() ?? '',
             'likes': review['likes'] ?? 0,
           };
         }).toList();
-        // Initialize expand/collapse list
+
         _expandedReviews = List<bool>.filled(_reviews.length, false);
+      } else {
+        _reviews = [];
       }
 
       setState(() {
@@ -168,7 +195,16 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     }
   }
 
-  /// Convert date string like "2025-12-05" to relative time
+  String _formatDate(DateTime date) {
+    final now = DateTime.now();
+    final diff = now.difference(date);
+    if (diff.inDays < 1) return 'Today';
+    if (diff.inDays < 7) return '${diff.inDays} days ago';
+    if (diff.inDays < 30) return '${diff.inDays ~/ 7} weeks ago';
+    if (diff.inDays < 365) return '${diff.inDays ~/ 30} months ago';
+    return '${diff.inDays ~/ 365} years ago';
+  }
+
   String _formatDateString(String? dateStr) {
     if (dateStr == null || dateStr.isEmpty) return 'Recently';
     try {
@@ -178,19 +214,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         final month = int.parse(parts[1]);
         final day = int.parse(parts[2]);
         final date = DateTime(year, month, day);
-        final now = DateTime.now();
-        final diff = now.difference(date);
-        if (diff.inDays < 1) return 'Today';
-        if (diff.inDays < 7) return '${diff.inDays} days ago';
-        if (diff.inDays < 30) return '${diff.inDays ~/ 7} weeks ago';
-        if (diff.inDays < 365) return '${diff.inDays ~/ 30} months ago';
-        return '${diff.inDays ~/ 365} years ago';
+        return _formatDate(date);
       }
     } catch (_) {}
-    return dateStr ?? 'Recently';
+    return dateStr;
   }
 
-  /// Get first tag from hashtag string
   String get _firstTag {
     if (_hashtag.isEmpty) return 'ATTRACTION';
     final tags = _hashtag.split(' ');
@@ -209,8 +238,69 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     });
   }
 
+  // FIXED: Removed locationSettings parameter for compatibility
+  Future<void> _openDirections() async {
+    // Safety check: ensure we have valid destination coordinates
+    if (widget.latitude == null || widget.longitude == null) {
+      _showSnackBar('Location coordinates are not available for this place.');
+      return;
+    }
+
+    try {
+      // 1. Check location services
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        _showSnackBar('Please enable location services to get directions.');
+        return;
+      }
+
+      // 2. Check and request permission
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          _showSnackBar('Location permission is required to show directions.');
+          return;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        _showSnackBar('Location permissions are permanently denied. Please enable them in app settings.');
+        return;
+      }
+
+      // 3. Get current position – using simple call without parameters for compatibility
+      Position position = await Geolocator.getCurrentPosition();
+
+      // 4. Navigate to MapScreen with both locations
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MapScreen(
+            name: widget.name,
+            rating: widget.rating,
+            address: widget.address,
+            latitude: widget.latitude!,
+            longitude: widget.longitude!,
+            userLatitude: position.latitude,
+            userLongitude: position.longitude,
+          ),
+        ),
+      );
+    } catch (e, stack) {
+      debugPrint('Error in _openDirections: $e\n$stack');
+      _showSnackBar('An error occurred: $e');
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final hasValidLocation = widget.latitude != null && widget.longitude != null;
+
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.grey.shade50,
@@ -242,7 +332,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ================= IMAGE SLIDESHOW =================
+            // Image slideshow
             SizedBox(
               height: 320,
               child: Stack(
@@ -258,10 +348,13 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                         _allImages[index],
                         fit: BoxFit.cover,
                         width: double.infinity,
+                        errorBuilder: (_, __, ___) => Container(
+                          color: Colors.grey.shade300,
+                          child: const Center(child: Icon(Icons.broken_image, size: 50)),
+                        ),
                       );
                     },
                   ),
-                  /// Dots Indicator
                   Positioned(
                     bottom: 15,
                     left: 0,
@@ -294,7 +387,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// BADGES – dynamic from hashtag
+                  // Badges
                   Row(
                     children: [
                       _badge(
@@ -312,14 +405,14 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  /// TITLE
+                  // Title
                   Text(
                     widget.name,
                     style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
 
-                  /// RATING
+                  // Rating
                   Row(
                     children: [
                       const Icon(Icons.star, color: Colors.amber, size: 18),
@@ -334,7 +427,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  /// ABOUT
+                  // About
                   const Text("About", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
 
@@ -369,18 +462,19 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  /// LOCATION
+                  // Location with mini map
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Location", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      GestureDetector(
-                        onTap: _openMaps,
-                        child: Text(
-                          "See on Map",
-                          style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600),
-                        ),
-                      )
+                      if (hasValidLocation)
+                        GestureDetector(
+                          onTap: _openMaps,
+                          child: Text(
+                            "See on Map",
+                            style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600),
+                          ),
+                        )
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -390,25 +484,64 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  /// Map placeholder
-                  Container(
-                    height: 160,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.grey.shade200,
+                  // Mini map preview (tappable)
+                  if (hasValidLocation)
+                    GestureDetector(
+                      onTap: _openMaps,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          height: 160,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: FlutterMap(
+                            options: MapOptions(
+                              initialCenter: latLng.LatLng(widget.latitude!, widget.longitude!),
+                              initialZoom: 15,
+                              interactionOptions: const InteractionOptions(
+                                flags: InteractiveFlag.none, // disable pan/zoom
+                              ),
+                            ),
+                            children: [
+                              TileLayer(
+                                urlTemplate: 'https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}.png?key=hEMxVy08camnprepOea3',
+                                userAgentPackageName: 'com.example.app',
+                              ),
+                              MarkerLayer(
+                                markers: [
+                                  Marker(
+                                    point: latLng.LatLng(widget.latitude!, widget.longitude!),
+                                    width: 40,
+                                    height: 40,
+                                    child: const Icon(Icons.location_pin, color: Colors.red, size: 40),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    Container(
+                      height: 160,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.grey.shade200,
+                      ),
+                      child: const Center(child: Text('Location not available')),
                     ),
-                    child: const Center(child: Icon(Icons.map, size: 40)),
-                  ),
                   const SizedBox(height: 30),
 
-                  /// REVIEWS
+                  // Reviews
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Recent Reviews", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                          final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => WriteReviewScreen(
@@ -416,6 +549,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                               ),
                             ),
                           );
+                          if (result == true) {
+                            _fetchAttractionData(); // refresh reviews
+                          }
                         },
                         child: Text(
                           "Write a review",
@@ -426,7 +562,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  /// Reviews List
+                  // Reviews list
                   _loadingReviews
                       ? const Center(child: CircularProgressIndicator())
                       : _reviewsError != null
@@ -454,39 +590,41 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
                   const SizedBox(height: 30),
 
-                  /// WEBSITE
-                  const Text("Official Website", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 12),
-
-                  GestureDetector(
-                    onTap: _openWebsite,
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: const Color.fromARGB(255, 136, 159, 238)),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.open_in_new, color: AppTheme.primaryBlue),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              widget.website,
-                              style: TextStyle(color: AppTheme.primaryBlue),
+                  // Website (if available)
+                  if (widget.website.isNotEmpty) ...[
+                    const Text("Official Website", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: _openWebsite,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color.fromARGB(255, 136, 159, 238)),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.open_in_new, color: AppTheme.primaryBlue),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                widget.website,
+                                style: TextStyle(color: AppTheme.primaryBlue),
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
+                  ],
 
-                  /// GET DIRECTIONS
+                  // Get Directions
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      onPressed: _openMaps,
+                      onPressed: hasValidLocation ? _openDirections : null,
                       icon: const Icon(Icons.directions),
                       label: const Text("Get Directions"),
                       style: ElevatedButton.styleFrom(
@@ -498,7 +636,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                       ),
                     ),
                   ),
-                  /// Extra bottom spacing to clear the floating nav bar
                   const SizedBox(height: 100),
                 ],
               ),
@@ -622,7 +759,11 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
   Future<void> _openWebsite() async {
     final Uri url = Uri.parse(widget.website);
-    await launchUrl(url, mode: LaunchMode.externalApplication);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      _showSnackBar('Could not launch website.');
+    }
   }
 
   Future<void> _openMaps() async {

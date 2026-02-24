@@ -145,7 +145,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           // --- Map fields according to your Firestore structure ---
           final name = _safeString(data['name']) ?? 'Unnamed';
           final details = _safeString(data['details']) ?? '';
-          final extraImages = _safeList(data['extra_lagos']) ?? [];
+          final extraImages = _safeList(data['extraImages']) ?? [];
           final address = _safeString(data['address']) ?? '';
           final phone = _safeString(data['phoneNumber']) ?? '';
           final openHours = _safeString(data['openHours']) ?? '';
