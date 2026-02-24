@@ -16,7 +16,7 @@ class FloatingBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = [
       {'icon': Icons.home, 'label': 'Home'},
-      {'icon': Icons.favorite_border, 'label': 'Favorites'},
+      {'icon': Icons.map, 'label': 'Map'},
       {'icon': Icons.bookmark_border, 'label': 'Bookmarks'},
       {'icon': Icons.person_outline, 'label': 'Profile'},
     ];

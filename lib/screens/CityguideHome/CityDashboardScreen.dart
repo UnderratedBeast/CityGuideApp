@@ -1,4 +1,6 @@
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:city_guide_app/screens/CityguideHome/SearchScreen.dart';
+import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -521,11 +523,20 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
       extendBody: true,
       backgroundColor: Colors.white,
       bottomNavigationBar: FloatingBottomNavBar(
-        currentIndex: _currentIndex,
+        currentIndex: -1,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+           if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );
+          }
+          if (index == 0) {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
         },
       ),
       appBar: AppBar(

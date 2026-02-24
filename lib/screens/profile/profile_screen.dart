@@ -712,6 +712,8 @@
 // entrance animation, real-time Firestore stream.
 
 import 'dart:ui';
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -737,6 +739,7 @@ class _C {
 
 // ── Shared Glass Card ─────────────────────────────────────────────────────────
 class ProfileGlassCard extends StatelessWidget {
+
   final Widget child;
   final EdgeInsets padding;
   final Color? borderColor;
@@ -779,13 +782,17 @@ class ProfileGlassCard extends StatelessWidget {
 
 // ── Profile Screen ────────────────────────────────────────────────────────────
 class ProfileScreen extends StatefulWidget {
+  
   const ProfileScreen({super.key});
+  
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
+
+     int _selectedNavIndex =3;
   // animations
   late final AnimationController _ac =
       AnimationController(vsync: this, duration: const Duration(milliseconds: 750))
@@ -924,6 +931,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
+         extendBody: true,
         backgroundColor: _C.bg,
         extendBodyBehindAppBar: true,
         appBar: _appBar(),
@@ -978,6 +986,23 @@ class _ProfileScreenState extends State<ProfileScreen>
             );
           },
         ),
+              bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: _selectedNavIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedNavIndex = index;
+          });
+           if (index == 3) {
+         
+          }
+          if (index == 0) {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
+        },
+      ),
       ),
     );
   }

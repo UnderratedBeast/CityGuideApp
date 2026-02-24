@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,7 +10,7 @@ import '../../screens/map/MapScreen.dart';
 import '../../utils/theme.dart';
 import '../../screens/review/WriteReviewScreen.dart';
 import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
-
+import '../../screens/profile/profile_screen.dart';
 class AttractionDetailScreen extends StatefulWidget {
   final String name;
   final String imageUrl;
@@ -644,11 +645,21 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         ),
       ),
       bottomNavigationBar: FloatingBottomNavBar(
-        currentIndex: _currentNavIndex,
+        currentIndex: -1,
         onTap: (index) {
-          setState(() {
-            _currentNavIndex = index;
-          });
+          
+           if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );
+          }
+          if (index == 0) {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
         },
       ),
     );

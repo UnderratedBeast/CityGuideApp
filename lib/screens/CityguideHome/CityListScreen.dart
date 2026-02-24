@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
+import 'package:city_guide_app/screens/map/MapScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
@@ -314,6 +316,11 @@ class _CityListScreenState extends State<CityListScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );}
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
             );
           }
           if (index == 0) {

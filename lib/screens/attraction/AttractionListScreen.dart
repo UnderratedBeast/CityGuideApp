@@ -1,3 +1,5 @@
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
@@ -573,11 +575,20 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                   ],
                 ),
       bottomNavigationBar: FloatingBottomNavBar(
-        currentIndex: _currentNavIndex,
+        currentIndex: -1,
         onTap: (index) {
-          setState(() {
-            _currentNavIndex = index;
-          });
+           if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );
+          }
+          if (index == 0) {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
         },
       ),
     );
