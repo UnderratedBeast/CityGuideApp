@@ -61,6 +61,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
   // State
   String      _filter    = 'all';
   Set<String> _readIds   = {};
+  Set<String> _dismissedIds = {};
   bool        _readReady = false;
 
   final _db = FirebaseFirestore.instance;
@@ -82,17 +83,27 @@ class _NotificationsScreenState extends State<NotificationsScreen>
 
   /// Pull which notif IDs this user has already read
   Future<void> _loadReadState() async {
-    final snap = await _db
-        .collection('users')
-        .doc(_uid)
-        .collection('notifications')
-        .get();
-    if (!mounted) return;
-    setState(() {
-      _readIds   = snap.docs.map((d) => d.id).toSet();
-      _readReady = true;
-    });
-  }
+  final snap = await _db
+      .collection('users')
+      .doc(_uid)
+      .collection('notifications')
+      .get();
+
+  if (!mounted) return;
+
+  final dismissed = snap.docs
+      .where((d) => d.data()['dismissed'] == true)
+      .map((d) => d.id)
+      .toSet();
+
+  setState(() {
+    _readIds = snap.docs.map((d) => d.id).toSet();
+    _dismissedIds = dismissed;
+    _readReady = true;
+  });
+}
+
+
 
   /// Mark a single notification as read
   Future<void> _markRead(String id) async {

@@ -7,7 +7,7 @@
 // │     (attractions / dining / events / hotels)                            │
 // │                                                                         │
 // │  2. Admin panel calls NotificationService.pushNew___()                  │
-// │     → creates one doc in  notifications/{autoId}                        │
+// │     → creates one doc in notifications/{autoId}                         │
 // │                                                                         │
 // │  3. Every user's NotificationsScreen streams that collection            │
 // │     → new card appears in REAL-TIME for all users                       │
@@ -62,114 +62,90 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotificationService {
-  static final _db = FirebaseFirestore.instance;
+  static final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // ── Category constants ─────────────────────────────────────────────────────
-  static const String catAttraction = 'attraction';
-  static const String catDining     = 'dining';
-  static const String catEvent      = 'event';
-  static const String catHotel      = 'hotel';
-
-  // ── Core push method ───────────────────────────────────────────────────────
-  static Future<DocumentReference> pushListingNotification({
+  static Future<void> pushNotification({
     required String category,
     required String title,
     required String body,
+    required String cityId,
+    required String listingId,
     String? imageUrl,
-    String? listingId,
-    Map<String, dynamic> extra = const {},
-  }) {
-    return _db.collection('notifications').add({
-      'category' : category,
-      'title'    : title,
-      'body'     : body,
-      'imageUrl' : imageUrl  ?? '',
-      'listingId': listingId ?? '',
+  }) async {
+    await _db.collection('notifications').add({
+      'category': category,
+      'title': title,
+      'body': body,
+      'cityId': cityId,
+      'listingId': listingId,
+      'imageUrl': imageUrl ?? '',
       'createdAt': FieldValue.serverTimestamp(),
-      ...extra,
     });
   }
 
-  // ── Convenience wrappers for each listing type ────────────────────────────
+  // Convenience wrappers
 
   static Future<void> newAttraction({
+    required String cityId,
     required String name,
     required String description,
+    required String listingId,
     String? imageUrl,
-    String? listingId,
   }) =>
-      pushListingNotification(
-        category : catAttraction,
-        title    : '🏛️ New Attraction: $name',
-        body     : description,
-        imageUrl : imageUrl,
+      pushNotification(
+        category: 'attraction',
+        title: '🏛️ New Attraction: $name',
+        body: description,
+        cityId: cityId,
         listingId: listingId,
-      );
-
-  static Future<void> newDining({
-    required String name,
-    required String description,
-    String? imageUrl,
-    String? listingId,
-  }) =>
-      pushListingNotification(
-        category : catDining,
-        title    : '🍽️ New Restaurant: $name',
-        body     : description,
-        imageUrl : imageUrl,
-        listingId: listingId,
-      );
-
-  static Future<void> newEvent({
-    required String name,
-    required String description,
-    String? imageUrl,
-    String? listingId,
-  }) =>
-      pushListingNotification(
-        category : catEvent,
-        title    : '🎉 New Event: $name',
-        body     : description,
-        imageUrl : imageUrl,
-        listingId: listingId,
+        imageUrl: imageUrl,
       );
 
   static Future<void> newHotel({
+    required String cityId,
     required String name,
     required String description,
+    required String listingId,
     String? imageUrl,
-    String? listingId,
   }) =>
-      pushListingNotification(
-        category : catHotel,
-        title    : '🏨 New Hotel: $name',
-        body     : description,
-        imageUrl : imageUrl,
+      pushNotification(
+        category: 'hotel',
+        title: '🏨 New Hotel: $name',
+        body: description,
+        cityId: cityId,
         listingId: listingId,
+        imageUrl: imageUrl,
       );
 
-  // ── Unread count stream (use for bell badge anywhere in the app) ───────────
-  //
-  //   StreamBuilder<int>(
-  //     stream: NotificationService.unreadCountStream(uid),
-  //     builder: (ctx, snap) {
-  //       final n = snap.data ?? 0;
-  //       return Badge(label: Text('$n'), child: Icon(Icons.notifications));
-  //     },
-  //   )
-  static Stream<int> unreadCountStream(String uid) {
-    return _db.collection('notifications').snapshots().asyncMap((global) async {
-      final read = await _db
-          .collection('users')
-          .doc(uid)
-          .collection('notifications')
-          .get();
-      final readIds = read.docs.map((d) => d.id).toSet();
-      return global.docs.where((d) => !readIds.contains(d.id)).length;
-    });
-  }
+  static Future<void> newDining({
+    required String cityId,
+    required String name,
+    required String description,
+    required String listingId,
+    String? imageUrl,
+  }) =>
+      pushNotification(
+        category: 'dining',
+        title: '🍽️ New Restaurant: $name',
+        body: description,
+        cityId: cityId,
+        listingId: listingId,
+        imageUrl: imageUrl,
+      );
 
-  // ── Admin: delete a notification ───────────────────────────────────────────
-  static Future<void> deleteNotification(String notifId) =>
-      _db.collection('notifications').doc(notifId).delete();
+  static Future<void> newEvent({
+    required String cityId,
+    required String name,
+    required String description,
+    required String listingId,
+    String? imageUrl,
+  }) =>
+      pushNotification(
+        category: 'event',
+        title: '🎉 New Event: $name',
+        body: description,
+        cityId: cityId,
+        listingId: listingId,
+        imageUrl: imageUrl,
+      );
 }

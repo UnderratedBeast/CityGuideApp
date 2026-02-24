@@ -203,7 +203,6 @@
 //   }
 // }
 
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -282,7 +281,8 @@ class MyApp extends StatelessWidget {
     switch (settings.name) {
       // ---------------- SPLASH ----------------
       case AppRoutes.splash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(
+            builder: (_) => const SplashScreen());
 
       case AppRoutes.onboarding:
         return MaterialPageRoute(
@@ -293,15 +293,17 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       case AppRoutes.signUp:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        return MaterialPageRoute(
+            builder: (_) => const RegisterScreen());
 
       case AppRoutes.forgotPassword:
-  return MaterialPageRoute(
-      builder: (_) => const ForgotPasswordScreen());
+        return MaterialPageRoute(
+            builder: (_) => const ForgotPasswordScreen());
 
       // ---------------- HOME ----------------
       case AppRoutes.home:
-        return MaterialPageRoute(builder: (_) => const CityListScreen());
+        return MaterialPageRoute(
+            builder: (_) => const CityListScreen());
 
       case AppRoutes.cityDetail:
         final args = settings.arguments as Map<String, dynamic>;
@@ -343,13 +345,16 @@ class MyApp extends StatelessWidget {
 
       // ---------------- PROFILE ----------------
       case AppRoutes.profile:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        return MaterialPageRoute(
+            builder: (_) => const ProfileScreen());
 
       case AppRoutes.editProfile:
-        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+        return MaterialPageRoute(
+            builder: (_) => const EditProfileScreen());
 
       case AppRoutes.preferences:
-        return MaterialPageRoute(builder: (_) => const MyTripsScreen());
+        return MaterialPageRoute(
+            builder: (_) => const MyTripsScreen());
 
       case AppRoutes.accountManagement:
         return MaterialPageRoute(
@@ -365,36 +370,57 @@ class MyApp extends StatelessWidget {
 
       // Admin listing lists by category
       case AppRoutes.adminAttractions:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'attractions'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: 'attractions',
+          ),
         );
 
       case AppRoutes.adminDining:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'dining'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+          ),
+          // AdminListingTabbedScreen(
+          //   cityId: args['cityId'] as String,
+          //   collectionName: 'dining',
+          // ),
         );
 
       case AppRoutes.adminEvents:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'events'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: 'events',
+          ),
         );
 
       case AppRoutes.adminHotels:
+        final args = settings.arguments as Map<String, dynamic>;
         return _adminGuard(
           authProvider,
-          AdminListingListScreen(collectionName: 'hotels'),
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: 'hotels'
+          ),
         );
 
       // Admin add/edit listing
       case AppRoutes.adminAddListing:
-        final args = settings.arguments as Map<String, dynamic>? ?? {};
+        final args =
+            settings.arguments as Map<String, dynamic>? ?? {};
         return _adminGuard(
           authProvider,
-          AdminListingFormScreen(
-            collectionName: args['collectionName'] as String,
+          AdminListingTabbedScreen(
+            cityId: args['cityId'] as String,
+            // collectionName: args['collectionName'] as String,
           ),
         );
 
@@ -403,9 +429,11 @@ class MyApp extends StatelessWidget {
         return _adminGuard(
           authProvider,
           AdminListingFormScreen(
+            cityId: args['cityId'] as String,
             collectionName: args['collectionName'] as String,
             listingId: args['listingId'] as String,
-            existingData: args['existingData'] as Map<String, dynamic>?,
+            existingData:
+                args['existingData'] as Map<String, dynamic>?,
           ),
         );
 
@@ -424,7 +452,8 @@ class MyApp extends StatelessWidget {
     }
   }
 
-  MaterialPageRoute _adminGuard(AuthProvider authProvider, Widget screen) {
+  MaterialPageRoute _adminGuard(
+      AuthProvider authProvider, Widget screen) {
     if (!authProvider.isAuthenticated) {
       return MaterialPageRoute(builder: (_) => const LoginScreen());
     }

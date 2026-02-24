@@ -89,8 +89,8 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'admin_dashboard.dart';
 import 'admin_listing_list_screen.dart';
 import 'admin_review_list_screen.dart';
@@ -105,9 +105,15 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
-  String _selectedCollection = 'attractions'; // default collection
+  String _selectedCollection = 'attractions';
+  String? _selectedCityId;
 
-  final List<String> collections = ['attractions', 'hotels', 'dining', 'events'];
+  final List<String> collections = [
+    'attractions',
+    'hotels',
+    'dining',
+    'events'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -166,15 +172,187 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  // Widget _buildBody() {
+  //   switch (_selectedIndex) {
+  //     case 0:
+  //       return const DashboardHome();
+
+  //     case 1:
+  //       // Listings tab with collection switcher
+  //       return Column(
+  //         children: [
+  //           Padding(
+  //             padding: const EdgeInsets.all(12),
+  //             child: DropdownButton<String>(
+  //               value: _selectedCollection,
+  //               items: collections
+  //                   .map((e) => DropdownMenuItem(
+  //                         value: e,
+  //                         child: Text(e[0].toUpperCase() + e.substring(1)),
+  //                       ))
+  //                   .toList(),
+  //               onChanged: (value) {
+  //                 if (value != null) {
+  //                   setState(() {
+  //                     _selectedCollection = value;
+  //                   });
+  //                 }
+  //               },
+  //             ),
+  //           ),
+  //           Expanded(
+  //             child: AdminListingListScreen(
+  //               cityId: _selectedCityId!,
+  //               collectionName: _selectedCollection),
+  //           ),
+  //         ],
+  //       );
+
+  //     case 2:
+  //       return const ReviewListScreen();
+
+  //     case 3:
+  //       return const SettingsScreen();
+
+  //     default:
+  //       return const DashboardHome();
+  //   }
+  // }
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
         return const DashboardHome();
 
       case 1:
-        // Listings tab with collection switcher
+        // LISTINGS TAB
+        if (_selectedCityId == null) {
+          // Step 1: Show all cities
+          return StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('cities')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(
+                    child: Text('Something went wrong'));
+              }
+
+              if (snapshot.connectionState ==
+                  ConnectionState.waiting) {
+                return const Center(
+                    child: CircularProgressIndicator());
+              }
+
+              final cities = snapshot.data!.docs;
+              if (cities.isEmpty) {
+                return const Center(child: Text('No cities found'));
+              }
+
+              return GridView.builder(
+                padding: const EdgeInsets.all(16),
+                gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 0.85,
+                ),
+                itemCount: cities.length,
+                itemBuilder: (context, index) {
+                  final city = cities[index];
+                  final cityData =
+                      city.data() as Map<String, dynamic>;
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        _selectedCityId = city.id;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF6200EE)
+                                .withOpacity(0.08),
+                            blurRadius: 15,
+                            offset: const Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF6200EE)
+                                  .withOpacity(0.1),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.location_city,
+                              color: Color(0xFF6200EE),
+                              size: 32,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            cityData['name'] ?? 'Unnamed City',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.black87,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'ID: ${city.id}',
+                            style: TextStyle(
+                              color: Colors.grey[500],
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        }
+
+        // Step 2: Show selected city's listings with collection dropdown
         return Column(
           children: [
+            // AppBar-like back button for the listings view
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 12, vertical: 8),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      setState(() {
+                        _selectedCityId =
+                            null; // go back to cities list
+                      });
+                    },
+                  ),
+                  Text(
+                    'Listings for City: $_selectedCityId',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+
+            // Collection dropdown
             Padding(
               padding: const EdgeInsets.all(12),
               child: DropdownButton<String>(
@@ -182,7 +360,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 items: collections
                     .map((e) => DropdownMenuItem(
                           value: e,
-                          child: Text(e[0].toUpperCase() + e.substring(1)),
+                          child: Text(
+                              e[0].toUpperCase() + e.substring(1)),
                         ))
                     .toList(),
                 onChanged: (value) {
@@ -194,8 +373,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
             ),
+
+            // Listings
             Expanded(
-              child: AdminListingListScreen(collectionName: _selectedCollection),
+              child: AdminListingTabbedScreen(
+                cityId: _selectedCityId!,
+              ),
             ),
           ],
         );

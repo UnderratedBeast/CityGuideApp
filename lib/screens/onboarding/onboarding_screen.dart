@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../utils/routes.dart';
 import '../../utils/theme.dart';
 
@@ -53,7 +52,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     await prefs.setBool('onboarding_completed', true);
 
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, AppRoutes.login);
+    Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+    // Navigator.pushReplacementNamed(context, AppRoutes.login);
   }
 
   void _next() {
