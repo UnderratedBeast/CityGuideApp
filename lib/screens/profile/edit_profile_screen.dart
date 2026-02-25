@@ -109,14 +109,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return result == null ? null : File(result.path);
   }
 
-  // ─────────────────────────────────────────────────────────────
   // UPLOAD TO CLOUDINARY
-  // ─────────────────────────────────────────────────────────────
+ 
   Future<String?> _uploadToCloudinary() async {
     if (_pickedFile == null) return _photoUrl;
 
     const cloudName = "dgideyulk";
-    const uploadPreset = "YOUR_UPLOAD_PRESET"; // 🔴 CHANGE THIS
+    const uploadPreset = "CityGuideApp"; 
 
     final compressed = await _compressImage(_pickedFile!);
     if (compressed == null) return null;
