@@ -1,14 +1,14 @@
 {
   "name": "Bauchi",
   "description": "Bauchi is the capital of Bauchi State in northeastern Nigeria, a historic city with deep roots in the Bauchi Emirate and Hausa-Fulani culture. It is famous as the gateway to Yankari National Park (one of Nigeria's best wildlife reserves with elephants, lions, baboons, and hot springs), ancient rock paintings at the Wikki Warm Springs area, traditional markets, the Emir's Palace, and colonial-era buildings. Bauchi blends rich Islamic heritage, natural beauty, and rural charm with a cooler climate due to its location on the Jos Plateau fringes.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Bauchi_city_view.jpg/800px-Bauchi_city_view.jpg",
+  "imageUrl": "https://c8.alamy.com/comp/3AMP5DC/aerial-view-of-shiek-dahiru-usman-bauchi-mosque-in-a-beautiful-urban-landscape-with-historic-architecture-tudun-nupawa-kaduna-south-kaduna-state-nigeria-3AMP5DC.jpg",
   "ratings": 4.3,
   "extraImages": [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/yankari-game-reserve.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Wikki_Warm_Springs_Yankari.jpg/800px-Wikki_Warm_Springs_Yankari.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://cdn.getyourguide.com/img/tour/bauchi-emir-palace.jpg",
-    "https://www.trip.com/moments/detail/bauchi-20064-12345678?locale=en-XX"
+    "https://gazettengr.com/wp-content/uploads/images-2-largejpg2.jpg",
+    "https://i0.wp.com/outravelandtour.com/wp-content/uploads/2020/01/Wikki-Warm-Springs.jpg?ssl=1",
+    "https://lh3.googleusercontent.com/ci/AL18g_T6SQgln8u_mm15ccKiXNbBXVUSlR4UFlQkoFthR_hNxyILRsf--N5B3WSQQBnhDiEBiSDxBF4=s1200",
+    "https://rexclarkeadventures.com/wp-content/uploads/2024/11/D246_189_210_1200.jpg",
+    "https://www.bauchistate.gov.ng/wp-content/uploads/2022/06/5.jpg"
   ],
   "topHighlights": [
     "Yankari National Park & Wikki Warm Springs – Wildlife safaris and natural hot springs",
@@ -28,7 +28,7 @@
     {
       "name": "Yankari National Park & Wikki Warm Springs",
       "details": "One of Nigeria's premier wildlife reserves featuring elephants, lions, baboons, hippos, and over 350 bird species; the famous Wikki Warm Springs offer year-round swimming in natural 31°C water.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/yankari-park.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://naijaphotostock.com/wp-content/uploads/2020/04/NPS-TOR-BAUCHI-024.jpg",
       "rating": 4.6,
       "address": "Yankari, Alkaleri LGA, Bauchi State",
       "location": { "latitude": 10.3833, "longitude": 9.7500 },
@@ -38,9 +38,9 @@
       "openHours": "Daily: 6:00 AM - 6:00 PM",
       "hashtag": "wildlife safari nature",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Yankari_elephants.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/wikki-springs.jpg?w=900",
-        "https://cdn.tripadvisor.com/yankari-lions.jpg",
+        "https://rexclarkeadventures.com/wp-content/uploads/2025/10/D4qsuWzW4AA7XwD.jpeg",
+        "https://lh3.googleusercontent.com/ci/AL18g_T6SQgln8u_mm15ccKiXNbBXVUSlR4UFlQkoFthR_hNxyILRsf--N5B3WSQQBnhDiEBiSDxBF4=s1200",
+        "https://cdn.britannica.com/36/144136-050-08E82875/African-elephants-Yankari-National-Park-Nigeria.jpg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "₦2000 - ₦5000 entry + safari",
