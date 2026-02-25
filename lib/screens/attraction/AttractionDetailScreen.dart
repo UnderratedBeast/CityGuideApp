@@ -8,9 +8,12 @@ import 'package:latlong2/latlong.dart' as latLng;
 import 'package:geolocator/geolocator.dart';
 import '../../screens/map/MapScreen.dart';
 import '../../utils/theme.dart';
-import '../../screens/review/WriteReviewScreen.dart';
+import '../review/AddReviewScreen.dart';
+import '../../services/review_service.dart';
+import '../../models/review_model.dart';
 import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import '../../screens/profile/profile_screen.dart';
+
 class AttractionDetailScreen extends StatefulWidget {
   final String name;
   final String imageUrl;
@@ -24,6 +27,7 @@ class AttractionDetailScreen extends StatefulWidget {
   final double? latitude;
   final double? longitude;
   final List<String>? additionalImages;
+  final String listingType; // ADD THIS - identifies which collection (attractions, hotels, dining, events)
 
   const AttractionDetailScreen({
     super.key,
@@ -39,11 +43,11 @@ class AttractionDetailScreen extends StatefulWidget {
     this.latitude,
     this.longitude,
     this.additionalImages,
+    required this.listingType, // ADD THIS
   });
 
   @override
-  State<AttractionDetailScreen> createState() =>
-      _AttractionDetailScreenState();
+  State<AttractionDetailScreen> createState() => _AttractionDetailScreenState();
 }
 
 class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
@@ -54,8 +58,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   bool _isExpanded = false;
   int _currentNavIndex = 0;
 
-  // Reviews
-  List<Map<String, dynamic>> _reviews = [];
+  // Reviews - Using Stream from ReviewService
+  final ReviewService _reviewService = ReviewService();
+  List<ReviewModel> _reviews = [];
   bool _loadingReviews = true;
   String? _reviewsError;
   List<bool> _expandedReviews = [];
@@ -66,6 +71,10 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
   // Phone number (optional, from Firestore)
   String _phoneNumber = '';
+
+  // Document IDs needed for review submission
+  String? _cityId;
+  String? _listingId;
 
   @override
   void initState() {
@@ -104,7 +113,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     super.dispose();
   }
 
-  /// Fetch attraction document to get reviews array, hashtag, and phone
+  /// Fetch attraction document to get hashtag, phone, and set up reviews stream
   Future<void> _fetchAttractionData() async {
     setState(() {
       _loadingReviews = true;
@@ -122,72 +131,47 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       if (cityQuery.docs.isEmpty) {
         throw Exception('City "${widget.city}" not found.');
       }
-      final cityId = cityQuery.docs.first.id;
+      _cityId = cityQuery.docs.first.id;
 
-      // 2. Find attraction document in any subcollection (attractions, dining, hotels, events)
-      // Try each collection until found
-      final collections = ['attractions', 'dining', 'hotels', 'events'];
-      DocumentSnapshot? doc;
-      for (final collection in collections) {
+      // 2. Find document using the provided listingType (faster and more reliable)
+      final doc = await FirebaseFirestore.instance
+          .collection('cities')
+          .doc(_cityId)
+          .collection(widget.listingType) // Use the passed listingType
+          .doc(widget.name) // Try with name first
+          .get();
+
+      if (doc.exists) {
+        _listingId = doc.id;
+        final data = doc.data() as Map<String, dynamic>;
+        _hashtag = data['hashtag'] ?? '';
+        _phoneNumber = data['phoneNumber'] ?? '';
+      } else {
+        // If not found by name, try searching by name field (fallback)
         final query = await FirebaseFirestore.instance
             .collection('cities')
-            .doc(cityId)
-            .collection(collection)
+            .doc(_cityId)
+            .collection(widget.listingType)
             .where('name', isEqualTo: widget.name.trim())
             .limit(1)
             .get();
+
         if (query.docs.isNotEmpty) {
-          doc = query.docs.first;
-          break;
+          _listingId = query.docs.first.id;
+          final data = query.docs.first.data() as Map<String, dynamic>;
+          _hashtag = data['hashtag'] ?? '';
+          _phoneNumber = data['phoneNumber'] ?? '';
+        } else {
+          setState(() {
+            _loadingReviews = false;
+          });
+          return;
         }
       }
 
-      if (doc == null) {
-        setState(() {
-          _reviews = [];
-          _loadingReviews = false;
-        });
-        return;
-      }
-
-      final data = doc.data() as Map<String, dynamic>;
-
-      // Extract hashtag and phone
-      _hashtag = data['hashtag'] ?? '';
-      _phoneNumber = data['phoneNumber'] ?? '';
-
-      // Extract reviews array
-      final List<dynamic>? reviewsArray = data['reviews'];
-      if (reviewsArray != null && reviewsArray.isNotEmpty) {
-        _reviews = reviewsArray.map<Map<String, dynamic>>((review) {
-          // Handle createdAt which could be Timestamp or String
-          String timeAgo;
-          final createdAt = review['createdAt'];
-          if (createdAt is Timestamp) {
-            timeAgo = _formatDate(createdAt.toDate());
-          } else if (createdAt is String) {
-            timeAgo = _formatDateString(createdAt);
-          } else {
-            timeAgo = 'Recently';
-          }
-
-          return {
-            'userName': review['profileName']?.toString() ?? 'Anonymous',
-            'timeAgo': timeAgo,
-            'rating': (review['starRatings'] ?? 0).toDouble(),
-            'comment': review['reviewDetails']?.toString() ?? '',
-            'likes': review['likes'] ?? 0,
-          };
-        }).toList();
-
-        _expandedReviews = List<bool>.filled(_reviews.length, false);
-      } else {
-        _reviews = [];
-      }
-
-      setState(() {
-        _loadingReviews = false;
-      });
+      // Set up real-time reviews stream
+      _setupReviewsStream();
+      
     } catch (e) {
       setState(() {
         _reviewsError = e.toString();
@@ -196,7 +180,36 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     }
   }
 
-  String _formatDate(DateTime date) {
+  // Set up stream for approved reviews
+  void _setupReviewsStream() {
+    if (_cityId == null || _listingId == null) return;
+
+    _reviewService.getListingReviews(
+      cityId: _cityId!,
+      listingId: _listingId!,
+      listingType: widget.listingType, // Use the passed listingType
+    ).listen((reviews) {
+      if (mounted) {
+        setState(() {
+          _reviews = reviews;
+          _loadingReviews = false;
+          _expandedReviews = List<bool>.filled(reviews.length, false);
+          _likedReviews.clear();
+        });
+      }
+    }, onError: (error) {
+      if (mounted) {
+        setState(() {
+          _reviewsError = error.toString();
+          _loadingReviews = false;
+        });
+      }
+    });
+  }
+
+  String _formatDate(DateTime? date) {
+    if (date == null) return 'Recently';
+    
     final now = DateTime.now();
     final diff = now.difference(date);
     if (diff.inDays < 1) return 'Today';
@@ -206,40 +219,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     return '${diff.inDays ~/ 365} years ago';
   }
 
-  String _formatDateString(String? dateStr) {
-    if (dateStr == null || dateStr.isEmpty) return 'Recently';
-    try {
-      final parts = dateStr.split('-');
-      if (parts.length >= 3) {
-        final year = int.parse(parts[0]);
-        final month = int.parse(parts[1]);
-        final day = int.parse(parts[2]);
-        final date = DateTime(year, month, day);
-        return _formatDate(date);
-      }
-    } catch (_) {}
-    return dateStr;
-  }
-
   String get _firstTag {
-    if (_hashtag.isEmpty) return 'ATTRACTION';
+    if (_hashtag.isEmpty) return widget.listingType.toUpperCase();
     final tags = _hashtag.split(' ');
     return tags.first.toUpperCase();
   }
 
-  void _toggleLike(int index) {
-    setState(() {
-      if (_likedReviews.contains(index)) {
-        _likedReviews.remove(index);
-        _reviews[index]['likes'] = (_reviews[index]['likes'] as int) - 1;
-      } else {
-        _likedReviews.add(index);
-        _reviews[index]['likes'] = (_reviews[index]['likes'] as int) + 1;
-      }
-    });
-  }
-
-  // FIXED: Removed locationSettings parameter for compatibility
   Future<void> _openDirections() async {
     // Safety check: ensure we have valid destination coordinates
     if (widget.latitude == null || widget.longitude == null) {
@@ -270,7 +255,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         return;
       }
 
-      // 3. Get current position – using simple call without parameters for compatibility
+      // 3. Get current position
       Position position = await Geolocator.getCurrentPosition();
 
       // 4. Navigate to MapScreen with both locations
@@ -421,7 +406,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                       Text(widget.rating.toStringAsFixed(1)),
                       const SizedBox(width: 8),
                       Text(
-                        "• ${_formatReviewCount(widget.reviewCount)} Reviews • ${widget.priceLevel}",
+                        "• ${_reviews.length} Reviews • ${widget.priceLevel}",
                         style: TextStyle(color: Colors.grey.shade600),
                       )
                     ],
@@ -501,7 +486,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                               initialCenter: latLng.LatLng(widget.latitude!, widget.longitude!),
                               initialZoom: 15,
                               interactionOptions: const InteractionOptions(
-                                flags: InteractiveFlag.none, // disable pan/zoom
+                                flags: InteractiveFlag.none,
                               ),
                             ),
                             children: [
@@ -535,23 +520,31 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                     ),
                   const SizedBox(height: 30),
 
-                  // Reviews
+                  // Reviews Section
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Recent Reviews", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       GestureDetector(
                         onTap: () async {
+                          if (_cityId == null || _listingId == null) {
+                            _showSnackBar('Error: Cannot find listing information');
+                            return;
+                          }
+                          
                           final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => WriteReviewScreen(
-                                attractionName: widget.name,
+                              builder: (context) => AddReviewScreen(
+                                cityId: _cityId!,
+                                listingId: _listingId!, // This is the correct document ID (with hyphens)
+                                listingType: widget.listingType, // This is dynamic (attractions/hotels/dining/events)
+                                listingName: widget.name,
                               ),
                             ),
                           );
                           if (result == true) {
-                            _fetchAttractionData(); // refresh reviews
+                            _showSnackBar('Review submitted for approval!');
                           }
                         },
                         child: Text(
@@ -647,7 +640,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: -1,
         onTap: (index) {
-          
            if (index == 3) {
             Navigator.push(
               context,
@@ -679,11 +671,10 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     );
   }
 
+  // Review card using ReviewModel
   Widget _buildReviewCard(int index) {
     final review = _reviews[index];
     final isExpanded = _expandedReviews[index];
-    final isLiked = _likedReviews.contains(index);
-    final likes = review['likes'] as int;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -705,32 +696,29 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
               CircleAvatar(
                 radius: 20,
                 backgroundColor: const Color.fromARGB(74, 46, 91, 255),
-                child: Text(review['userName'][0]),
+                child: Text(review.userName[0]),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(review['userName'], style: const TextStyle(fontWeight: FontWeight.w600)),
-                    Text(review['timeAgo'], style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                    Text(review.userName, style: const TextStyle(fontWeight: FontWeight.w600)),
+                    Text(_formatDate(review.createdAt), 
+                         style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
                   ],
                 ),
               ),
+              // Rating stars
               Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => _toggleLike(index),
-                    child: Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_border,
-                      size: 16,
-                      color: isLiked ? Colors.red : AppTheme.primaryBlue,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(likes.toString()),
-                ],
-              )
+                children: List.generate(5, (starIndex) {
+                  return Icon(
+                    starIndex < review.rating ? Icons.star : Icons.star_border,
+                    color: Colors.amber,
+                    size: 16,
+                  );
+                }),
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -738,24 +726,27 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
             duration: const Duration(milliseconds: 300),
             crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
             firstChild: Text(
-              review['comment'],
+              review.reviewText,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            secondChild: Text(review['comment']),
+            secondChild: Text(review.reviewText),
           ),
-          const SizedBox(height: 6),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _expandedReviews[index] = !_expandedReviews[index];
-              });
-            },
-            child: Text(
-              isExpanded ? "Show less" : "Read more",
-              style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600, fontSize: 13),
+          if (review.reviewText.length > 100)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _expandedReviews[index] = !_expandedReviews[index];
+                  });
+                },
+                child: Text(
+                  isExpanded ? "Show less" : "Read more",
+                  style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600, fontSize: 13),
+                ),
+              ),
             ),
-          ),
         ],
       ),
     );

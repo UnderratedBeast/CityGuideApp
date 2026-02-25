@@ -88,6 +88,38 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     return '';
   }
 
+  // Helper to get the correct collection name based on category
+  String _getCollectionName() {
+    switch (widget.category) {
+      case 'Attractions':
+        return 'attractions';
+      case 'Restaurants':
+        return 'dining';
+      case 'Hotels':
+        return 'hotels';
+      case 'Events':
+        return 'events';
+      default:
+        return '';
+    }
+  }
+
+  // Helper to get the correct listing type for detail screen
+  String _getListingType() {
+    switch (widget.category) {
+      case 'Attractions':
+        return 'attractions';
+      case 'Restaurants':
+        return 'dining';
+      case 'Hotels':
+        return 'hotels';
+      case 'Events':
+        return 'events';
+      default:
+        return 'attractions';
+    }
+  }
+
   // ---------- FETCH DATA FROM FIRESTORE ----------
   Future<void> _fetchData() async {
     setState(() {
@@ -108,24 +140,8 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
       }
       final cityId = cityQuery.docs.first.id;
 
-      // 2. Determine subcollection name based on category
-      String subcollection;
-      switch (widget.category) {
-        case 'Attractions':
-          subcollection = 'attractions';
-          break;
-        case 'Restaurants':
-          subcollection = 'dining'; // 🔥 FIXED: use 'dining' instead of 'restaurants'
-          break;
-        case 'Hotels':
-          subcollection = 'hotels';
-          break;
-        case 'Events':
-          subcollection = 'events';
-          break;
-        default:
-          subcollection = '';
-      }
+      // 2. Get collection name
+      final subcollection = _getCollectionName();
 
       if (subcollection.isEmpty) {
         throw Exception('Invalid category');
@@ -155,7 +171,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           final rating = _safeDouble(data['rating']) ?? 0.0;
           final hashtag = _safeString(data['hashtag']) ?? '';
           final isActive = data['is_active'] ?? true;
-          // 🔥 NEW: try to get cuisine from Firestore (if exists)
           final cuisine = _safeString(data['cuisine']) ?? '';
 
           // Handle location map
@@ -185,6 +200,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           final reviewCount = 0;
 
           items.add(AttractionItem(
+            id: doc.id, // Store the document ID
             title: name,
             imageUrl: mainImage,
             additionalImages: extraImages,
@@ -195,7 +211,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
             rating: rating,
             priceLevel: priceLevel,
             popularity: popularity,
-            cuisine: cuisine, // 🔥 now populated
+            cuisine: cuisine,
             location: address,
             distance: distance,
             actions: actions,
@@ -225,7 +241,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     }
   }
 
-  // ---------- FILTER LOGIC (unchanged) ----------
+  // ---------- FILTER LOGIC ----------
   List<AttractionItem> get _filteredItems {
     return _items.where((item) {
       if (_selectedRating != 'Any Rating') {
@@ -273,7 +289,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     });
   }
 
-  // ---------- FILTER BUTTON BUILDERS (unchanged) ----------
+  // ---------- FILTER BUTTON BUILDERS ----------
   List<Widget> _buildFilterButtons() {
     switch (widget.category) {
       case 'Attractions':
@@ -567,7 +583,10 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                                 final item = _filteredItems[index];
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 16),
-                                  child: _AttractionCard(item: item),
+                                  child: _AttractionCard(
+                                    item: item,
+                                    listingType: _getListingType(), // Pass the listing type
+                                  ),
                                 );
                               },
                             ),
@@ -596,11 +615,16 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
 }
 
 // ------------------------------------------------------------
-// Attraction Card (same as before, but now cuisine is populated)
+// Attraction Card - Updated to accept listingType
 // ------------------------------------------------------------
 class _AttractionCard extends StatefulWidget {
   final AttractionItem item;
-  const _AttractionCard({required this.item});
+  final String listingType; // Add this
+
+  const _AttractionCard({
+    required this.item,
+    required this.listingType, // Add this
+  });
 
   @override
   State<_AttractionCard> createState() => _AttractionCardState();
@@ -630,6 +654,7 @@ class _AttractionCardState extends State<_AttractionCard> {
               website: item.website,
               latitude: item.latitude,
               longitude: item.longitude,
+              listingType: widget.listingType, // Pass the correct listing type
             ),
           ),
         );
@@ -720,7 +745,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 6),
-                  // For restaurants, cuisine will show; for others, location may be empty.
                   Text(
                     (item.cuisine.isNotEmpty ? item.cuisine : item.location),
                     style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
@@ -842,9 +866,10 @@ class _AttractionCardState extends State<_AttractionCard> {
 }
 
 // ------------------------------------------------------------
-// Data Model (unchanged but fields may be empty for some categories)
+// Data Model - Added id field
 // ------------------------------------------------------------
 class AttractionItem {
+  final String id; // Add this
   final String title;
   final String imageUrl;
   final String description;
@@ -867,6 +892,7 @@ class AttractionItem {
   final List<String>? additionalImages;
 
   AttractionItem({
+    required this.id, // Add this
     required this.title,
     required this.imageUrl,
     required this.description,
