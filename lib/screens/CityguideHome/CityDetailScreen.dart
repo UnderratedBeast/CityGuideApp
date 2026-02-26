@@ -1,3 +1,4 @@
+import 'package:city_guide_app/widgets/favorite_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -206,17 +207,24 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                   onPressed: () {},
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                  color: Colors.black26,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.favorite_border, color: Colors.white),
-                  onPressed: () {},
-                ),
+            // In CityDetailScreen, replace the favorite IconButton with:
+            Container(
+              margin: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                color: Colors.black26,
+                shape: BoxShape.circle,
               ),
+              child: FavoriteButton(
+                itemId: 'city_${widget.cityName}', // Create a unique ID
+                itemType: 'city',
+                name: widget.cityName,
+                imageUrl: widget.heroImageUrl,
+                cityName: widget.country,
+                rating: _rating,
+                size: 20,
+                color: Colors.white,
+              ),
+            ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               title: null,

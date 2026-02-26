@@ -1,5 +1,6 @@
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';
+import 'package:city_guide_app/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
@@ -632,7 +633,20 @@ class _AttractionCard extends StatefulWidget {
 
 class _AttractionCardState extends State<_AttractionCard> {
   bool isFavorited = false;
-
+  String _getItemType(String listingType) {
+  switch (listingType) {
+    case 'attractions':
+      return 'attraction';
+    case 'dining':
+      return 'restaurant';
+    case 'hotels':
+      return 'hotel';
+    case 'events':
+      return 'event';
+    default:
+      return 'attraction';
+  }
+}
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -693,24 +707,20 @@ class _AttractionCardState extends State<_AttractionCard> {
                 ),
                 // Favorite heart
                 Positioned(
-                  top: 12,
-                  right: 12,
-                  child: GestureDetector(
-                    onTap: () => setState(() => isFavorited = !isFavorited),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        isFavorited ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorited ? Colors.red : Colors.grey.shade700,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
+                 top: 12,
+                 right: 12,
+                 child: FavoriteButton(
+                   itemId: widget.item.id,
+                   itemType: _getItemType(widget.listingType),
+                   name: widget.item.title,
+                   imageUrl: widget.item.imageUrl,
+                   cityName: widget.item.city,
+                   rating: widget.item.rating,
+                   priceLevel: widget.item.priceLevel,
+                   address: widget.item.address,
+                   size: 20,
+                 ),
+               ),
                 // Open/Closed badge
                 Positioned(
                   bottom: 12,

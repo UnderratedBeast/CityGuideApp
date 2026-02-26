@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,7 +28,7 @@ class AttractionDetailScreen extends StatefulWidget {
   final double? latitude;
   final double? longitude;
   final List<String>? additionalImages;
-  final String listingType; // ADD THIS - identifies which collection (attractions, hotels, dining, events)
+  final String listingType;
 
   const AttractionDetailScreen({
     super.key,
@@ -43,7 +44,7 @@ class AttractionDetailScreen extends StatefulWidget {
     this.latitude,
     this.longitude,
     this.additionalImages,
-    required this.listingType, // ADD THIS
+    required this.listingType,
   });
 
   @override
@@ -129,16 +130,21 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           .get();
 
       if (cityQuery.docs.isEmpty) {
-        throw Exception('City "${widget.city}" not found.');
+        // Create fallback ID if city not found
+        _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
+        setState(() {
+          _loadingReviews = false;
+        });
+        return;
       }
       _cityId = cityQuery.docs.first.id;
 
-      // 2. Find document using the provided listingType (faster and more reliable)
+      // 2. Find document using the provided listingType
       final doc = await FirebaseFirestore.instance
           .collection('cities')
-          .doc(_cityId)
-          .collection(widget.listingType) // Use the passed listingType
-          .doc(widget.name) // Try with name first
+          .doc(_cityId!)
+          .collection(widget.listingType)
+          .doc(widget.name)
           .get();
 
       if (doc.exists) {
@@ -147,10 +153,10 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         _hashtag = data['hashtag'] ?? '';
         _phoneNumber = data['phoneNumber'] ?? '';
       } else {
-        // If not found by name, try searching by name field (fallback)
+        // If not found by name, try searching by name field
         final query = await FirebaseFirestore.instance
             .collection('cities')
-            .doc(_cityId)
+            .doc(_cityId!)
             .collection(widget.listingType)
             .where('name', isEqualTo: widget.name.trim())
             .limit(1)
@@ -158,10 +164,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
         if (query.docs.isNotEmpty) {
           _listingId = query.docs.first.id;
-          final data = query.docs.first.data() as Map<String, dynamic>;
+          final data = query.docs.first.data();
           _hashtag = data['hashtag'] ?? '';
           _phoneNumber = data['phoneNumber'] ?? '';
         } else {
+          // Create fallback ID if document not found
+          _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
           setState(() {
             _loadingReviews = false;
           });
@@ -173,6 +181,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       _setupReviewsStream();
       
     } catch (e) {
+      print('Error in _fetchAttractionData: $e');
+      // Create fallback ID on error
+      _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
       setState(() {
         _reviewsError = e.toString();
         _loadingReviews = false;
@@ -187,7 +198,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     _reviewService.getListingReviews(
       cityId: _cityId!,
       listingId: _listingId!,
-      listingType: widget.listingType, // Use the passed listingType
+      listingType: widget.listingType,
     ).listen((reviews) {
       if (mounted) {
         setState(() {
@@ -283,6 +294,21 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  String _getItemType(String listingType) {
+    switch (listingType) {
+      case 'attractions':
+        return 'attraction';
+      case 'dining':
+        return 'restaurant';
+      case 'hotels':
+        return 'hotel';
+      case 'events':
+        return 'event';
+      default:
+        return 'attraction';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final hasValidLocation = widget.latitude != null && widget.longitude != null;
@@ -303,14 +329,22 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.pop(context),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: Icon(Icons.share_outlined),
+        actions: [
+          // REMOVED 'const' from here - this is the key fix!
+          FavoriteButton(
+            itemId: _listingId ?? '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}',
+            itemType: _getItemType(widget.listingType),
+            name: widget.name,
+            imageUrl: widget.imageUrl,
+            cityName: widget.city,
+            rating: widget.rating,
+            priceLevel: widget.priceLevel,
+            address: widget.address,
+            size: 22,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Icon(Icons.favorite_border),
+            child: Icon(Icons.share_outlined),
           ),
         ],
       ),
@@ -537,8 +571,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                             MaterialPageRoute(
                               builder: (context) => AddReviewScreen(
                                 cityId: _cityId!,
-                                listingId: _listingId!, // This is the correct document ID (with hyphens)
-                                listingType: widget.listingType, // This is dynamic (attractions/hotels/dining/events)
+                                listingId: _listingId!,
+                                listingType: widget.listingType,
                                 listingName: widget.name,
                               ),
                             ),

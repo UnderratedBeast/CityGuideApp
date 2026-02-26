@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
 import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/screens/map/MapScreen.dart';
 import 'package:flutter/material.dart';
@@ -316,6 +317,11 @@ class _CityListScreenState extends State<CityListScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );}
+            if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
             );}
           if (index == 1) {
             Navigator.push(
