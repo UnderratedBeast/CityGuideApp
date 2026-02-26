@@ -12,7 +12,6 @@ import '../../screens/notificationS/notification_Screen.dart';
 import '../../screens/attraction/AttractionDetailScreen.dart';
 import '../../widgets/floating_bottom_nav_bar.dart';
 
-
 class PopularListing {
   final String id;
   final String title;
@@ -159,7 +158,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     return _safeString(value, defaultValue: '0.5 mi');
   }
 
-  // ===== NEW: Extract latitude & longitude from either top-level or nested location =====
+  // ===== Extract latitude & longitude from either top-level or nested location =====
   (double?, double?) _extractLatLng(Map<String, dynamic> data) {
     // Check for top-level fields
     if (data.containsKey('latitude') && data.containsKey('longitude')) {
@@ -173,6 +172,22 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
       }
     }
     return (null, null);
+  }
+
+  // Helper to get listing type from item type
+  String _getListingTypeFromItemType(String type) {
+    switch (type) {
+      case 'attraction':
+        return 'attractions';
+      case 'restaurant':
+        return 'dining';
+      case 'hotel':
+        return 'hotels';
+      case 'event':
+        return 'events';
+      default:
+        return 'attractions';
+    }
   }
 
   @override
@@ -381,7 +396,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
 
   int min(int a, int b) => a < b ? a : b;
 
-  // ===== UPDATED NAVIGATION WITH COORDINATE EXTRACTION =====
+  // ===== UPDATED NAVIGATION WITH CORRECT LISTING TYPE =====
   Future<void> _navigateToPopularListing(PopularListing item) async {
     if (_cityId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -390,43 +405,31 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
       return;
     }
     try {
-      DocumentSnapshot doc;
+      String collectionName;
       switch (item.type) {
         case 'attraction':
-          doc = await FirebaseFirestore.instance
-              .collection('cities')
-              .doc(_cityId)
-              .collection('attractions')
-              .doc(item.id)
-              .get();
+          collectionName = 'attractions';
           break;
         case 'restaurant':
-          doc = await FirebaseFirestore.instance
-              .collection('cities')
-              .doc(_cityId)
-              .collection('dining')
-              .doc(item.id)
-              .get();
+          collectionName = 'dining';
           break;
         case 'hotel':
-          doc = await FirebaseFirestore.instance
-              .collection('cities')
-              .doc(_cityId)
-              .collection('hotels')
-              .doc(item.id)
-              .get();
+          collectionName = 'hotels';
           break;
         case 'event':
-          doc = await FirebaseFirestore.instance
-              .collection('cities')
-              .doc(_cityId)
-              .collection('events')
-              .doc(item.id)
-              .get();
+          collectionName = 'events';
           break;
         default:
           return;
       }
+
+      final doc = await FirebaseFirestore.instance
+          .collection('cities')
+          .doc(_cityId)
+          .collection(collectionName)
+          .doc(item.id)
+          .get();
+
       if (!doc.exists) return;
       final data = doc.data() as Map<String, dynamic>;
 
@@ -449,6 +452,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             latitude: lat,
             longitude: lng,
             additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
+            listingType: collectionName, // Pass the correct collection name
           ),
         ),
       );
@@ -496,6 +500,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             latitude: lat,
             longitude: lng,
             additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
+            listingType: 'events', // Pass 'events' as the listing type
           ),
         ),
       );
@@ -651,37 +656,8 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
                         ],
                       ),
 
-                      const SizedBox(height: 5),
-                      // // Search bar
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (_) => SearchScreen(cityName: widget.cityName),
-                      //       ),
-                      //     );
-                      //   },
-                      //   child: Container(
-                      //     decoration: BoxDecoration(
-                      //       color: Colors.grey.shade100,
-                      //       borderRadius: BorderRadius.circular(16),
-                      //     ),
-                      //     child: const TextField(
-                      //       enabled: false,
-                      //       decoration: InputDecoration(
-                      //         hintText: 'Discover...',
-                      //         hintStyle: TextStyle(color: Colors.grey),
-                      //         prefixIcon: Icon(Icons.search, color: Colors.grey),
-                      //         border: InputBorder.none,
-                      //         contentPadding: EdgeInsets.symmetric(vertical: 16),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
                       const SizedBox(height: 24),
-                      // Category buttons – all same style
+                      // Category buttons
                       SizedBox(
                         height: 48,
                         child: ListView.builder(

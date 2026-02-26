@@ -93,7 +93,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'admin_dashboard.dart';
 import 'admin_listing_list_screen.dart';
-import 'admin_review_list_screen.dart';
+import 'admin_reviews_screen.dart';
 import 'admin_settings_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -384,7 +384,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         );
 
       case 2:
-        return const ReviewListScreen();
+        return const AdminReviewsScreen();
 
       case 3:
         return const SettingsScreen();
