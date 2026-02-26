@@ -1,100 +1,12 @@
-// import 'package:flutter/material.dart';
-// import 'admin_dashboard.dart';
-// import 'admin_listing_list_screen.dart';
-// import 'admin_review_list_screen.dart';
-// import 'admin_settings_screen.dart';
-
-// class DashboardScreen extends StatefulWidget {
-//   const DashboardScreen({super.key});
-
-//   @override
-//   State<DashboardScreen> createState() => _DashboardScreenState();
-// }
-
-// class _DashboardScreenState extends State<DashboardScreen> {
-//   int _selectedIndex = 0;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text(
-//           'CityGuide Admin',
-//           style: TextStyle(fontWeight: FontWeight.bold),
-//         ),
-//         actions: [
-//           IconButton(
-//             icon: const Icon(Icons.notifications_outlined),
-//             onPressed: () {},
-//           ),
-//           const SizedBox(width: 8),
-//           const CircleAvatar(
-//             backgroundColor: Color(0xFF6200EE),
-//             child: Text('A', style: TextStyle(color: Colors.white)),
-//           ),
-//           const SizedBox(width: 16),
-//         ],
-//       ),
-//       body: _buildBody(),
-//       bottomNavigationBar: NavigationBar(
-//         selectedIndex: _selectedIndex,
-//         onDestinationSelected: (int index) {
-//           setState(() {
-//             _selectedIndex = index;
-//           });
-//         },
-//         backgroundColor: Colors.white,
-//         indicatorColor: const Color(
-//           0xFF6200EE,
-//         ).withValues(alpha: 0.1),
-//         destinations: const [
-//           NavigationDestination(
-//             icon: Icon(Icons.dashboard_outlined),
-//             selectedIcon: Icon(Icons.dashboard),
-//             label: 'Home',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.place_outlined),
-//             selectedIcon: Icon(Icons.place),
-//             label: 'Attractions',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.reviews_outlined),
-//             selectedIcon: Icon(Icons.reviews),
-//             label: 'Reviews',
-//           ),
-//           NavigationDestination(
-//             icon: Icon(Icons.settings_outlined),
-//             selectedIcon: Icon(Icons.settings),
-//             label: 'Settings',
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildBody() {
-//     switch (_selectedIndex) {
-//       case 0:
-//         return const DashboardHome();
-//       case 1:
-//         return AdminListingListScreen(collectionName: 'attractions');
-//       case 2:
-//         return const ReviewListScreen();
-//       case 3:
-//         return const SettingsScreen();
-//       default:
-//         return const DashboardHome();
-//     }
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'admin_dashboard.dart';
 import 'admin_listing_list_screen.dart';
 import 'admin_reviews_screen.dart';
 import 'admin_settings_screen.dart';
+import '../../providers/auth_provider.dart';
+import '../../utils/theme.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -126,12 +38,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
+            onPressed: () {
+              // TODO: Implement notification panel
+            },
           ),
           const SizedBox(width: 8),
-          const CircleAvatar(
-            backgroundColor: Color(0xFF6200EE),
-            child: Text('A', style: TextStyle(color: Colors.white)),
+          InkWell(
+            onTap: () => _showAdminProfile(context),
+            borderRadius: BorderRadius.circular(20),
+            child: CircleAvatar(
+              backgroundColor: AppTheme.primaryPurple,
+              child: Text(
+                  context
+                          .read<AuthProvider>()
+                          .user
+                          ?.fullName[0]
+                          .toUpperCase() ??
+                      'A',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),
           ),
           const SizedBox(width: 16),
         ],
@@ -393,4 +320,122 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return const DashboardHome();
     }
   }
+
+  void _showAdminProfile(BuildContext context) {
+    final authProvider = context.read<AuthProvider>();
+    final user = authProvider.user;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+              BorderRadius.vertical(top: Radius.circular(30)),
+        ),
+        padding:
+            const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: AppTheme.primaryPurple.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  user?.fullName[0].toUpperCase() ?? 'A',
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.primaryPurple,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              user?.fullName ?? 'Admin User',
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              user?.email ?? 'admin@cityguide.com',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.amber.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
+                'ADMINISTRATOR',
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            const Divider(),
+            const SizedBox(height: 10),
+            ListTile(
+              leading: const Icon(Icons.settings_outlined),
+              title: const Text('Account Settings'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() => _selectedIndex = 3);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text('Sign Out',
+                  style: TextStyle(color: Colors.red)),
+              onTap: () async {
+                Navigator.pop(context);
+                final confirm = await showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Sign Out'),
+                    content: const Text(
+                        'Are you sure you want to log out?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(ctx, false),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(ctx, true),
+                        child: const Text('Sign Out',
+                            style: TextStyle(color: Colors.red)),
+                      ),
+                    ],
+                  ),
+                );
+                if (confirm == true) {
+                  await authProvider.logout();
+                }
+              },
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
 }
+

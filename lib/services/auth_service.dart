@@ -259,6 +259,20 @@ class AuthService {
     await _auth.signOut();
   }
 
+  // ================= UPDATEUSERNAME =================
+
+  Future<void> updateUserName({
+  required String uid,
+  required String newName,
+}) async {
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .update({
+    'fullName': newName,
+  });
+}
+
   // ================= GET USER DATA =================
   Future<UserModel> getUserData(String uid) async {
     final doc = await _firestore.collection('users').doc(uid).get();
