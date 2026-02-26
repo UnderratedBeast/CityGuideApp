@@ -206,6 +206,7 @@
 
 import 'package:flutter/material.dart';
 import '../../widgets/navigation/admin_stats_card.dart';
+import '../../utils/theme.dart';
 
 class DashboardHome extends StatelessWidget {
   const DashboardHome({super.key});
@@ -349,7 +350,7 @@ class DashboardHome extends StatelessWidget {
           _buildActivityItem(
             context,
             icon: Icons.person_add_rounded,
-            iconColor: Colors.deepPurple,
+            iconColor: AppTheme.primaryBlue,
             title: 'New Editor Role',
             subtitle:
                 '@maria_design has been promoted to City Editor',

@@ -34,7 +34,7 @@ class _AdminReviewsScreenState extends State<AdminReviewsScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Review Moderation'),
-        backgroundColor: AppTheme.primaryBlue,
+        backgroundColor: const Color.fromARGB(0, 46, 91, 255),
         foregroundColor: Colors.white,
         bottom: TabBar(
           controller: _tabController,

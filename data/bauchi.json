@@ -286,22 +286,12 @@
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-10",
-          "starRatings": 4,
-          "reviewDetails": "Quick and tasty – reliable chain.",
-          "profileImage": "https://example.com/anonymous3.jpg",
-          "likes": 25
-        }
-      ]
+      "price": "$"
     },
     {
       "name": "The Grill Spot",
       "details": "Restaurant specializing in grilled meats, barbecue, and local dishes – good for casual meals.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/grill-spot.jpg?w=900",
+      "imageUrl": "https://i.ytimg.com/vi/h8PSdn_VVQM/maxresdefault.jpg",
       "rating": 4.3,
       "address": "Bauchi, Bauchi State",
       "location": { "latitude": 10.3167, "longitude": 9.8333 },
@@ -311,29 +301,19 @@
       "openHours": "Daily: 11:00 AM - late",
       "hashtag": "grill barbecue local",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/grill-dining.jpg",
-        "https://cdn.tripadvisor.com/grill-meats.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://pbs.twimg.com/media/DRUPTGeXUAAIXmY.jpg",
+        "https://avatars.mds.yandex.net/get-altay/13267750/2a0000018fd830094abe81a2b6f7009725e9/orig",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/8a/3d/00/caption.jpg?w=900&h=500&s=1",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-30",
-          "starRatings": 5,
-          "reviewDetails": "Great grilled food and friendly service.",
-          "profileImage": "https://example.com/anonymous4.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "$$"
     }
   ],
   "events": [
     {
       "name": "Bauchi International Trade Fair 2026",
       "details": "Annual trade fair showcasing commerce, agriculture, crafts, and industry from Bauchi and beyond with exhibitors and entertainment.",
-      "imageUrl": "https://example.com/bauchi-trade-fair.jpg",
+      "imageUrl": "https://nepc.gov.ng/cms/wp-content/uploads/2018/07/NEPC-International-Trade-Fair.jpg",
       "rating": 4.5,
       "address": "Bauchi Trade Fair Complex",
       "location": { "latitude": 10.3167, "longitude": 9.8333 },
@@ -343,30 +323,20 @@
       "openHours": "10:00 - 18:00 daily",
       "hashtag": "trade fair business expo",
       "extraImages": [
-        "https://example.com/trade-fair-booths.jpg",
-        "https://example.com/exhibitors.jpg",
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.vanguardngr.com/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-17-at-5.16.06-PM.jpeg",
+        "https://res.cloudinary.com/dirmxkznt/image/upload/v1743616130/lagostourismtohostnigeria%27sbiggestsmestradefairwith%E2%82%A65billionsalestarget%C2%A0.jpg",
+        "https://grandtradefair.co.in/wp-content/uploads/2025/05/business-trade-fair-2025.png",
         "https://example.com/fair-crowd.jpg"
       ],
       "ticketPrice": "Entry fee varies",
       "eventDate": "2026-03-01 to 2026-03-08",
       "eventStartTime": "10:00",
-      "eventEndTime": "18:00",
-      "reviews": [
-        {
-          "profileName": "Business Visitor",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "Excellent for networking and local products.",
-          "profileImage": "https://example.com/business.jpg",
-          "likes": 30
-        }
-      ]
+      "eventEndTime": "18:00"
     },
     {
       "name": "Durbar Festival Bauchi 2026",
       "details": "Traditional Durbar festival with horse parades, colorful costumes, music, and cultural displays – usually held during Eid or special occasions.",
-      "imageUrl": "https://example.com/bauchi-durbar-festival.jpg",
+      "imageUrl": "https://kumakonda.es/wp-content/uploads/2024/04/Durbar-Nigeria-9.jpg.webp",
       "rating": 4.7,
       "address": "Emir's Palace area, Bauchi",
       "location": { "latitude": 10.3167, "longitude": 9.8333 },
@@ -376,30 +346,20 @@
       "openHours": "Various",
       "hashtag": "durbar festival culture",
       "extraImages": [
-        "https://example.com/horse-parade.jpg",
-        "https://example.com/costumes.jpg",
-        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.guardian.ng/wp-content/uploads/2017/07/DSC_0245-e1499844554458.jpg",
+        "https://media.istockphoto.com/id/1249275181/photo/the-bauchi-durbar-festival.jpg?s=612x612&w=0&k=20&c=hnori1NHV8x5wn_cvQj_QhaGPm-7G211lWe9WETzBSg=",
+        "https://kumakonda.es/wp-content/uploads/2024/06/20240617_101129.jpg.webp",
         "https://example.com/durbar-crowd.jpg"
       ],
       "ticketPrice": "Free / community-based",
       "eventDate": "2026-04-05 (Eid-related or similar)",
       "eventStartTime": "various",
-      "eventEndTime": "various",
-      "reviews": [
-        {
-          "profileName": "Cultural Fan",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Colorful and majestic – a true Hausa-Fulani experience!",
-          "profileImage": "https://example.com/cultural.jpg",
-          "likes": 35
-        }
-      ]
+      "eventEndTime": "various"
     },
     {
       "name": "Bauchi Cultural Day / Yam Festival",
       "details": "Annual cultural celebration featuring traditional dances, food (especially yam dishes), crafts, and community events.",
-      "imageUrl": "https://example.com/bauchi-cultural-day.jpg",
+      "imageUrl": "https://pub-c3c5765215d14e3d882d51123be2ba44.r2.dev/media/images/diary/2025-07-22%2014%3A53%3A14.234022%2B00%3A00/.jpg",
       "rating": 4.5,
       "address": "Bauchi venues",
       "location": { "latitude": 10.3167, "longitude": 9.8333 },
@@ -409,30 +369,20 @@
       "openHours": "Various",
       "hashtag": "cultural festival yam",
       "extraImages": [
-        "https://example.com/traditional-dance.jpg",
-        "https://example.com/food-display.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/6/69/NewYam-IgboFestival-Dublin.jpg",
+        "https://static.wixstatic.com/media/b69a17_2be15e1b235f4734bbf58b13bb9f98d0~mv2.png/v1/fill/w_568,h_378,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b69a17_2be15e1b235f4734bbf58b13bb9f98d0~mv2.png",
+        "https://www.theculturenewspaper.com/wp-content/uploads/2025/04/dy.jpg",
         "https://example.com/festival-crowd.jpg"
       ],
       "ticketPrice": "Free / donation",
       "eventDate": "2026-08-15 (example recurring style)",
       "eventStartTime": "various",
-      "eventEndTime": "various",
-      "reviews": [
-        {
-          "profileName": "Local",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Vibrant celebration of Bauchi heritage.",
-          "profileImage": "https://example.com/local.jpg",
-          "likes": 28
-        }
-      ]
+      "eventEndTime": "various"
     },
     {
       "name": "Yankari Eco-Tourism & Conservation Event",
       "details": "Seasonal eco-event or guided safari awareness program at Yankari Park – focused on wildlife conservation and nature education.",
-      "imageUrl": "https://example.com/yankari-eco-event.jpg",
+      "imageUrl": "https://bauchiacresal.ng/static/assets/images/projects/Picture1.jpg",
       "rating": 4.6,
       "address": "Yankari National Park",
       "location": { "latitude": 10.3833, "longitude": 9.7500 },
@@ -442,9 +392,9 @@
       "openHours": "Various tour times",
       "hashtag": "eco tourism conservation",
       "extraImages": [
-        "https://example.com/safari-group.jpg",
-        "https://example.com/wildlife-talk.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.guardian.ng/wp-content/uploads/2019/12/Wildlife.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07q7izPSWwNdVLGbFmQm59dWNISBLWFkU5g&s",
+        "https://www.icirnigeria.org/wp-content/uploads/2023/10/First-Gate-of-Yankari-Game-Rerserve-at-Mainamaji.jpeg",
         "https://example.com/nature-walk.jpg"
       ],
       "ticketPrice": "Varies (tour packages)",

@@ -95,6 +95,7 @@ import 'admin_dashboard.dart';
 import 'admin_listing_list_screen.dart';
 import 'admin_reviews_screen.dart';
 import 'admin_settings_screen.dart';
+import '../../utils/theme.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -130,7 +131,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           const SizedBox(width: 8),
           const CircleAvatar(
-            backgroundColor: Color(0xFF6200EE),
+            backgroundColor: AppTheme.primaryBlue,
             child: Text('A', style: TextStyle(color: Colors.white)),
           ),
           const SizedBox(width: 16),
@@ -145,7 +146,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           });
         },
         backgroundColor: Colors.white,
-        indicatorColor: const Color(0xFF6200EE).withAlpha(25),
+        indicatorColor: const Color.fromARGB(255, 46, 91, 228).withAlpha(25),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),

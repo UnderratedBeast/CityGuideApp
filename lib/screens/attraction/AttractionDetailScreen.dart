@@ -693,11 +693,19 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: const Color.fromARGB(74, 46, 91, 255),
-                child: Text(review.userName[0]),
-              ),
+             CircleAvatar(
+               radius: 20,
+               backgroundImage: review.userProfileImage.isNotEmpty
+                   ? NetworkImage(review.userProfileImage)
+                   : null,
+               backgroundColor: const Color.fromARGB(74, 46, 91, 255),
+               child: review.userProfileImage.isEmpty
+                   ? Text(
+                       review.userName.isNotEmpty ? review.userName[0].toUpperCase() : '?',
+                       style: const TextStyle(fontWeight: FontWeight.bold),
+                     )
+                   : null,
+             ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
