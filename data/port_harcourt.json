@@ -1,15 +1,15 @@
 {
   "name": "Port Harcourt",
   "description": "Port Harcourt, often called PH or Garden City, is the capital of Rivers State and Nigeria's oil-rich Niger Delta hub. It's a bustling commercial port city known for its vibrant markets, seafood culture, modern malls, parks, zoos, nearby beaches/islands (like Bonny), rich history, and energetic nightlife. The city blends industrial energy with green spaces, diverse ethnic communities (especially Igbo, Ijaw, and others), and growing tourism around nature and local cuisine.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Port_Harcourt_Skyline.jpg/800px-Port_Harcourt_Skyline.jpg",
+  "imageUrl": "https://c8.alamy.com/comp/3ANMK9E/aerial-view-of-moscow-road-roundabout-with-busy-roads-and-modern-buildings-port-harcourt-nigeria-3ANMK9E.jpg",
   "ratings": 4.3,
   "zone": "South South",
   "extraImages": [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/port-harcourt-pleasure.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Port_Harcourt_Zoo.jpg/800px-Port_Harcourt_Zoo.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://cdn.getyourguide.com/img/tour/5f8b0e0e0e0e0e0e0e0e0e0e.jpg",
-    "https://www.trip.com/moments/detail/port-harcourt-20065-12345678?locale=en-XX"
+    "https://cdn.punchng.com/wp-content/uploads/2017/05/27014459/Port-Harcourt-Park.jpg",
+    "https://naturenews.africa/wp-content/uploads/2023/10/Port-Harcourt-Zoo.jpg",
+    "https://lh7-rt.googleusercontent.com/docsz/AD_4nXfYPrrFLi4rkpRotOGq4ZZp-RiiR1Hz8IamN8EDhPS4CQ4-_oGe9oNki_KL8B8AvqZuh40mv9GPeumLLQnTSByya0P55TmmYTH__BSqius0JfnfeNim8jNKQYEKnyegEXMzm8zUYg?key=Jac40CgkxFZ2140Q4JygVA",
+    "https://tripxl.com/blog/wp-content/uploads/2025/04/Audu-Bako-Zoo-Kano.jpg",
+    "https://www.cityscopeafrica.com/wp-content/uploads/2023/02/pl-pk-780x470.jpg"
   ],
   "topHighlights": [
     "Port Harcourt Pleasure Park – Fun water park and family entertainment",
@@ -29,7 +29,7 @@
     {
       "name": "Port Harcourt Pleasure Park",
       "details": "A popular family-friendly water park with slides, pools, playgrounds, and relaxation areas – one of the top spots for fun and outings in the city.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/56/f6/d9/pleasure-park.jpg?w=800&h=500&s=1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Port_Harcourt_Pleasure_Park.jpg",
       "rating": 4.5,
       "address": "Rumuola, Port Harcourt, Rivers State",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -39,35 +39,17 @@
       "openHours": "Daily: 9:00 AM - 6:00 PM",
       "hashtag": "family fun waterpark",
       "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/3f/69/9e/pleasure-park-slide.jpg?w=800&h=800&s=1",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/3c/fb/dd.jpg",
-        "https://cdn.punchng.com/wp-content/uploads/2024/03/pleasure-park-port-harcourt.jpg",
+        "https://www.cityscopeafrica.com/wp-content/uploads/2023/02/Pl-pk5-1024x690.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-s/17/ff/5d/fe/christmas-at-port-harcourt.jpg",
+        "https://sabiabuja.com/wp-content/uploads/2024/12/Oak-Park-Gardens.png",
         "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Port_Harcourt_Pleasure_Park.jpg/800px-Port_Harcourt_Pleasure_Park.jpg"
       ],
-      "price": "₦2000 - ₦5000 (entry + activities)",
-      "reviews": [
-        {
-          "profileName": "Ebube O.",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Perfect family day out! The slides are thrilling and the place is well-maintained.",
-          "profileImage": "https://example.com/ebube.jpg",
-          "likes": 25
-        },
-        {
-          "profileName": "Family Fun",
-          "createdAt": "2025-12-20",
-          "starRatings": 4,
-          "reviewDetails": "Crowded on weekends but great for kids.",
-          "profileImage": "https://example.com/family.jpg",
-          "likes": 15
-        }
-      ]
+      "price": "₦2000 - ₦5000 (entry + activities)"
     },
     {
       "name": "Port Harcourt Zoo",
       "details": "Home to various animals including lions, monkeys, and birds; a good spot for education and relaxation with picnic areas.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/port-harcourt-zoo.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://naturenews.africa/wp-content/uploads/2023/10/Port-Harcourt-Zoo.jpg",
       "rating": 4.2,
       "address": "Trans Amadi, Port Harcourt, Rivers State",
       "location": { "latitude": 4.8167, "longitude": 7.0333 },
@@ -77,27 +59,17 @@
       "openHours": "Daily: 8:00 AM - 5:00 PM",
       "hashtag": "wildlife zoo nature",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Port_Harcourt_Zoo_animals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/zoo-view.jpg?w=900&h=500&s=1",
-        "https://cdn.tripadvisor.com/port-harcourt-zoo-path.jpg",
+        "https://dabesaki.com/wp-content/uploads/2012/03/img_1041.jpg",
+        "https://images.timbu.com/contents-44bf1f6cfda44ca8b069e0f87b28fd97/b11200c4-e133-4a5c-9ce3-577cbea2acbe.png",
+        "https://dabesaki.com/wp-content/uploads/2012/03/img_1026.jpg",
         "https://live.staticflickr.com/65535/port-harcourt-zoo.jpg"
       ],
-      "price": "₦1000 - ₦2000 entry",
-      "reviews": [
-        {
-          "profileName": "Ngozi M.",
-          "createdAt": "2026-02-01",
-          "starRatings": 4,
-          "reviewDetails": "Nice variety of animals; educational for children.",
-          "profileImage": "https://example.com/ngozi.jpg",
-          "likes": 20
-        }
-      ]
+      "price": "₦1000 - ₦2000 entry"
     },
     {
       "name": "Mile One Market",
       "details": "Iconic bustling market for fresh seafood, produce, fabrics, and local goods – a true taste of Port Harcourt's vibrant commerce.",
-      "imageUrl": "https://cdn.guardian.ng/wp-content/uploads/2020/05/Mile-One-Market.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/Side_view_of_Mile_on_Market%2C_Port_Harcourt%2C_Rivers_State%2C_Nigeria.jpg",
       "rating": 4.4,
       "address": "Mile 1 Diobu, Port Harcourt, Rivers State",
       "location": { "latitude": 4.8333, "longitude": 7.0000 },
@@ -107,27 +79,17 @@
       "openHours": "Daily: 6:00 AM - 8:00 PM",
       "hashtag": "market shopping local",
       "extraImages": [
-        "https://humbo.s3.eu-north-1.amazonaws.com/place-photo/mile-one-market.jpg",
-        "https://glorioushotelng.com/uploads/market-ph.jpg",
-        "https://cdn.guardian.ng/wp-content/uploads/mile-one-seafood.jpg",
+        "https://africa.iclei.org/wp-content/uploads/2025/11/Market-photo-Malawi-Strengthening-markets-.jpgg",
+        "https://www.treehugger.com/thmb/-NLSDA3Wec23A7yryj3On6pe7K4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2018__03__LaBoqueriaBarcelonaProduceStallsCrowdedFloor-1313015835274b928b78693c3e53739f.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/62/Ridley_Road_Market_-_geograph.org.uk_-_5049757.jpg",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "Varies (bargaining encouraged)",
-      "reviews": [
-        {
-          "profileName": "Chidi E.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Best place for fresh fish and affordable shopping – authentic PH experience!",
-          "profileImage": "https://example.com/chidi.jpg",
-          "likes": 30
-        }
-      ]
+      "price": "Varies (bargaining encouraged)"
     },
     {
       "name": "Finima Nature Park (Bonny Island access)",
       "details": "Eco-tourism spot with beaches, mangroves, and wildlife; often accessed via boat from Port Harcourt for day trips.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Finima_Beach.jpg",
+      "imageUrl": "https://finimanaturepark.com/wp-content/uploads/2024/02/32374294_210810026389595_1654496864994590720_n.jpg",
       "rating": 4.6,
       "address": "Finima, Bonny Island (near Port Harcourt), Rivers State",
       "location": { "latitude": 4.4333, "longitude": 7.1667 },
@@ -137,29 +99,19 @@
       "openHours": "Daily: 8:00 AM - 5:00 PM",
       "hashtag": "nature beach eco",
       "extraImages": [
-        "https://visaliv.s3.ap-south-1.amazonaws.com/Finima-Nature-Park.jpg",
-        "https://articles.connectnigeria.com/wp-content/uploads/finima-beach.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/8a/20/72/finima-park.jpg?w=900&h=500&s=1",
+        "https://image-worker.mindtrip.ai/image-resize/format=webp,w=1200/https:/images.mindtrip.ai/attractions/5f46/96e2/5f43/8bca/424e/eb32/f055/5f6d",
+        "https://tzmedia.b-cdn.net/media/images/ng/place/420/31c899ec35a9a7bda684ec781cb1ccb3.jpg?1648396512",
+        "https://www.finima.net/wp-content/uploads/2025/06/finima_ijaw_ancient-1024x559.png",
         "https://cdn.punchng.com/wp-content/uploads/2024/03/finima-nature.jpg"
       ],
-      "price": "Tour packages ₦10,000+ (including transport)",
-      "reviews": [
-        {
-          "profileName": "Ada O.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Beautiful beaches and nature escape from the city!",
-          "profileImage": "https://example.com/ada.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "Tour packages ₦10,000+ (including transport)"
     }
   ],
   "hotels": [
     {
       "name": "Novotel Port Harcourt",
       "details": "Modern international hotel with comfortable rooms, pool, spa, gym, and multiple dining options – great for business and leisure.",
-      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/novotel-hero.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://www.ahstatic.com/photos/5465_ho_03_p_1024x768.jpg",
       "rating": 4.5,
       "address": "3 Stadium Road, Rumuomasi, Port Harcourt",
       "location": { "latitude": 4.8333, "longitude": 7.0333 },
@@ -169,27 +121,17 @@
       "openHours": "24/7",
       "hashtag": "luxury business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/novotel-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-novotel.jpg",
-        "https://cdn.accor.com/novotel-lobby.jpg",
+        "https://www.ahstatic.com/photos/5465_ho_02_p_1024x768.jpg",
+        "https://www.ahstatic.com/photos/5465_ho_01_p_1024x768.jpg",
+        "https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/ac/8e/ff8bdc92459f18e7b06bbdb55f40bfa690bebe4556c4717631152131be34.jpeg",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$150 - $300 per night",
-      "reviews": [
-        {
-          "profileName": "Tunde K.",
-          "createdAt": "2026-01-05",
-          "starRatings": 5,
-          "reviewDetails": "Clean, professional, and excellent facilities.",
-          "profileImage": "https://example.com/tunde.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$150 - $300 per night"
     },
     {
       "name": "Hotel Presidential Port Harcourt",
       "details": "Iconic luxury hotel with spacious rooms, outdoor pool, gardens, multiple restaurants, and event spaces.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/presidential-hero.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/9e/26/a9/general-view.jpg?w=900&h=500&s=1",
       "rating": 4.4,
       "address": "Aba Road, Port Harcourt, Rivers State",
       "location": { "latitude": 4.8500, "longitude": 7.0333 },
@@ -199,27 +141,17 @@
       "openHours": "24/7",
       "hashtag": "luxury classic",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/presidential-garden.jpg",
-        "https://cdn.hotelpresidential.com/pool-view.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lobby.jpg",
+        "https://images.trvl-media.com/lodging/5000000/4430000/4425600/4425509/d260e72e.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.trvl-media.com/lodging/5000000/4430000/4425600/4425509/feadb25c.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.trvl-media.com/lodging/5000000/4430000/4425600/4425509/994936e7.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
         "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$120 - $280 per night",
-      "reviews": [
-        {
-          "profileName": "Fatima A.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Timeless elegance and great service.",
-          "profileImage": "https://example.com/fatima.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$120 - $280 per night"
     },
     {
       "name": "Swiss International Mabisel",
       "details": "Contemporary hotel with modern rooms, fitness center, restaurant, and convenient location.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/swiss-mabisel.jpg?w=900&h=-1&s=1",
+      "imageUrl": "https://ik.imgkit.net/3vlqs5axxjf/external/http://images.ntmllc.com/v4/hotel/U28/U28492/U28492_EXT_Z5270C.JPG?tr=w-1200%2Cfo-auto",
       "rating": 4.6,
       "address": "Mabisel Area, Port Harcourt",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -229,27 +161,17 @@
       "openHours": "24/7",
       "hashtag": "modern luxury",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/swiss-room.jpg",
-        "https://cdn.swissinternational.com/mabisel-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/dining.jpg",
+        "https://x.cdrst.com/foto/hotel-sf/48593/granderesp/swiss-international-mabisel-port-harcourt-general-bcb8401.jpg",
+        "https://swissinternationalhotels.com/wp-content/uploads/2022/02/Swiss_International_Mabisel_new_5.webp",
+        "https://swissinternationalhotels.com/wp-content/uploads/2022/02/Swiss_International_Mabisel_new_9.webp",
         "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$100 - $250 per night",
-      "reviews": [
-        {
-          "profileName": "Emeka O.",
-          "createdAt": "2025-12-15",
-          "starRatings": 5,
-          "reviewDetails": "Comfortable and stylish – highly recommend.",
-          "profileImage": "https://example.com/emeka.jpg",
-          "likes": 45
-        }
-      ]
+      "price": "$100 - $250 per night"
     },
     {
       "name": "Golden Tulip Port Harcourt",
       "details": "Upscale hotel offering elegant rooms, conference facilities, pool, and international cuisine.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/golden-tulip.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/30/da/f3/home-away-from-home.jpg?w=800&h=500&s=1",
       "rating": 4.5,
       "address": "GRA Phase 2, Port Harcourt",
       "location": { "latitude": 4.8667, "longitude": 7.0500 },
@@ -259,29 +181,19 @@
       "openHours": "24/7",
       "hashtag": "business luxury",
       "extraImages": [
-        "https://cdn.goldentulip.com/room-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://media.iceportal.com/25605/photos/73066340_XL.jpg",
+        "https://media.iceportal.com/25605/photos/73171568_L.jpg",
+        "https://a.otcdn.com/imglib/roomphotos/3/8/4667/golden-tulip-hotel-evergreen-port-harcourt-20240119185233457800.jpg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$130 - $300 per night",
-      "reviews": [
-        {
-          "profileName": "Ifeanyi C.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Professional staff and relaxing environment.",
-          "profileImage": "https://example.com/ifeanyi.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$130 - $300 per night"
     }
   ],
   "dining": [
     {
       "name": "AsiaTown",
       "details": "Popular Chinese and Asian fusion restaurant with elegant interior and diverse menu options.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/asiatown.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/72/1a/27/asiatown.jpg?w=1200&h=1200&s=1",
       "rating": 4.5,
       "address": "GRA or New GRA, Port Harcourt",
       "location": { "latitude": 4.8667, "longitude": 7.0333 },
@@ -291,27 +203,17 @@
       "openHours": "Daily: 11:00 AM - 10:00 PM",
       "hashtag": "chinese asian fusion",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/asiatown-interior.jpg",
-        "https://cdn.tripadvisor.com/asiatown-dishes.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/sushi.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-s/18/4d/66/8f/img-20190712-133120-largejpg.jpg",
+        "https://images.myguide-cdn.com/nigeria/companies/asiatown-nigeria-restaurant-in-port-harcourt/large/asiatown-nigeria-restaurant-in-port-harcourt-138265.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/ec/0d/09/our-sunday-buffet-includes.jpg?w=900&h=500&s=1",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "Beautiful setup and delicious food!",
-          "profileImage": "https://example.com/anonymous.jpg",
-          "likes": 42
-        }
-      ]
+      "price": "$$$"
     },
     {
       "name": "BoomTown Restaurant & Coffee Shop",
       "details": "Vibrant spot for local and international dishes, coffee, and great ambiance.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/boomtown.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/35/9f/59/boomtown-restaurant-and.jpg?w=1100&h=1100&s=1",
       "rating": 4.6,
       "address": "Omerelu Street, New GRA, Port Harcourt",
       "location": { "latitude": 4.8667, "longitude": 7.0333 },
@@ -321,27 +223,17 @@
       "openHours": "Daily: 8:00 AM - 11:00 PM",
       "hashtag": "cafe local international",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/boomtown-dining.jpg",
-        "https://cdn.tripadvisor.com/boomtown-coffee.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/35/9f/5c/boomtown-restaurant-and.jpg?w=1100&h=1100&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/35/9f/60/boomtown-restaurant-and.jpg?w=1100&h=1100&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/35/9f/5e/lunch-at-boomtown-restaurant.jpg?w=1100&h=1100&s=1",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-25",
-          "starRatings": 5,
-          "reviewDetails": "Great vibes and tasty meals!",
-          "profileImage": "https://example.com/anonymous2.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$$ - $$$"
     },
     {
       "name": "Casablanca Restaurant Sports Bar & Karaoke",
       "details": "Fun dining with sports viewing, karaoke, and Mediterranean/African fusion food.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/casablanca.jpg?w=900",
+      "imageUrl": "https://i0.wp.com/www.skabash.com/wp-content/uploads/2022/07/casablanca.jpg?resize=940%2C627&ssl=1",
       "rating": 4.5,
       "address": "Port Harcourt area",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -351,27 +243,17 @@
       "openHours": "Daily: 12:00 PM - late",
       "hashtag": "bar sports karaoke",
       "extraImages": [
-        "https://cdn.tripadvisor.com/casablanca-bar.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/karaoke.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://images.squarespace-cdn.com/content/v1/60a7d90e70f56068b03b26ad/b1c784ec-d7e2-42f1-8fe0-cd741722896e/Palm+Bar.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-s/0d/50/04/be/casablanca-restaurant.jpg",
+        "https://visitkampala.kcca.go.ug/user_files/pRrjguSZDVtK.jpg",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-10",
-          "starRatings": 5,
-          "reviewDetails": "Lively spot with excellent service.",
-          "profileImage": "https://example.com/anonymous3.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$$ - $$$"
     },
     {
       "name": "Native Tray PHC",
       "details": "Authentic Nigerian and Niger Delta cuisine with fresh local flavors.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/native-tray.jpg?w=900",
+      "imageUrl": "https://pbs.twimg.com/media/FP16KqEWYAQdTi0.jpg",
       "rating": 4.7,
       "address": "Port Harcourt",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -381,29 +263,19 @@
       "openHours": "Daily: 10:00 AM - 10:00 PM",
       "hashtag": "nigerian local",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/native-dishes.jpg",
-        "https://cdn.tripadvisor.com/native-tray-food.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://static-images.dinesurf.tech/962-NativeTrayLekkiLagos-ds-2024-01-24-06-20-59-739",
+        "https://static-images.dinesurf.tech/962-NativeTrayLekkiLagos-ds-2024-01-24-06-21-32-643",
+        "https://d2kihw5e8drjh5.cloudfront.net/eyJidWNrZXQiOiJ1dGEtaW1hZ2VzIiwia2V5IjoicGxhY2VfaW1nL0Q4UzltNFBzUlFlamhDUHI0bTRDVVEiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjY0MCwiaGVpZ2h0Ijo2NDAsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsInRvRm9ybWF0IjogIndlYnAifX0=",
         "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-30",
-          "starRatings": 5,
-          "reviewDetails": "Best local food in PH!",
-          "profileImage": "https://example.com/anonymous4.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$$"
     }
   ],
   "events": [
     {
       "name": "Discovering Treasures Word Conference 2026",
       "details": "Major faith-based conference with teachings, worship, and community gatherings at The Carpenter's Church.",
-      "imageUrl": "https://www.eventbrite.com/wp-content/uploads/discovering-treasures.jpg",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbPcJ0B19-XLclT2m_mkHuCGz0S240UdpJA&s",
       "rating": 4.7,
       "address": "The Carpenter's Church, Port Harcourt",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -413,30 +285,20 @@
       "openHours": "Various sessions",
       "hashtag": "faith conference",
       "extraImages": [
-        "https://cdn.eventbrite.com/conference-stage.jpg",
-        "https://www.eventbrite.com/worship.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIIYpRkBl2-tgFzT7r0V1U2mwWhLbzjStAgw&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt5vwRxfFdzCpdb_if1enh4LXjQ44QVDr_qg&s",
+        "https://pbs.twimg.com/media/GF5V09nWsAABjnX.jpg",
         "https://cdn.eventbrite.com/audience.jpg"
       ],
       "ticketPrice": "Free / donation-based",
       "eventDate": "2026-02-05 to 2026-02-08",
       "eventStartTime": "09:00",
-      "eventEndTime": "18:00",
-      "reviews": [
-        {
-          "profileName": "Attendee",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "Inspiring and uplifting event.",
-          "profileImage": "https://example.com/attendee.jpg",
-          "likes": 25
-        }
-      ]
+      "eventEndTime": "18:00"
     },
     {
       "name": "Nook International Fashion Weekend 2026",
       "details": "Fashion showcase with runways, exhibitions, and style events over multiple days.",
-      "imageUrl": "https://www.instagram.com/p/nook-fashion-weekend.jpg",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb0LvwWjVCIQ9oKCtKvHItRF9e8bNTf09yXQ&s",
       "rating": 4.6,
       "address": "The Nook Apartments, Port Harcourt",
       "location": { "latitude": 4.8500, "longitude": 7.0333 },
@@ -446,30 +308,20 @@
       "openHours": "16:00 daily",
       "hashtag": "fashion runway",
       "extraImages": [
-        "https://cdn.eventbrite.com/fashion-show.jpg",
-        "https://www.eventbrite.com/models.jpg",
-        "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://www.bellanaija.com/wp-content/uploads/2024/03/IMG_2934-scaled.jpeg",
+        "https://www.bellanaija.com/wp-content/uploads/2024/03/IMG_2939-scaled.jpeg",
+        "https://www.bellanaija.com/wp-content/uploads/2024/03/IMG_2935-scaled.jpeg",
         "https://cdn.eventbrite.com/audience-fashion.jpg"
       ],
       "ticketPrice": "₦5,000 - ₦25,000",
       "eventDate": "2026-02-13 to 2026-02-16",
       "eventStartTime": "16:00",
-      "eventEndTime": "22:00",
-      "reviews": [
-        {
-          "profileName": "Fashion Lover",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Stunning designs and vibrant energy!",
-          "profileImage": "https://example.com/fashion.jpg",
-          "likes": 30
-        }
-      ]
+      "eventEndTime": "22:00"
     },
     {
       "name": "Enterprise Transformation Summit 2026",
       "details": "Business summit on enterprise innovation, digital transformation, and networking.",
-      "imageUrl": "https://www.eventbrite.com/wp-content/uploads/enterprise-summit.jpg",
+      "imageUrl": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1174566305%252F2987509662255%252F1%252Foriginal.20260111-214133%3Fcrop%3Dfocalpoint%26fit%3Dcrop%26w%3D600%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26fp-x%3D0.494%26fp-y%3D0.526%26s%3D4c0b5df3ad2b32cacf12a9958ab59eeb&w=940&q=75",
       "rating": 4.5,
       "address": "Astro Halls or similar venue, Port Harcourt",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -479,30 +331,20 @@
       "openHours": "08:00 - 17:00",
       "hashtag": "business tech summit",
       "extraImages": [
-        "https://cdn.eventbrite.com/summit-panels.jpg",
-        "https://www.eventbrite.com/networking.jpg",
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://www.nairaland.com/attachments/19760891_enterprisesummitflyer1_jpeg16677b6c69089edc71a77330079dc996",
+        "https://www.nairaland.com/attachments/19772417_confirm2_jpg_jpeg09eeaa58d9c7660388cefd51aafb37e6",
+        "https://digitransformationsummit.com/ksa/wp-content/uploads/2024/10/Enterprise-Black-logo.png",
         "https://cdn.eventbrite.com/speakers.jpg"
       ],
       "ticketPrice": "₦50,000+",
       "eventDate": "2026-03-26",
       "eventStartTime": "08:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "Professional",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Valuable insights for business growth.",
-          "profileImage": "https://example.com/professional.jpg",
-          "likes": 20
-        }
-      ]
+      "eventEndTime": "17:00"
     },
     {
       "name": "ICTMD Symposium on Music and Dance",
       "details": "International symposium on traditions of music and dance with presentations and performances.",
-      "imageUrl": "https://www.ictmusic.org/images/symposium.jpg",
+      "imageUrl": "https://ictmdturkiye.org/wp-content/uploads/2024/12/Music-AND-dance-IN-southeastern-europe.png",
       "rating": 4.7,
       "address": "Port Harcourt venue",
       "location": { "latitude": 4.8333, "longitude": 7.0167 },
@@ -512,25 +354,15 @@
       "openHours": "Various",
       "hashtag": "culture music dance",
       "extraImages": [
-        "https://cdn.ictmusic.org/performances.jpg",
-        "https://www.ictmusic.org/presentations.jpg",
-        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://keoladonaghy.com/images/Oceania%20symposium%20flyer.jpg",
+        "https://www.ictmusic.org/sites/default/files/users/user-4057/%E4%B8%BB%E6%B5%B7%E5%A0%B1_%E9%BB%9E%E9%99%A3-%E5%B7%B2%E5%A3%93%E7%B8%AE.jpeg",
+        "https://ictmdturkiye.org/wp-content/uploads/2023/11/ICTM-2022-4-724x1024-1.png",
         "https://cdn.eventbrite.com/cultural-event.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026-03-09 to 2026-03-13",
       "eventStartTime": "09:00",
-      "eventEndTime": "18:00",
-      "reviews": [
-        {
-          "profileName": "Cultural Enthusiast",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Rich in traditions and inspiring.",
-          "profileImage": "https://example.com/cultural.jpg",
-          "likes": 22
-        }
-      ]
+      "eventEndTime": "18:00"
     }
   ]
 }

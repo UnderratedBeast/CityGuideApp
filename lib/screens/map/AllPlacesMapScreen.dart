@@ -1,3 +1,7 @@
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
+import 'package:city_guide_app/screens/profile/profile_screen.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
@@ -25,7 +29,7 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
 
   // Default map center (Abuja, Nigeria)
   final latLng.LatLng _defaultCenter = const latLng.LatLng(9.05785, 7.49508);
-
+  int _selectedNavIndex = 1;
   @override
   void initState() {
     super.initState();
@@ -179,6 +183,7 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -256,6 +261,33 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
                     ),
                   ],
                 ),
+                                    bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: _selectedNavIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedNavIndex = index;
+          });
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );}
+            if (index == 2) {
+               Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );
+           }
+          if (index == 1) {
+           
+          }
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );          }
+        },
+      ),
     );
   }
 }

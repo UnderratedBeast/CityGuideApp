@@ -1,6 +1,8 @@
 import 'dart:ui';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
 import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/screens/map/MapScreen.dart';
+import 'package:city_guide_app/screens/notificationS/notification_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
@@ -109,26 +111,53 @@ class _CityListScreenState extends State<CityListScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
+            // Header with Notification Icon - Properly Aligned
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Select Your City',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start, // Align items to the top
+                children: [
+                  // Title - Takes remaining space
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Select Your City',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          'Discover your next adventure',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Discover your next adventure',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
+                  // Notification Icon - Aligned to top of the row
+                  Container(
+                    margin: const EdgeInsets.only(top: 4), // Slight adjustment to align with text
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationsScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -316,6 +345,11 @@ class _CityListScreenState extends State<CityListScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );}
+            if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
             );}
           if (index == 1) {
             Navigator.push(

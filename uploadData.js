@@ -5,7 +5,7 @@ const serviceAccount = require("./serviceAccountKey.json");
 const citiesData = {
   // lagos: require("./data/lagos.json"),
   // abuja: require("./data/abuja.json"),
-  // port_harcourt: require("./data/port_harcourt.json"),
+  port_harcourt: require("./data/port_harcourt.json"),
   // kano: require("./data/kano.json"),
 <<<<<<< HEAD
   ibadan: require("./data/ibadan.json"),
@@ -17,6 +17,7 @@ const citiesData = {
   // enugu: require("./data/enugu.json"),
   // jos: require("./data/jos.json"),
   // kaduna: require("./data/kaduna.json"),
+  // bauchi: require("./data/bauchi.json"),
 <<<<<<< HEAD
   // bauchi: require("./data/bauchi.json"),
 =======
