@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../widgets/navigation/admin_stats_card.dart';
+import 'admin_notification_screen.dart';
 import '../../utils/theme.dart';
 import '../../utils/helpers.dart';
 
@@ -96,23 +97,22 @@ class DashboardHome extends StatelessWidget {
 
           // RECENT ACTIVITY HEADER
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'RECENT ACTIVITY',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('View All'),
-              ),
-            ],
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    const Text('Recent Activity', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+    TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const AdminNotificationsScreen(),
           ),
+        );
+      },
+      child: const Text('View All'),
+    ),
+  ],
+),
           const SizedBox(height: 16),
 
           // REAL-TIME ACTIVITY STREAM

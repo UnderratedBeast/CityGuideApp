@@ -10,6 +10,7 @@ class SettingsScreen extends StatefulWidget {
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
+
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true;
   bool _emailUpdatesEnabled = false;
@@ -60,13 +61,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 CircleAvatar(
                   radius: 35,
                   backgroundColor:
-                      AppTheme.primaryPurple.withOpacity(0.1),
+                      Colors.blue.withOpacity(0.1),
                   child: Text(
                     initials,
                     style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.primaryPurple,
+                      color: Colors.blue,
                     ),
                   ),
                 ),
@@ -157,7 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             _buildActionTile(
               icon: Icons.edit_outlined,
-              iconColor: AppTheme.primaryPurple,
+              iconColor: Colors.blue,
               title: 'Edit Profile Information',
               onTap: () => _showEditProfileDialog(
                   context, user?.fullName ?? '', authProvider),
@@ -246,7 +247,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       trailing: Switch.adaptive(
         value: value,
         onChanged: onChanged,
-        activeColor: AppTheme.primaryPurple,
+        activeColor: Colors.blue,
       ),
     );
   }
@@ -319,7 +320,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryPurple),
+                backgroundColor: Colors.blue),
             child: const Text('Update'),
           ),
         ],
@@ -384,7 +385,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryPurple),
+                backgroundColor: Colors.blue),
             child: const Text('Update'),
           ),
         ],
@@ -392,31 +393,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Future<void> _handleLogout(
-      BuildContext context, AuthProvider authProvider) async {
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Sign Out'),
-        content: const Text(
-            'Are you sure you want to log out of the admin panel?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Sign Out',
-                style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
+ Future<void> _handleLogout(
+    BuildContext context, AuthProvider authProvider) async {
+  final confirm = await showDialog<bool>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      title: const Text('Sign Out'),
+      content: const Text(
+          'Are you sure you want to log out of the admin panel?'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(ctx, false),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(ctx, true),
+          child: const Text('Sign Out', style: TextStyle(color: Colors.red)),
+        ),
+      ],
+    ),
+  );
 
-    if (confirm == true) {
-      await authProvider.logout();
+  if (confirm == true) {
+    await authProvider.logout();
+
+    // Navigate to login page and remove previous routes
+    if (context.mounted) {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
     }
   }
+}
 }
 
