@@ -1,8 +1,12 @@
 // lib/screens/favorites/favorites_screen.dart
+import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
+import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:city_guide_app/services/favorites_service.dart';
 import 'package:city_guide_app/utils/theme.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +20,7 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen> {
   final FavoritesService _favoritesService = FavoritesService();
   String? _selectedFilter = 'All';
+  int _selectedNavIndex = 2;
 
   final List<String> _filters = [
     'All',
@@ -82,6 +87,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     }
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
         title: const Text('Favorites'),
@@ -204,6 +210,35 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           );
         },
       ),
+      bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: _selectedNavIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedNavIndex = index;
+          });
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );
+          }
+          if (index == 2) {
+            // Already on favorites screen
+          }
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+            );
+          }
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -217,7 +252,6 @@ class _FavoriteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to appropriate detail screen
         _navigateToDetail(context);
       },
       child: Container(
@@ -378,16 +412,36 @@ class _FavoriteCard extends StatelessWidget {
           MaterialPageRoute(
             builder: (_) => CityDetailScreen(
               cityName: favorite.name,
-              country: favorite.cityName, // You might need to store country separately
+              country: favorite.cityName,
               heroImageUrl: favorite.imageUrl,
             ),
           ),
         );
         break;
+        
       case 'attraction':
       case 'restaurant':
       case 'hotel':
       case 'event':
+        String listingType;
+        switch (favorite.itemType) {
+          case 'attraction':
+            listingType = 'attractions';
+            break;
+          case 'restaurant':
+            listingType = 'dining';
+            break;
+          case 'hotel':
+            listingType = 'hotels';
+            break;
+          case 'event':
+            listingType = 'events';
+            break;
+          default:
+            listingType = 'attractions';
+        }
+        
+        // PASS ALL COMPLETE DATA to the detail screen
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -395,15 +449,17 @@ class _FavoriteCard extends StatelessWidget {
               name: favorite.name,
               imageUrl: favorite.imageUrl,
               rating: favorite.rating,
-              reviewCount: 0, // You might want to store this
+              reviewCount: 0, // This will be fetched from reviews
               priceLevel: favorite.priceLevel,
-              description: '', // You might want to store this
+              description: favorite.description, // Use the stored description
               address: favorite.address,
               city: favorite.cityName,
-              website: '', // You might want to store this
-              listingType: favorite.itemType == 'attraction' ? 'attractions' :
-                          favorite.itemType == 'restaurant' ? 'dining' :
-                          favorite.itemType == 'hotel' ? 'hotels' : 'events',
+              website: favorite.website, // Use stored website
+              latitude: favorite.latitude, // Use stored coordinates
+              longitude: favorite.longitude, // Use stored coordinates
+              additionalImages: favorite.additionalImages, // Use stored images
+              listingType: listingType,
+              // Don't pass listingId - we're passing all data directly
             ),
           ),
         );

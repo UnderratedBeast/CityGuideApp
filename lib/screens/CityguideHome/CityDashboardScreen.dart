@@ -561,7 +561,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
         ),
         centerTitle: true,
         actions: [
-          // Notification icon with grey border
+          // SEARCH ICON instead of notification
           Container(
             margin: const EdgeInsets.only(right: 8),
             decoration: BoxDecoration(
@@ -569,15 +569,26 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
               border: Border.all(color: Colors.grey.shade300, width: 1.5),
             ),
             child: IconButton(
-              icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationsScreen(),
-                  ),
-                );
-              },
+              icon: Icon(Icons.search, color: Colors.grey.shade800),
+// In CityDashboardScreen, update the search icon onPressed:
+onPressed: () {
+  if (_cityId == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('City data still loading...')),
+    );
+    return;
+  }
+  
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => SearchScreen(
+        cityName: widget.cityName,
+        cityId: _cityId!,
+      ),
+    ),
+  );
+},
             ),
           ),
         ],

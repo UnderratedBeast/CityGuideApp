@@ -120,127 +120,147 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         return 'attractions';
     }
   }
+// In AttractionListScreen, update the _fetchData method to properly map Firestore fields
 
-  // ---------- FETCH DATA FROM FIRESTORE ----------
-  Future<void> _fetchData() async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
+Future<void> _fetchData() async {
+  setState(() {
+    _isLoading = true;
+    _errorMessage = null;
+  });
 
-    try {
-      // 1. Get city document ID from cityName
-      final cityQuery = await FirebaseFirestore.instance
-          .collection('cities')
-          .where('name', isEqualTo: widget.cityName)
-          .limit(1)
-          .get();
+  try {
+    // 1. Get city document ID from cityName
+    final cityQuery = await FirebaseFirestore.instance
+        .collection('cities')
+        .where('name', isEqualTo: widget.cityName)
+        .limit(1)
+        .get();
 
-      if (cityQuery.docs.isEmpty) {
-        throw Exception('City "${widget.cityName}" not found');
-      }
-      final cityId = cityQuery.docs.first.id;
-
-      // 2. Get collection name
-      final subcollection = _getCollectionName();
-
-      if (subcollection.isEmpty) {
-        throw Exception('Invalid category');
-      }
-
-      // 3. Fetch documents from subcollection
-      final snapshot = await FirebaseFirestore.instance
-          .collection('cities')
-          .doc(cityId)
-          .collection(subcollection)
-          .get();
-
-      final items = <AttractionItem>[];
-
-      for (var doc in snapshot.docs) {
-        try {
-          final data = doc.data();
-
-          // --- Map fields according to your Firestore structure ---
-          final name = _safeString(data['name']) ?? 'Unnamed';
-          final details = _safeString(data['details']) ?? '';
-          final extraImages = _safeList(data['extraImages']) ?? [];
-          final address = _safeString(data['address']) ?? '';
-          final phone = _safeString(data['phoneNumber']) ?? '';
-          final openHours = _safeString(data['openHours']) ?? '';
-          final price = _safeString(data['price']) ?? '';
-          final rating = _safeDouble(data['rating']) ?? 0.0;
-          final hashtag = _safeString(data['hashtag']) ?? '';
-          final isActive = data['is_active'] ?? true;
-          final cuisine = _safeString(data['cuisine']) ?? '';
-
-          // Handle location map
-          double lat = 0.0, lng = 0.0;
-          if (data['location'] is Map) {
-            final loc = data['location'] as Map;
-            lat = _safeDouble(loc['latitude']) ?? 0.0;
-            lng = _safeDouble(loc['longitude']) ?? 0.0;
-          }
-
-          // Determine main image: first from extraImages, or empty
-          final mainImage = extraImages.isNotEmpty ? extraImages.first : '';
-
-          // Price level conversion
-          final priceLevel = _priceLevelFromString(price);
-
-          // Use hashtag as popularity / category
-          final popularity = hashtag;
-
-          // Default distance (could be stored later)
-          final distance = '0.5 mi';
-
-          // Actions – for attractions, usually "Explore" or "Book"
-          final actions = <String>['Explore'];
-
-          // Review count – from reviews field? Not clear; default 0
-          final reviewCount = 0;
-
-          items.add(AttractionItem(
-            id: doc.id, // Store the document ID
-            title: name,
-            imageUrl: mainImage,
-            additionalImages: extraImages,
-            description: details,
-            phone: phone,
-            website: '', // not present
-            openingHours: openHours,
-            rating: rating,
-            priceLevel: priceLevel,
-            popularity: popularity,
-            cuisine: cuisine,
-            location: address,
-            distance: distance,
-            actions: actions,
-            isOpen: isActive,
-            reviewCount: reviewCount,
-            address: address,
-            latitude: lat,
-            longitude: lng,
-            city: widget.cityName,
-          ));
-        } catch (e) {
-          print('Error parsing document ${doc.id}: $e');
-          // Skip this document
-        }
-      }
-
-      setState(() {
-        _items = items;
-        _isLoading = false;
-      });
-    } catch (e) {
-      print('Fatal error in _fetchData: $e');
-      setState(() {
-        _errorMessage = e.toString();
-        _isLoading = false;
-      });
+    if (cityQuery.docs.isEmpty) {
+      throw Exception('City "${widget.cityName}" not found');
     }
+    final cityId = cityQuery.docs.first.id;
+
+    // 2. Get collection name
+    final subcollection = _getCollectionName();
+
+    if (subcollection.isEmpty) {
+      throw Exception('Invalid category');
+    }
+
+    // 3. Fetch documents from subcollection
+    final snapshot = await FirebaseFirestore.instance
+        .collection('cities')
+        .doc(cityId)
+        .collection(subcollection)
+        .get();
+
+    final items = <AttractionItem>[];
+
+    for (var doc in snapshot.docs) {
+      try {
+        final data = doc.data();
+
+        // --- Map fields according to your Firestore structure ---
+        final name = _safeString(data['name']) ?? 'Unnamed';
+        
+        // Description/details field
+        final details = _safeString(data['details']) ?? 
+                        _safeString(data['description']) ?? 
+                        'No description available';
+        
+        // Extract location coordinates from location map
+        double lat = 0.0, lng = 0.0;
+        if (data['location'] is Map) {
+          final loc = data['location'] as Map;
+          lat = _safeDouble(loc['latitude']) ?? 0.0;
+          lng = _safeDouble(loc['longitude']) ?? 0.0;
+        }
+        
+        // Handle extraImages - could be an array or a map
+        List<String> extraImages = [];
+        if (data['extraImages'] != null) {
+          if (data['extraImages'] is List) {
+            extraImages = (data['extraImages'] as List)
+                .map((e) => e.toString())
+                .where((url) => url.startsWith('http'))
+                .toList();
+          } else if (data['extraImages'] is Map) {
+            extraImages = (data['extraImages'] as Map)
+                .values
+                .map((e) => e.toString())
+                .where((url) => url.startsWith('http'))
+                .toList();
+          }
+        }
+        
+        final address = _safeString(data['address']) ?? '';
+        final phone = _safeString(data['phoneNumber']) ?? '';
+        final openHours = _safeString(data['openHours']) ?? '';
+        
+        // Price field - could be string with price info
+        final price = _safeString(data['price']) ?? '';
+        
+        // Rating - could be 'rating' or 'averageRating'
+        final rating = _safeDouble(data['rating']) ?? 
+                       _safeDouble(data['averageRating']) ?? 
+                       0.0;
+        
+        // Review count
+        final reviewCount = _safeInt(data['reviewCount']) ?? 0;
+        
+        // Hashtag (for categories/tags)
+        final hashtag = _safeString(data['hashtag']) ?? '';
+        
+        // Website
+        final website = _safeString(data['website']) ?? '';
+
+        // Determine main image: first from extraImages, or empty
+        final mainImage = extraImages.isNotEmpty ? extraImages.first : 'https://via.placeholder.com/400x300';
+
+        // Price level conversion
+        final priceLevel = _priceLevelFromString(price);
+
+        items.add(AttractionItem(
+          id: doc.id,
+          title: name,
+          imageUrl: mainImage,
+          additionalImages: extraImages,
+          description: details,
+          phone: phone,
+          website: website,
+          openingHours: openHours,
+          rating: rating,
+          priceLevel: priceLevel,
+          popularity: hashtag,
+          cuisine: '', // You might need to map this from somewhere else
+          location: address,
+          distance: '0.5 mi', // Default or calculate later
+          actions: <String>['Explore'],
+          isOpen: true, // Default or determine from openHours
+          reviewCount: reviewCount,
+          address: address,
+          latitude: lat,
+          longitude: lng,
+          city: widget.cityName,
+        ));
+      } catch (e) {
+        print('Error parsing document ${doc.id}: $e');
+      }
+    }
+
+    setState(() {
+      _items = items;
+      _isLoading = false;
+    });
+  } catch (e) {
+    print('Fatal error in _fetchData: $e');
+    setState(() {
+      _errorMessage = e.toString();
+      _isLoading = false;
+    });
   }
+}
 
   // ---------- FILTER LOGIC ----------
   List<AttractionItem> get _filteredItems {

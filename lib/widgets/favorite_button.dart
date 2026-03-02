@@ -11,8 +11,15 @@ class FavoriteButton extends StatefulWidget {
   final double? rating;
   final String? priceLevel;
   final String? address;
+  final String? description;
+  final double? latitude;
+  final double? longitude;
+  final List<String>? additionalImages;
+  final String? website;
+  final String? phoneNumber;
   final double size;
   final Color? color;
+  final bool initialFavoriteState; // New parameter
 
   const FavoriteButton({
     super.key,
@@ -24,8 +31,15 @@ class FavoriteButton extends StatefulWidget {
     this.rating,
     this.priceLevel,
     this.address,
+    this.description,
+    this.latitude,
+    this.longitude,
+    this.additionalImages,
+    this.website,
+    this.phoneNumber,
     this.size = 24,
     this.color,
+    this.initialFavoriteState = false, // Default to false
   });
 
   @override
@@ -34,21 +48,24 @@ class FavoriteButton extends StatefulWidget {
 
 class _FavoriteButtonState extends State<FavoriteButton> {
   final FavoritesService _favoritesService = FavoritesService();
-  bool _isFavorite = false;
-  bool _isLoading = true;
+  late bool _isFavorite;
 
   @override
   void initState() {
     super.initState();
+    // Use the initial state passed from parent
+    _isFavorite = widget.initialFavoriteState;
+    
+    // Still check the actual favorite status in the background
+    // but don't show loading state
     _checkFavoriteStatus();
   }
 
   Future<void> _checkFavoriteStatus() async {
     final isFav = await _favoritesService.isFavorite(widget.itemId);
-    if (mounted) {
+    if (mounted && _isFavorite != isFav) {
       setState(() {
         _isFavorite = isFav;
-        _isLoading = false;
       });
     }
   }
@@ -58,8 +75,6 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       _showLoginDialog();
       return;
     }
-
-    setState(() => _isLoading = true);
 
     try {
       if (_isFavorite) {
@@ -78,6 +93,12 @@ class _FavoriteButtonState extends State<FavoriteButton> {
           rating: widget.rating,
           priceLevel: widget.priceLevel,
           address: widget.address,
+          description: widget.description,
+          latitude: widget.latitude,
+          longitude: widget.longitude,
+          additionalImages: widget.additionalImages,
+          website: widget.website,
+          phoneNumber: widget.phoneNumber,
         );
         if (mounted) {
           setState(() => _isFavorite = true);
@@ -86,10 +107,6 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       }
     } catch (e) {
       _showSnackBar('Error: $e');
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
     }
   }
 
@@ -127,14 +144,6 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return SizedBox(
-        height: widget.size,
-        width: widget.size,
-        child: const CircularProgressIndicator(strokeWidth: 2),
-      );
-    }
-
     return GestureDetector(
       onTap: _toggleFavorite,
       child: Container(

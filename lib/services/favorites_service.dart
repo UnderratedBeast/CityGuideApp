@@ -1,7 +1,7 @@
-// Make sure you have these imports at the top of your favorites_service.dart file
-import 'package:flutter/material.dart';
+// lib/services/favorites_service.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FavoritesService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -22,16 +22,22 @@ class FavoritesService {
     return _firestore.collection('users').doc(userId).collection('favorites');
   }
 
-  // Add a favorite
+  // Add a favorite with complete data
   Future<void> addFavorite({
     required String itemId,
-    required String itemType, // 'city', 'attraction', 'hotel', 'restaurant', 'event'
+    required String itemType,
     required String name,
     required String imageUrl,
     String? cityName,
     double? rating,
     String? priceLevel,
     String? address,
+    String? description,
+    double? latitude,
+    double? longitude,
+    List<String>? additionalImages,
+    String? website,
+    String? phoneNumber,
   }) async {
     if (!isUserLoggedIn) {
       throw Exception('Please log in to save favorites');
@@ -46,7 +52,8 @@ class FavoritesService {
         return; // Already favorited
       }
 
-      await favoritesRef.doc(itemId).set({
+      // Prepare the data map with all fields
+      final Map<String, dynamic> favoriteData = {
         'itemId': itemId,
         'itemType': itemType,
         'name': name,
@@ -55,8 +62,20 @@ class FavoritesService {
         'rating': rating ?? 0.0,
         'priceLevel': priceLevel ?? '',
         'address': address ?? '',
+        'description': description ?? '',
+        'latitude': latitude ?? 0.0,
+        'longitude': longitude ?? 0.0,
+        'website': website ?? '',
+        'phoneNumber': phoneNumber ?? '',
         'timestamp': FieldValue.serverTimestamp(),
-      });
+      };
+
+      // Only add additionalImages if it's not null and not empty
+      if (additionalImages != null && additionalImages.isNotEmpty) {
+        favoriteData['extraImages'] = additionalImages;
+      }
+
+      await favoritesRef.doc(itemId).set(favoriteData);
     } catch (e) {
       throw Exception('Failed to add favorite: $e');
     }
@@ -109,6 +128,14 @@ class FavoritesService {
           rating: (data['rating'] ?? 0.0).toDouble(),
           priceLevel: data['priceLevel'] ?? '',
           address: data['address'] ?? '',
+          description: data['description'] ?? '',
+          latitude: (data['latitude'] ?? 0.0).toDouble(),
+          longitude: (data['longitude'] ?? 0.0).toDouble(),
+          additionalImages: data['extraImages'] != null 
+              ? List<String>.from(data['extraImages']) 
+              : [],
+          website: data['website'] ?? '',
+          phoneNumber: data['phoneNumber'] ?? '',
           timestamp: (data['timestamp'] as Timestamp?)?.toDate(),
         );
       }).toList();
@@ -124,7 +151,7 @@ class FavoritesService {
   }
 }
 
-// Favorite Item Model - MOVE THIS OUTSIDE THE FavoritesService class
+// Favorite Item Model with all fields
 class FavoriteItem {
   final String id;
   final String itemId;
@@ -135,6 +162,12 @@ class FavoriteItem {
   final double rating;
   final String priceLevel;
   final String address;
+  final String description;
+  final double latitude;
+  final double longitude;
+  final List<String> additionalImages;
+  final String website;
+  final String phoneNumber;
   final DateTime? timestamp;
 
   FavoriteItem({
@@ -147,10 +180,16 @@ class FavoriteItem {
     required this.rating,
     required this.priceLevel,
     required this.address,
+    required this.description,
+    required this.latitude,
+    required this.longitude,
+    required this.additionalImages,
+    required this.website,
+    required this.phoneNumber,
     this.timestamp,
   });
 
-  // Helper to get icon based on type - FIX THE SYNTAX HERE
+  // Helper to get icon based on type
   IconData get icon {
     switch (itemType) {
       case 'city':
@@ -168,7 +207,7 @@ class FavoriteItem {
     }
   }
 
-  // Helper to get color based on type - FIX THE SYNTAX HERE
+  // Helper to get color based on type
   Color get color {
     switch (itemType) {
       case 'city':

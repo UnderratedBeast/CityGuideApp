@@ -6,6 +6,8 @@
 
 import 'dart:ui';
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -279,21 +281,30 @@ class _ProfileScreenState extends State<ProfileScreen>
             );
           },
         ),
-              bottomNavigationBar: FloatingBottomNavBar(
+bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: _selectedNavIndex,
         onTap: (index) {
           setState(() {
             _selectedNavIndex = index;
           });
-           if (index == 3) {
-         
-          }
-          if (index == 0) {
-              Navigator.push(
+          if (index == 3) {
+           }
+            if (index == 2) {
+            Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const CityListScreen()),
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );}
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
             );
           }
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );          }
         },
       ),
       ),

@@ -67,10 +67,10 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   List<bool> _expandedReviews = [];
   Set<int> _likedReviews = {};
 
-  // Hashtag (for badge)
+  // Hashtag (for badge) - from Firestore
   String _hashtag = '';
 
-  // Phone number (optional, from Firestore)
+  // Phone number (from Firestore)
   String _phoneNumber = '';
 
   // Document IDs needed for review submission
@@ -114,7 +114,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     super.dispose();
   }
 
-  /// Fetch attraction document to get hashtag, phone, and set up reviews stream
+  /// Fetch attraction document to get additional data like phone, hashtag, and reviews
   Future<void> _fetchAttractionData() async {
     setState(() {
       _loadingReviews = true;
@@ -130,8 +130,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           .get();
 
       if (cityQuery.docs.isEmpty) {
-        // Create fallback ID if city not found
-        _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
         setState(() {
           _loadingReviews = false;
         });
@@ -139,37 +137,41 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       }
       _cityId = cityQuery.docs.first.id;
 
-      // 2. Find document using the provided listingType
-      final doc = await FirebaseFirestore.instance
+      // 2. Find document in the appropriate subcollection
+      // Try searching by name field (most likely your documents use 'name' field)
+      final query = await FirebaseFirestore.instance
           .collection('cities')
           .doc(_cityId!)
           .collection(widget.listingType)
-          .doc(widget.name)
+          .where('name', isEqualTo: widget.name.trim())
+          .limit(1)
           .get();
 
-      if (doc.exists) {
-        _listingId = doc.id;
-        final data = doc.data() as Map<String, dynamic>;
+      if (query.docs.isNotEmpty) {
+        _listingId = query.docs.first.id;
+        final data = query.docs.first.data();
+        
+        // Extract fields from Firestore document
         _hashtag = data['hashtag'] ?? '';
         _phoneNumber = data['phoneNumber'] ?? '';
+        
+        // Note: Core data like description, location, etc. is already passed from widget
+        // We only fetch supplementary data here
       } else {
-        // If not found by name, try searching by name field
-        final query = await FirebaseFirestore.instance
+        // Try with document ID equal to name (if names are used as IDs)
+        final doc = await FirebaseFirestore.instance
             .collection('cities')
             .doc(_cityId!)
             .collection(widget.listingType)
-            .where('name', isEqualTo: widget.name.trim())
-            .limit(1)
+            .doc(widget.name)
             .get();
 
-        if (query.docs.isNotEmpty) {
-          _listingId = query.docs.first.id;
-          final data = query.docs.first.data();
+        if (doc.exists) {
+          _listingId = doc.id;
+          final data = doc.data() as Map<String, dynamic>;
           _hashtag = data['hashtag'] ?? '';
           _phoneNumber = data['phoneNumber'] ?? '';
         } else {
-          // Create fallback ID if document not found
-          _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
           setState(() {
             _loadingReviews = false;
           });
@@ -182,8 +184,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       
     } catch (e) {
       print('Error in _fetchAttractionData: $e');
-      // Create fallback ID on error
-      _listingId = '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}';
       setState(() {
         _reviewsError = e.toString();
         _loadingReviews = false;
@@ -330,9 +330,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
-          // REMOVED 'const' from here - this is the key fix!
           FavoriteButton(
-            itemId: _listingId ?? '${widget.listingType}_${widget.name.replaceAll(' ', '_').toLowerCase()}',
+            itemId: _listingId ?? widget.name.replaceAll(' ', '_').toLowerCase(),
             itemType: _getItemType(widget.listingType),
             name: widget.name,
             imageUrl: widget.imageUrl,
@@ -340,6 +339,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
             rating: widget.rating,
             priceLevel: widget.priceLevel,
             address: widget.address,
+            description: widget.description,
+            latitude: widget.latitude,
+            longitude: widget.longitude,
+            additionalImages: widget.additionalImages,
+            website: widget.website,
+            phoneNumber: _phoneNumber,
             size: 22,
           ),
           const Padding(
@@ -416,11 +421,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                         AppTheme.primaryBlue,
                       ),
                       const SizedBox(width: 8),
-                      _badge(
-                        "OPEN NOW",
-                        Colors.green.shade100,
-                        Colors.green.shade700,
-                      ),
+                      if (_phoneNumber.isNotEmpty)
+                        _badge(
+                          "CALL NOW",
+                          Colors.green.shade100,
+                          Colors.green.shade700,
+                        ),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -482,6 +488,40 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 30),
 
+                  // Contact Info (Phone)
+                  if (_phoneNumber.isNotEmpty) ...[
+                    const Text("Contact", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () async {
+                        final Uri phoneUri = Uri(scheme: 'tel', path: _phoneNumber);
+                        if (await canLaunchUrl(phoneUri)) {
+                          await launchUrl(phoneUri);
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.green.shade200),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.phone, color: Colors.green.shade700),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                _phoneNumber,
+                                style: TextStyle(color: Colors.green.shade700, fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+
                   // Location with mini map
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -499,7 +539,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "${widget.address}, ${widget.city}",
+                    widget.address.isNotEmpty ? "${widget.address}, ${widget.city}" : widget.city,
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
                   const SizedBox(height: 12),
