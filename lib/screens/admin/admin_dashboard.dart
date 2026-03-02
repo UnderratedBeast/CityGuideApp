@@ -120,7 +120,7 @@ class DashboardHome extends StatelessWidget {
             stream: FirebaseFirestore.instance
                 .collection('activities')
                 .orderBy('createdAt', descending: true)
-                .limit(20)
+                .limit(5)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
@@ -177,6 +177,8 @@ class DashboardHome extends StatelessWidget {
     );
   }
 
+   // ================= ICON + COLOR =================
+
   IconData _getIconForCategory(String? category) {
     switch (category) {
       case 'auth':
@@ -193,7 +195,7 @@ class DashboardHome extends StatelessWidget {
   Color _getColorForCategory(String? category) {
     switch (category) {
       case 'auth':
-        return Colors.deepPurple;
+        return Colors.blue;
       case 'review':
         return Colors.amber;
       case 'system':
@@ -202,6 +204,7 @@ class DashboardHome extends StatelessWidget {
         return Colors.grey;
     }
   }
+
 
   Widget _buildActivityItem(
     BuildContext context, {
