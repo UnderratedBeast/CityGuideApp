@@ -157,7 +157,7 @@ class _AccountManagementScreenState extends State<AccountManagementScreen> {
     return ListTile(
       leading: Icon(
         icon,
-        color: titleColor ?? AppTheme.primaryPurple,
+        color: titleColor ?? AppTheme.primaryBlue,
       ),
       title: Text(
         title,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../utils/theme.dart';
+
 
 class MyTripsScreen extends StatelessWidget {
   const MyTripsScreen({super.key});
@@ -15,7 +17,7 @@ class MyTripsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Trips'),
-        backgroundColor: Colors.purple,
+        backgroundColor: AppTheme.primaryBlue,
         foregroundColor: Colors.white,
       ),
       body: ListView.builder(
@@ -29,8 +31,8 @@ class MyTripsScreen extends StatelessWidget {
               leading: Container(
                 width: 50,
                 height: 50,
-                color: Colors.purple.shade100,
-                child: const Icon(Icons.photo_camera, color: Colors.purple),
+                color: const Color.fromARGB(40, 46, 91, 255),
+                child: const Icon(Icons.photo_camera, color: AppTheme.primaryBlue),
               ),
               title: Text(trip['title']!, style: const TextStyle(fontWeight: FontWeight.w600)),
               subtitle: Text(trip['details']!),

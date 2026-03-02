@@ -34,8 +34,13 @@ class ReviewService {
 
       // Get user data from users collection
       final userDoc = await _firestore.collection('users').doc(user.uid).get();
-      final userName = userDoc.data()?['name'] ?? user.displayName ?? 'Anonymous';
+      final userName = userDoc.data()?['fullName'] ?? user.displayName ?? 'Anonymous';
+      print('User data from Firestore: ${userDoc.data()}');
+      print('profileImage field: ${userDoc.data()?['profileImage']}');
+      print('user.photoURL: ${user.photoURL}');
+
       final userProfileImage = userDoc.data()?['profileImage'] ?? user.photoURL ?? '';
+      print('Final profile image URL: $userProfileImage');
 
       // Create review object
       final review = ReviewModel(

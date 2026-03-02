@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../widgets/navigation/admin_stats_card.dart';
+import '../../utils/theme.dart';
 import '../../utils/helpers.dart';
 
 class DashboardHome extends StatelessWidget {
@@ -117,9 +118,9 @@ class DashboardHome extends StatelessWidget {
           // REAL-TIME ACTIVITY STREAM
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('notifications')
+                .collection('activities')
                 .orderBy('createdAt', descending: true)
-                .limit(10)
+                .limit(20)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
@@ -161,8 +162,8 @@ class DashboardHome extends StatelessWidget {
 
                   return _buildActivityItem(
                     context,
-                    icon: _getIconForCategory(data['category']),
-                    iconColor: _getColorForCategory(data['category']),
+                    icon: _getIconForCategory(data['type']),
+                    iconColor: _getColorForCategory(data['type']),
                     title: data['title'] ?? 'Activity',
                     subtitle: data['body'] ?? '',
                     time: timeText,

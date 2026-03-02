@@ -7,13 +7,21 @@ const citiesData = {
   // abuja: require("./data/abuja.json"),
   // port_harcourt: require("./data/port_harcourt.json"),
   // kano: require("./data/kano.json"),
+<<<<<<< HEAD
   ibadan: require("./data/ibadan.json"),
+=======
+  // ibadan: require("./data/ibadan.json"),
+>>>>>>> 020adf38c9ecc69f4ef463314be17665ce606c0a
   // onitsha: require("./data/onitsha.json"),
   // calabar: require("./data/calabar.json"),
   // enugu: require("./data/enugu.json"),
   // jos: require("./data/jos.json"),
   // kaduna: require("./data/kaduna.json"),
+<<<<<<< HEAD
   // bauchi: require("./data/bauchi.json"),
+=======
+  bauchi: require("./data/bauchi.json"),
+>>>>>>> 020adf38c9ecc69f4ef463314be17665ce606c0a
   // yola: require("./data/yola.json"),
 };
 

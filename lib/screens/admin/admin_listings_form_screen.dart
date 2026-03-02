@@ -154,6 +154,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/admin_notification_service.dart';
+import '../../utils/helpers.dart';
 
 class AdminListingFormScreen extends StatefulWidget {
   final String cityId;
@@ -225,6 +226,14 @@ class _AdminListingFormScreenState
       } else {
         data['createdAt'] = FieldValue.serverTimestamp();
         final doc = await listingsRef.add(data);
+
+        // 🔥 Log Activity
+  Helper.logActivity(
+    type: 'listing',
+    title: 'New ${widget.collectionName} added',
+    body: '${_name.text.trim()} was created',
+    refId: doc.id,
+  );
 
         await _sendNotification(doc.id);
       }
