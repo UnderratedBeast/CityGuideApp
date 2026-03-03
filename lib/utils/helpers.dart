@@ -1,9 +1,8 @@
-// lib/utils/helper.dart
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -297,5 +296,28 @@ class Helper {
 
   static void pop(BuildContext context, [dynamic result]) {
     Navigator.pop(context, result);
+  }
+
+    // ---------- ACTIVITY LOGGER ----------
+  static Future<void> logActivity({
+    required String type, // auth | review | listing | system
+    required String title,
+    required String body,
+    String? refId,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+
+      await FirebaseFirestore.instance.collection('activities').add({
+        'type': type,
+        'title': title,
+        'body': body,
+        'refId': refId,
+        'createdAt': FieldValue.serverTimestamp(),
+        'createdBy': user?.uid,
+      });
+    } catch (e) {
+      debugPrint('Activity log error: $e');
+    }
   }
 }

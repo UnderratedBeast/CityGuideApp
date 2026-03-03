@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../services/review_service.dart';
+import '../../utils/helpers.dart';
+
 class AddReviewScreen extends StatefulWidget {
   final String cityId;
   final String listingId;
@@ -62,6 +64,14 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
         reviewText: _reviewController.text,
       );
 
+      // 🔥 Log Activity
+Helper.logActivity(
+  type: 'review',
+  title: 'New review submitted',
+  body: 'New review for ${widget.listingName}',
+  refId: widget.listingId,
+);
+
       if (!mounted) return;
       
       // Show success message
@@ -76,8 +86,8 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
-                Navigator.pop(context); // Go back
+                Navigator.pop(context); 
+                Navigator.pop(context); 
               },
               child: const Text('OK'),
             ),

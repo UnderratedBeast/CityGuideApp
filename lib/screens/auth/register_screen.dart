@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../utils/routes.dart';
 import '../../utils/theme.dart';
 import '../../utils/validators.dart';
+import '../../utils/helpers.dart';
 import '../../providers/auth_provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -57,6 +58,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!mounted) return;
 
     if (success) {
+
+      // ✅ Log activity
+Helper.logActivity(
+  type: 'auth',
+  title: 'New user registered',
+  body: '${_nameController.text.trim()} created an account',
+);
+
       // ✅ Show verification message
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

@@ -12,7 +12,7 @@
     "https://www.trip.com/moments/detail/ibadan-20071-12345678?locale=en-XX"
   ],
   "topHighlights": [
-    "Ado-Awaye Suspended Lake – One of only two in the world",
+    "Bower's Tower – One of Ibadan's seven hills)",
     "Agodi Gardens – Scenic park with lake, zoo, and recreation",
     "University of Ibadan Zoological Garden – Wildlife and education",
     "Mapo Hall – Historic colonial architecture and views"
@@ -26,48 +26,48 @@
     "note": "Hot days, cooler nights; dusty Harmattan possible; pack light clothing, sunglasses, and moisturizer."
   },
   "attractions": [
+   {
+  "name": "Bower's Tower",
+  "details": "A historic 60-foot (18m) colonial-era monument built in 1936 atop Oke-Are Hill (one of Ibadan's seven hills) to honor Captain Robert Lister Bower, the first British Resident in Ibadan. It features a spiral staircase leading to a viewing platform with stunning 360-degree panoramic views of the entire Ibadan metropolis and its characteristic brown roofs. A popular landmark for history buffs, photography, and enjoying city vistas.",
+  "imageUrl": "https://en.wikipedia.org/wiki/File:BOWERS_TOWER.jpg", 
+  "rating": 4.1,  
+  "address": "Oke-Are, Layipo area, near Beere/Ibadan House, Ibadan, Oyo State, Nigeria",
+  "location": { "latitude": 7.3833, "longitude": 3.8833 },
+  "isActive": true,
+  "website": "",
+  "phoneNumber": "+234 803 123 4567",
+  "openHours": "Daily: approximately 9:00 AM - 5:00 PM (may vary; best to confirm locally)",
+  "hashtag": "history landmark ibadan viewpoint panoramic",
+  "extraImages": [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/The_Iconic_Bowers_Tower_Monument_-_Layipo%2C_Ibadan%2C_Nigeria._02.jpg/1280px-The_Iconic_Bowers_Tower_Monument_-_Layipo%2C_Ibadan%2C_Nigeria._02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bower%27s_Tower_02.jpg",
+    "https://venture-out.s3.us-east-2.amazonaws.com/guide-images/1744898020762-media%3Fkey%3DAIzaSyCkpNVocP1IwgtIz1s4aaTb1GgwMdUtzBw%26maxHeightPx%3D800%26maxWidthPx%3D800",
+    "https://static.wixstatic.com/media/b98b0a_fd8df7d54cc6483699fc01fe5797b03b~mv2.jpg/v1/fill/w_926,h_1235,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b98b0a_fd8df7d54cc6483699fc01fe5797b03b~mv2.jpg"
+  ],
+  "price": "₦200 - ₦1000 (entry fee; recent reports mention around ₦1000 per adult, but can vary)",
+  "reviews": [
     {
-      "name": "Ado-Awaye Suspended Lake",
-      "details": "One of the world's only two suspended lakes (the other in Cameroon), perched atop a mountain with stunning views; a natural wonder and hiking spot popular for picnics and photography.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/56/f6/d9/ado-awaye-lake.jpg?w=800&h=500&s=1",
-      "rating": 4.6,
-      "address": "Ado-Awaye, Iseyin LGA, near Ibadan, Oyo State",
-      "location": { "latitude": 7.8333, "longitude": 3.4667 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "Daily: 8:00 AM - 5:00 PM",
-      "hashtag": "nature adventure hiking",
-      "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/3f/69/9e/suspended-lake.jpg?w=800&h=800&s=1",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/3c/fb/dd.jpg",
-        "https://cdn.punchng.com/wp-content/uploads/2024/03/ado-awaye-lake.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Ado-Awaye_Suspended_Lake.jpg/800px-Ado-Awaye_Suspended_Lake.jpg"
-      ],
-      "price": "₦1000 - ₦3000 (entry + guide)",
-      "reviews": [
-        {
-          "profileName": "Tunde O.",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Incredible natural wonder – the hike is worth it for the views!",
-          "profileImage": "https://example.com/tunde.jpg",
-          "likes": 32
-        },
-        {
-          "profileName": "Family Trip",
-          "createdAt": "2025-12-20",
-          "starRatings": 4,
-          "reviewDetails": "Beautiful but steep climb; great for adventure seekers.",
-          "profileImage": "https://example.com/family.jpg",
-          "likes": 20
-        }
-      ]
+      "profileName": "Visitor Review",
+      "createdAt": "2025-2026",
+      "starRatings": 4,
+      "reviewDetails": "Great spot for city views after climbing the narrow spiral stairs. A bit worn but full of history and worth the visit on a clear day!",
+      "profileImage": "",
+      "likes": 15
     },
+    {
+      "profileName": "Local Explorer",
+      "createdAt": "2026-01",
+      "starRatings": 3,
+      "reviewDetails": "Iconic Ibadan landmark with amazing overlooks, but the tower needs maintenance. Narrow stairs — not for claustrophobia!",
+      "profileImage": "",
+      "likes": 10
+    }
+  ]
+},
     {
       "name": "Agodi Gardens",
       "details": "A peaceful recreational park with a lake, mini-zoo, playgrounds, gardens, and event spaces – ideal for picnics, relaxation, and family outings.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/agodi-gardens.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Agodi_Gardens%2C_Ibadan.jpg",
       "rating": 4.0,
       "address": "Mokola Hill, Secretariat Road, Ibadan",
       "location": { "latitude": 7.4333, "longitude": 3.9167 },
@@ -77,9 +77,9 @@
       "openHours": "Daily: 7:00 AM - 7:00 PM",
       "hashtag": "park nature family",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Agodi_Gardens_lake.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/gardens-view.jpg?w=900",
-        "https://cdn.tripadvisor.com/agodi-zoo.jpg",
+        "https://visaliv.s3.ap-south-1.amazonaws.com/Agodi-Gardens-NG.jpg",
+        "https://visaliv.s3.ap-south-1.amazonaws.com/Agodi-Gardens-Nigeria.jpg",
+        "https://img.rezdy.com/PRODUCT_IMAGE/13699/agodi1.jpg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "₦500 - ₦2000 entry",
@@ -97,7 +97,7 @@
     {
       "name": "University of Ibadan Zoological Garden",
       "details": "Part of Nigeria's premier university, this zoo features various animals, educational exhibits, and green spaces – great for families and wildlife lovers.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ui-zoo.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://static.wixstatic.com/media/b98b0a_1ccad4c8af37424784be940f6c5f3dc0~mv2.jpg/v1/fill/w_784,h_1046,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b98b0a_1ccad4c8af37424784be940f6c5f3dc0~mv2.jpg",
       "rating": 4.1,
       "address": "University of Ibadan Campus, Ibadan",
       "location": { "latitude": 7.4333, "longitude": 3.9000 },
@@ -107,10 +107,10 @@
       "openHours": "Daily: 8:00 AM - 5:00 PM",
       "hashtag": "zoo wildlife education",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/UI_Zoo_animals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/zoo-path.jpg?w=900",
-        "https://cdn.tripadvisor.com/ui-zoo-exhibits.jpg",
-        "https://live.staticflickr.com/65535/ui-zoo.jpg"
+        "https://d34vm3j4h7f97z.cloudfront.net/original/3X/1/f/1fe998356ac007bf973b3c4e60ceadf1e84a38cf.jpeg",
+        "https://zoogarden.ui.edu.ng/sites/default/files/services/bird.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0VjmuuwgrMWSDRV4-Rjy7eVEcm40vbr7aw&s",
+        "https://venture-out.s3.us-east-2.amazonaws.com/guide-images/1744897829797-media%3Fkey%3DAIzaSyCkpNVocP1IwgtIz1s4aaTb1GgwMdUtzBw%26maxHeightPx%3D800%26maxWidthPx%3D800"
       ],
       "price": "₦500 - ₦1500 entry",
       "reviews": [
@@ -127,7 +127,7 @@
     {
       "name": "Mapo Hall",
       "details": "Historic colonial-era building on a hill with panoramic city views; a landmark of Ibadan's heritage and architecture.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mapo_Hall_Ibadan.jpg/800px-Mapo_Hall_Ibadan.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mapo_Hall_01.jpg/1280px-Mapo_Hall_01.jpg",
       "rating": 4.0,
       "address": "Mapo Hill, Ibadan North East, Oyo State",
       "location": { "latitude": 7.3667, "longitude": 3.8833 },
@@ -138,8 +138,8 @@
       "hashtag": "history architecture viewpoint",
       "extraImages": [
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/mapo-hall.jpg?w=800",
-        "https://cdn.tripadvisor.com/mapo-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://image-worker.mindtrip.ai/image-resize/format=webp,w=1200/https:/images.mindtrip.ai/attractions/588c/72f7/6cdc/a4bf/c9c1/bcdc/d040/c535",
+        "https://i.pinimg.com/736x/2d/23/3d/2d233d7ef4f0f89032f0f8b1d1eb245b.jpg",
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "Free / small fee for entry",
@@ -159,22 +159,22 @@
     {
       "name": "Jogor Hotel Ibadan",
       "details": "Modern hotel with comfortable rooms, pool, spa, gym, and event spaces – highly rated for service and facilities.",
-      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/jogor-hotel-hero.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://jogorhotels.com/wp-content/uploads/2023/03/4F6A0114-1-scaled.jpg",
       "rating": 4.8,
-      "address": "Ibadan, Oyo State",
+      "address": "1 Harvester Drive, off Liberty Stadium Road, off MKO Abiola Way, New Gra, Ibadan 200273, Oyo",
       "location": { "latitude": 7.4000, "longitude": 3.9167 },
       "isActive": true,
-      "website": "",
-      "phoneNumber": "",
+      "website": "http://www.jogorhotels.com/",
+      "phoneNumber": "0915 999 9400",
       "openHours": "24/7",
       "hashtag": "luxury business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/jogor-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-jogor.jpg",
-        "https://cdn.jogorhotel.com/lobby.jpg",
+        "https://jogorhotels.com/wp-content/uploads/2023/03/Executive-9-1-scaled.jpg",
+        "https://images.trvl-media.com/lodging/104000000/103420000/103416300/103416226/05b93c9e.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.trvl-media.com/lodging/104000000/103420000/103416300/103416226/006329d7.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$60 - $200 per night",
+      "price": "#90,000 - #150,000 per night",
       "reviews": [
         {
           "profileName": "Oluwaseun B.",
@@ -189,22 +189,22 @@
     {
       "name": "BON Hotel Nest Bodija Ibadan",
       "details": "Contemporary hotel offering stylish rooms, dining, and convenient location near university areas.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/bon-nest-hero.jpg?w=900",
+      "imageUrl": "https://static21.com-hotel.com/uploads/hotel/97857/photo/bon-hotel-nest-ibadan_17095712261.jpg",
       "rating": 4.3,
       "address": "Bodija, Ibadan",
       "location": { "latitude": 7.4333, "longitude": 3.9333 },
       "isActive": true,
       "website": "https://bonhotels.com",
-      "phoneNumber": "+234 803 123 4567",
+      "phoneNumber": "+234 802 266 6235",
       "openHours": "24/7",
       "hashtag": "modern comfort",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/bon-nest-room.jpg",
-        "https://cdn.bonhotels.com/nest-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lobby.jpg",
+        "https://z.cdrst.com/foto/hotel-sf/e5c97/granderesp/bon-hotel-nest-bodija-ibadan-general-d213b9c.jpg",
+        "https://static21.com-hotel.com/uploads/hotel/97857/photo/bon-hotel-nest-ibadan_170957124145.jpg",
+        "https://cdn-zen.readytotrip.com/t/1024x768/content/f0/c8/f0c874ae3120b2d6a5424540d04de6ca84097689.JPEG",
         "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$50 - $150 per night",
+      "price": "#75,000 - #150,000 per night",
       "reviews": [
         {
           "profileName": "Fatima A.",
@@ -219,22 +219,22 @@
     {
       "name": "Kakanfo Inn & Conference Centre",
       "details": "Well-established hotel with rooms, conference facilities, pool, and dining – popular for business and events.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/kakanfo-inn.jpg?w=900&h=-1&s=1",
+      "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipO5lqnDwohpeebxdYL5QCgUPevwdifvHrhCjxaj=w324-h312-n-k-no",
       "rating": 4.3,
-      "address": "Ibadan North, Oyo State",
+      "address": " 1 Nihinlola Street, MKO Abiola Way, off Joyce 'B' Road, New Gra, Ibadan 200252, Oyo",
       "location": { "latitude": 7.4167, "longitude": 3.9000 },
       "isActive": true,
-      "website": "",
-      "phoneNumber": "",
+      "website": "https://kakanfoinn.com",
+      "phoneNumber": "+234 0705 582 8309",
       "openHours": "24/7",
       "hashtag": "business conference",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/kakanfo-room.jpg",
-        "https://cdn.kakanfoinn.com/pool-view.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/dining.jpg",
+        "https://kakanfoinn.com/assets/ext/upload/albums/thumbs/11_110.jpg",
+        "https://kakanfoinn.com/assets/ext/upload/albums/thumbs/11_99.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmnbGX25cXhe-g4Xq_972PxZfgmy7Sf983LQ&s",
         "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$70 - $180 per night",
+      "price": "#70,000 - #180,000 per night",
       "reviews": [
         {
           "profileName": "Emeka O.",
@@ -249,22 +249,22 @@
     {
       "name": "Owu Crown Hotel",
       "details": "Luxury hotel with elegant rooms, pool, spa, and multiple dining options – known for comfort and service.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/owu-crown.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/b9/2e/96/owu-crown-hotel-ibadan.jpg?w=900&h=500&s=1",
       "rating": 4.4,
       "address": "Ibadan area",
       "location": { "latitude": 7.4000, "longitude": 3.9167 },
       "isActive": true,
-      "website": "",
+      "website": "https://www.owucrownhotel.com",
       "phoneNumber": "",
       "openHours": "24/7",
       "hashtag": "luxury relaxation",
       "extraImages": [
-        "https://cdn.owucrown.com/room-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://crystalbeds.com.ng/images/960x490/2021-01-16%20(1).jpg",
+        "https://crystalbeds.com.ng/images/960x490/IMG-20181004-WA0011.jpeg",
+        "https://crystalbeds.com.ng/images/960x490/2021-09-19%20(1).jpg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$80 - $220 per night",
+      "price": "#550,000 - #200,000 per night",
       "reviews": [
         {
           "profileName": "Ifeanyi C.",
@@ -281,19 +281,19 @@
     {
       "name": "Ibachi",
       "details": "Top-rated Chinese restaurant offering sweet and sour chicken, noodles, fried rice, and Asian fusion dishes in a welcoming setting.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/ibachi.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/47/9e/41/ibadan-chinese-restaurant.jpg?w=1200&h=1200&s=1",
       "rating": 4.6,
-      "address": "Ibadan area",
+      "address": "1 Theophilus Akinyele Way Ibadan 200285",
       "location": { "latitude": 7.4333, "longitude": 3.9167 },
       "isActive": true,
-      "website": "",
-      "phoneNumber": "",
+      "website": "https://www.chiiba.com",
+      "phoneNumber": "+234 705 555 0000",
       "openHours": "Daily: 11:00 AM - 10:00 PM",
       "hashtag": "chinese asian",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ibachi-dishes.jpg",
-        "https://cdn.tripadvisor.com/ibachi-noodles.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/61/1a/00/the-ibadan-chinese-restaurant.jpg?w=1400&h=800&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/61/3f/5b/the-octagon-center.jpg?w=1400&h=800&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/47/9e/3a/ibadan-chinese-restaurant.jpg?w=1100&h=600&s=1",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "₦4,000 - ₦15,000 per person",
@@ -311,19 +311,19 @@
     {
       "name": "Cafe Chrysalis",
       "details": "Cozy cafe with pasta, burgers, grills, coffee, and a relaxed vibe – popular for casual dining and hangouts.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/cafe-chrysalis.jpg?w=900",
+      "imageUrl": "https://cafechrysalis.com/wp-content/uploads/2023/02/IMG_2356-1536x1113.jpg",
       "rating": 4.5,
-      "address": "Bodija or similar area, Ibadan",
+      "address": "23, Ilaro Street, Off Alabiyamo Street Bodija, Ibadan",
       "location": { "latitude": 7.4333, "longitude": 3.9333 },
       "isActive": true,
-      "website": "",
-      "phoneNumber": "",
+      "website": "https://cafechrysalis.com",
+      "phoneNumber": "+2348099903274",
       "openHours": "Daily: 8:00 AM - 10:00 PM",
       "hashtag": "cafe burgers grills",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/chrysalis-dining.jpg",
-        "https://cdn.tripadvisor.com/cafe-burgers.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://www.thebugparc.com/img/webp/cafe/cafe-main-outside-mobile.webp",
+        "https://cafechrysalis.com/wp-content/uploads/slider/cache/93bc673d0249003bcc942153d946fbb3/IMG_2354-scaled.jpg",
+        "https://dinesurf.s3.eu-central-1.amazonaws.com/vendor_images/P4nLEgt0UBnvpySYovLcler3esnRgZpYwvUuUyyA.jpg",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "₦7,000 - ₦25,000 per person",
@@ -341,62 +341,22 @@
     {
       "name": "Martha's Kitchen",
       "details": "Fine-dining spot with upscale Nigerian and continental dishes – known for quality and elegant presentation.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/marthas-kitchen.jpg?w=900",
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepSWSLMfEV2mdsY4lG4miJ-txxCdDkENJY0wOzLyr-DBaeVjqVh4Zr4E2XhYfmj45upSes4hiBsNSpBV2zwzjvh63WfcH2cXi13erp1rPHmTRm0pkpf3voeDIgc8RzhKrjLiAFy=w289-h312-n-k-no",
       "rating": 4.7,
       "address": "Ibadan area",
       "location": { "latitude": 7.4000, "longitude": 3.9167 },
       "isActive": true,
       "website": "",
-      "phoneNumber": "",
+      "phoneNumber": "+234 704 339 4371",
       "openHours": "Daily: 12:00 PM - 11:00 PM",
       "hashtag": "fine dining nigerian",
       "extraImages": [
-        "https://cdn.tripadvisor.com/marthas-plates.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/9f/f4/1b/caption.jpg?w=1400&h=-1&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/9f/f4/1c/caption.jpg?w=1400&h=800&s=1",
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-10",
-          "starRatings": 5,
-          "reviewDetails": "Classy and delicious – a top pick!",
-          "profileImage": "https://example.com/anonymous3.jpg",
-          "likes": 40
-        }
-      ]
-    },
-    {
-      "name": "Tamberma",
-      "details": "Chinese and fusion restaurant with excellent service and variety – frequently recommended as a favorite.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/tamberma.jpg?w=900",
-      "rating": 4.6,
-      "address": "Ibadan area",
-      "location": { "latitude": 7.4333, "longitude": 3.9167 },
-      "isActive": true,
-      "website": "",
-      "phoneNumber": "",
-      "openHours": "Daily: 11:00 AM - late",
-      "hashtag": "chinese fusion",
-      "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/tamberma-dishes.jpg",
-        "https://cdn.tripadvisor.com/tamberma-noodles.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
-        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-30",
-          "starRatings": 5,
-          "reviewDetails": "Still my favorite – amazing Chinese food!",
-          "profileImage": "https://example.com/anonymous4.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "#15,000 - #40,000 per person"
     }
   ],
   "events": [

@@ -52,8 +52,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     await prefs.setBool('onboarding_completed', true);
 
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, AppRoutes.signUp);
-    // Navigator.pushReplacementNamed(context, AppRoutes.login);
+    // Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+    Navigator.pushReplacementNamed(context, AppRoutes.login);
   }
 
   void _next() {
