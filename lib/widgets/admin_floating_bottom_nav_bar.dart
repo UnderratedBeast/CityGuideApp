@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../utils/theme.dart'; // adjust path if needed
 
-class FloatingBottomNavBar extends StatelessWidget {
+class AdminFloatingBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  const FloatingBottomNavBar({
+  const AdminFloatingBottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
@@ -15,10 +15,10 @@ class FloatingBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      {'icon': Icons.home, 'label': 'Home'},
-      {'icon': Icons.map, 'label': 'Map'},
-      {'icon': Icons.favorite_border, 'label': 'Favorites'},
-      {'icon': Icons.person_outline, 'label': 'Profile'},
+      {'icon': Icons.dashboard_outlined, 'label': 'Home'},
+      {'icon': Icons.place_outlined, 'label': 'Listings'},
+      {'icon': Icons.reviews_outlined, 'label': 'Reviews'},
+      {'icon': Icons.settings_outlined, 'label': 'Settings'},
     ];
 
     return Padding(

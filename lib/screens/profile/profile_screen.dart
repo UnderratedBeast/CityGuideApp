@@ -303,7 +303,7 @@ bottomNavigationBar: FloatingBottomNavBar(
           if (index == 0) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
             );          }
         },
       ),

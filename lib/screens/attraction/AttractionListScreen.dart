@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
 import '../../utils/theme.dart';
 import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
+import 'package:intl/intl.dart'; // Add this for time parsing
 
 class AttractionListScreen extends StatefulWidget {
   final String category;
@@ -23,14 +24,8 @@ class AttractionListScreen extends StatefulWidget {
 
 class _AttractionListScreenState extends State<AttractionListScreen> {
   // Filter state variables
-  String _selectedPrice = 'Any Price';
-  String _selectedRating = 'Any Rating';
-  String _selectedCategory = 'All Categories';
-  String _selectedCuisine = 'All Cuisines';
-  String _selectedEventType = 'All Types';
-  String _selectedDate = 'Upcoming';
-  String _selectedFreePaid = 'All';
-  String _selectedDistance = 'Any Distance';
+  String _selectedCategoryFilter = 'All';
+  String _selectedRatingFilter = 'Any Rating';
   bool _openNow = false;
 
   // Data and loading states
@@ -38,6 +33,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
   String? _errorMessage;
   List<AttractionItem> _items = [];
   int _currentNavIndex = 0;
+
+  // Available categories derived from the data
+  List<String> _availableCategories = ['All'];
 
   @override
   void initState() {
@@ -80,6 +78,70 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     return null;
   }
 
+  // Helper to check if a place is open now based on openHours
+  bool _isOpenNow(String openHours) {
+    if (openHours.isEmpty) return true; // Default to open if no hours specified
+    
+    try {
+      final now = DateTime.now();
+      final currentTime = DateFormat('HH:mm').format(now);
+      final currentDay = DateFormat('EEEE').format(now); // Monday, Tuesday, etc.
+      
+      // Parse openHours which might be in format like "Mon-Fri 9:00 AM - 5:00 PM"
+      // This is a simplified version - you may need to adjust based on your actual format
+      final hoursLower = openHours.toLowerCase();
+      
+      // Check if today is in the open days
+      if (hoursLower.contains('mon') && currentDay == 'Monday') {
+        // Parse time ranges
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('tue') && currentDay == 'Tuesday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('wed') && currentDay == 'Wednesday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('thu') && currentDay == 'Thursday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('fri') && currentDay == 'Friday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('sat') && currentDay == 'Saturday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      } else if (hoursLower.contains('sun') && currentDay == 'Sunday') {
+        return _parseTimeRange(hoursLower, currentTime);
+      }
+      
+      // If no specific day mentioned, assume it's open 24/7
+      return true;
+    } catch (e) {
+      print('Error parsing open hours: $e');
+      return true;
+    }
+  }
+  
+  bool _parseTimeRange(String hours, String currentTime) {
+    // Extract time range like "9:00 AM - 5:00 PM"
+    final timeRegex = RegExp(r'(\d{1,2}:\d{2}\s*(?:AM|PM))\s*-\s*(\d{1,2}:\d{2}\s*(?:AM|PM))');
+    final match = timeRegex.firstMatch(hours);
+    
+    if (match != null) {
+      try {
+        final openTime = _parseTimeToMinutes(match.group(1)!);
+        final closeTime = _parseTimeToMinutes(match.group(2)!);
+        final current = _parseTimeToMinutes(currentTime);
+        
+        return current >= openTime && current <= closeTime;
+      } catch (e) {
+        return true;
+      }
+    }
+    return true;
+  }
+  
+  int _parseTimeToMinutes(String timeStr) {
+    final format = DateFormat('h:mm a');
+    final date = format.parse(timeStr);
+    return date.hour * 60 + date.minute;
+  }
+
   // Convert price string like "From $120 per adult..." to price level ($, $$, etc.)
   String _priceLevelFromString(String price) {
     if (price.contains('\$\$\$\$')) return '\$\$\$\$';
@@ -120,274 +182,252 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         return 'attractions';
     }
   }
-// In AttractionListScreen, update the _fetchData method to properly map Firestore fields
 
-Future<void> _fetchData() async {
-  setState(() {
-    _isLoading = true;
-    _errorMessage = null;
-  });
+  Future<void> _fetchData() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
 
-  try {
-    // 1. Get city document ID from cityName
-    final cityQuery = await FirebaseFirestore.instance
-        .collection('cities')
-        .where('name', isEqualTo: widget.cityName)
-        .limit(1)
-        .get();
+    try {
+      // 1. Get city document ID from cityName
+      final cityQuery = await FirebaseFirestore.instance
+          .collection('cities')
+          .where('name', isEqualTo: widget.cityName)
+          .limit(1)
+          .get();
 
-    if (cityQuery.docs.isEmpty) {
-      throw Exception('City "${widget.cityName}" not found');
-    }
-    final cityId = cityQuery.docs.first.id;
+      if (cityQuery.docs.isEmpty) {
+        throw Exception('City "${widget.cityName}" not found');
+      }
+      final cityId = cityQuery.docs.first.id;
 
-    // 2. Get collection name
-    final subcollection = _getCollectionName();
+      // 2. Get collection name
+      final subcollection = _getCollectionName();
 
-    if (subcollection.isEmpty) {
-      throw Exception('Invalid category');
-    }
+      if (subcollection.isEmpty) {
+        throw Exception('Invalid category');
+      }
 
-    // 3. Fetch documents from subcollection
-    final snapshot = await FirebaseFirestore.instance
-        .collection('cities')
-        .doc(cityId)
-        .collection(subcollection)
-        .get();
+      // 3. Fetch documents from subcollection
+      final snapshot = await FirebaseFirestore.instance
+          .collection('cities')
+          .doc(cityId)
+          .collection(subcollection)
+          .get();
 
-    final items = <AttractionItem>[];
+      final items = <AttractionItem>[];
+      final Set<String> categories = {'All'};
 
-    for (var doc in snapshot.docs) {
-      try {
-        final data = doc.data();
+      for (var doc in snapshot.docs) {
+        try {
+          final data = doc.data();
 
-        // --- Map fields according to your Firestore structure ---
-        final name = _safeString(data['name']) ?? 'Unnamed';
-        
-        // Description/details field
-        final details = _safeString(data['details']) ?? 
-                        _safeString(data['description']) ?? 
-                        'No description available';
-        
-        // Extract location coordinates from location map
-        double lat = 0.0, lng = 0.0;
-        if (data['location'] is Map) {
-          final loc = data['location'] as Map;
-          lat = _safeDouble(loc['latitude']) ?? 0.0;
-          lng = _safeDouble(loc['longitude']) ?? 0.0;
-        }
-        
-        // Handle extraImages - could be an array or a map
-        List<String> extraImages = [];
-        if (data['extraImages'] != null) {
-          if (data['extraImages'] is List) {
-            extraImages = (data['extraImages'] as List)
-                .map((e) => e.toString())
-                .where((url) => url.startsWith('http'))
-                .toList();
-          } else if (data['extraImages'] is Map) {
-            extraImages = (data['extraImages'] as Map)
-                .values
-                .map((e) => e.toString())
-                .where((url) => url.startsWith('http'))
-                .toList();
+          // --- Map fields according to your Firestore structure ---
+          final name = _safeString(data['name']) ?? 'Unnamed';
+          
+          // Description/details field
+          final details = _safeString(data['details']) ?? 
+                          _safeString(data['description']) ?? 
+                          'No description available';
+          
+          // Extract location coordinates from location map
+          double lat = 0.0, lng = 0.0;
+          if (data['location'] is Map) {
+            final loc = data['location'] as Map;
+            lat = _safeDouble(loc['latitude']) ?? 0.0;
+            lng = _safeDouble(loc['longitude']) ?? 0.0;
           }
+          
+          // Handle extraImages - could be an array or a map
+          List<String> extraImages = [];
+          if (data['extraImages'] != null) {
+            if (data['extraImages'] is List) {
+              extraImages = (data['extraImages'] as List)
+                  .map((e) => e.toString())
+                  .where((url) => url.startsWith('http'))
+                  .toList();
+            } else if (data['extraImages'] is Map) {
+              extraImages = (data['extraImages'] as Map)
+                  .values
+                  .map((e) => e.toString())
+                  .where((url) => url.startsWith('http'))
+                  .toList();
+            }
+          }
+          
+          final address = _safeString(data['address']) ?? '';
+          final phone = _safeString(data['phoneNumber']) ?? '';
+          final openHours = _safeString(data['openHours']) ?? '';
+          
+          // Price field - could be string with price info
+          final price = _safeString(data['price']) ?? '';
+          
+          // Rating - could be 'rating' or 'averageRating'
+          final rating = _safeDouble(data['rating']) ?? 
+                         _safeDouble(data['averageRating']) ?? 
+                         0.0;
+          
+          // Review count
+          final reviewCount = _safeInt(data['reviewCount']) ?? 0;
+          
+          // Hashtag (for categories/tags)
+          final hashtag = _safeString(data['hashtag']) ?? '';
+          
+          // Website
+          final website = _safeString(data['website']) ?? '';
+
+          // Determine main image: first from extraImages, or empty
+          final mainImage = extraImages.isNotEmpty ? extraImages.first : 'https://via.placeholder.com/400x300';
+
+          // Price level conversion
+          final priceLevel = _priceLevelFromString(price);
+
+          // Extract category from name, hashtag, or description
+          String itemCategory = _extractCategory(name, hashtag, details);
+          if (itemCategory.isNotEmpty && itemCategory != 'Other') {
+            categories.add(itemCategory);
+          }
+
+          // Check if open now
+          final isOpen = _isOpenNow(openHours);
+
+          items.add(AttractionItem(
+            id: doc.id,
+            title: name,
+            imageUrl: mainImage,
+            additionalImages: extraImages,
+            description: details,
+            phone: phone,
+            website: website,
+            openingHours: openHours,
+            rating: rating,
+            priceLevel: priceLevel,
+            popularity: hashtag,
+            cuisine: '', // You might need to map this from somewhere else
+            location: address,
+            distance: '0.5 mi', // Default or calculate later
+            actions: <String>['Explore'],
+            isOpen: isOpen, // Now dynamically calculated
+            reviewCount: reviewCount,
+            address: address,
+            latitude: lat,
+            longitude: lng,
+            city: widget.cityName,
+          ));
+        } catch (e) {
+          print('Error parsing document ${doc.id}: $e');
         }
-        
-        final address = _safeString(data['address']) ?? '';
-        final phone = _safeString(data['phoneNumber']) ?? '';
-        final openHours = _safeString(data['openHours']) ?? '';
-        
-        // Price field - could be string with price info
-        final price = _safeString(data['price']) ?? '';
-        
-        // Rating - could be 'rating' or 'averageRating'
-        final rating = _safeDouble(data['rating']) ?? 
-                       _safeDouble(data['averageRating']) ?? 
-                       0.0;
-        
-        // Review count
-        final reviewCount = _safeInt(data['reviewCount']) ?? 0;
-        
-        // Hashtag (for categories/tags)
-        final hashtag = _safeString(data['hashtag']) ?? '';
-        
-        // Website
-        final website = _safeString(data['website']) ?? '';
+      }
 
-        // Determine main image: first from extraImages, or empty
-        final mainImage = extraImages.isNotEmpty ? extraImages.first : 'https://via.placeholder.com/400x300';
+      setState(() {
+        _items = items;
+        _availableCategories = categories.toList()..sort();
+        _isLoading = false;
+      });
+    } catch (e) {
+      print('Fatal error in _fetchData: $e');
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
+  }
 
-        // Price level conversion
-        final priceLevel = _priceLevelFromString(price);
+  // Extract category from name, hashtag, or description
+  String _extractCategory(String name, String hashtag, String description) {
+    // Common categories for attractions
+    final Map<String, List<String>> categoryKeywords = {
+      'Museum': ['museum', 'gallery', 'exhibit', 'art'],
+      'Park': ['park', 'garden', 'nature', 'outdoor'],
+      'Landmark': ['landmark', 'monument', 'historic', 'building', 'tower', 'bridge'],
+      'Beach': ['beach', 'coast', 'shore', 'ocean'],
+      'Restaurant': ['restaurant', 'cafe', 'dining', 'eatery', 'grill'],
+      'Hotel': ['hotel', 'resort', 'inn', 'lodge'],
+      'Concert': ['concert', 'music', 'live', 'performance'],
+      'Festival': ['festival', 'fair', 'celebration'],
+      'Shopping': ['mall', 'shop', 'store', 'market', 'boutique'],
+      'Religious': ['church', 'temple', 'mosque', 'cathedral', 'shrine'],
+      'Sports': ['stadium', 'arena', 'sport', 'gym', 'field'],
+    };
 
-        items.add(AttractionItem(
-          id: doc.id,
-          title: name,
-          imageUrl: mainImage,
-          additionalImages: extraImages,
-          description: details,
-          phone: phone,
-          website: website,
-          openingHours: openHours,
-          rating: rating,
-          priceLevel: priceLevel,
-          popularity: hashtag,
-          cuisine: '', // You might need to map this from somewhere else
-          location: address,
-          distance: '0.5 mi', // Default or calculate later
-          actions: <String>['Explore'],
-          isOpen: true, // Default or determine from openHours
-          reviewCount: reviewCount,
-          address: address,
-          latitude: lat,
-          longitude: lng,
-          city: widget.cityName,
-        ));
-      } catch (e) {
-        print('Error parsing document ${doc.id}: $e');
+    final lowerName = name.toLowerCase();
+    final lowerHashtag = hashtag.toLowerCase();
+    final lowerDesc = description.toLowerCase();
+
+    for (var entry in categoryKeywords.entries) {
+      for (var keyword in entry.value) {
+        if (lowerName.contains(keyword) || 
+            lowerHashtag.contains(keyword) || 
+            lowerDesc.contains(keyword)) {
+          return entry.key;
+        }
       }
     }
-
-    setState(() {
-      _items = items;
-      _isLoading = false;
-    });
-  } catch (e) {
-    print('Fatal error in _fetchData: $e');
-    setState(() {
-      _errorMessage = e.toString();
-      _isLoading = false;
-    });
+    return 'Other';
   }
-}
 
   // ---------- FILTER LOGIC ----------
   List<AttractionItem> get _filteredItems {
     return _items.where((item) {
-      if (_selectedRating != 'Any Rating') {
-        double minRating = double.parse(_selectedRating.replaceAll('+', ''));
+      // Category filter
+      if (_selectedCategoryFilter != 'All') {
+        if (!item.title.toLowerCase().contains(_selectedCategoryFilter.toLowerCase()) &&
+            !item.description.toLowerCase().contains(_selectedCategoryFilter.toLowerCase()) &&
+            !item.popularity.toLowerCase().contains(_selectedCategoryFilter.toLowerCase())) {
+          return false;
+        }
+      }
+
+      // Rating filter
+      if (_selectedRatingFilter != 'Any Rating') {
+        double minRating = double.parse(_selectedRatingFilter.replaceAll('+', ''));
         if (item.rating < minRating) return false;
       }
-      switch (widget.category) {
-        case 'Attractions':
-          if (_openNow && !item.isOpen) return false;
-          break;
-        case 'Restaurants':
-          if (_selectedCuisine != 'All Cuisines' && item.cuisine != _selectedCuisine) return false;
-          if (_selectedPrice != 'Any Price' && !_matchesPriceLevel(item.priceLevel, _selectedPrice)) return false;
-          break;
-        case 'Hotels':
-          if (_selectedPrice != 'Any Price' && !_matchesPriceLevel(item.priceLevel, _selectedPrice)) return false;
-          break;
-        case 'Events':
-          // No event-specific filters for now
-          break;
-      }
+
+      // Open now filter
+      if (_openNow && !item.isOpen) return false;
+
       return true;
     }).toList();
   }
 
-  bool _matchesPriceLevel(String priceLevel, String selected) {
-    if (selected == r'Budget ($)' && priceLevel == '\$') return true;
-    if (selected == r'Moderate ($$)' && priceLevel == '\$\$') return true;
-    if (selected == r'Luxury ($$$)' && priceLevel == '\$\$\$') return true;
-    if (selected == r'Ultra Luxury ($$$$)' && priceLevel == '\$\$\$\$') return true;
-    return false;
-  }
-
   void _resetFilters() {
     setState(() {
-      _selectedPrice = 'Any Price';
-      _selectedRating = 'Any Rating';
-      _selectedCategory = 'All Categories';
-      _selectedCuisine = 'All Cuisines';
-      _selectedEventType = 'All Types';
-      _selectedDate = 'Upcoming';
-      _selectedFreePaid = 'All';
-      _selectedDistance = 'Any Distance';
+      _selectedCategoryFilter = 'All';
+      _selectedRatingFilter = 'Any Rating';
       _openNow = false;
     });
   }
 
   // ---------- FILTER BUTTON BUILDERS ----------
   List<Widget> _buildFilterButtons() {
-    switch (widget.category) {
-      case 'Attractions':
-        return [
-          _buildDropdownButton(
-            label: _selectedCategory,
-            options: const ['All Categories', 'Museum', 'Park', 'Landmark', 'Beach'],
-            onSelected: (value) => setState(() => _selectedCategory = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedRating,
-            options: const ['Any Rating', '4.0+', '4.5+'],
-            onSelected: (value) => setState(() => _selectedRating = value!),
-          ),
-          _buildToggleButton(
-            label: 'Open Now',
-            value: _openNow,
-            onChanged: (value) => setState(() => _openNow = value),
-          ),
-        ];
-      case 'Restaurants':
-        return [
-          _buildDropdownButton(
-            label: _selectedCuisine,
-            options: const ['All Cuisines', 'Italian', 'Japanese', 'American', 'Steakhouse'],
-            onSelected: (value) => setState(() => _selectedCuisine = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedPrice,
-            options: const ['Any Price', r'Budget ($)', r'Moderate ($$)', r'Luxury ($$$)'],
-            onSelected: (value) => setState(() => _selectedPrice = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedRating,
-            options: const ['Any Rating', '4.0+', '4.5+'],
-            onSelected: (value) => setState(() => _selectedRating = value!),
-          ),
-        ];
-      case 'Hotels':
-        return [
-          _buildDropdownButton(
-            label: _selectedPrice,
-            options: const ['Any Price', r'Budget ($)', r'Moderate ($$)', r'Luxury ($$$)', r'Ultra Luxury ($$$$)'],
-            onSelected: (value) => setState(() => _selectedPrice = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedRating,
-            options: const ['Any Rating', '4.0+', '4.5+'],
-            onSelected: (value) => setState(() => _selectedRating = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedDistance,
-            options: const ['Any Distance', '<1 mi', '<2 mi', '<5 mi'],
-            onSelected: (value) => setState(() => _selectedDistance = value!),
-          ),
-        ];
-      case 'Events':
-        return [
-          _buildDropdownButton(
-            label: _selectedEventType,
-            options: const ['All Types', 'Concert', 'Festival', 'Conference'],
-            onSelected: (value) => setState(() => _selectedEventType = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedDate,
-            options: const ['Today', 'This Weekend', 'Upcoming'],
-            onSelected: (value) => setState(() => _selectedDate = value!),
-          ),
-          _buildDropdownButton(
-            label: _selectedFreePaid,
-            options: const ['All', 'Free', 'Paid'],
-            onSelected: (value) => setState(() => _selectedFreePaid = value!),
-          ),
-        ];
-      default:
-        return [];
-    }
+    // Rating options from 1 to 5
+    final ratingOptions = ['Any Rating'] + 
+        List.generate(5, (index) => '${index + 1}.0+').reversed.toList();
+
+    return [
+      // Category filter
+      _buildDropdownButton(
+        label: _selectedCategoryFilter,
+        options: _availableCategories,
+        onSelected: (value) => setState(() => _selectedCategoryFilter = value!),
+      ),
+      
+      // Open Now toggle
+      _buildToggleButton(
+        label: 'Open Now',
+        value: _openNow,
+        onChanged: (value) => setState(() => _openNow = value),
+      ),
+      
+      // Rating filter
+      _buildDropdownButton(
+        label: _selectedRatingFilter,
+        options: ratingOptions,
+        onSelected: (value) => setState(() => _selectedRatingFilter = value!),
+      ),
+    ];
   }
 
   Widget _buildDropdownButton({
@@ -606,7 +646,7 @@ Future<void> _fetchData() async {
                                   padding: const EdgeInsets.only(bottom: 16),
                                   child: _AttractionCard(
                                     item: item,
-                                    listingType: _getListingType(), // Pass the listing type
+                                    listingType: _getListingType(),
                                   ),
                                 );
                               },
@@ -636,15 +676,15 @@ Future<void> _fetchData() async {
 }
 
 // ------------------------------------------------------------
-// Attraction Card - Updated to accept listingType
+// Attraction Card - Updated with Explore button navigation
 // ------------------------------------------------------------
 class _AttractionCard extends StatefulWidget {
   final AttractionItem item;
-  final String listingType; // Add this
+  final String listingType;
 
   const _AttractionCard({
     required this.item,
-    required this.listingType, // Add this
+    required this.listingType,
   });
 
   @override
@@ -653,46 +693,51 @@ class _AttractionCard extends StatefulWidget {
 
 class _AttractionCardState extends State<_AttractionCard> {
   bool isFavorited = false;
+  
   String _getItemType(String listingType) {
-  switch (listingType) {
-    case 'attractions':
-      return 'attraction';
-    case 'dining':
-      return 'restaurant';
-    case 'hotels':
-      return 'hotel';
-    case 'events':
-      return 'event';
-    default:
-      return 'attraction';
+    switch (listingType) {
+      case 'attractions':
+        return 'attraction';
+      case 'dining':
+        return 'restaurant';
+      case 'hotels':
+        return 'hotel';
+      case 'events':
+        return 'event';
+      default:
+        return 'attraction';
+    }
   }
-}
+
+  // Method to navigate to detail screen
+  void _navigateToDetail() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => AttractionDetailScreen(
+          name: widget.item.title,
+          imageUrl: widget.item.imageUrl,
+          additionalImages: widget.item.additionalImages,
+          rating: widget.item.rating,
+          reviewCount: widget.item.reviewCount,
+          priceLevel: widget.item.priceLevel,
+          description: widget.item.description,
+          address: widget.item.address,
+          city: widget.item.city,
+          website: widget.item.website,
+          latitude: widget.item.latitude,
+          longitude: widget.item.longitude,
+          listingType: widget.listingType,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => AttractionDetailScreen(
-              name: item.title,
-              imageUrl: item.imageUrl,
-              additionalImages: item.additionalImages,
-              rating: item.rating,
-              reviewCount: item.reviewCount,
-              priceLevel: item.priceLevel,
-              description: item.description,
-              address: item.address,
-              city: item.city,
-              website: item.website,
-              latitude: item.latitude,
-              longitude: item.longitude,
-              listingType: widget.listingType, // Pass the correct listing type
-            ),
-          ),
-        );
-      },
+      onTap: _navigateToDetail, // Make entire card tappable
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -727,20 +772,20 @@ class _AttractionCardState extends State<_AttractionCard> {
                 ),
                 // Favorite heart
                 Positioned(
-                 top: 12,
-                 right: 12,
-                 child: FavoriteButton(
-                   itemId: widget.item.id,
-                   itemType: _getItemType(widget.listingType),
-                   name: widget.item.title,
-                   imageUrl: widget.item.imageUrl,
-                   cityName: widget.item.city,
-                   rating: widget.item.rating,
-                   priceLevel: widget.item.priceLevel,
-                   address: widget.item.address,
-                   size: 20,
-                 ),
-               ),
+                  top: 12,
+                  right: 12,
+                  child: FavoriteButton(
+                    itemId: widget.item.id,
+                    itemType: _getItemType(widget.listingType),
+                    name: widget.item.title,
+                    imageUrl: widget.item.imageUrl,
+                    cityName: widget.item.city,
+                    rating: widget.item.rating,
+                    priceLevel: widget.item.priceLevel,
+                    address: widget.item.address,
+                    size: 20,
+                  ),
+                ),
                 // Open/Closed badge
                 Positioned(
                   bottom: 12,
@@ -866,7 +911,7 @@ class _AttractionCardState extends State<_AttractionCard> {
                       SizedBox(
                         width: 100,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: _navigateToDetail, // Navigate on Explore button tap
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppTheme.primaryBlue,
                             foregroundColor: Colors.white,
@@ -896,10 +941,10 @@ class _AttractionCardState extends State<_AttractionCard> {
 }
 
 // ------------------------------------------------------------
-// Data Model - Added id field
+// Data Model
 // ------------------------------------------------------------
 class AttractionItem {
-  final String id; // Add this
+  final String id;
   final String title;
   final String imageUrl;
   final String description;
@@ -922,7 +967,7 @@ class AttractionItem {
   final List<String>? additionalImages;
 
   AttractionItem({
-    required this.id, // Add this
+    required this.id,
     required this.title,
     required this.imageUrl,
     required this.description,

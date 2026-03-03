@@ -1,4 +1,8 @@
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
+import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:city_guide_app/widgets/favorite_button.dart';
+import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -35,6 +39,18 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
 
   // NEW: detailed weather map
   Map<String, String> _weatherDetails = {};
+
+  // Add this gradient for image placeholders
+  final Gradient _imagePlaceholderGradient = const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFE0E0E0),
+      Color(0xFFF5F5F5),
+      Color(0xFFE0E0E0),
+    ],
+    stops: [0.0, 0.5, 1.0],
+  );
 
   @override
   void initState() {
@@ -178,6 +194,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
           ];
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: const Color.fromARGB(56, 24, 5, 5),
       body: CustomScrollView(
         slivers: [
@@ -207,36 +224,44 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                   onPressed: () {},
                 ),
               ),
-            // In CityDetailScreen, replace the favorite IconButton with:
-            Container(
-              margin: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: Colors.black26,
-                shape: BoxShape.circle,
+              // In CityDetailScreen, replace the favorite IconButton with:
+              Container(
+                margin: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
+                  color: Colors.black26,
+                  shape: BoxShape.circle,
+                ),
+                child: FavoriteButton(
+                  itemId: 'city_${widget.cityName}', // Create a unique ID
+                  itemType: 'city',
+                  name: widget.cityName,
+                  imageUrl: widget.heroImageUrl,
+                  cityName: widget.country,
+                  rating: _rating,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
-              child: FavoriteButton(
-                itemId: 'city_${widget.cityName}', // Create a unique ID
-                itemType: 'city',
-                name: widget.cityName,
-                imageUrl: widget.heroImageUrl,
-                cityName: widget.country,
-                rating: _rating,
-                size: 20,
-                color: Colors.white,
-              ),
-            ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               title: null,
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.network(
-                    widget.heroImageUrl,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: Colors.grey.shade300,
-                      child: const Icon(Icons.image_not_supported),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: _imagePlaceholderGradient,
+                    ),
+                    child: Image.network(
+                      widget.heroImageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Container(
+                        decoration: BoxDecoration(
+                          gradient: _imagePlaceholderGradient,
+                        ),
+                        child: const Icon(Icons.image_not_supported, color: Colors.grey),
+                      ),
+                      // REMOVED loadingBuilder with spinner
                     ),
                   ),
                   const DecoratedBox(
@@ -464,9 +489,20 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                                   margin: const EdgeInsets.only(right: 12),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    image: DecorationImage(
-                                      image: NetworkImage(gallery[index]),
+                                    gradient: _imagePlaceholderGradient,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      gallery[index],
                                       fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Container(
+                                        decoration: BoxDecoration(
+                                          gradient: _imagePlaceholderGradient,
+                                        ),
+                                        child: const Icon(Icons.broken_image, color: Colors.grey),
+                                      ),
+                                      // REMOVED loadingBuilder with spinner
                                     ),
                                   ),
                                 ),
@@ -514,7 +550,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                                   const Text(
                                     'Explore City',
                                     style: TextStyle(
-                                        fontSize: 18, color: Colors.white),
+                                        fontSize: 18, color: Color.fromRGBO(255, 255, 255, 1)),
                                   ),
                                 ],
                               ),
@@ -531,6 +567,33 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
           ),
         ],
       ),
+
+      //   bottomNavigationBar: FloatingBottomNavBar(
+      //   currentIndex: -1,
+      //   onTap: (index) {
+        
+      //     if (index == 3) {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (_) => const ProfileScreen()),
+      //       );}
+      //       if (index == 2) {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+      //       );}
+      //     if (index == 1) {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+      //       );
+      //     }
+      //     if (index == 0) {
+      //       // Already on home, maybe do nothing or scroll to top
+      //     }
+      //   },
+      // ),
+    
     );
   }
 
@@ -552,9 +615,21 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                     panEnabled: true,
                     minScale: 0.5,
                     maxScale: 4.0,
-                    child: Image.network(
-                      images[index],
-                      fit: BoxFit.contain,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: _imagePlaceholderGradient,
+                      ),
+                      child: Image.network(
+                        images[index],
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) => Container(
+                          decoration: BoxDecoration(
+                            gradient: _imagePlaceholderGradient,
+                          ),
+                          child: const Icon(Icons.broken_image, color: Colors.white70),
+                        ),
+                        // REMOVED loadingBuilder with spinner
+                      ),
                     ),
                   );
                 },

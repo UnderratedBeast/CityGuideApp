@@ -7,6 +7,11 @@ import 'package:intl/intl.dart';
 import '../../utils/theme.dart';
 import '../attraction/AttractionDetailScreen.dart';
 import '../CityguideHome/CityDetailScreen.dart';
+import '../../widgets/floating_bottom_nav_bar.dart';
+import '../profile/profile_screen.dart';
+import '../favorites/FavoritesScreen.dart';
+import '../map/AllPlacesMapScreen.dart';
+
 
 // ── Design tokens using AppTheme ────────────────────────────────────────────
 class _C {
@@ -72,7 +77,6 @@ class _NotificationsScreenState extends State<NotificationsScreen>
   // State
   String _filter = 'all';
   Set<String> _readIds = {};
-  Set<String> _dismissedIds = {};
   bool _readReady = false;
 
   final _db = FirebaseFirestore.instance;
@@ -102,14 +106,8 @@ class _NotificationsScreenState extends State<NotificationsScreen>
 
     if (!mounted) return;
 
-    final dismissed = snap.docs
-        .where((d) => d.data()['dismissed'] == true)
-        .map((d) => d.id)
-        .toSet();
-
     setState(() {
       _readIds = snap.docs.map((d) => d.id).toSet();
-      _dismissedIds = dismissed;
       _readReady = true;
     });
   }
@@ -142,7 +140,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
     _snack('All notifications marked as read', icon: Icons.done_all_rounded);
   }
 
-  /// Dismiss (read + hide) a single notification
+  /// Dismiss a single notification
   Future<void> _dismiss(String id) async {
     setState(() => _readIds.add(id));
     await _db
@@ -172,90 +170,120 @@ class _NotificationsScreenState extends State<NotificationsScreen>
     ));
   }
 
-  /// Navigate to the appropriate detail screen
+  /// Navigate to the appropriate detail screen using data from the notification
   Future<void> _navigateToDetail(Map<String, dynamic> data) async {
-    final category = data['category'] as String? ?? 'attraction';
-    final listingId = data['listingId'] as String?;
-    final cityName = data['cityName'] as String? ?? '';
-    final title = data['title'] as String? ?? '';
-    final imageUrl = data['imageUrl'] as String? ?? '';
-    
-    if (category == 'city') {
-      // Navigate to city detail
+    try {
+      final category = data['category'] as String? ?? 'attraction';
+      final listingId = data['listingId'] as String?;
+      final cityId = data['cityId'] as String?; // CHANGED: from cityName to cityId
+      final title = data['title'] as String? ?? 'New Update';
+      final imageUrl = data['imageUrl'] as String? ?? '';
+      final address = data['address'] as String? ?? '';
+      final rating = (data['rating'] as num?)?.toDouble() ?? 0.0;
+      final priceLevel = data['priceLevel'] as String? ?? '';
+      
+      print('Navigating to: category=$category, listingId=$listingId, cityId=$cityId');
+      
+      if (category == 'city') {
+        // Navigate to city detail
+        // Get city name from cityId
+        final cityDoc = await _db.collection('cities').doc(cityId).get();
+        final cityName = cityDoc.data()?['name'] ?? cityId;
+        
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => CityDetailScreen(
+              cityName: cityName,
+              country: cityDoc.data()?['country'] ?? 'Nigeria',
+              heroImageUrl: imageUrl,
+            ),
+          ),
+        );
+        return;
+      }
+      
+      // For attractions, restaurants, hotels, events
+      final cat = _catFor(category);
+      
+      // If we don't have cityId or listing ID, we can't navigate
+      if (cityId == null || cityId.isEmpty || listingId == null || listingId.isEmpty) {
+        _snack('Cannot open details: missing information', icon: Icons.error);
+        return;
+      }
+      
+      // Get city name for display
+      final cityDoc = await _db.collection('cities').doc(cityId).get();
+      final cityName = cityDoc.data()?['name'] ?? cityId;
+      
+      // Try to find the document - first try by document ID
+      DocumentSnapshot doc;
+      try {
+        doc = await _db
+            .collection('cities')
+            .doc(cityId) // Use cityId directly
+            .collection(cat.collectionName)
+            .doc(listingId)
+            .get();
+      } catch (e) {
+        // If direct ID fails, try searching by name
+        print('Direct lookup failed, trying name search: $e');
+        final querySnapshot = await _db
+            .collection('cities')
+            .doc(cityId)
+            .collection(cat.collectionName)
+            .where('name', isEqualTo: listingId)
+            .limit(1)
+            .get();
+            
+        if (querySnapshot.docs.isEmpty) {
+          _snack('Listing not found', icon: Icons.error);
+          return;
+        }
+        doc = querySnapshot.docs.first;
+      }
+
+      if (!doc.exists) {
+        _snack('Listing not found', icon: Icons.error);
+        return;
+      }
+      
+      final docData = doc.data() as Map<String, dynamic>;
+      
+      // Extract coordinates from location map if available
+      double? lat, lng;
+      if (docData['location'] != null && docData['location'] is Map) {
+        final loc = docData['location'] as Map;
+        lat = (loc['latitude'] as num?)?.toDouble();
+        lng = (loc['longitude'] as num?)?.toDouble();
+      }
+      
+      // Navigate to the detail screen with all the data
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => CityDetailScreen(
-            cityName: title,
-            country: cityName,
-            heroImageUrl: imageUrl,
+          builder: (_) => AttractionDetailScreen(
+            name: docData['name'] ?? title,
+            imageUrl: docData['imageUrl'] ?? imageUrl,
+            rating: (docData['rating'] as num?)?.toDouble() ?? rating,
+            reviewCount: docData['reviewCount'] as int? ?? 0,
+            priceLevel: docData['priceLevel'] as String? ?? priceLevel ?? cat.label,
+            description: docData['details'] as String? ?? docData['description'] as String? ?? '',
+            address: docData['address'] as String? ?? address,
+            city: cityName, // Use the fetched city name
+            website: docData['website'] as String? ?? '',
+            latitude: lat,
+            longitude: lng,
+            additionalImages: docData['extraImages'] != null 
+                ? List<String>.from(docData['extraImages']) 
+                : null,
+            listingType: cat.collectionName,
           ),
         ),
       );
-    } else {
-      // Navigate to attraction/restaurant/hotel/event detail
-      final cat = _catFor(category);
-      
-      // First, get the city ID from the city name
-      try {
-        final cityQuery = await _db
-            .collection('cities')
-            .where('name', isEqualTo: cityName)
-            .limit(1)
-            .get();
-
-        if (cityQuery.docs.isEmpty) return;
-        
-        final cityId = cityQuery.docs.first.id;
-
-        // If we have a listing ID, try to get the full document
-        if (listingId != null) {
-          final doc = await _db
-              .collection('cities')
-              .doc(cityId)
-              .collection(cat.collectionName)
-              .doc(listingId)
-              .get();
-
-          if (doc.exists) {
-            final docData = doc.data() as Map<String, dynamic>;
-            
-            // Extract coordinates
-            double? lat, lng;
-            if (docData['location'] != null) {
-              final loc = docData['location'] as Map;
-              lat = loc['latitude']?.toDouble();
-              lng = loc['longitude']?.toDouble();
-            }
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => AttractionDetailScreen(
-                  name: docData['name'] ?? title,
-                  imageUrl: docData['imageUrl'] ?? imageUrl,
-                  rating: (docData['rating'] ?? 0.0).toDouble(),
-                  reviewCount: docData['reviewCount'] ?? 0,
-                  priceLevel: docData['priceLevel'] ?? cat.label,
-                  description: docData['details'] ?? docData['description'] ?? '',
-                  address: docData['address'] ?? '',
-                  city: cityName,
-                  website: docData['website'] ?? '',
-                  latitude: lat,
-                  longitude: lng,
-                  additionalImages: docData['extraImages'] != null 
-                      ? List<String>.from(docData['extraImages']) 
-                      : null,
-                  listingType: cat.collectionName,
-                ),
-              ),
-            );
-          }
-        }
-      } catch (e) {
-        print('Navigation error: $e');
-        _snack('Could not load details', icon: Icons.error);
-      }
+    } catch (e) {
+      print('Navigation error: $e');
+      _snack('Could not load details', icon: Icons.error);
     }
   }
 
@@ -265,6 +293,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
+          extendBody: true,
         backgroundColor: _C.bg,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -313,13 +342,29 @@ class _NotificationsScreenState extends State<NotificationsScreen>
               .orderBy('createdAt', descending: true)
               .snapshots(),
           builder: (ctx, snap) {
+            if (snap.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, color: Colors.red, size: 60),
+                    const SizedBox(height: 16),
+                    Text('Error: ${snap.error}'),
+                  ],
+                ),
+              );
+            }
+
             final allDocs = snap.data?.docs ?? [];
 
             // Filtered list
             final shown = _filter == 'all'
                 ? allDocs
                 : allDocs
-                    .where((d) => (d.data() as Map)['category'] == _filter)
+                    .where((d) {
+                      final data = d.data() as Map<String, dynamic>;
+                      return (data['category'] ?? '') == _filter;
+                    })
                     .toList();
 
             return FadeTransition(
@@ -345,20 +390,23 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                     SliverFillRemaining(child: _buildEmpty())
                   else
                     SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 48),
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 90),
                       sliver: SliverList(
                         delegate: SliverChildBuilderDelegate(
-                          (ctx, i) => _NotifCard(
-                            key: ValueKey(shown[i].id),
-                            docId: shown[i].id,
-                            data: shown[i].data() as Map<String, dynamic>,
-                            isRead: _readIds.contains(shown[i].id),
-                            index: i,
-                            onTap: () => _markRead(shown[i].id),
-                            onDismiss: () => _dismiss(shown[i].id),
-                            onSnack: _snack,
-                            onNavigate: () => _navigateToDetail(shown[i].data() as Map<String, dynamic>),
-                          ),
+                          (ctx, i) {
+                            final data = shown[i].data() as Map<String, dynamic>;
+                            return _NotifCard(
+                              key: ValueKey(shown[i].id),
+                              docId: shown[i].id,
+                              data: data,
+                              isRead: _readIds.contains(shown[i].id),
+                              index: i,
+                              onTap: () => _markRead(shown[i].id),
+                              onDismiss: () => _dismiss(shown[i].id),
+                              onSnack: _snack,
+                              onNavigate: () => _navigateToDetail(data),
+                            );
+                          },
                           childCount: shown.length,
                         ),
                       ),
@@ -368,6 +416,31 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             );
           },
         ),
+              bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: -1,
+        onTap: (index) {
+        
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );}
+            if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );}
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+            );
+          }
+          if (index == 0) {
+            // Already on home, maybe do nothing or scroll to top
+          }
+        },
+      ),
       ),
     );
   }
@@ -467,8 +540,8 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             const SizedBox(height: 10),
             Text(
               _filter == 'all'
-                  ? 'When the admin adds new attractions,\nrestaurants, events or hotels,\nyou\'ll see them here.'
-                  : 'The admin hasn\'t added any\n${cat.label.toLowerCase()} yet.\nCheck back soon!',
+                  ? 'When new attractions, restaurants,\nevents or hotels are added,\nyou\'ll see them here.'
+                  : 'No ${cat.label.toLowerCase()} notifications yet.\nCheck back soon!',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, color: Colors.grey.shade600, height: 1.6),
             ),
@@ -580,7 +653,7 @@ class _NotifCardState extends State<_NotifCard>
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: widget.isRead ? Colors.white : Colors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: widget.isRead

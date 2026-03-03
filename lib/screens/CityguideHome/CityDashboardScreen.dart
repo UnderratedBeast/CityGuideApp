@@ -1,5 +1,6 @@
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:city_guide_app/screens/CityguideHome/SearchScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,18 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
     Icons.hotel,
     Icons.event,
   ];
+
+  // Add this gradient for image placeholders
+  final Gradient _imagePlaceholderGradient = const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFE0E0E0),
+      Color(0xFFF5F5F5),
+      Color(0xFFE0E0E0),
+    ],
+    stops: [0.0, 0.5, 1.0],
+  );
 
   Future<void> _loadCurrentUser() async {
     try {
@@ -452,7 +465,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             latitude: lat,
             longitude: lng,
             additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
-            listingType: collectionName, // Pass the correct collection name
+            listingType: collectionName,
           ),
         ),
       );
@@ -500,7 +513,7 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
             latitude: lat,
             longitude: lng,
             additionalImages: data['extraImages'] != null ? List<String>.from(data['extraImages']) : null,
-            listingType: 'events', // Pass 'events' as the listing type
+            listingType: 'events',
           ),
         ),
       );
@@ -510,6 +523,23 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
         SnackBar(content: Text('Error loading event details: $e')),
       );
     }
+  }
+
+  // Add this method to navigate to map
+  void _navigateToMap() {
+    if (_cityId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('City data not ready yet')),
+      );
+      return;
+    }
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AllPlacesMapScreen(),
+      ),
+    );
   }
 
   @override
@@ -561,34 +591,36 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
         ),
         centerTitle: true,
         actions: [
-          // SEARCH ICON instead of notification
+          // SEARCH ICON - REDUCED SIZE
           Container(
             margin: const EdgeInsets.only(right: 8),
+            width: 36,
+            height: 36,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: Colors.grey.shade300, width: 1.5),
             ),
             child: IconButton(
-              icon: Icon(Icons.search, color: Colors.grey.shade800),
-// In CityDashboardScreen, update the search icon onPressed:
-onPressed: () {
-  if (_cityId == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('City data still loading...')),
-    );
-    return;
-  }
-  
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => SearchScreen(
-        cityName: widget.cityName,
-        cityId: _cityId!,
-      ),
-    ),
-  );
-},
+              padding: EdgeInsets.zero,
+              icon: Icon(Icons.search, color: Colors.grey.shade800, size: 20),
+              onPressed: () {
+                if (_cityId == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('City data still loading...')),
+                  );
+                  return;
+                }
+                
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchScreen(
+                      cityName: widget.cityName,
+                      cityId: _cityId!,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
@@ -742,7 +774,7 @@ onPressed: () {
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: _navigateToMap,
                             child: Text(
                               'View Map',
                               style: TextStyle(color: AppTheme.primaryBlue),
@@ -766,21 +798,9 @@ onPressed: () {
 
                       const SizedBox(height: 24),
                       // Upcoming Events
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Upcoming Events',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Calendar',
-                              style: TextStyle(color: AppTheme.primaryBlue),
-                            ),
-                          ),
-                        ],
+                      const Text(
+                        'Upcoming Events',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
 
                       const SizedBox(height: 16),
@@ -847,15 +867,25 @@ onPressed: () {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  item.imageUrl,
+                child: Container(
                   height: 250,
                   width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container(
+                  decoration: BoxDecoration(
+                    gradient: _imagePlaceholderGradient,
+                  ),
+                  child: Image.network(
+                    item.imageUrl,
                     height: 250,
-                    color: Colors.grey.shade300,
-                    child: const Icon(Icons.broken_image),
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        gradient: _imagePlaceholderGradient,
+                      ),
+                      child: const Icon(Icons.broken_image, color: Colors.grey),
+                    ),
+                    // REMOVED loadingBuilder with spinner
                   ),
                 ),
               ),
@@ -928,16 +958,26 @@ onPressed: () {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.network(
-            item.imageUrl,
+          child: Container(
             width: 80,
             height: 80,
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
+            decoration: BoxDecoration(
+              gradient: _imagePlaceholderGradient,
+            ),
+            child: Image.network(
+              item.imageUrl,
               width: 80,
               height: 80,
-              color: Colors.grey.shade300,
-              child: const Icon(Icons.broken_image),
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  gradient: _imagePlaceholderGradient,
+                ),
+                child: const Icon(Icons.broken_image, color: Colors.grey),
+              ),
+              // REMOVED loadingBuilder with spinner
             ),
           ),
         ),

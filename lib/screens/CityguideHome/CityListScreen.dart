@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/CityguideHome/CityDetailScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../utils/theme.dart';
 import '../../widgets/floating_bottom_nav_bar.dart';
 
@@ -59,7 +60,6 @@ class _CityListScreenState extends State<CityListScreen> {
     });
 
     try {
-      // Replace "cities" with your actual collection name
       final QuerySnapshot snapshot =
           await FirebaseFirestore.instance.collection('cities').get();
 
@@ -85,6 +85,47 @@ class _CityListScreenState extends State<CityListScreen> {
     }
   }
 
+  /// Method to mark notifications as read when opening the screen
+  Future<void> _markNotificationsAsRead() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    try {
+      // Get all unread notifications for this user
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('notifications')
+          .where('userId', isEqualTo: user.uid)
+          .where('isRead', isEqualTo: false)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Mark each as read in a batch
+        final batch = FirebaseFirestore.instance.batch();
+        for (var doc in querySnapshot.docs) {
+          batch.update(doc.reference, {'isRead': true});
+        }
+        await batch.commit();
+        print('Marked ${querySnapshot.docs.length} notifications as read');
+      }
+    } catch (e) {
+      print('Error marking notifications as read: $e');
+    }
+  }
+
+  // Method to handle notification tap and remove dot
+  void _handleNotificationTap() async {
+    // Mark notifications as read
+    await _markNotificationsAsRead();
+    
+    // Navigate to notifications screen
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NotificationsScreen(),
+      ),
+    );
+  }
+
   List<City> get filteredCities {
     return _cities.where((city) {
       if (selectedZone != 'All' && city.zone != selectedZone) return false;
@@ -98,6 +139,8 @@ class _CityListScreenState extends State<CityListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.white,
@@ -115,7 +158,7 @@ class _CityListScreenState extends State<CityListScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start, // Align items to the top
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Title - Takes remaining space
                   const Expanded(
@@ -141,30 +184,79 @@ class _CityListScreenState extends State<CityListScreen> {
                       ],
                     ),
                   ),
-                  // Notification Icon - Aligned to top of the row
-                  Container(
-                    margin: const EdgeInsets.only(top: 4), // Slight adjustment to align with text
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey.shade300, width: 1.5),
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NotificationsScreen(),
-                          ),
+                  // Notification Icon with Red Dot - Using StreamBuilder for real-time updates
+                  if (user != null)
+                    StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('notifications')
+                          .where('userId', isEqualTo: user.uid)
+                          .where('isRead', isEqualTo: false)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        bool hasUnread = false;
+                        
+                        if (snapshot.hasData) {
+                          hasUnread = snapshot.data!.docs.isNotEmpty;
+                        }
+                        
+                        return Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 4),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                              ),
+                              child: IconButton(
+                                icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
+                                onPressed: _handleNotificationTap,
+                              ),
+                            ),
+                            // Red notification dot
+                            if (hasUnread)
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                child: Container(
+                                  width: 12,
+                                  height: 12,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.red,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              ),
+                          ],
                         );
                       },
+                    )
+                  else
+                    // If user is not logged in, show notification icon without dot
+                    Container(
+                      margin: const EdgeInsets.only(top: 4),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.notifications_none, color: Colors.grey.shade800),
+                        onPressed: () {
+                          // Show login prompt or just navigate
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NotificationsScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
 
-            // Search bar
+            // Search bar - REMOVED FILTER ICON
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Container(
@@ -179,10 +271,6 @@ class _CityListScreenState extends State<CityListScreen> {
                     hintText: 'Where to next?',
                     hintStyle: TextStyle(color: Colors.grey.shade500),
                     prefixIcon: Icon(Icons.search, color: Colors.grey.shade600),
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.tune, color: Colors.grey.shade600),
-                      onPressed: () {},
-                    ),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(vertical: 16),
                   ),
@@ -345,12 +433,14 @@ class _CityListScreenState extends State<CityListScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
-            );}
-            if (index == 2) {
+            );
+          }
+          if (index == 2) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const FavoritesScreen()),
-            );}
+            );
+          }
           if (index == 1) {
             Navigator.push(
               context,
@@ -406,7 +496,7 @@ class FilterButton extends StatelessWidget {
   }
 }
 
-// City model (unchanged)
+// City model
 class City {
   final String name;
   final String zone;
