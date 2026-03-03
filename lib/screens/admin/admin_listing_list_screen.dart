@@ -671,52 +671,53 @@ class _AdminListingTabbedScreenState
   // ================= BUILD =================
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Admin Listings - ${widget.cityId}',
-          style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w600),
-        ),
-        bottom: TabBar(
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+
+    body: Column(
+      children: [
+        TabBar(
           controller: _tabController,
+          // isScrollable: true, // makes "Attractions" fully visible
           indicatorColor: Colors.blue,
           labelColor: Colors.blue,
           unselectedLabelColor: Colors.grey,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 16),
           tabs: categories
               .map((e) =>
                   Tab(text: e[0].toUpperCase() + e.substring(1)))
               .toList(),
         ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children:
-            categories.map((c) => _buildListingList(c)).toList(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        child: const Icon(Icons.add),
-        onPressed: () {
-          final currentCategory =
-              categories[_tabController.index];
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => AdminListingFormScreen(
-                cityId: widget.cityId,
-                collectionName: currentCategory,
-              ),
+
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children:
+                categories.map((c) => _buildListingList(c)).toList(),
+          ),
+        ),
+      ],
+    ),
+
+    floatingActionButton: FloatingActionButton(
+      backgroundColor: Colors.blue,
+      child: const Icon(Icons.add),
+      onPressed: () {
+        final currentCategory =
+            categories[_tabController.index];
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AdminListingFormScreen(
+              cityId: widget.cityId,
+              collectionName: currentCategory,
             ),
-          );
-        },
-      ),
-    );
-  }
+          ),
+        );
+      },
+    ),
+  );
 }
+    }
