@@ -524,27 +524,49 @@ class _AdminListingTabbedScreenState
                     Row(
                       children: [
                         Expanded(
-                          child: imageUrl != null &&
-                                  imageUrl.isNotEmpty
-                              ? ClipRRect(
-                                  borderRadius:
-                                      const BorderRadius.only(
-                                          topLeft:
-                                              Radius.circular(20)),
-                                  child: Image.network(
-                                    imageUrl,
-                                    height: 140,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              : Container(
-                                  height: 140,
-                                  color:
-                                      Colors.blue.withOpacity(0.08),
-                                  child: const Icon(Icons.image,
-                                      size: 40,
-                                      color: Colors.blue),
-                                ),
+                          child: imageUrl != null && imageUrl.isNotEmpty
+    ? ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20)),
+        child: Image.network(
+          imageUrl,
+          height: 140,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              height: 140,
+              color: Colors.grey.withOpacity(0.08),
+              child: const Icon(
+                Icons.broken_image,
+                size: 40,
+                color: Colors.grey,
+              ),
+            );
+          },
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Container(
+              height: 140,
+              color: Colors.blue.withOpacity(0.08),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                  strokeWidth: 2,
+                ),
+              ),
+            );
+          },
+        ),
+      )
+    : Container(
+        height: 140,
+        color: Colors.blue.withOpacity(0.08),
+        child: const Icon(
+          Icons.image,
+          size: 40,
+          color: Colors.blue,
+        ),
+      ),
                         ),
                         Expanded(
                           child: Padding(
@@ -671,52 +693,53 @@ class _AdminListingTabbedScreenState
   // ================= BUILD =================
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Admin Listings - ${widget.cityId}',
-          style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w600),
-        ),
-        bottom: TabBar(
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+
+    body: Column(
+      children: [
+        TabBar(
           controller: _tabController,
+          // isScrollable: true, // makes "Attractions" fully visible
           indicatorColor: Colors.blue,
           labelColor: Colors.blue,
           unselectedLabelColor: Colors.grey,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 16),
           tabs: categories
               .map((e) =>
                   Tab(text: e[0].toUpperCase() + e.substring(1)))
               .toList(),
         ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children:
-            categories.map((c) => _buildListingList(c)).toList(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        child: const Icon(Icons.add),
-        onPressed: () {
-          final currentCategory =
-              categories[_tabController.index];
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => AdminListingFormScreen(
-                cityId: widget.cityId,
-                collectionName: currentCategory,
-              ),
+
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children:
+                categories.map((c) => _buildListingList(c)).toList(),
+          ),
+        ),
+      ],
+    ),
+
+    floatingActionButton: FloatingActionButton(
+      backgroundColor: Colors.blue,
+      child: const Icon(Icons.add),
+      onPressed: () {
+        final currentCategory =
+            categories[_tabController.index];
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AdminListingFormScreen(
+              cityId: widget.cityId,
+              collectionName: currentCategory,
             ),
-          );
-        },
-      ),
-    );
-  }
+          ),
+        );
+      },
+    ),
+  );
 }
+    }

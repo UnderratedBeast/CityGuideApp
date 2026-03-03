@@ -179,34 +179,50 @@ class _AdminListingFormScreenState
     extends State<AdminListingFormScreen> {
 
   final _formKey = GlobalKey<FormState>();
-
   late CollectionReference listingsRef;
 
-  late TextEditingController _name;
-  late TextEditingController _description;
-  late TextEditingController _imageUrl;
+  // Controllers
+final TextEditingController _name = TextEditingController();
+final TextEditingController _description = TextEditingController();
+final TextEditingController _address = TextEditingController();
+final TextEditingController _website = TextEditingController();
+final TextEditingController _imageUrl = TextEditingController();
+final TextEditingController _additionalImages = TextEditingController();
+final TextEditingController _priceLevel = TextEditingController();
+final TextEditingController _rating = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
+void initState() {
+  super.initState();
 
-    listingsRef = FirebaseFirestore.instance
-        .collection('cities')
-        .doc(widget.cityId)
-        .collection(widget.collectionName);
+  listingsRef = FirebaseFirestore.instance
+      .collection('cities')
+      .doc(widget.cityId)
+      .collection(widget.collectionName);
 
-    final d = widget.existingData ?? {};
+  final d = widget.existingData ?? {};
 
-    _name = TextEditingController(text: d['name'] ?? '');
-    _description = TextEditingController(text: d['description'] ?? '');
-    _imageUrl = TextEditingController(text: d['imageUrl'] ?? '');
-  }
+  _name.text = d['name'] ?? '';
+  _description.text = d['description'] ?? '';
+  _address.text = d['address'] ?? '';
+  _website.text = d['website'] ?? '';
+  _imageUrl.text = d['imageUrl'] ?? '';
+  _additionalImages.text =
+      (d['additionalImages'] as List<dynamic>?)?.join(', ') ?? '';
+  _priceLevel.text = d['priceLevel']?.toString() ?? '0';
+  _rating.text = d['rating']?.toString() ?? '0';
+}
 
   @override
   void dispose() {
     _name.dispose();
     _description.dispose();
+    _address.dispose();
+    _website.dispose();
     _imageUrl.dispose();
+    _additionalImages.dispose();
+    _priceLevel.dispose();
+    _rating.dispose();
     super.dispose();
   }
 
@@ -216,24 +232,35 @@ class _AdminListingFormScreenState
     final data = {
       'name': _name.text.trim(),
       'description': _description.text.trim(),
+      'address': _address.text.trim(),
+      'website': _website.text.trim(),
       'imageUrl': _imageUrl.text.trim(),
+      'additionalImages': _additionalImages.text
+          .split(',')
+          .map((e) => e.trim())
+          .where((e) => e.isNotEmpty)
+          .toList(),
+      'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
+      'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
       'updatedAt': FieldValue.serverTimestamp(),
     };
 
     try {
       if (widget.listingId != null) {
+        // UPDATE
         await listingsRef.doc(widget.listingId).update(data);
       } else {
+        // CREATE
         data['createdAt'] = FieldValue.serverTimestamp();
         final doc = await listingsRef.add(data);
 
-        // 🔥 Log Activity
-  Helper.logActivity(
-    type: 'listing',
-    title: 'New ${widget.collectionName} added',
-    body: '${_name.text.trim()} was created',
-    refId: doc.id,
-  );
+        // Log Activity
+        Helper.logActivity(
+          type: 'listing',
+          title: 'New ${widget.collectionName} added',
+          body: '${_name.text.trim()} was created',
+          refId: doc.id,
+        );
 
         await _sendNotification(doc.id);
       }
@@ -297,7 +324,7 @@ class _AdminListingFormScreenState
       appBar: AppBar(
         title: Text(isEdit ? 'Edit Listing' : 'Add Listing'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
@@ -305,12 +332,31 @@ class _AdminListingFormScreenState
             children: [
               _field(_name, 'Name'),
               _field(_description, 'Description', maxLines: 3),
-              _field(_imageUrl, 'Image URL'),
+              _field(_address, 'Address'),
+              _field(_website, 'Website'),
+              _field(_imageUrl, 'Main Image URL'),
+              _field(_additionalImages,
+                  'Additional Image URLs (comma separated)'),
+              _field(_priceLevel, 'Price Level',
+                  inputType: TextInputType.number),
+              _field(_rating, 'Rating',
+                  inputType: TextInputType.number),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _save,
-                child: Text(isEdit ? 'Update' : 'Create'),
-              )
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color(0xFF1565C0),
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.symmetric(vertical: 14),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+  onPressed: _save,
+  child: Text(
+    isEdit ? 'Update Listing' : 'Create Listing',
+    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  ),
+),
             ],
           ),
         ),
@@ -318,19 +364,48 @@ class _AdminListingFormScreenState
     );
   }
 
-  Widget _field(TextEditingController c, String label,
-      {int maxLines = 1}) {
+  Widget _field(
+    TextEditingController controller,
+    String label, {
+    int maxLines = 1,
+    TextInputType inputType = TextInputType.text,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
-        controller: c,
+        controller: controller,
+        keyboardType: inputType,
         maxLines: maxLines,
         validator: (v) =>
             v == null || v.isEmpty ? 'Required' : null,
         decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-        ),
+  labelText: label,
+  filled: true,
+  fillColor: const Color(0xFFF5F9FF), // very light blue background
+
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+  ),
+
+  enabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+    borderSide: const BorderSide(
+      color: Color(0xFFBBDEFB), // light blue border
+    ),
+  ),
+
+  focusedBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+    borderSide: const BorderSide(
+      color: Color(0xFF1565C0), // strong blue when focused
+      width: 2,
+    ),
+  ),
+
+  labelStyle: const TextStyle(
+    color: Color(0xFF1565C0),
+  ),
+),
       ),
     );
   }
