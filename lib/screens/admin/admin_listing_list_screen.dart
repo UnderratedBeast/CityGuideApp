@@ -524,27 +524,49 @@ class _AdminListingTabbedScreenState
                     Row(
                       children: [
                         Expanded(
-                          child: imageUrl != null &&
-                                  imageUrl.isNotEmpty
-                              ? ClipRRect(
-                                  borderRadius:
-                                      const BorderRadius.only(
-                                          topLeft:
-                                              Radius.circular(20)),
-                                  child: Image.network(
-                                    imageUrl,
-                                    height: 140,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              : Container(
-                                  height: 140,
-                                  color:
-                                      Colors.blue.withOpacity(0.08),
-                                  child: const Icon(Icons.image,
-                                      size: 40,
-                                      color: Colors.blue),
-                                ),
+                          child: imageUrl != null && imageUrl.isNotEmpty
+    ? ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20)),
+        child: Image.network(
+          imageUrl,
+          height: 140,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              height: 140,
+              color: Colors.grey.withOpacity(0.08),
+              child: const Icon(
+                Icons.broken_image,
+                size: 40,
+                color: Colors.grey,
+              ),
+            );
+          },
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Container(
+              height: 140,
+              color: Colors.blue.withOpacity(0.08),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                  strokeWidth: 2,
+                ),
+              ),
+            );
+          },
+        ),
+      )
+    : Container(
+        height: 140,
+        color: Colors.blue.withOpacity(0.08),
+        child: const Icon(
+          Icons.image,
+          size: 40,
+          color: Colors.blue,
+        ),
+      ),
                         ),
                         Expanded(
                           child: Padding(
