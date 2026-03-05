@@ -1,4 +1,3 @@
-// lib/models/review_model.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReviewModel {
@@ -15,6 +14,8 @@ class ReviewModel {
   final String status;
   final String? adminId;
   final DateTime? adminReviewedAt;
+  final int likes;                // new field
+  final List<String> likedBy;     // new field
 
   ReviewModel({
     this.id,
@@ -30,6 +31,8 @@ class ReviewModel {
     required this.status,
     this.adminId,
     this.adminReviewedAt,
+    this.likes = 0,                // default
+    this.likedBy = const [],       // default
   });
 
   // Convert to JSON for Firestore
@@ -51,6 +54,8 @@ class ReviewModel {
       'adminReviewedAt': adminReviewedAt != null 
           ? Timestamp.fromDate(adminReviewedAt!) 
           : null,
+      'likes': likes,
+      'likedBy': likedBy,
     };
   }
 
@@ -70,6 +75,8 @@ class ReviewModel {
       status: map['status'] ?? 'pending',
       adminId: map['adminId'],
       adminReviewedAt: (map['adminReviewedAt'] as Timestamp?)?.toDate(),
+      likes: map['likes'] ?? 0,
+      likedBy: List<String>.from(map['likedBy'] ?? []),
     );
   }
 }

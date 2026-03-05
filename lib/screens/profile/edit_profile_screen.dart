@@ -2,14 +2,79 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../utils/theme.dart';
+import '../../utils/routes.dart';
+import '../../widgets/floating_bottom_nav_bar.dart';
+import '../CityguideHome/CityListScreen.dart';
+import '../favorites/FavoritesScreen.dart';
+import '../map/AllPlacesMapScreen.dart';
+
+// ── Design Tokens (matching profile screen) ──────────────────────────────────
+class _C {
+  static const bg       = Color(0xFFEFF6FF);
+  static const navy     = Color(0xFF0C2340);
+  static const blue     = AppTheme.primaryBlue;
+  static const blueAlt  = Color(0xFF3B82F6);
+  static const lightB   = Color(0xFF93C5FD);
+  static const white    = Color(0xFFFFFFFF);
+  static const glass    = Color(0xE6FFFFFF);
+  static const textMid  = Color(0xFF4A6580);
+  static const error    = Color(0xFFDC2626);
+}
+
+// ── Shared Glass Card (reused from profile) ───────────────────────────────────
+class ProfileGlassCard extends StatelessWidget {
+  final Widget child;
+  final EdgeInsets padding;
+  final Color? borderColor;
+
+  const ProfileGlassCard({
+    super.key,
+    required this.child,
+    this.padding = const EdgeInsets.all(22),
+    this.borderColor,
+  });
+
+  @override
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(26),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+          child: Container(
+            width: double.infinity,
+            padding: padding,
+            decoration: BoxDecoration(
+              color: _C.glass,
+              borderRadius: BorderRadius.circular(26),
+              border: Border.all(
+                color: borderColor ?? _C.blue.withOpacity(0.14),
+                width: 1.4,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: _C.blue.withOpacity(0.08),
+                  blurRadius: 28,
+                  spreadRadius: -4,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: child,
+          ),
+        ),
+      );
+}
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -34,9 +99,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   final String _uid = FirebaseAuth.instance.currentUser!.uid;
 
-  // ─────────────────────────────────────────────────────────────
-  // INIT
-  // ─────────────────────────────────────────────────────────────
+  // For bottom nav
+  int _selectedNavIndex = 3; // Profile tab
+
   @override
   void initState() {
     super.initState();
@@ -52,9 +117,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.dispose();
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // LOAD PROFILE
-  // ─────────────────────────────────────────────────────────────
   Future<void> _loadProfile() async {
     final doc =
         await FirebaseFirestore.instance.collection("users").doc(_uid).get();
@@ -71,9 +133,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     });
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // PICK IMAGE
-  // ─────────────────────────────────────────────────────────────
   Future<void> _pickImage(ImageSource source) async {
     Navigator.pop(context);
 
@@ -90,9 +149,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // COMPRESS IMAGE
-  // ─────────────────────────────────────────────────────────────
   Future<File?> _compressImage(File file) async {
     final dir = await getTemporaryDirectory();
     final targetPath =
@@ -109,13 +165,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return result == null ? null : File(result.path);
   }
 
-  // UPLOAD TO CLOUDINARY
- 
   Future<String?> _uploadToCloudinary() async {
     if (_pickedFile == null) return _photoUrl;
 
     const cloudName = "dgideyulk";
-    const uploadPreset = "CityGuideApp"; 
+    const uploadPreset = "CityGuideApp";
 
     final compressed = await _compressImage(_pickedFile!);
     if (compressed == null) return null;
@@ -143,9 +197,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return null;
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // SAVE PROFILE
-  // ─────────────────────────────────────────────────────────────
   Future<void> _saveProfile() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -182,50 +233,66 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // UI
-  // ─────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F6FF),
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          "Edit Profile",
-          style: TextStyle(fontWeight: FontWeight.w700),
-        ),
-        centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: _saving ? null : _saveProfile,
-            child: Text(
-              "Save",
-              style: TextStyle(
-                color: _saving ? Colors.white54 : Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ],
+      backgroundColor: _C.bg, // ← Changed from solid blue to light sky
+      extendBody: true,
+appBar: AppBar(
+  elevation: 0,
+  systemOverlayStyle: SystemUiOverlayStyle.light,
+  backgroundColor: Colors.transparent,
+  flexibleSpace: Container(
+    decoration: const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [_C.navy, Color(0xFF1A56CF), _C.blueAlt],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       ),
+    ),
+  ),
+  leading: IconButton(
+    icon: const Icon(
+      Icons.arrow_back_ios_new_rounded,
+      color: _C.white,
+      size: 20,
+    ),
+    onPressed: () => Navigator.pop(context),
+  ),
+  title: const Text(
+    "Edit Profile",
+    style: TextStyle(
+      color: _C.white,
+      fontWeight: FontWeight.w600,
+      fontSize: 18,
+    ),
+  ),
+  centerTitle: true,
+  actions: [
+    TextButton(
+      onPressed: _saving ? null : _saveProfile,
+      child: Text(
+        "Save",
+        style: TextStyle(
+          color: _saving ? Colors.white54 : _C.white,
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        ),
+      ),
+    ),
+  ],
+),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 100), // space for bottom nav
         child: Column(
           children: [
-            // ───── HEADER ─────
+            // ───── HEADER (gradient with avatar) ─────
             Container(
-              height: 280,
+              height: 220,
               width: double.infinity,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFF0C3FB8), Color(0xFF2F80ED)],
+                  colors: [_C.navy, Color(0xFF1A56CF), _C.blueAlt],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -238,33 +305,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
-                        CircleAvatar(
-  radius: 55,
-  backgroundColor: Colors.white,
-  backgroundImage: _pickedFile != null
-      ? FileImage(_pickedFile!) as ImageProvider
-      : (_photoUrl != null && _photoUrl!.isNotEmpty)
-          ? NetworkImage(_photoUrl!) as ImageProvider
-          : null,
-  child: (_pickedFile == null &&
-          (_photoUrl == null || _photoUrl!.isEmpty))
-      ? const Icon(
-          Icons.person,
-          size: 48,
-          color: Color(0xFF0C2340),
-        )
-      : null,
-),
+                        Container(
+                          width: 110,
+                          height: 110,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: _C.white, width: 3.5),
+                            boxShadow: [
+                              BoxShadow(
+                                color: _C.navy.withOpacity(0.45),
+                                blurRadius: 24,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            radius: 55,
+                            backgroundColor: _C.white,
+                            backgroundImage: _pickedFile != null
+                                ? FileImage(_pickedFile!) as ImageProvider
+                                : (_photoUrl != null && _photoUrl!.isNotEmpty)
+                                    ? NetworkImage(_photoUrl!) as ImageProvider
+                                    : null,
+                            child: (_pickedFile == null &&
+                                    (_photoUrl == null || _photoUrl!.isEmpty))
+                                ? const Icon(
+                                    Icons.person,
+                                    size: 48,
+                                    color: _C.navy,
+                                  )
+                                : null,
+                          ),
+                        ),
                         Container(
                           padding: const EdgeInsets.all(6),
                           decoration: const BoxDecoration(
-                            color: Colors.white,
+                            color: _C.white,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.camera_alt,
                             size: 18,
-                            color: Color(0xFF2F80ED),
+                            color: _C.blue,
                           ),
                         ),
                       ],
@@ -273,30 +355,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   const SizedBox(height: 10),
                   const Text(
                     "Tap to change photo",
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: _C.white, fontSize: 14),
                   ),
                 ],
               ),
             ),
 
-            // ───── FORM CARD ─────
+            // ───── FORM CARD (glass) ─────
             Transform.translate(
               offset: const Offset(0, -30),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
+                child: ProfileGlassCard(
+                  padding: const EdgeInsets.all(24),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -339,6 +410,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: FloatingBottomNavBar(
+        currentIndex: _selectedNavIndex,
+        onTap: (index) {
+          setState(() => _selectedNavIndex = index);
+          if (index == 3) return; // already on profile
+          if (index == 2) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );
+          }
+          if (index == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+            );
+          }
+          if (index == 0) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const CityListScreen()),
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -350,8 +446,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       text,
       style: const TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFF0C2340),
+        fontWeight: FontWeight.w600,
+        color: _C.navy,
       ),
     );
   }
@@ -371,13 +467,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         validator: validator,
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon, color: _C.blue),
           filled: true,
-          fillColor: const Color(0xFFF5F8FF),
+          fillColor: _C.blue.withOpacity(0.05),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
             borderSide: BorderSide.none,
           ),
+          labelStyle: const TextStyle(color: _C.textMid),
         ),
       ),
     );
@@ -395,12 +492,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.camera_alt),
+              leading: const Icon(Icons.camera_alt, color: _C.blue),
               title: const Text("Camera"),
               onTap: () => _pickImage(ImageSource.camera),
             ),
             ListTile(
-              leading: const Icon(Icons.photo),
+              leading: const Icon(Icons.photo, color: _C.blue),
               title: const Text("Gallery"),
               onTap: () => _pickImage(ImageSource.gallery),
             ),

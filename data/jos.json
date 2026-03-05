@@ -1,15 +1,15 @@
 {
   "name": "Jos",
   "description": "Jos is the capital of Plateau State in central Nigeria, often called the 'Cool City' due to its high altitude and relatively mild climate compared to much of the country. It's known for its scenic hills, pine forests, colonial-era architecture, tin mining history, diverse ethnic groups (including Berom, Anaguta, and Afizere), vibrant markets, and natural attractions like waterfalls, rock formations, and wildlife parks. Jos is a cultural and educational hub with the National Museum, Jos Wildlife Park, and nearby sites like Riyom Rocks and Shere Hills, offering a blend of history, nature, and cooler weather.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Jos_cityscape.jpg/800px-Jos_cityscape.jpg",
+  "imageUrl": "https://www.shutterstock.com/image-photo/scenic-aerial-view-jos-city-260nw-1931929640.jpg",
   "ratings": 4.4,
    "zone": "North Central",
   "extraImages": [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/jos-wildlife-park.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Riyom_Rocks_Jos.jpg/800px-Riyom_Rocks_Jos.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cimages.timbu.com/guides/2017/04/jos_Riyom-Rock-Formation-Plateau-State.jpg",
+    "https://ichef.bbci.co.uk/news/480/cpsprodpb/71c3/live/99a09410-3dd9-11ef-86aa-434b3fd1a7f4.jpg.webp",
+    "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/F1C7/production/_120259816_bbc.png.webp",
     "https://cdn.getyourguide.com/img/tour/ngwo-pine-forest-jos.jpg",
-    "https://www.trip.com/moments/detail/jos-20062-12345678?locale=en-XX"
+    "https://prettyshirley.wordpress.com/wp-content/uploads/2019/09/jos.jpeg"
   ],
   "topHighlights": [
     "Jos Wildlife Park – Home to various animals and nature trails",
@@ -29,7 +29,7 @@
     {
       "name": "Jos Wildlife Park",
       "details": "A central wildlife park featuring various animals (including lions, monkeys, and birds), walking paths, and green spaces – a family-friendly spot for nature and education.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/jos-wildlife-park.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://acresal.gov.ng/wp-content/uploads/2025/05/IMG_8539.jpg",
       "rating": 4.2,
       "address": "Tudun Wada Road, Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -39,27 +39,17 @@
       "openHours": "Daily: 8:00 AM - 6:00 PM",
       "hashtag": "wildlife park nature",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Jos_Wildlife_Park_animals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/park-trail.jpg?w=900",
-        "https://cdn.tripadvisor.com/jos-zoo-view.jpg",
+        "https://images.timbu.com/contents-370808bb3d35479a973a494f40232594/d8e67d50-aea1-4bbd-9b4e-17c3bcf4e88c.png",
+        "https://gazettengr.com/wp-content/uploads/Jos-wildlife-park.png",
+        "https://media.premiumtimesng.com/wp-content/files/2017/06/Baboon-e1497867552179.jpg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦2000 entry",
-      "reviews": [
-        {
-          "profileName": "Aminu J.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Great place for families – nice animals and peaceful walks.",
-          "profileImage": "https://example.com/aminu.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "₦500 - ₦2000 entry"
     },
     {
       "name": "National Museum Jos",
       "details": "Museum showcasing Nigerian archaeology, Nok terracotta artifacts, traditional crafts, and cultural exhibits – a key site for understanding Plateau and Nigerian heritage.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/national-museum-jos.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://thumbs.dreamstime.com/b/view-interior-national-museum-costa-rica-center-san-jos-view-interior-national-museum-195397941.jpg",
       "rating": 4.3,
       "address": "Museum Street, Terminus, Jos, Plateau State",
       "location": { "latitude": 9.9000, "longitude": 8.8667 },
@@ -69,27 +59,17 @@
       "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
       "hashtag": "museum history archaeology",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/National_Museum_Jos_exhibits.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-artifacts.jpg?w=900",
-        "https://cdn.tripadvisor.com/nok-terracotta.jpg",
+        "https://static.where-e.com/Nigeria/Plateau_State/Jos_North_Local_Government_Area/Jos-Museum-And-Zoo_4652e442bd32078ee4f1447b44bf6410.jpg",
+        "https://rexclarkeadventures.com/wp-content/uploads/2024/11/unnamed-37.jpg",
+        "https://museum.ng/wp-content/uploads/2022/05/IMG_20211204_173424_988-768x1024.jpg",
         "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦1500 entry",
-      "reviews": [
-        {
-          "profileName": "Fatima M.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Rich in history – excellent Nok artifacts!",
-          "profileImage": "https://example.com/fatima.jpg",
-          "likes": 32
-        }
-      ]
+      "price": "₦500 - ₦1500 entry"
     },
     {
       "name": "Riyom Rock Formation",
       "details": "Spectacular granite rock formations rising dramatically from the landscape – a natural wonder along the Jos-Akwanga road, great for photos and short hikes.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Riyom_Rocks_Jos.jpg/800px-Riyom_Rocks_Jos.jpg",
+      "imageUrl": "https://cimages.timbu.com/guides/2017/07/Riyom-Rock-2.jpg",
       "rating": 4.5,
       "address": "Riyom LGA, near Jos, Plateau State",
       "location": { "latitude": 9.6333, "longitude": 8.7667 },
@@ -99,27 +79,17 @@
       "openHours": "Viewable daily (outdoor)",
       "hashtag": "rock formation nature viewpoint",
       "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/riyom-rocks.jpg?w=800",
-        "https://cdn.tripadvisor.com/riyom-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://www.nigeriagalleria.com/Nigeria/States_Nigeria/Plateau/Images/Riyom-Rock-Formations-Jos-2.jpg",
+        "https://thingsnigeria.com/wp-content/uploads/2017/02/close-up_of_rock_with_head-435x600.jpg",
+        "https://www.shutterstock.com/image-photo/riyom-rock-formation-jos-nigeria-260nw-1612541149.jpg",
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "Free",
-      "reviews": [
-        {
-          "profileName": "Sunday K.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Breathtaking rocks – amazing Plateau scenery!",
-          "profileImage": "https://example.com/sunday.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "Free"
     },
     {
       "name": "Ngwo Pine Forest & Cave",
       "details": "Cool pine forest with trails, a cave, waterfall, and fresh air – a relaxing nature spot with hiking and picnic opportunities.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ngwo-pine-forest.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Through_the_pines.jpg",
       "rating": 4.4,
       "address": "Ngwo, near Jos, Plateau State",
       "location": { "latitude": 9.5333, "longitude": 7.4167 },
@@ -129,29 +99,19 @@
       "openHours": "Daily: 8:00 AM - 6:00 PM",
       "hashtag": "forest nature hiking",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ngwo_Pine_Forest.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/forest-trail.jpg?w=900",
-        "https://cdn.tripadvisor.com/ngwo-waterfall.jpg",
+        "https://visaliv.s3.ap-south-1.amazonaws.com/Ngwo-Pine-Forest-and-Waterfall-NG.jpg",
+        "https://media.licdn.com/dms/image/v2/D4D12AQE__mfynu2zXA/article-cover_image-shrink_720_1280/B4DZh0lMeJG8AI-/0/1754302567396?e=2147483647&v=beta&t=z-mqCnU4SapMDO7Zb4RVU2ciZZqTAy4Hn0Z72Ym5Ns4",
+        "https://media.licdn.com/dms/image/v2/D4D12AQE__mfynu2zXA/article-cover_image-shrink_720_1280/B4DZh0lMeJG8AI-/0/1754302567396?e=2147483647&v=beta&t=z-mqCnU4SapMDO7Zb4RVU2ciZZqTAy4Hn0Z72Ym5Ns4",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦1500 entry",
-      "reviews": [
-        {
-          "profileName": "Joseph D.",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Cool and green – feels like a different Nigeria!",
-          "profileImage": "https://example.com/joseph.jpg",
-          "likes": 30
-        }
-      ]
+      "price": "₦500 - ₦1500 entry"
     }
   ],
   "hotels": [
     {
       "name": "Lamonde Hotel",
       "details": "Popular hotel with comfortable rooms, restaurant, pool, and central location – highly rated for service and value.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/lamonde-hotel-hero.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/8b/f7/97/caption.jpg?w=800&h=-1&s=1",
       "rating": 4.5,
       "address": "Apollo Crescent, GRA, Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -161,27 +121,17 @@
       "openHours": "24/7",
       "hashtag": "comfort business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/lamonde-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-lamonde.jpg",
-        "https://cdn.lamondehotel.com/lobby.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/6e/1d/51/le-monde-hotel-edinburgh.jpg?w=700&h=400&s=1",
+        "https://images.trvl-media.com/lodging/103000000/102830000/102824500/102824431/03a041bf.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://cdn-zen.readytotrip.com/t/1024x768/content/88/b8/88b863e7dcc68fe910c29e820afb4987c608f797.JPEG",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$50 - $150 per night",
-      "reviews": [
-        {
-          "profileName": "Bala M.",
-          "createdAt": "2026-01-05",
-          "starRatings": 5,
-          "reviewDetails": "Clean, friendly, and great location!",
-          "profileImage": "https://example.com/bala.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$50 - $150 per night"
     },
     {
       "name": "Valada Hotel and Resorts",
       "details": "Resort-style hotel with rooms, pool, event spaces, and leisure facilities – one of the top choices in Jos.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/valada-hero.jpg?w=900",
+      "imageUrl": "https://plistbooking.com/wp-content/uploads/2023/10/valada-hotel-and-resorts-1392260-9-3.jpg",
       "rating": 4.4,
       "address": "Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -191,27 +141,17 @@
       "openHours": "24/7",
       "hashtag": "resort luxury",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/valada-pool.jpg",
-        "https://cdn.valadahotel.com/room-view.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://images.trvl-media.com/lodging/35000000/34540000/34536000/34535926/f89651e3.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.trvl-media.com/lodging/35000000/34540000/34536000/34535926/fb585263.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.trvl-media.com/lodging/35000000/34540000/34536000/34535926/7cbf4878.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
         "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$80 - $200 per night",
-      "reviews": [
-        {
-          "profileName": "Sarah J.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Relaxing and well-equipped – loved it!",
-          "profileImage": "https://example.com/sarah.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$80 - $200 per night"
     },
     {
       "name": "Crispan Suites and Event Centre",
       "details": "Modern suites with event facilities, restaurant, and amenities – popular for comfort and events.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/crispan-suites.jpg?w=900&h=-1&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/db/b8/c5/caption.jpg?w=900&h=500&s=1",
       "rating": 4.5,
       "address": "Jonah Jang Express Way, Rayfield, Jos",
       "location": { "latitude": 9.9000, "longitude": 8.8667 },
@@ -221,27 +161,17 @@
       "openHours": "24/7",
       "hashtag": "suites events",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/crispan-room.jpg",
-        "https://cdn.crispansuites.com/pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/lobby.jpg",
+        "https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/partner-images/20/91/1e3c803791cf25caa41d926f01c05652da8b3c635dc51216417cf1cbad6f.jpeg",
+        "https://content.skyscnr.com/available/1553897002/1553897002_WxH.jpg",
+        "https://images.timbu.com/hotels-ng/hotel_crispan_suites_and_event_centre_jos_500876_1_900x550.jpg",
         "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$70 - $180 per night",
-      "reviews": [
-        {
-          "profileName": "Titus D.",
-          "createdAt": "2025-12-15",
-          "starRatings": 5,
-          "reviewDetails": "Spacious suites and great service.",
-          "profileImage": "https://example.com/titus.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$70 - $180 per night"
     },
     {
       "name": "Novel Suites And Resort",
       "details": "Resort with suites, pool, and leisure options – good for relaxation in Jos.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/novel-suites.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/52/e8/73/my-room-was-always-tidy.jpg?w=900&h=500&s=1",
       "rating": 4.3,
       "address": "Shaka Road, Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -251,29 +181,19 @@
       "openHours": "24/7",
       "hashtag": "resort comfort",
       "extraImages": [
-        "https://cdn.novelsuites.com/room-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/74/24/0e/caption.jpg?w=900&h=500&s=1",
+        "https://images.trvl-media.com/lodging/98000000/97680000/97670300/97670211/3b202278.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://images.timbu.com/hotels-ng/supplier_novel_suites_and_resort_335893_1_900x550.jpg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$60 - $160 per night",
-      "reviews": [
-        {
-          "profileName": "Grace K.",
-          "createdAt": "2026-01-20",
-          "starRatings": 4,
-          "reviewDetails": "Nice and peaceful – good value.",
-          "profileImage": "https://example.com/grace.jpg",
-          "likes": 30
-        }
-      ]
+      "price": "$60 - $160 per night"
     }
   ],
   "dining": [
     {
       "name": "Tin City Cafe",
       "details": "Cozy cafe with American-style meals, breakfasts, and garden seating – highly rated for ambiance and food.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/tin-city-cafe.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/b6/df/d9/tin-city-cafe-in-jos.jpg?w=1100&h=1100&s=1",
       "rating": 4.8,
       "address": "Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -283,27 +203,17 @@
       "openHours": "Daily: 8:00 AM - 9:00 PM",
       "hashtag": "cafe american breakfast",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/tin-city-garden.jpg",
+        "https://image-worker.mindtrip.ai/image-resize/format=webp,w=720/https:/images.mindtrip.ai/restaurants/0cae/5810/9372/038c/83b2/276f/cf90/4093",
         "https://cdn.tripadvisor.com/tin-city-meals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://s3-media0.fl.yelpcdn.com/bphoto/0nmySB_7w481YcofzMogmA/348s.jpg",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "Amazing garden setting and delicious food!",
-          "profileImage": "https://example.com/anonymous.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$$"
     },
     {
       "name": "Barcardi Jos",
       "details": "Restaurant offering Italian, American, and fusion dishes – good reviews for variety and quality.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/barcardi.jpg?w=900",
+      "imageUrl": "https://www.brandessencenigeria.com/wp-content/uploads/2012/12/DSC0003.jpg",
       "rating": 4.7,
       "address": "Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -313,27 +223,17 @@
       "openHours": "Daily: 11:00 AM - late",
       "hashtag": "italian american fusion",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/barcardi-dining.jpg",
-        "https://cdn.tripadvisor.com/barcardi-pasta.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/92/e0/24/barcardi-jos.jpg?w=900&h=500&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/92/e0/20/barcardi-jos.jpg?w=800&h=500&s=1",
+        "https://www.businesslist.com.ng/img/ng/j/1657208414-15-barcardi-lounge.jpg",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-25",
-          "starRatings": 5,
-          "reviewDetails": "Tasty and cozy – recommended!",
-          "profileImage": "https://example.com/anonymous2.jpg",
-          "likes": 32
-        }
-      ]
+      "price": "$$ - $$$"
     },
     {
       "name": "The Net Cafe",
       "details": "Cafe with meals, coffee, and relaxed vibe – popular for casual dining and hangouts.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/net-cafe.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/27/03/1a/the-net-cafe-jos-plateau.jpg?w=1200&h=1200&s=1",
       "rating": 4.5,
       "address": "Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -343,27 +243,17 @@
       "openHours": "Daily: 8:00 AM - 10:00 PM",
       "hashtag": "cafe casual",
       "extraImages": [
-        "https://cdn.tripadvisor.com/net-cafe-food.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://www.finelib.com/images/listings/91039_company_logo.JPG",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/27/03/1a/the-net-cafe-jos-plateau.jpg?w=1200&h=1200&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/5b/18/dc/menu.jpg?w=1100&h=1100&s=1",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-10",
-          "starRatings": 5,
-          "reviewDetails": "Great spot for meals and coffee.",
-          "profileImage": "https://example.com/anonymous3.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$$"
     },
     {
       "name": "Simmer Restaurant",
       "details": "Premium restaurant blending unique flavors – known for quality and ambiance.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/simmer.jpg?w=900",
+      "imageUrl": "https://mysimmer.com/wp-content/uploads/2024/09/IMG_0156.jpg",
       "rating": 4.6,
       "address": "Gold & Base, Rayfield, Jos",
       "location": { "latitude": 9.9000, "longitude": 8.8667 },
@@ -373,29 +263,19 @@
       "openHours": "Daily: 11:00 AM - late",
       "hashtag": "premium fusion",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/simmer-dining.jpg",
-        "https://cdn.tripadvisor.com/simmer-meals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://mysimmer.com/wp-content/uploads/2024/09/file-.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/18/b9/de/getlstd-property-photo.jpg?w=900&h=500&s=1",
+        "https://cdn.squaremeal.co.uk/restaurants/27001/images/simmer-huang-limehouse_12032025061954.jpeg?w=1200&h=800&fit=crop&auto=format%2Ccompress",
         "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-30",
-          "starRatings": 5,
-          "reviewDetails": "Premium dining at its best!",
-          "profileImage": "https://example.com/anonymous4.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$$$"
     }
   ],
   "events": [
     {
       "name": "Jos Festival and Award 3.0",
       "details": "Cultural festival celebrating creativity, GenZ vs old culture themes, with music, awards, and community events.",
-      "imageUrl": "https://example.com/jos-festival-award.jpg",
+      "imageUrl": "https://viewpointnigeria.org/wp-content/uploads/2025/12/IMG-20251217-WA0005.jpg",
       "rating": 4.6,
       "address": "Jos venue, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -405,30 +285,20 @@
       "openHours": "Various",
       "hashtag": "culture festival award",
       "extraImages": [
-        "https://example.com/festival-stage.jpg",
-        "https://example.com/awards-ceremony.jpg",
-        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://viewpointnigeria.org/wp-content/uploads/2025/12/IMG-20251213-WA0005.jpg",
+        "https://josevents.com.ng/wp-content/uploads/2025/12/1001552596-768x1024.jpg",
+        "https://viewpointnigeria.org/wp-content/uploads/2025/12/IMG-20251217-WA0006.jpg",
         "https://example.com/crowd-festival.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026-03-29",
       "eventStartTime": "various",
-      "eventEndTime": "late",
-      "reviews": [
-        {
-          "profileName": "Attendee",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "Creative and fun – great vibes!",
-          "profileImage": "https://example.com/attendee.jpg",
-          "likes": 30
-        }
-      ]
+      "eventEndTime": "late"
     },
     {
       "name": "Nzem Berom Grand Festival",
       "details": "Traditional Berom festival with ceremonies, dances, and community celebrations – a major cultural event.",
-      "imageUrl": "https://example.com/nzem-berom-festival.jpg",
+      "imageUrl": "https://miro.medium.com/v2/1*3YlOJDAVgstgT1ED3VD88w.jpeg",
       "rating": 4.7,
       "address": "Kuru or Berom areas, near Jos",
       "location": { "latitude": 9.8333, "longitude": 8.7667 },
@@ -438,30 +308,20 @@
       "openHours": "Various",
       "hashtag": "berom festival tradition",
       "extraImages": [
-        "https://example.com/berom-dance.jpg",
-        "https://example.com/ceremony.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://metrodailyng.com/wp-content/uploads/2022/06/IMG-20220603-WA0033.jpg",
+        "https://authorityngr.com/wp-content/uploads/2022/06/IMG-20220603-WA0034.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmu-mEb1vkPaKe9NzCDP7ohp9-dGHfOA8OvQ&s",
         "https://example.com/festival-display.jpg"
       ],
       "ticketPrice": "Community-based",
       "eventDate": "2026-04-24",
       "eventStartTime": "various",
-      "eventEndTime": "various",
-      "reviews": [
-        {
-          "profileName": "Cultural Fan",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Rich traditions – beautiful event!",
-          "profileImage": "https://example.com/cultural.jpg",
-          "likes": 28
-        }
-      ]
+      "eventEndTime": "various"
     },
     {
       "name": "Jos Fashion Festival",
       "details": "Fashion showcase with runway, exhibitions, and style events – a Valentine shutdown highlight.",
-      "imageUrl": "https://example.com/jos-fashion-festival.jpg",
+      "imageUrl": "https://files.selar.co/product-images/2025/products/josfoodfestival/jos-food-festival-2025-ow-selar.com-6878d300cfa48.jpg",
       "rating": 4.5,
       "address": "De-Bridge Villes Hotel, Jos",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -471,30 +331,20 @@
       "openHours": "13:00 onwards",
       "hashtag": "fashion runway event",
       "extraImages": [
-        "https://example.com/runway-show.jpg",
-        "https://example.com/models.jpg",
-        "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://viewpointnigeria.org/wp-content/uploads/2025/12/IMG-20251223-WA0048.jpg",
+        "https://files.selar.co/product-images/2025/products/josfoodfestival/jos-food-festival-2025-ow-selar.com-6878d300cfa48.jpg",
+        "https://viewpointnigeria.org/wp-content/uploads/2025/12/IMG-20251223-WA0048.jpg",
         "https://example.com/fashion-crowd.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026-02-15",
       "eventStartTime": "13:00",
-      "eventEndTime": "late",
-      "reviews": [
-        {
-          "profileName": "Fashion Lover",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Stylish and exciting!",
-          "profileImage": "https://example.com/fashion.jpg",
-          "likes": 32
-        }
-      ]
+      "eventEndTime": "late"
     },
     {
       "name": "Pan-Tong Cultural Festival",
       "details": "Cultural festival celebrating heritage with performances and displays – recurring event in Jos.",
-      "imageUrl": "https://example.com/pan-tong-festival.jpg",
+      "imageUrl": "https://news.cgtn.com/news/2023-11-28/Celebrating-tradition-at-the-Panwang-Festival-of-the-Yao-ethnic-group-1p6agrmPJkc/img/af9eaef4047240e0b3f1612cfaaeef86/af9eaef4047240e0b3f1612cfaaeef86-750.png",
       "rating": 4.6,
       "address": "Jos venue",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -504,25 +354,15 @@
       "openHours": "Various",
       "hashtag": "cultural heritage festival",
       "extraImages": [
-        "https://example.com/performances.jpg",
-        "https://example.com/dance.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://cdn.vanguardngr.com/wp-content/uploads/2024/08/WhatsApp-Image-2024-08-13-at-1.34.50-PM.jpeg",
+        "https://ashantiafricantours.com/wp-content/uploads/2023/09/panafest_3.jpg",
+        "https://news.cgtn.com/news/2023-11-28/Celebrating-tradition-at-the-Panwang-Festival-of-the-Yao-ethnic-group-1p6agrmPJkc/img/94746321d85842de9264ddd9316c2f15/94746321d85842de9264ddd9316c2f15.jpeg",
         "https://example.com/festival-crowd.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026 (3rd edition or similar)",
       "eventStartTime": "various",
-      "eventEndTime": "various",
-      "reviews": [
-        {
-          "profileName": "Heritage Fan",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Celebrating Plateau culture – wonderful!",
-          "profileImage": "https://example.com/heritage.jpg",
-          "likes": 25
-        }
-      ]
+      "eventEndTime": "various"
     }
   ]
 }

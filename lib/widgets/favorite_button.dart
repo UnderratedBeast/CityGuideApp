@@ -149,12 +149,12 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
+          color: const Color.fromARGB(55, 10, 10, 10).withOpacity(0.4),
           shape: BoxShape.circle,
         ),
         child: Icon(
           _isFavorite ? Icons.favorite : Icons.favorite_border,
-          color: _isFavorite ? Colors.red : (widget.color ?? Colors.grey.shade700),
+          color: _isFavorite ? Colors.red : (widget.color ?? const Color.fromARGB(255, 255, 255, 255)),
           size: widget.size,
         ),
       ),

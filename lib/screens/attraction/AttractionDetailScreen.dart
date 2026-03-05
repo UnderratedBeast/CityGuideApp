@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as latLng;
 import 'package:geolocator/geolocator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../screens/map/MapScreen.dart';
 import '../../utils/theme.dart';
 import '../review/AddReviewScreen.dart';
@@ -59,23 +60,17 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   bool _isExpanded = false;
   int _currentNavIndex = 0;
 
-  // Reviews - Using Stream from ReviewService
   final ReviewService _reviewService = ReviewService();
   List<ReviewModel> _reviews = [];
   bool _loadingReviews = true;
   String? _reviewsError;
   List<bool> _expandedReviews = [];
-  Set<int> _likedReviews = {};
 
-  // Hashtag (for badge) - from Firestore
   String _hashtag = '';
-
-  // Phone number (from Firestore)
   String _phoneNumber = '';
-
-  // Document IDs needed for review submission
   String? _cityId;
   String? _listingId;
+  String? _currentUserId;
 
   @override
   void initState() {
@@ -104,6 +99,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       }
     });
 
+    _currentUserId = FirebaseAuth.instance.currentUser?.uid;
     _fetchAttractionData();
   }
 
@@ -114,7 +110,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     super.dispose();
   }
 
-  /// Fetch attraction document to get additional data like phone, hashtag, and reviews
   Future<void> _fetchAttractionData() async {
     setState(() {
       _loadingReviews = true;
@@ -122,7 +117,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     });
 
     try {
-      // 1. Find city document by name
       final cityQuery = await FirebaseFirestore.instance
           .collection('cities')
           .where('name', isEqualTo: widget.city.trim())
@@ -130,15 +124,11 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           .get();
 
       if (cityQuery.docs.isEmpty) {
-        setState(() {
-          _loadingReviews = false;
-        });
+        setState(() => _loadingReviews = false);
         return;
       }
       _cityId = cityQuery.docs.first.id;
 
-      // 2. Find document in the appropriate subcollection
-      // Try searching by name field (most likely your documents use 'name' field)
       final query = await FirebaseFirestore.instance
           .collection('cities')
           .doc(_cityId!)
@@ -150,15 +140,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       if (query.docs.isNotEmpty) {
         _listingId = query.docs.first.id;
         final data = query.docs.first.data();
-        
-        // Extract fields from Firestore document
         _hashtag = data['hashtag'] ?? '';
         _phoneNumber = data['phoneNumber'] ?? '';
-        
-        // Note: Core data like description, location, etc. is already passed from widget
-        // We only fetch supplementary data here
       } else {
-        // Try with document ID equal to name (if names are used as IDs)
         final doc = await FirebaseFirestore.instance
             .collection('cities')
             .doc(_cityId!)
@@ -172,16 +156,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           _hashtag = data['hashtag'] ?? '';
           _phoneNumber = data['phoneNumber'] ?? '';
         } else {
-          setState(() {
-            _loadingReviews = false;
-          });
+          setState(() => _loadingReviews = false);
           return;
         }
       }
 
-      // Set up real-time reviews stream
       _setupReviewsStream();
-      
     } catch (e) {
       print('Error in _fetchAttractionData: $e');
       setState(() {
@@ -191,7 +171,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     }
   }
 
-  // Set up stream for approved reviews
   void _setupReviewsStream() {
     if (_cityId == null || _listingId == null) return;
 
@@ -205,7 +184,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           _reviews = reviews;
           _loadingReviews = false;
           _expandedReviews = List<bool>.filled(reviews.length, false);
-          _likedReviews.clear();
         });
       }
     }, onError: (error) {
@@ -218,9 +196,26 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
     });
   }
 
+  // FIXED: pass only reviewId to like/unlike
+  Future<void> _toggleLike(ReviewModel review) async {
+    if (_currentUserId == null) {
+      _showSnackBar('You must be logged in to like reviews');
+      return;
+    }
+
+    try {
+      if (review.likedBy.contains(_currentUserId)) {
+        await _reviewService.unlikeReview(review.id!);
+      } else {
+        await _reviewService.likeReview(review.id!);
+      }
+    } catch (e) {
+      _showSnackBar('Error: $e');
+    }
+  }
+
   String _formatDate(DateTime? date) {
     if (date == null) return 'Recently';
-    
     final now = DateTime.now();
     final diff = now.difference(date);
     if (diff.inDays < 1) return 'Today';
@@ -237,39 +232,29 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   }
 
   Future<void> _openDirections() async {
-    // Safety check: ensure we have valid destination coordinates
     if (widget.latitude == null || widget.longitude == null) {
-      _showSnackBar('Location coordinates are not available for this place.');
+      _showSnackBar('Location coordinates are not available.');
       return;
     }
-
     try {
-      // 1. Check location services
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        _showSnackBar('Please enable location services to get directions.');
+        _showSnackBar('Please enable location services.');
         return;
       }
-
-      // 2. Check and request permission
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          _showSnackBar('Location permission is required to show directions.');
+          _showSnackBar('Location permission required.');
           return;
         }
       }
-
       if (permission == LocationPermission.deniedForever) {
-        _showSnackBar('Location permissions are permanently denied. Please enable them in app settings.');
+        _showSnackBar('Location permissions permanently denied.');
         return;
       }
-
-      // 3. Get current position
       Position position = await Geolocator.getCurrentPosition();
-
-      // 4. Navigate to MapScreen with both locations
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -284,8 +269,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
           ),
         ),
       );
-    } catch (e, stack) {
-      debugPrint('Error in _openDirections: $e\n$stack');
+    } catch (e) {
       _showSnackBar('An error occurred: $e');
     }
   }
@@ -296,17 +280,50 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
   String _getItemType(String listingType) {
     switch (listingType) {
-      case 'attractions':
-        return 'attraction';
-      case 'dining':
-        return 'restaurant';
-      case 'hotels':
-        return 'hotel';
-      case 'events':
-        return 'event';
-      default:
-        return 'attraction';
+      case 'attractions': return 'attraction';
+      case 'dining': return 'restaurant';
+      case 'hotels': return 'hotel';
+      case 'events': return 'event';
+      default: return 'attraction';
     }
+  }
+
+  Widget _buildImageWithPlaceholder(String imageUrl) {
+    return Image.network(
+      imageUrl,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.grey.shade300, Colors.grey.shade100, Colors.grey.shade300],
+            ),
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                  : null,
+              color: AppTheme.primaryBlue,
+            ),
+          ),
+        );
+      },
+      errorBuilder: (_, __, ___) => Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.grey.shade400, Colors.grey.shade200, Colors.grey.shade400],
+          ),
+        ),
+        child: Center(child: Icon(Icons.broken_image, size: 50, color: Colors.grey.shade600)),
+      ),
+    );
   }
 
   @override
@@ -321,10 +338,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         centerTitle: true,
-        title: Text(
-          widget.name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-        ),
+        title: Text(widget.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.pop(context),
@@ -357,7 +371,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image slideshow
             SizedBox(
               height: 320,
               child: Stack(
@@ -365,20 +378,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   PageView.builder(
                     controller: _pageController,
                     itemCount: 4,
-                    onPageChanged: (index) {
-                      setState(() => _currentIndex = index);
-                    },
-                    itemBuilder: (_, index) {
-                      return Image.network(
-                        _allImages[index],
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        errorBuilder: (_, __, ___) => Container(
-                          color: Colors.grey.shade300,
-                          child: const Center(child: Icon(Icons.broken_image, size: 50)),
-                        ),
-                      );
-                    },
+                    onPageChanged: (index) => setState(() => _currentIndex = index),
+                    itemBuilder: (_, index) => _buildImageWithPlaceholder(_allImages[index]),
                   ),
                   Positioned(
                     bottom: 15,
@@ -393,9 +394,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                           width: _currentIndex == index ? 18 : 8,
                           height: 8,
                           decoration: BoxDecoration(
-                            color: _currentIndex == index
-                                ? Colors.white
-                                : Colors.white54,
+                            color: _currentIndex == index ? Colors.white : Colors.white54,
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
@@ -406,7 +405,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
               ),
             ),
             const SizedBox(height: 20),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -415,30 +413,15 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   // Badges
                   Row(
                     children: [
-                      _badge(
-                        _firstTag,
-                        const Color.fromARGB(30, 46, 91, 255),
-                        AppTheme.primaryBlue,
-                      ),
+                      _badge(_firstTag, const Color.fromARGB(30, 46, 91, 255), AppTheme.primaryBlue),
                       const SizedBox(width: 8),
                       if (_phoneNumber.isNotEmpty)
-                        _badge(
-                          "CALL NOW",
-                          Colors.green.shade100,
-                          Colors.green.shade700,
-                        ),
+                        _badge("CALL NOW", Colors.green.shade100, Colors.green.shade700),
                     ],
                   ),
                   const SizedBox(height: 12),
-
-                  // Title
-                  Text(
-                    widget.name,
-                    style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
+                  Text(widget.name, style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
-
-                  // Rating
                   Row(
                     children: [
                       const Icon(Icons.star, color: Colors.amber, size: 18),
@@ -452,35 +435,17 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                     ],
                   ),
                   const SizedBox(height: 30),
-
-                  // About
                   const Text("About", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
-
                   AnimatedCrossFade(
                     duration: const Duration(milliseconds: 300),
-                    crossFadeState: _isExpanded
-                        ? CrossFadeState.showSecond
-                        : CrossFadeState.showFirst,
-                    firstChild: Text(
-                      widget.description,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(height: 1.6),
-                    ),
-                    secondChild: Text(
-                      widget.description,
-                      style: const TextStyle(height: 1.6),
-                    ),
+                    crossFadeState: _isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                    firstChild: Text(widget.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: const TextStyle(height: 1.6)),
+                    secondChild: Text(widget.description, style: const TextStyle(height: 1.6)),
                   ),
                   const SizedBox(height: 6),
-
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isExpanded = !_isExpanded;
-                      });
-                    },
+                    onTap: () => setState(() => _isExpanded = !_isExpanded),
                     child: Text(
                       _isExpanded ? "Show less" : "Read more",
                       style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600),
@@ -488,16 +453,13 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  // Contact Info (Phone)
                   if (_phoneNumber.isNotEmpty) ...[
                     const Text("Contact", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () async {
                         final Uri phoneUri = Uri(scheme: 'tel', path: _phoneNumber);
-                        if (await canLaunchUrl(phoneUri)) {
-                          await launchUrl(phoneUri);
-                        }
+                        if (await canLaunchUrl(phoneUri)) await launchUrl(phoneUri);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(16),
@@ -509,12 +471,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                           children: [
                             Icon(Icons.phone, color: Colors.green.shade700),
                             const SizedBox(width: 12),
-                            Expanded(
-                              child: Text(
-                                _phoneNumber,
-                                style: TextStyle(color: Colors.green.shade700, fontSize: 16),
-                              ),
-                            ),
+                            Expanded(child: Text(_phoneNumber, style: TextStyle(color: Colors.green.shade700, fontSize: 16))),
                           ],
                         ),
                       ),
@@ -522,7 +479,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                     const SizedBox(height: 20),
                   ],
 
-                  // Location with mini map
+                  // Location
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -530,10 +487,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                       if (hasValidLocation)
                         GestureDetector(
                           onTap: _openMaps,
-                          child: Text(
-                            "See on Map",
-                            style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600),
-                          ),
+                          child: Text("See on Map", style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600)),
                         )
                     ],
                   ),
@@ -544,7 +498,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  // Mini map preview (tappable)
                   if (hasValidLocation)
                     GestureDetector(
                       onTap: _openMaps,
@@ -552,16 +505,12 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
                           height: 160,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade300),
-                          ),
+                          decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
                           child: FlutterMap(
                             options: MapOptions(
                               initialCenter: latLng.LatLng(widget.latitude!, widget.longitude!),
                               initialZoom: 15,
-                              interactionOptions: const InteractionOptions(
-                                flags: InteractiveFlag.none,
-                              ),
+                              interactionOptions: const InteractionOptions(flags: InteractiveFlag.none),
                             ),
                             children: [
                               TileLayer(
@@ -586,10 +535,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   else
                     Container(
                       height: 160,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey.shade200,
-                      ),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.grey.shade200),
                       child: const Center(child: Text('Location not available')),
                     ),
                   const SizedBox(height: 30),
@@ -605,7 +551,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                             _showSnackBar('Error: Cannot find listing information');
                             return;
                           }
-                          
                           final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -617,14 +562,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                               ),
                             ),
                           );
-                          if (result == true) {
-                            _showSnackBar('Review submitted for approval!');
-                          }
+                          if (result == true) _showSnackBar('Review submitted for approval!');
                         },
-                        child: Text(
-                          "Write a review",
-                          style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600),
-                        ),
+                        child: Text("Write a review", style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600)),
                       ),
                     ],
                   ),
@@ -632,7 +572,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
 
                   // Reviews list
                   _loadingReviews
-                      ? const Center(child: CircularProgressIndicator())
+                      ? const Center(child: CircularProgressIndicator(color: AppTheme.primaryBlue))
                       : _reviewsError != null
                           ? Center(
                               child: Column(
@@ -640,6 +580,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                   Text('Error loading reviews: $_reviewsError'),
                                   ElevatedButton(
                                     onPressed: _fetchAttractionData,
+                                    style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, foregroundColor: Colors.white),
                                     child: const Text('Retry'),
                                   ),
                                 ],
@@ -655,10 +596,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                     );
                                   }),
                                 ),
-
                   const SizedBox(height: 30),
 
-                  // Website (if available)
                   if (widget.website.isNotEmpty) ...[
                     const Text("Official Website", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
@@ -668,18 +607,14 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color.fromARGB(255, 136, 159, 238)),
+                          border: Border.all(color: AppTheme.primaryBlue.withOpacity(0.3)),
                         ),
                         child: Row(
                           children: [
                             Icon(Icons.open_in_new, color: AppTheme.primaryBlue),
                             const SizedBox(width: 12),
                             Expanded(
-                              child: Text(
-                                widget.website,
-                                style: TextStyle(color: AppTheme.primaryBlue),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              child: Text(widget.website, style: TextStyle(color: AppTheme.primaryBlue), overflow: TextOverflow.ellipsis),
                             ),
                           ],
                         ),
@@ -688,7 +623,6 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                     const SizedBox(height: 20),
                   ],
 
-                  // Get Directions
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
@@ -698,9 +632,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: AppTheme.primaryBlue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       ),
                     ),
                   ),
@@ -714,18 +647,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: -1,
         onTap: (index) {
-           if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ProfileScreen()),
-            );
-          }
-          if (index == 0) {
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const CityListScreen()),
-            );
-          }
+          if (index == 3) Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+          if (index == 0) Navigator.push(context, MaterialPageRoute(builder: (_) => const CityListScreen()));
         },
       ),
     );
@@ -734,60 +657,49 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   Widget _badge(String text, Color bg, Color textColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(color: textColor, fontSize: 12, fontWeight: FontWeight.w600),
-      ),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(20)),
+      child: Text(text, style: TextStyle(color: textColor, fontSize: 12, fontWeight: FontWeight.w600)),
     );
   }
 
-  // Review card using ReviewModel
+  // Review card with like button
   Widget _buildReviewCard(int index) {
     final review = _reviews[index];
     final isExpanded = _expandedReviews[index];
+    final isLiked = review.likedBy.contains(_currentUserId);
+    final likeCount = review.likes;
 
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-          )
-        ],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8)],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             CircleAvatar(
-               radius: 20,
-               backgroundImage: review.userProfileImage.isNotEmpty
-                   ? NetworkImage(review.userProfileImage)
-                   : null,
-               backgroundColor: const Color.fromARGB(74, 46, 91, 255),
-               child: review.userProfileImage.isEmpty
-                   ? Text(
-                       review.userName.isNotEmpty ? review.userName[0].toUpperCase() : '?',
-                       style: const TextStyle(fontWeight: FontWeight.bold),
-                     )
-                   : null,
-             ),
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: review.userProfileImage.isNotEmpty ? NetworkImage(review.userProfileImage) : null,
+                backgroundColor: AppTheme.primaryBlue.withOpacity(0.2),
+                child: review.userProfileImage.isEmpty
+                    ? Text(
+                        review.userName.isNotEmpty ? review.userName[0].toUpperCase() : '?',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: AppTheme.primaryBlue),
+                      )
+                    : null,
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(review.userName, style: const TextStyle(fontWeight: FontWeight.w600)),
-                    Text(_formatDate(review.createdAt), 
-                         style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                    Text(_formatDate(review.createdAt), style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
                   ],
                 ),
               ),
@@ -801,28 +713,42 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                   );
                 }),
               ),
+              const SizedBox(width: 8),
+              // Like button
+              GestureDetector(
+                onTap: () => _toggleLike(review),
+                child: Row(
+                  children: [
+                    Icon(
+                      isLiked ? Icons.thumb_up_alt_rounded : Icons.thumb_up_off_alt_outlined,
+                      color: isLiked ? Colors.blue : Colors.grey.shade600,
+                      size: 18,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      likeCount.toString(),
+                      style: TextStyle(
+                        color: isLiked ? Colors.blue : Colors.grey.shade600,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 12),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 300),
             crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-            firstChild: Text(
-              review.reviewText,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
+            firstChild: Text(review.reviewText, maxLines: 3, overflow: TextOverflow.ellipsis),
             secondChild: Text(review.reviewText),
           ),
           if (review.reviewText.length > 100)
             Padding(
               padding: const EdgeInsets.only(top: 6),
               child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _expandedReviews[index] = !_expandedReviews[index];
-                  });
-                },
+                onTap: () => setState(() => _expandedReviews[index] = !_expandedReviews[index]),
                 child: Text(
                   isExpanded ? "Show less" : "Read more",
                   style: TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.w600, fontSize: 13),
@@ -835,9 +761,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   }
 
   String _formatReviewCount(int count) {
-    if (count >= 1000) {
-      return "${(count / 1000).toStringAsFixed(1)}k";
-    }
+    if (count >= 1000) return "${(count / 1000).toStringAsFixed(1)}k";
     return count.toString();
   }
 

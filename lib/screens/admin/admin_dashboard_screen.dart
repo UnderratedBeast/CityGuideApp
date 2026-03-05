@@ -1,12 +1,16 @@
 import 'dart:ui';
+import 'package:city_guide_app/screens/admin/admin_listing_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+
+// CORRECT IMPORTS
 import 'admin_dashboard.dart';
-import 'admin_listing_list_screen.dart';
+// import 'admin_listing_tabbed_screen.dart'; 
 import 'admin_reviews_screen.dart';
 import 'admin_settings_screen.dart';
 import 'admin_notification_screen.dart';
+
 import '../../utils/theme.dart';
 import '../../providers/auth_provider.dart';
 
@@ -371,10 +375,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         }
 
-        // Step 2: Show selected city's listings with collection dropdown
+        // Step 2: Show selected city's listings with tabs
         return Column(
           children: [
-            // AppBar-like back button for the listings view
+            // Header with back button
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
@@ -420,6 +424,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       default:
         return const DashboardHome();
     }
+  }
+
+  String _getCityNameFromId(String cityId) {
+    // You can fetch this from Firestore if needed
+    return cityId;
   }
 
   void _showAdminProfile(BuildContext context) {
