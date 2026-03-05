@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:city_guide_app/screens/attraction/AttractionDetailScreen.dart';
 import '../../utils/theme.dart';
 import 'package:city_guide_app/widgets/floating_bottom_nav_bar.dart';
-import 'package:intl/intl.dart'; // Add this for time parsing
+import 'package:intl/intl.dart';
 
 class AttractionListScreen extends StatefulWidget {
   final String category;
@@ -85,15 +85,12 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     try {
       final now = DateTime.now();
       final currentTime = DateFormat('HH:mm').format(now);
-      final currentDay = DateFormat('EEEE').format(now); // Monday, Tuesday, etc.
+      final currentDay = DateFormat('EEEE').format(now);
       
-      // Parse openHours which might be in format like "Mon-Fri 9:00 AM - 5:00 PM"
-      // This is a simplified version - you may need to adjust based on your actual format
       final hoursLower = openHours.toLowerCase();
       
       // Check if today is in the open days
       if (hoursLower.contains('mon') && currentDay == 'Monday') {
-        // Parse time ranges
         return _parseTimeRange(hoursLower, currentTime);
       } else if (hoursLower.contains('tue') && currentDay == 'Tuesday') {
         return _parseTimeRange(hoursLower, currentTime);
@@ -109,7 +106,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         return _parseTimeRange(hoursLower, currentTime);
       }
       
-      // If no specific day mentioned, assume it's open 24/7
       return true;
     } catch (e) {
       print('Error parsing open hours: $e');
@@ -118,7 +114,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
   }
   
   bool _parseTimeRange(String hours, String currentTime) {
-    // Extract time range like "9:00 AM - 5:00 PM"
     final timeRegex = RegExp(r'(\d{1,2}:\d{2}\s*(?:AM|PM))\s*-\s*(\d{1,2}:\d{2}\s*(?:AM|PM))');
     final match = timeRegex.firstMatch(hours);
     
@@ -142,7 +137,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     return date.hour * 60 + date.minute;
   }
 
-  // Convert price string like "From $120 per adult..." to price level ($, $$, etc.)
+  // Convert price string to price level
   String _priceLevelFromString(String price) {
     if (price.contains('\$\$\$\$')) return '\$\$\$\$';
     if (price.contains('\$\$\$')) return '\$\$\$';
@@ -190,7 +185,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     });
 
     try {
-      // 1. Get city document ID from cityName
       final cityQuery = await FirebaseFirestore.instance
           .collection('cities')
           .where('name', isEqualTo: widget.cityName)
@@ -202,14 +196,12 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
       }
       final cityId = cityQuery.docs.first.id;
 
-      // 2. Get collection name
       final subcollection = _getCollectionName();
 
       if (subcollection.isEmpty) {
         throw Exception('Invalid category');
       }
 
-      // 3. Fetch documents from subcollection
       final snapshot = await FirebaseFirestore.instance
           .collection('cities')
           .doc(cityId)
@@ -223,15 +215,11 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         try {
           final data = doc.data();
 
-          // --- Map fields according to your Firestore structure ---
           final name = _safeString(data['name']) ?? 'Unnamed';
-          
-          // Description/details field
           final details = _safeString(data['details']) ?? 
                           _safeString(data['description']) ?? 
                           'No description available';
           
-          // Extract location coordinates from location map
           double lat = 0.0, lng = 0.0;
           if (data['location'] is Map) {
             final loc = data['location'] as Map;
@@ -239,7 +227,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
             lng = _safeDouble(loc['longitude']) ?? 0.0;
           }
           
-          // Handle extraImages - could be an array or a map
           List<String> extraImages = [];
           if (data['extraImages'] != null) {
             if (data['extraImages'] is List) {
@@ -259,37 +246,29 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           final address = _safeString(data['address']) ?? '';
           final phone = _safeString(data['phoneNumber']) ?? '';
           final openHours = _safeString(data['openHours']) ?? '';
-          
-          // Price field - could be string with price info
           final price = _safeString(data['price']) ?? '';
-          
-          // Rating - could be 'rating' or 'averageRating'
           final rating = _safeDouble(data['rating']) ?? 
                          _safeDouble(data['averageRating']) ?? 
                          0.0;
-          
-          // Review count
           final reviewCount = _safeInt(data['reviewCount']) ?? 0;
-          
-          // Hashtag (for categories/tags)
           final hashtag = _safeString(data['hashtag']) ?? '';
-          
-          // Website
           final website = _safeString(data['website']) ?? '';
 
-          // Determine main image: first from extraImages, or empty
           final mainImage = extraImages.isNotEmpty ? extraImages.first : 'https://via.placeholder.com/400x300';
-
-          // Price level conversion
           final priceLevel = _priceLevelFromString(price);
 
-          // Extract category from name, hashtag, or description
-          String itemCategory = _extractCategory(name, hashtag, details);
+          // Extract category based on main category
+          String itemCategory = _extractCategoryForType(
+            widget.category,
+            name,
+            hashtag,
+            details,
+            priceLevel,
+          );
           if (itemCategory.isNotEmpty && itemCategory != 'Other') {
             categories.add(itemCategory);
           }
 
-          // Check if open now
           final isOpen = _isOpenNow(openHours);
 
           items.add(AttractionItem(
@@ -304,11 +283,11 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
             rating: rating,
             priceLevel: priceLevel,
             popularity: hashtag,
-            cuisine: '', // You might need to map this from somewhere else
+            cuisine: '', // Will be overridden by category for restaurants
             location: address,
-            distance: '0.5 mi', // Default or calculate later
+            distance: '0.5 mi',
             actions: <String>['Explore'],
-            isOpen: isOpen, // Now dynamically calculated
+            isOpen: isOpen,
             reviewCount: reviewCount,
             address: address,
             latitude: lat,
@@ -334,44 +313,121 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     }
   }
 
-  // Extract category from name, hashtag, or description
-  String _extractCategory(String name, String hashtag, String description) {
-    // Common categories for attractions
-    final Map<String, List<String>> categoryKeywords = {
-      'Museum': ['museum', 'gallery', 'exhibit', 'art'],
-      'Park': ['park', 'garden', 'nature', 'outdoor'],
-      'Landmark': ['landmark', 'monument', 'historic', 'building', 'tower', 'bridge'],
-      'Beach': ['beach', 'coast', 'shore', 'ocean'],
-      'Restaurant': ['restaurant', 'cafe', 'dining', 'eatery', 'grill'],
-      'Hotel': ['hotel', 'resort', 'inn', 'lodge'],
-      'Concert': ['concert', 'music', 'live', 'performance'],
-      'Festival': ['festival', 'fair', 'celebration'],
-      'Shopping': ['mall', 'shop', 'store', 'market', 'boutique'],
-      'Religious': ['church', 'temple', 'mosque', 'cathedral', 'shrine'],
-      'Sports': ['stadium', 'arena', 'sport', 'gym', 'field'],
-    };
-
+  // Extract category based on the main listing type
+  String _extractCategoryForType(
+    String mainCategory,
+    String name,
+    String hashtag,
+    String description,
+    String priceLevel,
+  ) {
     final lowerName = name.toLowerCase();
     final lowerHashtag = hashtag.toLowerCase();
     final lowerDesc = description.toLowerCase();
 
-    for (var entry in categoryKeywords.entries) {
-      for (var keyword in entry.value) {
-        if (lowerName.contains(keyword) || 
-            lowerHashtag.contains(keyword) || 
-            lowerDesc.contains(keyword)) {
-          return entry.key;
+    switch (mainCategory) {
+      case 'Attractions':
+        final Map<String, List<String>> attractionKeywords = {
+          'Museum': ['museum', 'gallery', 'exhibit', 'art'],
+          'Park': ['park', 'garden', 'nature', 'outdoor'],
+          'Landmark': ['landmark', 'monument', 'historic', 'building', 'tower', 'bridge'],
+          'Beach': ['beach', 'coast', 'shore', 'ocean'],
+          'Religious': ['church', 'temple', 'mosque', 'cathedral', 'shrine'],
+          'Sports': ['stadium', 'arena', 'sport', 'gym', 'field'],
+          'Zoo': ['zoo', 'aquarium', 'wildlife'],
+          'Shopping': ['mall', 'shop', 'store', 'market', 'boutique'],
+        };
+        for (var entry in attractionKeywords.entries) {
+          for (var keyword in entry.value) {
+            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+              return entry.key;
+            }
+          }
         }
-      }
+        return 'Other Attraction';
+
+      case 'Restaurants':
+        final Map<String, List<String>> cuisineKeywords = {
+          'Italian': ['italian', 'pizza', 'pasta', 'risotto'],
+          'Japanese': ['japanese', 'sushi', 'ramen', 'tempura'],
+          'Chinese': ['chinese', 'dim sum', 'peking'],
+          'Mexican': ['mexican', 'taco', 'burrito', 'enchilada'],
+          'Indian': ['indian', 'curry', 'tandoori'],
+          'Thai': ['thai', 'pad thai', 'tom yum'],
+          'French': ['french', 'bistro', 'croissant'],
+          'American': ['american', 'burger', 'steak', 'bbq'],
+          'Seafood': ['seafood', 'fish', 'lobster', 'oyster'],
+          'Vegetarian': ['vegetarian', 'vegan', 'plant-based'],
+          'Fast Food': ['fast food', 'burger', 'fries', 'drive-thru'],
+          'Cafe': ['cafe', 'coffee', 'bakery', 'pastry'],
+        };
+        for (var entry in cuisineKeywords.entries) {
+          for (var keyword in entry.value) {
+            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+              return entry.key;
+            }
+          }
+        }
+        return 'Other Cuisine';
+
+      case 'Hotels':
+        // Use price level or keywords to categorize hotels
+        if (priceLevel == '\$\$\$\$') return 'Luxury';
+        if (priceLevel == '\$\$\$') return 'Upscale';
+        if (priceLevel == '\$\$') return 'Mid-Range';
+        if (priceLevel == '\$') return 'Budget';
+        
+        final Map<String, List<String>> hotelKeywords = {
+          'Resort': ['resort', 'spa', 'beachfront', 'all-inclusive'],
+          'Boutique': ['boutique', 'design', 'stylish'],
+          'Business': ['business', 'corporate', 'conference'],
+          'Motel': ['motel', 'roadside'],
+          'Hostel': ['hostel', 'backpacker', 'dorm'],
+          'Apartment': ['apartment', 'serviced', 'suite'],
+        };
+        for (var entry in hotelKeywords.entries) {
+          for (var keyword in entry.value) {
+            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+              return entry.key;
+            }
+          }
+        }
+        return 'Standard Hotel';
+
+      case 'Events':
+        final Map<String, List<String>> eventKeywords = {
+          'Concert': ['concert', 'music', 'live', 'band', 'singer'],
+          'Festival': ['festival', 'fair', 'celebration', 'carnival'],
+          'Conference': ['conference', 'seminar', 'workshop', 'summit'],
+          'Exhibition': ['exhibition', 'expo', 'trade show', 'art show'],
+          'Sports': ['sport', 'game', 'match', 'tournament', 'race'],
+          'Theater': ['theater', 'play', 'musical', 'performance', 'show'],
+          'Workshop': ['workshop', 'class', 'training', 'course'],
+          'Networking': ['networking', 'meetup', 'social'],
+        };
+        for (var entry in eventKeywords.entries) {
+          for (var keyword in entry.value) {
+            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+              return entry.key;
+            }
+          }
+        }
+        return 'Other Event';
+
+      default:
+        return 'Other';
     }
-    return 'Other';
   }
 
   // ---------- FILTER LOGIC ----------
   List<AttractionItem> get _filteredItems {
     return _items.where((item) {
-      // Category filter
+      // Category filter - now uses the correct categories per main type
       if (_selectedCategoryFilter != 'All') {
+        // For category filter, we compare with the item's title, description, popularity,
+        // but also we can store the extracted category in the item and compare directly.
+        // Since we don't have a dedicated category field, we'll check if the filter string
+        // appears in the relevant fields.
         if (!item.title.toLowerCase().contains(_selectedCategoryFilter.toLowerCase()) &&
             !item.description.toLowerCase().contains(_selectedCategoryFilter.toLowerCase()) &&
             !item.popularity.toLowerCase().contains(_selectedCategoryFilter.toLowerCase())) {
@@ -402,7 +458,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
 
   // ---------- FILTER BUTTON BUILDERS ----------
   List<Widget> _buildFilterButtons() {
-    // Rating options from 1 to 5
     final ratingOptions = ['Any Rating'] + 
         List.generate(5, (index) => '${index + 1}.0+').reversed.toList();
 
@@ -574,7 +629,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                 )
               : Column(
                   children: [
-                    // Filter row
                     Container(
                       height: 56,
                       decoration: BoxDecoration(
@@ -589,7 +643,6 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                         itemBuilder: (context, index) => _buildFilterButtons()[index],
                       ),
                     ),
-                    // Content
                     Expanded(
                       child: _filteredItems.isEmpty
                           ? Center(
@@ -676,7 +729,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
 }
 
 // ------------------------------------------------------------
-// Attraction Card - Updated with Explore button navigation
+// Attraction Card - (unchanged)
 // ------------------------------------------------------------
 class _AttractionCard extends StatefulWidget {
   final AttractionItem item;
@@ -709,7 +762,6 @@ class _AttractionCardState extends State<_AttractionCard> {
     }
   }
 
-  // Method to navigate to detail screen
   void _navigateToDetail() {
     Navigator.push(
       context,
@@ -737,7 +789,7 @@ class _AttractionCardState extends State<_AttractionCard> {
   Widget build(BuildContext context) {
     final item = widget.item;
     return GestureDetector(
-      onTap: _navigateToDetail, // Make entire card tappable
+      onTap: _navigateToDetail,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -753,7 +805,6 @@ class _AttractionCardState extends State<_AttractionCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ----- IMAGE WITH OVERLAYS -----
             Stack(
               children: [
                 ClipRRect(
@@ -770,7 +821,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                     ),
                   ),
                 ),
-                // Favorite heart
                 Positioned(
                   top: 12,
                   right: 12,
@@ -786,7 +836,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                     size: 20,
                   ),
                 ),
-                // Open/Closed badge
                 Positioned(
                   bottom: 12,
                   left: 12,
@@ -808,8 +857,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                 ),
               ],
             ),
-
-            // ----- CONTENT -----
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -833,7 +880,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Contact & opening hours
                   if (item.phone.isNotEmpty)
                     Row(
                       children: [
@@ -884,7 +930,6 @@ class _AttractionCardState extends State<_AttractionCard> {
                     ),
                   if (item.openingHours.isNotEmpty) const SizedBox(height: 16),
 
-                  // Rating & action button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -911,7 +956,7 @@ class _AttractionCardState extends State<_AttractionCard> {
                       SizedBox(
                         width: 100,
                         child: ElevatedButton(
-                          onPressed: _navigateToDetail, // Navigate on Explore button tap
+                          onPressed: _navigateToDetail,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppTheme.primaryBlue,
                             foregroundColor: Colors.white,

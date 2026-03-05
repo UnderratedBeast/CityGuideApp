@@ -1,15 +1,15 @@
 {
   "name": "Jos",
   "description": "Jos is the capital of Plateau State in central Nigeria, often called the 'Cool City' due to its high altitude and relatively mild climate compared to much of the country. It's known for its scenic hills, pine forests, colonial-era architecture, tin mining history, diverse ethnic groups (including Berom, Anaguta, and Afizere), vibrant markets, and natural attractions like waterfalls, rock formations, and wildlife parks. Jos is a cultural and educational hub with the National Museum, Jos Wildlife Park, and nearby sites like Riyom Rocks and Shere Hills, offering a blend of history, nature, and cooler weather.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Jos_cityscape.jpg/800px-Jos_cityscape.jpg",
+  "imageUrl": "https://www.shutterstock.com/image-photo/scenic-aerial-view-jos-city-260nw-1931929640.jpg",
   "ratings": 4.4,
    "zone": "North Central",
   "extraImages": [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/jos-wildlife-park.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Riyom_Rocks_Jos.jpg/800px-Riyom_Rocks_Jos.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://cimages.timbu.com/guides/2017/04/jos_Riyom-Rock-Formation-Plateau-State.jpg",
+    "https://ichef.bbci.co.uk/news/480/cpsprodpb/71c3/live/99a09410-3dd9-11ef-86aa-434b3fd1a7f4.jpg.webp",
+    "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/F1C7/production/_120259816_bbc.png.webp",
     "https://cdn.getyourguide.com/img/tour/ngwo-pine-forest-jos.jpg",
-    "https://www.trip.com/moments/detail/jos-20062-12345678?locale=en-XX"
+    "https://prettyshirley.wordpress.com/wp-content/uploads/2019/09/jos.jpeg"
   ],
   "topHighlights": [
     "Jos Wildlife Park – Home to various animals and nature trails",
@@ -29,7 +29,7 @@
     {
       "name": "Jos Wildlife Park",
       "details": "A central wildlife park featuring various animals (including lions, monkeys, and birds), walking paths, and green spaces – a family-friendly spot for nature and education.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/jos-wildlife-park.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://acresal.gov.ng/wp-content/uploads/2025/05/IMG_8539.jpg",
       "rating": 4.2,
       "address": "Tudun Wada Road, Jos, Plateau State",
       "location": { "latitude": 9.9167, "longitude": 8.8833 },
@@ -39,27 +39,17 @@
       "openHours": "Daily: 8:00 AM - 6:00 PM",
       "hashtag": "wildlife park nature",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Jos_Wildlife_Park_animals.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/park-trail.jpg?w=900",
-        "https://cdn.tripadvisor.com/jos-zoo-view.jpg",
+        "https://images.timbu.com/contents-370808bb3d35479a973a494f40232594/d8e67d50-aea1-4bbd-9b4e-17c3bcf4e88c.png",
+        "https://gazettengr.com/wp-content/uploads/Jos-wildlife-park.png",
+        "https://media.premiumtimesng.com/wp-content/files/2017/06/Baboon-e1497867552179.jpg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦2000 entry",
-      "reviews": [
-        {
-          "profileName": "Aminu J.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Great place for families – nice animals and peaceful walks.",
-          "profileImage": "https://example.com/aminu.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "₦500 - ₦2000 entry"
     },
     {
       "name": "National Museum Jos",
       "details": "Museum showcasing Nigerian archaeology, Nok terracotta artifacts, traditional crafts, and cultural exhibits – a key site for understanding Plateau and Nigerian heritage.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/national-museum-jos.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://thumbs.dreamstime.com/b/view-interior-national-museum-costa-rica-center-san-jos-view-interior-national-museum-195397941.jpg",
       "rating": 4.3,
       "address": "Museum Street, Terminus, Jos, Plateau State",
       "location": { "latitude": 9.9000, "longitude": 8.8667 },
@@ -69,27 +59,17 @@
       "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
       "hashtag": "museum history archaeology",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/National_Museum_Jos_exhibits.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-artifacts.jpg?w=900",
-        "https://cdn.tripadvisor.com/nok-terracotta.jpg",
+        "https://static.where-e.com/Nigeria/Plateau_State/Jos_North_Local_Government_Area/Jos-Museum-And-Zoo_4652e442bd32078ee4f1447b44bf6410.jpg",
+        "https://rexclarkeadventures.com/wp-content/uploads/2024/11/unnamed-37.jpg",
+        "https://museum.ng/wp-content/uploads/2022/05/IMG_20211204_173424_988-768x1024.jpg",
         "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦1500 entry",
-      "reviews": [
-        {
-          "profileName": "Fatima M.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Rich in history – excellent Nok artifacts!",
-          "profileImage": "https://example.com/fatima.jpg",
-          "likes": 32
-        }
-      ]
+      "price": "₦500 - ₦1500 entry"
     },
     {
       "name": "Riyom Rock Formation",
       "details": "Spectacular granite rock formations rising dramatically from the landscape – a natural wonder along the Jos-Akwanga road, great for photos and short hikes.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Riyom_Rocks_Jos.jpg/800px-Riyom_Rocks_Jos.jpg",
+      "imageUrl": "https://cimages.timbu.com/guides/2017/07/Riyom-Rock-2.jpg",
       "rating": 4.5,
       "address": "Riyom LGA, near Jos, Plateau State",
       "location": { "latitude": 9.6333, "longitude": 8.7667 },
@@ -99,22 +79,12 @@
       "openHours": "Viewable daily (outdoor)",
       "hashtag": "rock formation nature viewpoint",
       "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/riyom-rocks.jpg?w=800",
-        "https://cdn.tripadvisor.com/riyom-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://www.nigeriagalleria.com/Nigeria/States_Nigeria/Plateau/Images/Riyom-Rock-Formations-Jos-2.jpg",
+        "https://thingsnigeria.com/wp-content/uploads/2017/02/close-up_of_rock_with_head-435x600.jpg",
+        "https://www.shutterstock.com/image-photo/riyom-rock-formation-jos-nigeria-260nw-1612541149.jpg",
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "Free",
-      "reviews": [
-        {
-          "profileName": "Sunday K.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Breathtaking rocks – amazing Plateau scenery!",
-          "profileImage": "https://example.com/sunday.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "Free"
     },
     {
       "name": "Ngwo Pine Forest & Cave",

@@ -148,7 +148,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppTheme.primaryBlue,
+              ),
+            );
           }
 
           final favorites = snapshot.data!;
@@ -199,9 +203,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               ),
             );
           }
-
+          
           return ListView.builder(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 16,
+              bottom: 100, // Increased bottom padding to accommodate floating navbar
+            ),
             itemCount: filteredFavorites.length,
             itemBuilder: (context, index) {
               final favorite = filteredFavorites[index];
@@ -209,7 +218,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             },
           );
         },
+        
       ),
+      
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: _selectedNavIndex,
         onTap: (index) {
@@ -248,8 +259,45 @@ class _FavoriteCard extends StatelessWidget {
 
   const _FavoriteCard({required this.favorite});
 
+  Color _getTypeColor(String itemType) {
+    switch (itemType) {
+      case 'attraction':
+        return Colors.orange;
+      case 'restaurant':
+        return Colors.green;
+      case 'hotel':
+        return AppTheme.primaryBlue; // Changed from any purple to blue
+      case 'event':
+        return Colors.red;
+      case 'city':
+        return AppTheme.primaryBlue; // Changed from any purple to blue
+      default:
+        return Colors.grey;
+    }
+  }
+
+  IconData _getTypeIcon(String itemType) {
+    switch (itemType) {
+      case 'attraction':
+        return Icons.attractions;
+      case 'restaurant':
+        return Icons.restaurant;
+      case 'hotel':
+        return Icons.hotel;
+      case 'event':
+        return Icons.event;
+      case 'city':
+        return Icons.location_city;
+      default:
+        return Icons.favorite;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final typeColor = _getTypeColor(favorite.itemType);
+    final typeIcon = _getTypeIcon(favorite.itemType);
+
     return GestureDetector(
       onTap: () {
         _navigateToDetail(context);
@@ -282,8 +330,8 @@ class _FavoriteCard extends StatelessWidget {
                   height: 100,
                   color: Colors.grey.shade300,
                   child: Icon(
-                    favorite.icon,
-                    color: favorite.color,
+                    typeIcon,
+                    color: typeColor,
                     size: 40,
                   ),
                 ),
@@ -304,16 +352,16 @@ class _FavoriteCard extends StatelessWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: favorite.color.withOpacity(0.1),
+                            color: typeColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(
-                                favorite.icon,
+                                typeIcon,
                                 size: 12,
-                                color: favorite.color,
+                                color: typeColor,
                               ),
                               const SizedBox(width: 4),
                               Text(
@@ -321,7 +369,7 @@ class _FavoriteCard extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
-                                  color: favorite.color,
+                                  color: typeColor,
                                 ),
                               ),
                             ],
