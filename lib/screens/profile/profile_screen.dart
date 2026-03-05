@@ -1,9 +1,3 @@
-// lib/screens/profile/profile_screen.dart
-//
-// Design: Refined "arctic glass" — crisp white + ocean-blue gradient hero,
-// frosted-glass cards floating over a subtle mesh background, smooth
-// entrance animation, real-time Firestore stream.
-
 import 'dart:ui';
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
 import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
