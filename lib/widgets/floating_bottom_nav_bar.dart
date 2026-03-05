@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../utils/theme.dart'; // adjust path if needed
+import '../utils/theme.dart';
 
 class FloatingBottomNavBar extends StatelessWidget {
   final int currentIndex;
