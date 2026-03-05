@@ -1,9 +1,4 @@
 import 'dart:ui';
-import 'package:city_guide_app/screens/admin/admin_listing_list_screen.dart';
-import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
-import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
-import 'package:city_guide_app/screens/profile/profile_screen.dart';
-import 'package:city_guide_app/widgets/admin_floating_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
@@ -27,24 +22,12 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
-  String _selectedCollection = 'attractions';
   String? _selectedCityId;
-
-  final List<String> collections = [
-    'attractions',
-    'hotels',
-    'dining',
-    'events'
-  ];
-
-  static const Color primaryBlue = Color(0xFF1565C0);
-  static const Color lightBlue = Color(0xFFE3F2FD);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      backgroundColor: Colors.white,
+      // extendBody: true,
       appBar: AppBar(
         title: const Text(
           'CityGuide Admin',
@@ -67,7 +50,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onTap: () => _showAdminProfile(context),
             borderRadius: BorderRadius.circular(20),
             child: CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: AppTheme.primaryBlue,
               child: Text(
                 context.read<AuthProvider>().user?.fullName.isNotEmpty == true
                     ? context
@@ -87,77 +70,211 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
       body: _buildBody(),
-      bottomNavigationBar: AdminFloatingBottomNavBar(
-        currentIndex: -1,
-        onTap: (index) {
-          if (index == 3) {
-           
-               if (_selectedCityId != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => SettingsScreen(
-                    // cityId: _selectedCityId!,
-                  ),
-                ),
-              );
-            } else {
-              // If no city selected, just stay on current screen
-              setState(() {
-                _selectedIndex = 3;
-              });
-            }
+      // bottomNavigationBar: NavigationBar(
+      //   selectedIndex: _selectedIndex,
+      //   onDestinationSelected: (int index) {
+      //     setState(() {
+      //       _selectedIndex = index;
+      //     });
+      //   },
+      //   backgroundColor: Colors.white,
+      //   indicatorColor: const Color.fromARGB(255, 46, 91, 228).withAlpha(25),
+      //   destinations: const [
+      //     NavigationDestination(
+      //       icon: Icon(Icons.dashboard_outlined),
+      //       selectedIcon: Icon(Icons.dashboard),
+      //       label: 'Home',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.place_outlined),
+      //       selectedIcon: Icon(Icons.place),
+      //       label: 'Listings',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.reviews_outlined),
+      //       selectedIcon: Icon(Icons.reviews),
+      //       label: 'Reviews',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.settings_outlined),
+      //       selectedIcon: Icon(Icons.settings),
+      //       label: 'Settings',
+      //     ),
+      //   ],
+      // ),
 
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(40),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+            // filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+            child: Container(
+  height: 76,
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(40),
 
-          }
-          if (index == 2) {
-              if (_selectedCityId != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => AdminReviewsScreen(
-                    // cityId: _selectedCityId!,
-                  ),
-                ),
-              );
-            } else {
-              // If no city selected, just stay on current screen
-              setState(() {
-                _selectedIndex = 2;
-              });
-            }
+    // Glass color
+    color: Colors.white.withOpacity(0.12),
 
+    // subtle glass gradient highlight
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Colors.white.withOpacity(0.25),
+        Colors.white.withOpacity(0.05),
+      ],
+    ),
 
+    border: Border.all(
+      color: Colors.white.withOpacity(0.25),
+      width: 1,
+    ),
 
-          }
-          if (index == 1) {
-            // Make sure _selectedCityId is not null before navigating
-            if (_selectedCityId != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => AdminListingTabbedScreen(
-                    cityId: _selectedCityId!,
-                  ),
-                ),
-              );
-            } else {
-              // If no city selected, just stay on current screen
-              setState(() {
-                _selectedIndex = 1;
-              });
-            }
-          }
-          if (index == 0) {
-            setState(() {
-              _selectedIndex = 0;
-            });
-          }
-        },
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.12),
+        blurRadius: 20,
+        offset: const Offset(0, 10),
+      ),
+    ],
+  ),
+              child: Row(
+                children: List.generate(4, (index) {
+                  final isSelected = index == _selectedIndex;
+
+                  final icons = [
+                    Icons.dashboard_outlined,
+                    Icons.place_outlined,
+                    Icons.reviews_outlined,
+                    Icons.settings_outlined,
+                  ];
+
+                  final activeIcons = [
+                    Icons.dashboard,
+                    Icons.place,
+                    Icons.reviews,
+                    Icons.settings,
+                  ];
+
+                  final labels = [
+                    "Home",
+                    "Listings",
+                    "Reviews",
+                    "Settings",
+                  ];
+
+                  return Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 350),
+                        curve: Curves.easeOutCubic,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 6),
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppTheme.primaryBlue.withValues(alpha: 0.18)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AnimatedScale(
+                              duration: const Duration(milliseconds: 250),
+                              scale: isSelected ? 1.15 : 1,
+                              child: Icon(
+                                isSelected ? activeIcons[index] : icons[index],
+                                size: 24,
+                                // size: 26,
+                                color: isSelected
+                                    ? AppTheme.primaryBlue
+                                    : Colors.blueGrey,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            AnimatedDefaultTextStyle(
+                              duration: const Duration(milliseconds: 250),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: isSelected
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
+                                color: isSelected
+                                    ? AppTheme.primaryBlue
+                                    : Colors.blueGrey,
+                              ),
+                              child: Text(labels[index]),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 
+  // Widget _buildBody() {
+  //   switch (_selectedIndex) {
+  //     case 0:
+  //       return const DashboardHome();
+
+  //     case 1:
+  //       // Listings tab with collection switcher
+  //       return Column(
+  //         children: [
+  //           Padding(
+  //             padding: const EdgeInsets.all(12),
+  //             child: DropdownButton<String>(
+  //               value: _selectedCollection,
+  //               items: collections
+  //                   .map((e) => DropdownMenuItem(
+  //                         value: e,
+  //                         child: Text(e[0].toUpperCase() + e.substring(1)),
+  //                       ))
+  //                   .toList(),
+  //               onChanged: (value) {
+  //                 if (value != null) {
+  //                   setState(() {
+  //                     _selectedCollection = value;
+  //                   });
+  //                 }
+  //               },
+  //             ),
+  //           ),
+  //           Expanded(
+  //             child: AdminListingListScreen(
+  //               cityId: _selectedCityId!,
+  //               collectionName: _selectedCollection),
+  //           ),
+  //         ],
+  //       );
+
+  //     case 2:
+  //       return const ReviewListScreen();
+
+  //     case 3:
+  //       return const SettingsScreen();
+
+  //     default:
+  //       return const DashboardHome();
+  //   }
+  // }
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
@@ -168,27 +285,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (_selectedCityId == null) {
           // Step 1: Show all cities
           return StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('cities')
-                .snapshots(),
+            stream: FirebaseFirestore.instance.collection('cities').snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.error_outline, color: Colors.red, size: 60),
-                      const SizedBox(height: 16),
-                      Text('Error: ${snapshot.error}'),
-                    ],
-                  ),
-                );
+                return const Center(child: Text('Something went wrong'));
               }
 
-              if (!snapshot.hasData) {
-                return const Center(
-                  child: CircularProgressIndicator(color: Colors.blue),
-                );
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
               }
 
               final cities = snapshot.data!.docs;
@@ -198,8 +302,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               return GridView.builder(
                 padding: const EdgeInsets.all(16),
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -208,8 +311,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 itemCount: cities.length,
                 itemBuilder: (context, index) {
                   final city = cities[index];
-                  final cityData =
-                      city.data() as Map<String, dynamic>;
+                  final cityData = city.data() as Map<String, dynamic>;
                   return InkWell(
                     onTap: () {
                       setState(() {
@@ -222,7 +324,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: primaryBlue.withOpacity(0.08),
+                            color: AppTheme.primaryBlue.withValues(alpha: 0.25),
                             blurRadius: 15,
                             offset: const Offset(0, 8),
                           ),
@@ -234,12 +336,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: primaryBlue.withOpacity(0.1),
+                              color:
+                                  AppTheme.primaryBlue.withValues(alpha: 0.1),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
                               Icons.location_city,
-                              color: primaryBlue,
+                              color: AppTheme.primaryBlue,
                               size: 32,
                             ),
                           ),
@@ -276,18 +379,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             // Header with back button
             Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
                   IconButton(
@@ -301,9 +393,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Listings - ${_getCityNameFromId(_selectedCityId!)}',
+                      'Admin Listings - $_selectedCityId',
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -312,7 +404,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
             ),
-            // Tabbed Listings
+
+            // Listings
             Expanded(
               child: AdminListingTabbedScreen(
                 cityId: _selectedCityId!,
@@ -345,143 +438,158 @@ class _DashboardScreenState extends State<DashboardScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Handle bar
-              Container(
-                margin: const EdgeInsets.only(top: 12),
-                height: 4,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(2),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.6,
+          minChildSize: 0.4,
+          maxChildSize: 0.9,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(30),
                 ),
               ),
-              const SizedBox(height: 24),
-              
-              // Profile Info
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.blue.withOpacity(0.1),
-                child: Text(
-                  user?.fullName.isNotEmpty == true
-                      ? user!.fullName[0].toUpperCase()
-                      : 'A',
-                  style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+              child: SafeArea(
+                top: false,
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 32,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      /// Avatar
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          // color: Colors.blue.withValues(0.1),
+                          color: AppTheme.primaryPurple.withValues(alpha: 0.1),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            user?.fullName.isNotEmpty == true
+                                ? user!.fullName[0].toUpperCase()
+                                : 'A',
+                            style: const TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              // color: Colors.blue,
+                              color: AppTheme.primaryPurple,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      /// Name
+                      Text(
+                        user?.fullName ?? 'Admin User',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+
+                      /// Email
+                      Text(
+                        user?.email ?? 'admin@cityguide.com',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 16,
+                        ),
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      /// Role Badge
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          'ADMINISTRATOR',
+                          style: TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+                      const Divider(),
+                      const SizedBox(height: 10),
+
+                      /// Account Settings
+                      ListTile(
+                        leading: const Icon(Icons.settings_outlined),
+                        title: const Text('Account Settings'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          setState(() => _selectedIndex = 3);
+                        },
+                      ),
+
+                      /// Sign Out
+                      ListTile(
+                        leading: const Icon(Icons.logout, color: Colors.red),
+                        title: const Text(
+                          'Sign Out',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onTap: () async {
+                          Navigator.pop(context);
+
+                          final confirm = await showDialog<bool>(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text('Sign Out'),
+                              content: const Text(
+                                'Are you sure you want to log out?',
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(ctx, false),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(ctx, true),
+                                  child: const Text(
+                                    'Sign Out',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+
+                          if (confirm == true) {
+                            await authProvider.logout();
+                          }
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+                    ],
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
-              Text(
-                user?.fullName ?? 'Admin User',
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                user?.email ?? '',
-                style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Text(
-                  'ADMINISTRATOR',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Divider(height: 1),
-              
-              // PREFERENCES SECTION
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'PREFERENCES',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-                ),
-              ),
-              
-              // Account Settings Option
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(Icons.settings_outlined, color: Colors.blue),
-                ),
-                title: const Text(
-                  'Account Settings',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  setState(() {
-                    _selectedIndex = 3;
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              
-              // Sign Out Option
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(Icons.logout, color: Colors.red),
-                ),
-                title: const Text(
-                  'Sign Out',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.red),
-                ),
-                onTap: () async {
-                  Navigator.pop(context);
-                  await context.read<AuthProvider>().logout();
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              const SizedBox(height: 20),
-            ],
-          ),
+            );
+          },
         );
       },
     );
