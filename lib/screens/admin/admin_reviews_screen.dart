@@ -1,13 +1,8 @@
 import 'dart:ui';
-import 'package:city_guide_app/screens/admin/admin_listing_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/review_service.dart';
 import '../../models/review_model.dart';
-import '../../widgets/admin_floating_bottom_nav_bar.dart';
-import 'admin_dashboard.dart';
-// import 'admin_listing_tabbed_screen.dart';
-import 'admin_settings_screen.dart';
 
 class AdminReviewsScreen extends StatefulWidget {
   const AdminReviewsScreen({super.key});
@@ -20,7 +15,6 @@ class _AdminReviewsScreenState extends State<AdminReviewsScreen>
     with SingleTickerProviderStateMixin {
   final ReviewService _reviewService = ReviewService();
   late TabController _tabController;
-  int _selectedNavIndex = 2; // Reviews is index 2
 
   @override
   void initState() {
@@ -65,7 +59,6 @@ class _AdminReviewsScreenState extends State<AdminReviewsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       backgroundColor: Colors.white,
 
       appBar: AppBar(
@@ -100,38 +93,6 @@ class _AdminReviewsScreenState extends State<AdminReviewsScreen>
           _buildReviewStream('approved'),
           _buildReviewStream('rejected'),
         ],
-      ),
-
-      bottomNavigationBar: AdminFloatingBottomNavBar(
-        currentIndex: _selectedNavIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedNavIndex = index;
-          });
-          
-          if (index == 3) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            );
-          } else if (index == 2) {
-            // Already on reviews
-          } else if (index == 1) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const AdminListingTabbedScreen(
-                  cityId: '', // You'll need to pass the actual cityId
-                ),
-              ),
-            );
-          } else if (index == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const DashboardHome()),
-            );
-          }
-        },
       ),
     );
   }
