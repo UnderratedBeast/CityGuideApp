@@ -1,15 +1,15 @@
 {
   "name": "Enugu",
   "description": "Enugu is the capital of Enugu State in southeastern Nigeria, famously called the 'Coal City' due to its historical coal mining industry that shaped its early development. Nestled among scenic hills, it's a cultural and educational hub with the prestigious University of Nigeria (Nsukka nearby), vibrant markets, colonial-era architecture, and natural attractions like waterfalls (Awhum, Ngwo Pine Forest), caves, and parks. Known for its cool climate compared to other Nigerian cities, rich Igbo heritage, delicious local cuisine (e.g., abacha, nkwobi), and growing tourism around history and nature.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Enugu_cityscape.jpg/800px-Enugu_cityscape.jpg",
+  "imageUrl": "https://i.pinimg.com/736x/c3/d6/9c/c3d69cc2a28ffb38377da329c34c2cbf.jpg",
   "ratings": 4.3,
    "zone": "South East",
   "extraImages": [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/8d/5d/ngwo-pine-forest.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Centre_for_Memories_Enugu.jpg/800px-Centre_for_Memories_Enugu.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://cdn.getyourguide.com/img/tour/awhum-waterfall-enugu.jpg",
-    "https://www.trip.com/moments/detail/enugu-20059-12345678?locale=en-XX"
+    "https://i.pinimg.com/736x/a3/4d/c0/a34dc0b2921ecf04f2d4dd17f4a5b808.jpg",
+    "https://i.pinimg.com/736x/ba/40/53/ba4053f9dace6c60e863e1665c22e13b.jpg",
+    "https://i.pinimg.com/736x/21/5a/9f/215a9ff3d851e32c6c627086db88559d.jpg",
+    "https://i.pinimg.com/736x/bf/94/ed/bf94ed7adc27e4953a45af0890f740a4.jpg",
+    "https://i.pinimg.com/1200x/e9/e8/9e/e9e89e7acd52401a5624be96594d2a63.jpg"
   ],
   "topHighlights": [
     "Centre for Memories – Museum on Igbo history and Biafran War",
@@ -29,7 +29,7 @@
     {
       "name": "Centre for Memories",
       "details": "A modern museum and cultural center preserving Igbo history, artifacts from the Biafran War, and exhibits on leadership and heritage – educational and reflective.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/centre-for-memories.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://www.sitesofconscience.org/wp-content/uploads/2024/06/FB_IMG_1685890339722.jpg",
       "rating": 4.7,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -39,22 +39,12 @@
       "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
       "hashtag": "museum history culture",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Centre_for_Memories_exhibits.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-interior.jpg?w=900",
-        "https://cdn.tripadvisor.com/centre-memories-artifacts.jpg",
+        "https://opencountrymag.com/wp-content/uploads/2022/11/CFM-Mmuo-Exhibition-2.jpg",
+        "https://opencountrymag.com/wp-content/uploads/2022/11/CFM-Inaugural-Exhibition-Ala-Igbo-6.jpg",
+        "https://opencountrymag.com/wp-content/uploads/2022/11/Centre-for-Memories-photos-taken-by-Otosirieze-10-scaled-1.webp",
         "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "₦1000 - ₦3000 entry/tour",
-      "reviews": [
-        {
-          "profileName": "Chijioke O.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Powerful and informative – a must-visit for understanding Igbo history.",
-          "profileImage": "https://example.com/chijioke.jpg",
-          "likes": 35
-        }
-      ]
     },
     {
       "name": "Ngwo Pine Forest & Cave",
