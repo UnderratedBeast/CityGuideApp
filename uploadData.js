@@ -11,8 +11,8 @@ const citiesData = {
   // onitsha: require("./data/onitsha.json"),
   // calabar: require("./data/calabar.json"),
   // enugu: require("./data/enugu.json"),
-  // jos: require("./data/jos.json"),
-  kaduna: require("./data/kaduna.json"),
+  jos: require("./data/jos.json"),
+  // kaduna: require("./data/kaduna.json"),
   // bauchi: require("./data/bauchi.json"),
   // yola: require("./data/yola.json"),
 };
