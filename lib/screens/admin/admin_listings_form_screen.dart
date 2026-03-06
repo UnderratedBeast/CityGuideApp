@@ -190,6 +190,8 @@ final TextEditingController _imageUrl = TextEditingController();
 final TextEditingController _additionalImages = TextEditingController();
 final TextEditingController _priceLevel = TextEditingController();
 final TextEditingController _rating = TextEditingController();
+final TextEditingController _latitude = TextEditingController();
+final TextEditingController _longitude = TextEditingController();
 
   @override
 void initState() {
@@ -211,6 +213,12 @@ void initState() {
       (d['additionalImages'] as List<dynamic>?)?.join(', ') ?? '';
   _priceLevel.text = d['priceLevel']?.toString() ?? '0';
   _rating.text = d['rating']?.toString() ?? '0';
+
+  _latitude.text =
+    (d['location'] != null) ? d['location'].latitude.toString() : '';
+
+_longitude.text =
+    (d['location'] != null) ? d['location'].longitude.toString() : '';
 }
 
   @override
@@ -223,6 +231,8 @@ void initState() {
     _additionalImages.dispose();
     _priceLevel.dispose();
     _rating.dispose();
+    _latitude.dispose();
+    _longitude.dispose();
     super.dispose();
   }
 
@@ -242,6 +252,11 @@ void initState() {
           .toList(),
       'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
       'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
+      'location': GeoPoint(
+        double.tryParse(_latitude.text.trim()) ?? 0,
+        double.tryParse(_longitude.text.trim()) ?? 0,
+  ),
+
       'updatedAt': FieldValue.serverTimestamp(),
     };
 
@@ -341,6 +356,18 @@ void initState() {
                   inputType: TextInputType.number),
               _field(_rating, 'Rating',
                   inputType: TextInputType.number),
+              
+              _field(
+                  _latitude,
+                  'Latitude',
+                  inputType: TextInputType.number,
+                ),
+
+              _field(
+                _longitude,
+                'Longitude',
+                inputType: TextInputType.number,
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
   style: ElevatedButton.styleFrom(
