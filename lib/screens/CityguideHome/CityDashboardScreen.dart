@@ -682,20 +682,20 @@ class _CityDashboardScreenState extends State<CityDashboardScreen> {
                               ],
                             ),
                           ),
-                          // CircleAvatar(
-                          //   radius: 28,
-                          //   backgroundColor: AppTheme.primaryBlue,
-                          //   child: Text(
-                          //     _isUserLoading || _currentUser?.fullName.isEmpty == true
-                          //         ? '?'
-                          //         : _currentUser!.fullName[0].toUpperCase(),
-                          //     style: const TextStyle(
-                          //       color: Colors.white,
-                          //       fontSize: 24,
-                          //       fontWeight: FontWeight.bold,
-                          //     ),
-                          //   ),
-                          // ),
+                          CircleAvatar(
+                            radius: 28,
+                            backgroundColor: AppTheme.primaryBlue,
+                            child: Text(
+                              _isUserLoading || _currentUser?.fullName.isEmpty == true
+                                  ? '?'
+                                  : _currentUser!.fullName[0].toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
 

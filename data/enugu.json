@@ -44,12 +44,12 @@
         "https://opencountrymag.com/wp-content/uploads/2022/11/Centre-for-Memories-photos-taken-by-Otosirieze-10-scaled-1.webp",
         "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦1000 - ₦3000 entry/tour",
+      "price": "₦1000 - ₦3000 entry/tour"
     },
     {
       "name": "Ngwo Pine Forest & Cave",
       "details": "Scenic pine forest with hiking trails, a small waterfall, cave, and fresh air – a peaceful natural escape on the outskirts of Enugu.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ngwo-pine-forest.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://i.pinimg.com/1200x/16/a0/31/16a0312181cb3dd803a10cd2d73d8661.jpg",
       "rating": 4.5,
       "address": "Ngwo, near Enugu, Enugu State",
       "location": { "latitude": 6.5333, "longitude": 7.4167 },
@@ -59,27 +59,17 @@
       "openHours": "Daily: 8:00 AM - 6:00 PM",
       "hashtag": "nature forest hiking",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ngwo_Pine_Forest.jpg",
+        "https://i.pinimg.com/1200x/ce/96/74/ce9674cd3e3326215d2aef49fbfb5ae1.jpg",
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/pine-trail.jpg?w=900",
-        "https://cdn.tripadvisor.com/ngwo-cave.jpg",
+        "https://i0.wp.com/cassiedaves.com/wp-content/uploads/2020/11/osun-osogbo-groove-cassie-daves-travels2.jpg?resize=512%2C540&ssl=1",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦2000 entry",
-      "reviews": [
-        {
-          "profileName": "Adaora N.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Cool, green escape – perfect for nature walks!",
-          "profileImage": "https://example.com/adaora.jpg",
-          "likes": 30
-        }
-      ]
+      "price": "₦500 - ₦2000 entry"
     },
     {
       "name": "Awhum Waterfall and Cave",
       "details": "Beautiful waterfall cascading into a natural pool, with an adjacent cave – a spiritual and scenic site popular for picnics and relaxation.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/awhum-waterfall.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://i.pinimg.com/736x/88/f7/74/88f7743bd4d4c83f9b177d10c11df835.jpg",
       "rating": 4.6,
       "address": "Awhum, near Enugu, Enugu State",
       "location": { "latitude": 6.3000, "longitude": 7.5000 },
@@ -89,27 +79,17 @@
       "openHours": "Daily: 8:00 AM - 5:00 PM",
       "hashtag": "nature waterfall cave",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Awhum_Waterfall.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/awhum-pool.jpg?w=900",
-        "https://cdn.tripadvisor.com/awhum-cave.jpg",
+        "https://i.pinimg.com/736x/20/98/8a/20988ab665d7b4a6dbc4ea6b70966534.jpg",
+        "https://i0.wp.com/media.premiumtimesng.com/wp-content/files/2022/12/The-granite-rock-along-the-road-to-the-waterfall-CREDIT-Africa-View-Facts.jpg?w=508&ssl=1",
+        "https://i.pinimg.com/736x/42/4c/cf/424ccffae6fa4b8ff382e21665007147.jpg",
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦1000 - ₦3000 entry/guide",
-      "reviews": [
-        {
-          "profileName": "Ikechukwu E.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Refreshing and serene – great natural spot!",
-          "profileImage": "https://example.com/ikechukwu.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "₦1000 - ₦3000 entry/guide"
     },
     {
       "name": "Ezeagu Tourist Complex",
       "details": "Recreational complex with waterfalls, lakes, picnic areas, and leisure facilities – ideal for family outings and relaxation.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/ezeagu-complex.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://rexclarkeadventures.com/wp-content/uploads/2025/10/osama-adnan-9zqgFAUGyaM-unsplash-1.jpg",
       "rating": 4.2,
       "address": "Ezeagu LGA, near Enugu, Enugu State",
       "location": { "latitude": 6.3167, "longitude": 7.3167 },
@@ -119,29 +99,19 @@
       "openHours": "Daily: 8:00 AM - 6:00 PM",
       "hashtag": "tourist complex nature",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Ezeagu_waterfall.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/lake-view.jpg?w=900",
-        "https://cdn.tripadvisor.com/ezeagu-picnic.jpg",
+        "https://images.myguide-cdn.com/nigeria/companies/ezeagu-tourist-complex/large/ezeagu-tourist-complex-139889.jpg",
+        "https://nnewicity.com/wp-content/uploads/2025/05/images-81.jpeg",
+        "https://nnewicity.com/wp-content/uploads/2025/05/images-79.jpeg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦1000 - ₦4000 entry/activities",
-      "reviews": [
-        {
-          "profileName": "Family Outing",
-          "createdAt": "2026-01-10",
-          "starRatings": 4,
-          "reviewDetails": "Fun day out with water features and green spaces.",
-          "profileImage": "https://example.com/family.jpg",
-          "likes": 25
-        }
-      ]
+      "price": "₦1000 - ₦4000 entry/activities" 
     }
   ],
   "hotels": [
     {
       "name": "Hotel Sunshine",
       "details": "Modern hotel with comfortable rooms, pool, restaurant, and central location – highly rated for service and value.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/hotel-sunshine-hero.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/f9/ac/3d/caption.jpg?w=600&h=600&s=1",
       "rating": 4.5,
       "address": "Presidential Road, Enugu",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -151,27 +121,17 @@
       "openHours": "24/7",
       "hashtag": "modern comfort",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/sunshine-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-sunshine.jpg",
-        "https://cdn.hotelsunshine.com/lobby.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRnVYbdd9gdpLv-3oO2XN7OROMN0IiO9JwHw&s",
+        "https://i.pinimg.com/1200x/70/b8/ad/70b8adc59dea554d945dab97bc590202.jpg",
+        "https://i.pinimg.com/1200x/51/d2/99/51d299588d9b2364245e20ef5dbde18d.jpg",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$50 - $150 per night",
-      "reviews": [
-        {
-          "profileName": "Chinonso U.",
-          "createdAt": "2026-01-05",
-          "starRatings": 5,
-          "reviewDetails": "Clean, welcoming, and great facilities!",
-          "profileImage": "https://example.com/chinonso.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$50 - $150 per night"
     },
     {
       "name": "BON Hotel Platinum Enugu",
       "details": "Contemporary hotel offering stylish rooms, dining, pool, and business amenities – top choice for comfort.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/bon-platinum-hero.jpg?w=900",
+      "imageUrl": "https://bonhotels.com/wp-content/uploads/2022/10/platinum-enugu-main-page-images1.png",
       "rating": 4.4,
       "address": "Platinum Close, Enugu",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -181,27 +141,17 @@
       "openHours": "24/7",
       "hashtag": "luxury business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/bon-platinum-room.jpg",
-        "https://cdn.bonhotels.com/platinum-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/dining.jpg",
+        "https://bonhotels.com/wp-content/uploads/2022/10/platinum-enugu-main-page-images10.png",
+        "https://bonhotels.com/wp-content/uploads/2022/10/platinum-enugu-13.jpg",
+        "https://bonhotels.com/wp-content/uploads/2022/10/platinum-enugu-8.jpg",
         "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$70 - $180 per night",
-      "reviews": [
-        {
-          "profileName": "Ifunanya O.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Stylish and professional – excellent stay.",
-          "profileImage": "https://example.com/ifunanya.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$70 - $180 per night"
     },
     {
       "name": "Nike Lake Resort",
       "details": "Scenic lakeside resort with rooms, pool, golf course, and leisure facilities – ideal for relaxation.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/nike-lake-resort.jpg?w=900&h=-1&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4c/6e/08/fb-img-1605001857993.jpg?w=1100&h=-1&s=1",
       "rating": 4.2,
       "address": "Nike Lake Road, Abakpa Nike, Enugu",
       "location": { "latitude": 6.5000, "longitude": 7.5667 },
@@ -211,22 +161,12 @@
       "openHours": "24/7",
       "hashtag": "resort nature",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/nike-lake-view.jpg",
-        "https://cdn.nikelakeresort.com/pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/golf.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4c/6e/0a/fb-img-1605001872138.jpg?w=1100&h=-1&s=1",
+        "https://images.timbu.com/contents-6890db98c82040568817f1731772f6d8/140c65de-dfb4-439e-90ed-d0ce1108f4b5.png",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4c/6e/0f/fb-img-1605001950409.jpg?w=1100&h=-1&s=1",
         "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$80 - $200 per night",
-      "reviews": [
-        {
-          "profileName": "Kenechukwu E.",
-          "createdAt": "2025-12-15",
-          "starRatings": 5,
-          "reviewDetails": "Beautiful lake views and relaxing atmosphere.",
-          "profileImage": "https://example.com/kenechukwu.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$80 - $200 per night"
     },
     {
       "name": "Lunar Signature Hotel & Suites",
@@ -246,17 +186,7 @@
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$90 - $220 per night",
-      "reviews": [
-        {
-          "profileName": "Nneka C.",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Awesome experience – highly recommended!",
-          "profileImage": "https://example.com/nneka.jpg",
-          "likes": 42
-        }
-      ]
+      "price": "$90 - $220 per night"
     }
   ],
   "dining": [
