@@ -12,7 +12,6 @@ import '../profile/profile_screen.dart';
 import '../favorites/FavoritesScreen.dart';
 import '../map/AllPlacesMapScreen.dart';
 
-
 // ── Design tokens using AppTheme ────────────────────────────────────────────
 class _C {
   static const bg = Color(0xFFF8FAFC);
@@ -36,12 +35,12 @@ class _Category {
   final Color accent;
   final Color surface;
   final String collectionName; // For Firestore navigation
-  
+
   const _Category(
-    this.id, 
-    this.label, 
-    this.icon, 
-    this.accent, 
+    this.id,
+    this.label,
+    this.icon,
+    this.accent,
     this.surface,
     this.collectionName,
   );
@@ -173,55 +172,56 @@ class _NotificationsScreenState extends State<NotificationsScreen>
   /// Navigate to the appropriate detail screen using data from the notification
   Future<void> _navigateToDetail(Map<String, dynamic> data) async {
     try {
-      final category = data['category'] as String? ?? 'attraction';
-      final listingId = data['listingId'] as String?;
-      final cityId = data['cityId'] as String?; // CHANGED: from cityName to cityId
-      final title = data['title'] as String? ?? 'New Update';
-      final imageUrl = data['imageUrl'] as String? ?? '';
-      final address = data['address'] as String? ?? '';
+      // --- SAFE CONVERSIONS: replace 'as String?' with .toString() ---
+      final category = data['category']?.toString() ?? 'attraction';
+      final listingId = data['listingId']?.toString();
+      final cityId = data['cityId']?.toString();
+      final title = data['title']?.toString() ?? 'New Update';
+      final imageUrl = data['imageUrl']?.toString() ?? '';
+      final address = data['address']?.toString() ?? '';
       final rating = (data['rating'] as num?)?.toDouble() ?? 0.0;
-      final priceLevel = data['priceLevel'] as String? ?? '';
-      
+      final priceLevel = data['priceLevel']?.toString() ?? '';
+
       print('Navigating to: category=$category, listingId=$listingId, cityId=$cityId');
-      
+
       if (category == 'city') {
         // Navigate to city detail
-        // Get city name from cityId
         final cityDoc = await _db.collection('cities').doc(cityId).get();
-        final cityName = cityDoc.data()?['name'] ?? cityId;
+        // Ensure cityName is non-null (use fallback)
+        final cityName = cityDoc.data()?['name']?.toString() ?? cityId ?? 'City';
         
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (_) => CityDetailScreen(
-              cityName: cityName,
-              country: cityDoc.data()?['country'] ?? 'Nigeria',
+              cityName: cityName, // now guaranteed non-null
+              country: cityDoc.data()?['country']?.toString() ?? 'Nigeria',
               heroImageUrl: imageUrl,
             ),
           ),
         );
         return;
       }
-      
+
       // For attractions, restaurants, hotels, events
       final cat = _catFor(category);
-      
+
       // If we don't have cityId or listing ID, we can't navigate
       if (cityId == null || cityId.isEmpty || listingId == null || listingId.isEmpty) {
         _snack('Cannot open details: missing information', icon: Icons.error);
         return;
       }
-      
+
       // Get city name for display
       final cityDoc = await _db.collection('cities').doc(cityId).get();
-      final cityName = cityDoc.data()?['name'] ?? cityId;
-      
+      final cityName = cityDoc.data()?['name']?.toString() ?? cityId;
+
       // Try to find the document - first try by document ID
       DocumentSnapshot doc;
       try {
         doc = await _db
             .collection('cities')
-            .doc(cityId) // Use cityId directly
+            .doc(cityId)
             .collection(cat.collectionName)
             .doc(listingId)
             .get();
@@ -235,7 +235,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             .where('name', isEqualTo: listingId)
             .limit(1)
             .get();
-            
+
         if (querySnapshot.docs.isEmpty) {
           _snack('Listing not found', icon: Icons.error);
           return;
@@ -247,35 +247,35 @@ class _NotificationsScreenState extends State<NotificationsScreen>
         _snack('Listing not found', icon: Icons.error);
         return;
       }
-      
+
       final docData = doc.data() as Map<String, dynamic>;
-      
-      // Extract coordinates from location map if available
+
+      // ✅ FIX: Extract coordinates from GeoPoint correctly
       double? lat, lng;
-      if (docData['location'] != null && docData['location'] is Map) {
-        final loc = docData['location'] as Map;
-        lat = (loc['latitude'] as num?)?.toDouble();
-        lng = (loc['longitude'] as num?)?.toDouble();
+      if (docData['location'] != null && docData['location'] is GeoPoint) {
+        final loc = docData['location'] as GeoPoint; // cast to GeoPoint, not Map
+        lat = loc.latitude;
+        lng = loc.longitude;
       }
-      
+
       // Navigate to the detail screen with all the data
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => AttractionDetailScreen(
-            name: docData['name'] ?? title,
-            imageUrl: docData['imageUrl'] ?? imageUrl,
+            name: docData['name']?.toString() ?? title,
+            imageUrl: docData['imageUrl']?.toString() ?? imageUrl,
             rating: (docData['rating'] as num?)?.toDouble() ?? rating,
             reviewCount: docData['reviewCount'] as int? ?? 0,
-            priceLevel: docData['priceLevel'] as String? ?? priceLevel ?? cat.label,
-            description: docData['details'] as String? ?? docData['description'] as String? ?? '',
-            address: docData['address'] as String? ?? address,
-            city: cityName, // Use the fetched city name
-            website: docData['website'] as String? ?? '',
+            priceLevel: docData['priceLevel']?.toString() ?? priceLevel,
+            description: docData['details']?.toString() ?? docData['description']?.toString() ?? '',
+            address: docData['address']?.toString() ?? address,
+            city: cityName ?? '', // ensure non-null
+            website: docData['website']?.toString() ?? '',
             latitude: lat,
             longitude: lng,
-            additionalImages: docData['extraImages'] != null 
-                ? List<String>.from(docData['extraImages']) 
+            additionalImages: docData['extraImages'] != null
+                ? List<String>.from(docData['extraImages'].map((e) => e.toString()))
                 : null,
             listingType: cat.collectionName,
           ),
@@ -293,7 +293,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
-          extendBody: true,
+        extendBody: true,
         backgroundColor: _C.bg,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -363,7 +363,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                 : allDocs
                     .where((d) {
                       final data = d.data() as Map<String, dynamic>;
-                      return (data['category'] ?? '') == _filter;
+                      return (data['category']?.toString() ?? '') == _filter;
                     })
                     .toList();
 
@@ -416,31 +416,32 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             );
           },
         ),
-              bottomNavigationBar: FloatingBottomNavBar(
-        currentIndex: -1,
-        onTap: (index) {
-        
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ProfileScreen()),
-            );}
+        bottomNavigationBar: FloatingBottomNavBar(
+          currentIndex: -1,
+          onTap: (index) {
+            if (index == 3) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            }
             if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
-            );}
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
-            );
-          }
-          if (index == 0) {
-            // Already on home, maybe do nothing or scroll to top
-          }
-        },
-      ),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+              );
+            }
+            if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+              );
+            }
+            if (index == 0) {
+              // Already on home, maybe do nothing or scroll to top
+            }
+          },
+        ),
       ),
     );
   }
@@ -607,10 +608,11 @@ class _NotifCardState extends State<_NotifCard>
   @override
   Widget build(BuildContext context) {
     final d = widget.data;
-    final title = d['title'] as String? ?? 'New Update';
-    final body = d['body'] as String? ?? '';
-    final category = d['category'] as String? ?? 'all';
-    final imageUrl = d['imageUrl'] as String? ?? '';
+    // --- SAFE CONVERSIONS for card fields ---
+    final title = d['title']?.toString() ?? 'New Update';
+    final body = d['body']?.toString() ?? '';
+    final category = d['category']?.toString() ?? 'all';
+    final imageUrl = d['imageUrl']?.toString() ?? '';
     final ts = d['createdAt'] as Timestamp?;
     final timeStr = _timeAgo(ts?.toDate());
     final cat = _catFor(category);

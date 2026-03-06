@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   // Brand Colors
-  static const Color primaryPurple = Color(0xFF833CF6);
+  // static const Color primaryBlue = Color(0xFF833CF6);
   static const Color primaryBlue = Color(0xFF2E5BFF);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
@@ -17,9 +17,9 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryPurple,
+      seedColor: primaryBlue,
       brightness: Brightness.light,
-      primary: primaryPurple,
+      primary: primaryBlue,
       secondary: primaryBlue,
       background: white,
       surface: white,
@@ -72,7 +72,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: primaryPurple, width: 2),
+        borderSide: const BorderSide(color: primaryBlue, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -83,7 +83,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryPurple,
+        backgroundColor: primaryBlue,
         foregroundColor: white,
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(
@@ -97,8 +97,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryPurple,
-        side: const BorderSide(color: primaryPurple),
+        foregroundColor: primaryBlue,
+        side: const BorderSide(color: primaryBlue),
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -114,7 +114,7 @@ class AppTheme {
     checkboxTheme: CheckboxThemeData(
       fillColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple;
+          return primaryBlue;
         }
         return darkGrey;
       }),
@@ -123,20 +123,20 @@ class AppTheme {
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple;
+          return primaryBlue;
         }
         return darkGrey;
       }),
       trackColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple.withOpacity(0.5);
+          return primaryBlue.withOpacity(0.5);
         }
         return lightGrey;
       }),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: white,
-      selectedItemColor: primaryPurple,
+      selectedItemColor: primaryBlue,
       unselectedItemColor: darkGrey,
       type: BottomNavigationBarType.fixed,
       elevation: 8,
@@ -153,9 +153,9 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryPurple,
+      seedColor: primaryBlue,
       brightness: Brightness.dark,
-      primary: primaryPurple,
+      primary: primaryBlue,
       secondary: primaryBlue,
       background: black,
       surface: darkGrey,
@@ -208,7 +208,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: primaryPurple, width: 2),
+        borderSide: const BorderSide(color: primaryBlue, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -219,7 +219,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryPurple,
+        backgroundColor: primaryBlue,
         foregroundColor: white,
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(
@@ -233,8 +233,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryPurple,
-        side: const BorderSide(color: primaryPurple),
+        foregroundColor: primaryBlue,
+        side: const BorderSide(color: primaryBlue),
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -250,7 +250,7 @@ class AppTheme {
     checkboxTheme: CheckboxThemeData(
       fillColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple;
+          return primaryBlue;
         }
         return lightGrey;
       }),
@@ -259,20 +259,20 @@ class AppTheme {
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple;
+          return primaryBlue;
         }
         return lightGrey;
       }),
       trackColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return primaryPurple.withOpacity(0.5);
+          return primaryBlue.withOpacity(0.5);
         }
         return darkGrey;
       }),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: darkGrey,
-      selectedItemColor: primaryPurple,
+      selectedItemColor: primaryBlue,
       unselectedItemColor: lightGrey,
       type: BottomNavigationBarType.fixed,
       elevation: 8,

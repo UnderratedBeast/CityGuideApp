@@ -62,9 +62,8 @@ flutter_icons:
   ios: true
   image_path: "assets/icon/CityGuideIcon.png"
   # Assets (add your own images/icons)
-  # assets:
-  #   - assets/images/
-  # - assets/icons/CityGuideIcon.png
+  assets:
+  - assets/icons/logo1.png
 
   # Fonts (if custom fonts)
   # fonts:

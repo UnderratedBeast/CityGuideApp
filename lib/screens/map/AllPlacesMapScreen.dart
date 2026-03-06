@@ -7,7 +7,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong2/latlong.dart' as latLng;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:math'; // for hashCode
 
 class AllPlacesMapScreen extends StatefulWidget {
   const AllPlacesMapScreen({super.key});
@@ -30,6 +29,7 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
   // Default map center (Abuja, Nigeria)
   final latLng.LatLng _defaultCenter = const latLng.LatLng(9.05785, 7.49508);
   int _selectedNavIndex = 1;
+
   @override
   void initState() {
     super.initState();
@@ -72,11 +72,19 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
 
           for (var placeDoc in subSnapshot.docs) {
             final data = placeDoc.data();
-            final location = data['location'] as Map<String, dynamic>?;
-            final latNum = location?['latitude'] as num?;
-            final lngNum = location?['longitude'] as num?;
-            final lat = latNum?.toDouble();
-            final lng = lngNum?.toDouble();
+            
+            // ✅ FIX: Handle location as GeoPoint (or optionally as Map for compatibility)
+            double? lat, lng;
+            final locationField = data['location'];
+            if (locationField is GeoPoint) {
+              lat = locationField.latitude;
+              lng = locationField.longitude;
+            } else if (locationField is Map) {
+              // Fallback if stored as map (for legacy data)
+              lat = (locationField['latitude'] as num?)?.toDouble();
+              lng = (locationField['longitude'] as num?)?.toDouble();
+            }
+
             final name = data['name'] ?? 'Unnamed';
             final type = subcol;
 
@@ -210,7 +218,7 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
               ? Center(
                   child: Text(
                     _searchController.text.isEmpty
-                        ? 'No places with coordinates found.\nAdd latitude/longitude inside a "location" map in your place documents.'
+                        ? 'No places with coordinates found.\nAdd latitude/longitude inside a "location" field as GeoPoint in your place documents.'
                         : 'No places match your search.',
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 16),
@@ -261,7 +269,7 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
                     ),
                   ],
                 ),
-                                    bottomNavigationBar: FloatingBottomNavBar(
+      bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: _selectedNavIndex,
         onTap: (index) {
           setState(() {
@@ -271,21 +279,23 @@ class _AllPlacesMapScreenState extends State<AllPlacesMapScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
-            );}
-            if (index == 2) {
-               Navigator.push(
+            );
+          }
+          if (index == 2) {
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const FavoritesScreen()),
             );
-           }
+          }
           if (index == 1) {
-           
+            // Already on map screen
           }
           if (index == 0) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const CityListScreen()),
-            );          }
+            );
+          }
         },
       ),
     );
