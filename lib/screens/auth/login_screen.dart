@@ -127,8 +127,6 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 80),
-
-                  // 🔷 Logo & App Name
                   Column(
                     children: const [
                       Icon(

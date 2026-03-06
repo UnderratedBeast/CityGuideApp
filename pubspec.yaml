@@ -57,12 +57,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/icon/CityGuideIcon.png
+    # - assets/icon/citiguidewbg.png
+
 flutter_icons:
   android: true
   ios: true
+  # image_path: "assets/icon/citiguidewbg.png"
   image_path: "assets/icon/CityGuideIcon.png"
   # Assets (add your own images/icons)
-  # assets:
+  
   #   - assets/images/
   # - assets/icons/CityGuideIcon.png
 

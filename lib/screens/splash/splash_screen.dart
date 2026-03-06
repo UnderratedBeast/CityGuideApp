@@ -58,6 +58,21 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
 
+                // App Image
+              // Container(
+              //   padding: const EdgeInsets.all(16),
+              //   decoration: BoxDecoration(
+              //     color: Colors.blueAccent,
+              //     borderRadius: BorderRadius.circular(20),
+              //   ),
+              //   child: Image.asset(
+              //     'assets/icon/CityGuideIcon.png',
+              //     width: 60,
+              //     height: 60,
+              //     fit: BoxFit.contain,
+              //   ),
+              // ),
+
                 const SizedBox(height: 20),
 
                 // App Name

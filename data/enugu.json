@@ -171,7 +171,7 @@
     {
       "name": "Lunar Signature Hotel & Suites",
       "details": "Elegant hotel with suites, restaurant, and modern amenities – praised for awesome experiences.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lunar-signature.jpg?w=900",
+      "imageUrl": "https://www.lunarsignaturehotels.com/public/assetsfront/images/gallery/1747905414_884bb746429ac00169e5.jpg",
       "rating": 4.5,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -181,9 +181,9 @@
       "openHours": "24/7",
       "hashtag": "luxury suites",
       "extraImages": [
-        "https://cdn.lunarsignature.com/room-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/spa.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://www.lunarsignaturehotels.com/public/assetsfront/images/gallery/1747905345_ce144a1cc6ea70aa9e43.jpeg",
+        "https://www.lunarsignaturehotels.com/public/assetsfront/images/gallery/1747904883_edf24762f42f4a8756e1.jpeg",
+        "https://www.lunarsignaturehotels.com/public/assetsfront/images/gallery/1747905173_d976fb19c6ba9885b4e3.jpeg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "$90 - $220 per night"
@@ -193,7 +193,7 @@
     {
       "name": "Shanghai Octopus - Oriental Cuisine",
       "details": "Top-rated Chinese and Oriental restaurant offering fine dining with excellent service and flavorful dishes.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/shanghai-octopus.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/54/d4/9c/twin-dragons.jpg?w=1100&h=600&s=1",
       "rating": 5.0,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -204,26 +204,16 @@
       "hashtag": "chinese oriental fine dining",
       "extraImages": [
         "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/shanghai-dishes.jpg",
-        "https://cdn.tripadvisor.com/octopus-interior.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/food.jpg",
+        "https://i.pinimg.com/1200x/41/66/a6/4166a6bd4090f9940e03ad2bc231b27e.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSheAhJiiWjBNRcdpFNME5jrsDY-0ErYb6RmQ&s",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "Best Chinese in Enugu – outstanding!",
-          "profileImage": "https://example.com/anonymous.jpg",
-          "likes": 45
-        }
-      ]
+      "price": "$$$"
     },
     {
       "name": "Open Sharaton",
       "details": "Popular fast-food and casual dining spot with quality meals and great service – a local favorite.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/open-sharaton.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/52/30/9d/the-new-look-of-the-front.jpg?w=1100&h=600&s=1",
       "rating": 4.0,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -233,27 +223,17 @@
       "openHours": "Daily: 8:00 AM - 10:00 PM",
       "hashtag": "casual fast food",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/sharaton-meals.jpg",
-        "https://cdn.tripadvisor.com/open-sharaton-food.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/interior.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/52/30/a8/another-view-of-open.jpg?w=1100&h=600&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/52/30/ab/the-serving-point-of.jpg?w=1100&h=600&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/52/30/99/a-closer-view-of-the.jpg?w=1100&h=600&s=1",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-25",
-          "starRatings": 4,
-          "reviewDetails": "Spoiled with good food and care!",
-          "profileImage": "https://example.com/anonymous2.jpg",
-          "likes": 30
-        }
-      ]
+      "price": "$$"
     },
     {
       "name": "Aarons Signature Restaurant",
       "details": "Fine dining with signature dishes and elegant ambiance – well-reviewed for quality.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/aarons-signature.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/e7/25/59/caption.jpg?w=1400&h=800&s=1",
       "rating": 3.9,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -263,9 +243,9 @@
       "openHours": "Daily: 12:00 PM - 11:00 PM",
       "hashtag": "fine dining signature",
       "extraImages": [
-        "https://cdn.tripadvisor.com/aarons-plates.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/food.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/e7/25/57/caption.jpg?w=1400&h=-1&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/20/5a/b4/relax-and-unwind-with.jpg?w=2000&h=-1&s=1",
+        "https://lh3.googleusercontent.com/proxy/I5McoX2VyJPSS7bPTj0QWkVC1mWyTsaCehC39u_3DaocKpUodkA8FtSNf8CSoC4BeY6MXWKU09wtK3gDTivJ3aPb6dKypK1q3QqU3UUjr5QItw",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "$$$",
@@ -283,7 +263,7 @@
     {
       "name": "7th Planet International Ltd",
       "details": "International cuisine with Italian influences – rated as one of the best in Enugu.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/7th-planet.jpg?w=900",
+      "imageUrl": "https://scontent.fiba1-1.fna.fbcdn.net/v/t39.30808-1/303675028_736209717458508_379274312148203775_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=AuZYffE6facQ7kNvwHptswZ&_nc_oc=AdkGD9_nT4DHgWpOQ2aQ3dpNruGiG6yLk4jO0I59KccU8RMeCo5JFzKcxf6XtlhC6_w&_nc_zt=24&_nc_ht=scontent.fiba1-1.fna&_nc_gid=Yx6YNbBZfhohbrJYK4leDQ&_nc_ss=8&oh=00_Afz-nRLniDVpvT4MOGv3XnEFzslyxPdTWl72ajmyEa-JQA&oe=69B098B4",
       "rating": 5.0,
       "address": "Enugu, Enugu State",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -293,9 +273,9 @@
       "openHours": "Daily: 11:00 AM - late",
       "hashtag": "international italian",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/7th-planet-dining.jpg",
+        "https://scontent.fiba1-2.fna.fbcdn.net/v/t39.30808-6/485732318_1321463618933112_81954228704799666_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=dYogGUv0YvwQ7kNvwE67paI&_nc_oc=AdnfiKXdusgFXzd6UdzGo6TM-a7rSM1MhxmPZeSqjpraTTHENWGO9Mv8M5YZUEfyDRY&_nc_zt=23&_nc_ht=scontent.fiba1-2.fna&_nc_gid=RqPgfBo1mL21gvPRvYSN3Q&_nc_ss=8&oh=00_Afw7iBPeM_dToW6oQYkC5oPNlwudHh06Y9Pu1G13JU80nw&oe=69B09184",
         "https://cdn.tripadvisor.com/7th-planet-pasta.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://scontent.fiba1-2.fna.fbcdn.net/v/t39.30808-6/485391473_1321463332266474_2343046458558080827_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=10HQeA0TR8YQ7kNvwEyyKOC&_nc_oc=AdlE6rY19kkkDnir2_j6Ho2J3px5mWkuJXQgLegj9n8zJ_azLH2Ow4tFjfJR6Imy45g&_nc_zt=23&_nc_ht=scontent.fiba1-2.fna&_nc_gid=WMVJxALqV0L49XQuDtTwvA&_nc_ss=8&oh=00_Afw3aE_iu074Ywa3Q3DK720CQd5Lw9w4K7ZEri4wwF-WYQ&oe=69B08D30",
         "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
       "price": "$$ - $$$",
@@ -315,7 +295,7 @@
     {
       "name": "Enugu Tech Festival (ETF) 2026",
       "details": "Premier technology conference uniting innovators, investors, startups, and leaders for talks, demos, networking, and building sessions on AI, blockchain, Web3, and more.",
-      "imageUrl": "https://enugutechfest.com/images/etf-banner.jpg",
+      "imageUrl": "https://enugutechfest.com/wp-content/uploads/elementor/thumbs/BG7A0019-scaled-rhx6aqgpoiwhkvj49pt0o6p9126kbcofeuzx4sdvu4.jpg",
       "rating": 4.7,
       "address": "International Conference Centre, Enugu",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -325,9 +305,9 @@
       "openHours": "Various sessions",
       "hashtag": "tech festival innovation",
       "extraImages": [
-        "https://enugutechfest.com/images/speakers.jpg",
-        "https://enugutechfest.com/networking.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://enugutechfest.com/wp-content/uploads/2026/01/BG7A0837-scaled.jpg",
+        "https://enugutechfest.com/wp-content/uploads/2026/01/BG7A0043-scaled.jpg",
+        "https://enugutechfest.com/wp-content/uploads/2026/01/BG7A0008-scaled.jpg",
         "https://enugutechfest.com/demos.jpg"
       ],
       "ticketPrice": "Varies (registration required)",
@@ -348,7 +328,7 @@
     {
       "name": "Iheaneke Cultural Festival 2026",
       "details": "Traditional cultural festival in Umuaga Obodoeze, Udi LGA, featuring dances, displays, and community celebrations.",
-      "imageUrl": "https://example.com/iheaneke-festival.jpg",
+      "imageUrl": "https://i.pinimg.com/1200x/c5/11/65/c51165844f60c0b81313fb9b32c0084b.jpg",
       "rating": 4.5,
       "address": "Umuaga Obodoeze, Udi LGA, Enugu State",
       "location": { "latitude": 6.3167, "longitude": 7.4167 },
@@ -358,9 +338,9 @@
       "openHours": "Various",
       "hashtag": "cultural festival tradition",
       "extraImages": [
-        "https://example.com/dance-performance.jpg",
-        "https://example.com/community-event.jpg",
-        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhCDsTzlcSnAkiqCMhF0QvIrtIS7zxD62pwg&s",
+        "https://i.pinimg.com/1200x/11/17/65/11176526a7c430a0f31e66d50c8218c1.jpg",
+        "https://i.pinimg.com/1200x/40/6b/21/406b2175b36709bdb512cb44d2fcbc09.jpg",
         "https://example.com/festival-crowd.jpg"
       ],
       "ticketPrice": "Community-based / free",
@@ -381,7 +361,7 @@
     {
       "name": "Oganihu Ndi Igbo Festival 2026",
       "details": "Major Igbo cultural festival with traditional dances, ceremonies, and celebrations at Enugu State College of Education Technical.",
-      "imageUrl": "https://example.com/oganihu-festival.jpg",
+      "imageUrl": "https://i.pinimg.com/736x/b5/2d/a0/b52da0868b26006195bf5c02c5ec071d.jpg",
       "rating": 4.6,
       "address": "Enugu State College of Education Technical, Enugu",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -391,9 +371,9 @@
       "openHours": "Various",
       "hashtag": "igbo festival culture",
       "extraImages": [
-        "https://example.com/traditional-dance.jpg",
-        "https://example.com/ceremony.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://i.pinimg.com/1200x/ef/43/34/ef4334d459c29342b9fc0accb42d98de.jpg",
+        "https://i.pinimg.com/736x/b5/f3/90/b5f3904e341da609034a08e4e4b6f962.jpg",
+        "https://i.pinimg.com/1200x/6a/51/03/6a51036388cd80800724afc840c7abf3.jpg",
         "https://example.com/festival-display.jpg"
       ],
       "ticketPrice": "Varies",
@@ -414,7 +394,7 @@
     {
       "name": "Enugu International Conference on Future Directions in E-Learning and Pedagogy",
       "details": "Academic conference on education technology, e-learning innovations, and pedagogy with global speakers.",
-      "imageUrl": "https://example.com/e-learning-conference.jpg",
+      "imageUrl": "https://i.pinimg.com/736x/a5/a2/97/a5a2979b2ef225726751338ef7273de2.jpg",
       "rating": 4.5,
       "address": "Enugu conference venue",
       "location": { "latitude": 6.4584, "longitude": 7.5464 },
@@ -424,9 +404,9 @@
       "openHours": "09:00 - 17:00",
       "hashtag": "education conference tech",
       "extraImages": [
-        "https://example.com/conference-panel.jpg",
-        "https://example.com/speakers.jpg",
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://i.pinimg.com/1200x/c2/28/98/c2289861f8f70f877c544f997fff6e03.jpg",
+        "https://i.pinimg.com/736x/e0/81/f4/e081f40182fad61e9e597041dd017747.jpg",
+        "https://i.pinimg.com/736x/e0/81/f4/e081f40182fad61e9e597041dd017747.jpg",
         "https://example.com/networking-session.jpg"
       ],
       "ticketPrice": "Varies (academic registration)",
