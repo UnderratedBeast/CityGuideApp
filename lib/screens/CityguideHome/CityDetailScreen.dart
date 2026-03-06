@@ -204,7 +204,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
             leading: Container(
               margin: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-                color: Colors.black26,
+                color: Color.fromARGB(146, 0, 0, 0),
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -216,7 +216,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
               Container(
                 margin: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(
-                  color: Colors.black26,
+                  color: Color.fromARGB(146, 0, 0, 0),
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
@@ -270,8 +270,8 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Color.fromARGB(54, 0, 0, 0),
-                          Color.fromARGB(196, 0, 0, 0),
+                          Color.fromARGB(66, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0),
                         ],
                       ),
                     ),
@@ -298,7 +298,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(32)),
+                          const BorderRadius.vertical(top: Radius.circular(1)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.12),
