@@ -25,7 +25,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
     _OnboardingData(
       imageUrl:
-          'https://img.freepik.com/free-photo/top-view-paper-style-community-map_23-2149377697.jpg',
+          'https://media.istockphoto.com/id/522142862/vector/smartphone-with-navigation.jpg?s=612x612&w=0&k=20&c=6JhXH6VVm--dWi4YZBG3IqoDok-_-1_5rmif2TSTmW0=',
       title: 'Smart Navigation',
       description:
           'Move around the city confidently with intelligent routes and insights.',

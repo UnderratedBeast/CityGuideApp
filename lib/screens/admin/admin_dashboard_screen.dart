@@ -470,7 +470,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         height: 80,
                         decoration: BoxDecoration(
                           // color: Colors.blue.withValues(0.1),
-                          color: AppTheme.primaryPurple.withValues(alpha: 0.1),
+                          color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                           shape: BoxShape.circle,
                         ),
                         child: Center(
@@ -482,7 +482,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
                               // color: Colors.blue,
-                              color: AppTheme.primaryPurple,
+                              color: AppTheme.primaryBlue,
                             ),
                           ),
                         ),

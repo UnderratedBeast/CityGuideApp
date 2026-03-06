@@ -266,11 +266,11 @@ class _FavoriteCard extends StatelessWidget {
       case 'restaurant':
         return Colors.green;
       case 'hotel':
-        return AppTheme.primaryBlue; // Changed from any purple to blue
+        return AppTheme.primaryBlue; 
       case 'event':
         return Colors.red;
       case 'city':
-        return AppTheme.primaryBlue; // Changed from any purple to blue
+        return AppTheme.primaryBlue; 
       default:
         return Colors.grey;
     }

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -648,6 +650,18 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         currentIndex: -1,
         onTap: (index) {
           if (index == 3) Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+           if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );
+          }
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+            );
+          }
           if (index == 0) Navigator.push(context, MaterialPageRoute(builder: (_) => const CityListScreen()));
         },
       ),

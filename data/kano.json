@@ -1,15 +1,15 @@
 {
   "name": "Kano",
   "description": "Kano is one of Nigeria's oldest and second-largest cities after Lagos, a historic commercial powerhouse in northern Nigeria known as the 'Centre of Commerce.' Famous for its ancient city walls (dating back over 1,000 years), vibrant markets like Kurmi (one of Africa's largest), traditional Hausa architecture, dye pits, the Emir's Palace, museums, and rich Islamic culture. It's a gateway to trans-Saharan trade history, with bustling souks, colorful festivals, and a blend of tradition and modernity in the savanna landscape.",
-  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kano_City_Gate.jpg/800px-Kano_City_Gate.jpg",
+  "imageUrl": "https://234intel.com/wp-content/uploads/2023/06/Kano-Statennn.webp",
   "ratings": 4.4,
    "zone": "North West",
   "extraImages": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kano_Emir%27s_Palace.jpg/800px-Kano_Emir%27s_Palace.jpg",
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/kurmi-market.jpg?w=1200",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dala_Hill_Kano.jpg/800px-Dala_Hill_Kano.jpg",
-    "https://cdn.getyourguide.com/img/tour/5f8b0e0e0e0e0e0e0e0e0e0e.jpg",
-    "https://images.unsplash.com/photo-1564507592333-c4f3d0c3e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://234intel.com/wp-content/uploads/2023/06/Kano-Statennn.webp",
+    "https://cdn.britannica.com/93/144093-050-C96E04CA/Kano-Nigeria.jpg",
+    "https://www.bellanaija.com/wp-content/uploads/2023/09/20230812_155300-scaled.jpg",
+    "https://media-cdn.tripadvisor.com/media/photo-c/1280x250/08/59/e0/32/central-mosque.jpg",
+    "https://234intel.com/wp-content/uploads/2023/06/Kano-state.jpeg"
   ],
   "topHighlights": [
     "Emir's Palace – Majestic Hausa architecture and royal heritage",
@@ -29,7 +29,7 @@
     {
       "name": "Emir's Palace (Gidan Rumfa)",
       "details": "The historic residence of the Emir of Kano, showcasing stunning traditional Hausa architecture with intricate designs. Accessible mainly by invitation, but its exterior and grandeur are iconic for sightseeing.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Emir%27s_Palace_Kano.jpg/800px-Emir%27s_Palace_Kano.jpg",
+      "imageUrl": "https://img.atlasobscura.com/aHGvUNAnOVTrMVK-sEl0GeMibzaXhU3rSOIXpWUjoZw/rt:fit/w:1200/q:80/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy8yNzM5/OGEzZS0wYmRmLTQ2/NmYtOGZhNC01ODI0/YWM5NzcwYmVkMjk3/M2Y0NDQyMTE2N2Nm/OThfMjU2MHB4LUth/bm9fRW1pcl9QYWxh/Y2VfRW50cmFuY2Vf/S2Fub19TdGF0ZV9O/aWdlcmlhLmpwZWc.jpg",
       "rating": 4.2,
       "address": "Kano City, Kano State",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -39,35 +39,17 @@
       "openHours": "Exterior viewable daily; interior by special arrangement",
       "hashtag": "history architecture culture",
       "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/emirs-palace.jpg?w=800&h=500&s=1",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Emir_Palace_interior.jpg/800px-Emir_Palace_interior.jpg",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/8f/2d/4a.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/9/9b/Gate_to_the_Gidan_Rumfa_%282009%29_in_Kano%2C_Nigeria..jpg",
+        "https://img.atlasobscura.com/N2uOQd-AY0KtrhLBUJd2O2ZHNZ9GGvMVfq9dvpUYOwo/rt:fit/h:400/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy84MjQ5/NDZiMC0wOGY2LTQ0/YTgtYjY5Ni01ZDU5/MWRmYzYzNTJkMjk3/M2Y0NDQyMTE2N2Nm/OThfMTMwMDg0MzE5/XzAzNjc0MzVjOTBf/ay5qcGc.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgK35_FAYvjXNn9fnQU67ne-3kCuoPqf0xUzGV2YtdGAoUSvYj6gNEfAR9_SfpGojrKkurCT5jIjzMGY7Kvj-v3SJ74rpLMw66CRh0wUU347_FlRTWYJuBSI4KYaGS0FZJrqZYz_0Urg_ocDAHiJD4A4yHfwceCklDUEXSgqe8A0djX0ysxDjCBCdoM0WM/s647/IMG_7454-647x266.jpg",
         "https://cdn.punchng.com/wp-content/uploads/2024/03/emirs-palace-kano.jpg"
       ],
-      "price": "Free (exterior); guided tours vary",
-      "reviews": [
-        {
-          "profileName": "Aminu S.",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Majestic and full of history – a symbol of Kano's heritage!",
-          "profileImage": "https://example.com/aminu.jpg",
-          "likes": 30
-        },
-        {
-          "profileName": "Visitor K.",
-          "createdAt": "2025-12-10",
-          "starRatings": 4,
-          "reviewDetails": "Impressive from outside; respect local customs when visiting.",
-          "profileImage": "https://example.com/visitor.jpg",
-          "likes": 18
-        }
-      ]
+      "price": "Free (exterior); guided tours vary"
     },
     {
       "name": "Kurmi Market",
       "details": "One of Africa's largest and oldest markets, famous for spices, fabrics, leather goods, and traditional crafts – a vibrant hub of commerce and culture.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/kurmi-market.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://cdnuploads.aa.com.tr/uploads/Contents/2022/05/06/thumbs_b_c_cb2f6e8f268b1cfd80275b6123a2a29c.jpg?v=123353",
       "rating": 4.1,
       "address": "Kano City Central, Kano State",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -77,27 +59,17 @@
       "openHours": "Daily: 7:00 AM - 7:00 PM",
       "hashtag": "market shopping culture",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Kurmi_Market_stalls.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/market-view.jpg?w=900&h=500&s=1",
-        "https://cdn.tripadvisor.com/kurmi-spices.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/ff/Sandalwood_and_incense_materials_at_Kurmi_Market_Kano.jpg",
+        "https://media.gettyimages.com/id/1240478377/photo/600-years-old-kurmi-market-in-nigeria.jpg?s=1024x1024&w=gi&k=20&c=zoOvwDVL2YA1Y3aUd-hbkDjTU8I2ZGuko0qUCOM9SSA=",
+        "https://i.tmgrup.com.tr/anews/v1/album/2022/05/06/west-africas-600-year-old-market-still-bustles-with-business-activities-1651832843013.jpg",
         "https://live.staticflickr.com/65535/kurmi-market.jpg"
       ],
-      "price": "Varies (bargaining essential)",
-      "reviews": [
-        {
-          "profileName": "Fatima M.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Endless treasures and authentic shopping – must-visit!",
-          "profileImage": "https://example.com/fatima.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "Varies (bargaining essential)"
     },
     {
       "name": "Gidan Makama Museum",
       "details": "Housed in a 15th-century building, this museum showcases Kano's history through artifacts, traditional crafts, and exhibits on Hausa culture.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/gidan-makama.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Gidan_makama_museum.jpg",
       "rating": 3.8,
       "address": "Kofar Kudu, Kano City, Kano State",
       "location": { "latitude": 11.9833, "longitude": 8.5167 },
@@ -107,27 +79,17 @@
       "openHours": "Mon-Sat: 9:00 AM - 5:00 PM",
       "hashtag": "museum history heritage",
       "extraImages": [
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/Gidan_Makama_exhibits.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/b8/5f/3f/museum-interior.jpg?w=900",
-        "https://cdn.tripadvisor.com/gidan-makama-artifacts.jpg",
+        "https://images.timbu.com/contents-946ad96ddbb742d7830b17c12f5764d1/0b71c5f5-f8a6-4cf1-a2e3-6421eae75238.png",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/46/9a/15/caption.jpg?w=600&h=-1&s=1",
+        "https://media-cdn.tripadvisor.com/media/photo-s/01/a9/b8/41/buildings-of-the-gidan.jpg",
         "https://images.unsplash.com/photo-1579783902614-a3db7c6d8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "₦500 - ₦1000 entry",
-      "reviews": [
-        {
-          "profileName": "Ibrahim A.",
-          "createdAt": "2025-11-20",
-          "starRatings": 5,
-          "reviewDetails": "Rich in history – great for learning about Kano's past!",
-          "profileImage": "https://example.com/ibrahim.jpg",
-          "likes": 28
-        }
-      ]
+      "price": "₦500 - ₦1000 entry"
     },
     {
       "name": "Dala Hill",
       "details": "A historic hill offering panoramic views of Kano city; climb for sunrise/sunset and enjoy the breeze – a peaceful escape with cultural significance.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dala_Hill_Kano.jpg/800px-Dala_Hill_Kano.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Broad_view_of_Dala_Hill.jpg",
       "rating": 4.2,
       "address": "Dala District, Kano State",
       "location": { "latitude": 12.0167, "longitude": 8.5000 },
@@ -137,29 +99,19 @@
       "openHours": "Daily: dawn to dusk",
       "hashtag": "viewpoint nature history",
       "extraImages": [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/dala-hill-view.jpg?w=800",
-        "https://cdn.tripadvisor.com/dala-sunset.jpg",
-        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0e/12/34/56.jpg",
+        "https://www.traveladventures.org/countries/nigeria/images/dala-hill01.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/0/06/KanofromDalaHill.jpg",
+        "https://4.bp.blogspot.com/-aCWKbAJxPjQ/WaAZupjhcHI/AAAAAAAADM8/5e4SsVl0qI8bDzXvJCypQyDPIUTfdGdxgCLcBGAs/s1600/dala3.jpg",
         "https://images.unsplash.com/photo-1580130718646-9f694209b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "Free",
-      "reviews": [
-        {
-          "profileName": "Zainab H.",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Amazing city views – worth the climb!",
-          "profileImage": "https://example.com/zainab.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "Free"
     }
   ],
   "hotels": [
     {
       "name": "BON Hotel Kano",
       "details": "Modern hotel with comfortable rooms, pool, restaurant, and business facilities – one of the top-rated options in the city.",
-      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/bon-hotel-hero.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://bonhotels.com/wp-content/uploads/2022/10/kano17.jpg",
       "rating": 4.5,
       "address": "Lafia Road, Kano State",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -169,27 +121,17 @@
       "openHours": "24/7",
       "hashtag": "modern business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/bon-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/room-bon.jpg",
-        "https://cdn.bonhotels.com/kano-lobby.jpg",
+        "https://bonhotels.com/wp-content/uploads/2022/10/kano20.jpg",
+        "https://bonhotels.com/wp-content/uploads/2022/10/kano16.jpg",
+        "https://images.trvl-media.com/lodging/98000000/97380000/97374900/97374819/a6b4a974.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$100 - $250 per night",
-      "reviews": [
-        {
-          "profileName": "Sani M.",
-          "createdAt": "2026-01-05",
-          "starRatings": 5,
-          "reviewDetails": "Clean, comfortable, and great service – best in Kano!",
-          "profileImage": "https://example.com/sani.jpg",
-          "likes": 45
-        }
-      ]
+      "price": "$100 - $250 per night"
     },
     {
       "name": "Prince Hotel Kano",
       "details": "Elegant hotel offering spacious rooms, dining, and conference facilities in a central location.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/prince-hotel.jpg?w=900",
+      "imageUrl": "https://www.princehotelng.com/wp-content/uploads/photo-gallery/20220911_160128-2.jpg?bwg=1676923923",
       "rating": 4.4,
       "address": "Kano City area",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -199,27 +141,17 @@
       "openHours": "24/7",
       "hashtag": "luxury business",
       "extraImages": [
-        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/prince-room.jpg",
-        "https://cdn.princehotel.com/kano-pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/lobby.jpg",
+        "https://images.trvl-media.com/lodging/58000000/57170000/57163000/57162964/b1599b33.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/6e/49/a3/hotel-s-villa-gardens.jpg?w=700&h=-1&s=1",
+        "https://princehotelng.com/wp-content/uploads/2023/02/swiming_pool.jpg",
         "https://images.unsplash.com/photo-1578683015146-bda8d4d0a6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$80 - $200 per night",
-      "reviews": [
-        {
-          "profileName": "Aisha K.",
-          "createdAt": "2026-02-01",
-          "starRatings": 5,
-          "reviewDetails": "Comfortable stay with excellent amenities.",
-          "profileImage": "https://example.com/aisha.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$80 - $200 per night"
     },
     {
       "name": "Tahir Guest Palace",
       "details": "Luxury boutique-style hotel with pool, spa, and fine dining – popular for its elegance and service.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/82/62/69/tahir-palace.jpg?w=900&h=-1&s=1",
+      "imageUrl": "https://tahirguestpalace.ng/wp-content/uploads/2025/06/DSC06900-min-scaled.webp",
       "rating": 4.6,
       "address": "Kano State",
       "location": { "latitude": 12.0167, "longitude": 8.5000 },
@@ -229,27 +161,17 @@
       "openHours": "24/7",
       "hashtag": "luxury boutique",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/tahir-room.jpg",
-        "https://cdn.tahirpalace.com/pool-view.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/dining.jpg",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/581742246.jpg?k=656e9854b1738531de6610de9e1ef2edf28690c97e0867988af1aa70d5b05969&o=",
+        "https://pix10.agoda.net/hotelImages/55879852/0/4de50cfc7f9eb76bb68792ab65818972.jpg?ce=2&s=414x232",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/581742182.jpg?k=ec0fc71c9f638baf7e91be58b9f1a970d9fe154a1c4de92a92bd6d28f517ae02&o=&hp=1",
         "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$120 - $300 per night",
-      "reviews": [
-        {
-          "profileName": "Muhammad B.",
-          "createdAt": "2025-12-15",
-          "starRatings": 5,
-          "reviewDetails": "Royal treatment and beautiful facilities.",
-          "profileImage": "https://example.com/muhammad.jpg",
-          "likes": 50
-        }
-      ]
+      "price": "$120 - $300 per night"
     },
     {
       "name": "Milton Park Hotel & Resort",
       "details": "Resort-style hotel with rooms, dining, and leisure options – good for relaxation.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/34/56/78/milton-park.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/0b/69/04/milton-park-exterior.jpg?w=900&h=500&s=1",
       "rating": 4.3,
       "address": "Kano area",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -259,29 +181,19 @@
       "openHours": "24/7",
       "hashtag": "resort leisure",
       "extraImages": [
-        "https://cdn.miltonpark.com/room-view.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/30/27/8b/82/pool.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/12/34/56/exterior.jpg",
+        "https://pub-c3c5765215d14e3d882d51123be2ba44.r2.dev/media/images/hotels/Milton%20Park%20Hotel%20and%20Resort/IMG_3419.jpeg",
+        "https://images.timbu.com/hotels-ng/hotel_milton_park_resort_062673_3_900x550.jpg",
+        "https://images.timbu.com/hotels-ng/hotel_milton_park_resort_062673_4_900x550.jpg",
         "https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$90 - $220 per night",
-      "reviews": [
-        {
-          "profileName": "Hauwa L.",
-          "createdAt": "2026-01-20",
-          "starRatings": 4,
-          "reviewDetails": "Relaxing spot with good service.",
-          "profileImage": "https://example.com/hauwa.jpg",
-          "likes": 32
-        }
-      ]
+      "price": "$90 - $220 per night"
     }
   ],
   "dining": [
     {
       "name": "Gusto Restaurant",
       "details": "Fusion of Italian, Japanese, and Asian cuisine in an elegant setting – highly rated for quality and ambiance.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/gusto-kano.jpg?w=900&h=500&s=1",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/87/73/d6/magical-nights.jpg?w=900&h=500&s=1",
       "rating": 4.3,
       "address": "Nassarawa, Kano",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -291,27 +203,17 @@
       "openHours": "Daily: 12:00 PM - late",
       "hashtag": "fusion italian japanese",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/gusto-interior.jpg",
-        "https://cdn.tripadvisor.com/gusto-dishes.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/sushi.jpg",
+        "https://abujaguide.com.ng/wp-content/uploads/2025/10/The-ultimate-setting-for-a-dining-experience-youll-never-forget-%E2%9C%A8We-open-everyday-from-12pm-til-1-600x540.jpg",
+        "https://reviewit.ng/wp-content/uploads/2024/08/sunsets.jpg",
+        "https://reviewit.ng/wp-content/uploads/2024/08/festive-season-at-gusto.jpg",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$ - $$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-05",
-          "starRatings": 5,
-          "reviewDetails": "Exquisite food and great vibes!",
-          "profileImage": "https://example.com/anonymous.jpg",
-          "likes": 40
-        }
-      ]
+      "price": "$$ - $$$"
     },
     {
       "name": "Cilantro Restaurant and Lounge",
       "details": "Fine dining with Indian, Mediterranean, and international flavors – known for ambiance and service.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/7c/78/cilantro-kano.jpg?w=900",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/d7/7b/b8/the-main-entrance.jpg?w=900&h=500&s=1",
       "rating": 4.2,
       "address": "Sultan Road, Giginyu, Kano",
       "location": { "latitude": 12.0167, "longitude": 8.5000 },
@@ -321,27 +223,17 @@
       "openHours": "Daily: 12:00 PM - 11:00 PM",
       "hashtag": "indian fine dining",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/0c/f7/da/c7/cilantro-dining.jpg",
-        "https://cdn.tripadvisor.com/cilantro-plates.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ambiance.jpg",
+        "https://www.cilantrorestaurants.com/img/background/bg_1.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/54/41/f0/welcome-to-cilantro-restaurant.jpg?w=1000&h=1000&s=1",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/6c/02/50/the-beautiful-cilantro.jpg?w=1000&h=1000&s=1",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-25",
-          "starRatings": 5,
-          "reviewDetails": "Authentic flavors in a lovely setting.",
-          "profileImage": "https://example.com/anonymous2.jpg",
-          "likes": 35
-        }
-      ]
+      "price": "$$$"
     },
     {
       "name": "Corner Restaurant",
       "details": "Cozy spot for local and international dishes with good reviews for taste and value.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cd/84/8c/corner-kano.jpg?w=900",
+      "imageUrl": "https://symphony.cdn.tambourine.com/_white-lodging-fb-1/media/jw_ausjw_corner_outside_0759-696015ebd5eb0.jpg",
       "rating": 4.7,
       "address": "Kano area",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -351,27 +243,17 @@
       "openHours": "Daily: 10:00 AM - 10:00 PM",
       "hashtag": "local international",
       "extraImages": [
-        "https://cdn.tripadvisor.com/corner-food.jpg",
-        "https://media-cdn.tripadvisor.com/media/photo-o/0e/51/c3/94/interior.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/dishes.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/04/38/4f/corner.jpg?w=900&h=500&s=1",
+        "https://symphony.cdn.tambourine.com/_white-lodging-fb-1/media/jw_ausjw_corner_cornerbar_0734-696015eab0be0.jpg",
+        "https://symphony.cdn.tambourine.com/_white-lodging-fb-1/media/cornerbar-gallery-1-62cf28a71f93d.jpg",
         "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-02-10",
-          "starRatings": 5,
-          "reviewDetails": "Consistently delicious and welcoming.",
-          "profileImage": "https://example.com/anonymous3.jpg",
-          "likes": 42
-        }
-      ]
+      "price": "$$"
     },
     {
       "name": "Ariwa Restaurant",
       "details": "Popular for biryani and local/international fusion; multi-level with rooftop – great for meals and ambiance.",
-      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8f/2d/4a/ariwa.jpg?w=900",
+      "imageUrl": "https://arwacoffee.com/wp-content/uploads/2025/01/ArwaCoffeeFrisco-5-scaled.jpg",
       "rating": 4.5,
       "address": "Hadejia Road, Kano City",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -381,29 +263,19 @@
       "openHours": "Daily: 11:00 AM - late",
       "hashtag": "biryani fusion",
       "extraImages": [
-        "https://media-cdn.tripadvisor.com/media/photo-o/12/34/56/78/ariwa-rooftop.jpg",
-        "https://cdn.tripadvisor.com/ariwa-biryani.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/12/34/56/interior.jpg",
+        "https://www.arivaristorante.ch/hubfs/2024-Ariva/Home/Rectangle%205%20(1).jpg",
+        "https://arivarestaurant.com/assets/images/home/h2.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/f3/4e/5f/terrazza.jpg?w=900&h=500&s=1",
         "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
-      "price": "$$",
-      "reviews": [
-        {
-          "profileName": "Anonymous",
-          "createdAt": "2026-01-30",
-          "starRatings": 5,
-          "reviewDetails": "Amazing biryani and rooftop views!",
-          "profileImage": "https://example.com/anonymous4.jpg",
-          "likes": 38
-        }
-      ]
+      "price": "$$"
     }
   ],
   "events": [
     {
       "name": "International Conference on Future Directions in E-Learning and Pedagogy",
       "details": "Academic conference focusing on education technology, pedagogy, and e-learning innovations with speakers and workshops.",
-      "imageUrl": "https://internationalconferencealerts.com/images/conference-kano.jpg",
+      "imageUrl": "https://www.iferp.in/blog/wp-content/uploads/2023/07/What-Is-An-E-Learning-Conference-Why-Is-It-Important-For-Educators-Learners.jpg",
       "rating": 4.5,
       "address": "Kano venue (university or conference center)",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -413,30 +285,20 @@
       "openHours": "09:00 - 17:00",
       "hashtag": "education conference",
       "extraImages": [
-        "https://cdn.conferencealerts.com/speakers.jpg",
-        "https://internationalconferencealerts.com/networking.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://proceedings.tiikmpublishing.com/public/journals/11/homepageImage_en_US.jpg",
+        "https://kems.knust.edu.gh/event/46/attachments/59/106/ELIC%202025%20WEBSITE%20BG-02.jpg",
+        "https://www.iferp.in/staging-blog/wp-content/uploads/2023/07/Benefits-Of-Attending-An-E-Learning-Conference-2023.jpg",
         "https://cdn.eventbrite.com/panels.jpg"
       ],
       "ticketPrice": "Varies (academic registration)",
       "eventDate": "2026-03-27",
       "eventStartTime": "09:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "Academic",
-          "createdAt": "2026-01-01",
-          "starRatings": 5,
-          "reviewDetails": "Insightful sessions on modern education.",
-          "profileImage": "https://example.com/academic.jpg",
-          "likes": 20
-        }
-      ]
+      "eventEndTime": "17:00"
     },
     {
       "name": "International Conference on Medieval History and Society",
       "details": "Symposium on historical and social studies with presentations on medieval themes, relevant to Kano's rich past.",
-      "imageUrl": "https://conferencenext.com/images/medieval-conference.jpg",
+      "imageUrl": "https://ahc.leeds.ac.uk/images/resized/750x422-0-0-1-80-IMC_2026.png",
       "rating": 4.5,
       "address": "Kano conference venue",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -446,30 +308,20 @@
       "openHours": "09:00 - 18:00",
       "hashtag": "history conference",
       "extraImages": [
-        "https://cdn.conferencenext.com/history-presentations.jpg",
-        "https://conferencenext.com/audience.jpg",
-        "https://images.unsplash.com/photo-1542744173-8e7f37783b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://royalhistsoc.org/wp-content/uploads/2025/01/IMC2025postcard-scaled.jpg",
+        "https://iem.fcsh.unl.pt/wp-content/uploads/2026/02/smm26_news_destaque.jpg",
+        "https://history-list-prod.s3.amazonaws.com/data/3269/content.jpg",
         "https://cdn.eventbrite.com/cultural-discussion.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026-05-07 to 2026-05-08",
       "eventStartTime": "09:00",
-      "eventEndTime": "18:00",
-      "reviews": [
-        {
-          "profileName": "Historian",
-          "createdAt": "2026-01-15",
-          "starRatings": 5,
-          "reviewDetails": "Deep dives into history – very enriching.",
-          "profileImage": "https://example.com/historian.jpg",
-          "likes": 22
-        }
-      ]
+      "eventEndTime": "18:00"
     },
     {
       "name": "Kano High-Level Stakeholder Engagement Meeting",
       "details": "High-level meeting on health or development topics (e.g., triple elimination initiatives) with stakeholders and discussions.",
-      "imageUrl": "https://eventbrite.com/images/stakeholder-meeting.jpg",
+      "imageUrl": "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1175798774%252F305601896878%252F1%252Foriginal.20260126-002721%3Fw%3D480%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26s%3Dbe4b8e01f580d9b1af29a4529367b89f&w=940&q=75",
       "rating": 4.5,
       "address": "Bristol Palace Hotel or similar, Kano",
       "location": { "latitude": 12.0000, "longitude": 8.5333 },
@@ -479,30 +331,20 @@
       "openHours": "09:00 - 17:00",
       "hashtag": "stakeholder meeting",
       "extraImages": [
-        "https://cdn.eventbrite.com/meeting-panel.jpg",
-        "https://eventbrite.com/networking-session.jpg",
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://www.iita.org/wp-content/uploads/2025/10/Human-Resource-Manager.png",
+        "https://www.eventbrite.com/e/_next/image?url=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F1175798774%252F305601896878%252F1%252Foriginal.20260126-002721%3Fw%3D480%26auto%3Dformat%252Ccompress%26q%3D75%26sharp%3D10%26s%3Dbe4b8e01f580d9b1af29a4529367b89f&w=940&q=75",
+        "https://www.iita.org/wp-content/uploads/2025/10/Human-Resource-Manager.png",
         "https://cdn.eventbrite.com/group-discussion.jpg"
       ],
       "ticketPrice": "Invitation-based / varies",
       "eventDate": "2026-10-15 (example recurring style)",
       "eventStartTime": "09:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "Participant",
-          "createdAt": "2026-01-20",
-          "starRatings": 5,
-          "reviewDetails": "Productive discussions and networking.",
-          "profileImage": "https://example.com/participant.jpg",
-          "likes": 18
-        }
-      ]
+      "eventEndTime": "17:00"
     },
     {
       "name": "International Symposium on Transport Network Resilience",
       "details": "Conference on transport infrastructure, resilience, and urban planning – relevant to northern Nigeria's logistics.",
-      "imageUrl": "https://freeconferencealerts.com/images/transport-symposium.jpg",
+      "imageUrl": "https://instr2026.sciencesconf.org/data/pages/Banniere_INSTR26.jpg",
       "rating": 4.5,
       "address": "Kano venue",
       "location": { "latitude": 12.0000, "longitude": 8.5167 },
@@ -512,25 +354,15 @@
       "openHours": "09:00 - 17:00",
       "hashtag": "transport conference",
       "extraImages": [
-        "https://cdn.freeconferencealerts.com/speakers-transport.jpg",
-        "https://freeconferencealerts.com/panels.jpg",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://static.wixstatic.com/media/25f7bc_876a96e598434057ad4a39203b9a4326~mv2.jpg/v1/fill/w_980,h_654,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/25f7bc_876a96e598434057ad4a39203b9a4326~mv2.jpg",
+        "https://static.wixstatic.com/media/25f7bc_62b8f1c6d27349a8aca6d3068058db77~mv2.jpg/v1/fill/w_980,h_654,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/25f7bc_62b8f1c6d27349a8aca6d3068058db77~mv2.jpg",
+        "https://i-sense.iccs.gr/wp-content/uploads/2025/06/SymposiumBanner-768x432.jpg",
         "https://cdn.eventbrite.com/infrastructure-discussion.jpg"
       ],
       "ticketPrice": "Varies",
       "eventDate": "2026-04-07",
       "eventStartTime": "09:00",
-      "eventEndTime": "17:00",
-      "reviews": [
-        {
-          "profileName": "Engineer",
-          "createdAt": "2026-01-10",
-          "starRatings": 5,
-          "reviewDetails": "Relevant topics for infrastructure development.",
-          "profileImage": "https://example.com/engineer.jpg",
-          "likes": 20
-        }
-      ]
+      "eventEndTime": "17:00"
     }
   ]
 }

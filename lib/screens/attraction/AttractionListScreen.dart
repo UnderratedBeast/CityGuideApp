@@ -1,4 +1,6 @@
 import 'package:city_guide_app/screens/CityguideHome/CityListScreen.dart';
+import 'package:city_guide_app/screens/favorites/FavoritesScreen.dart';
+import 'package:city_guide_app/screens/map/AllPlacesMapScreen.dart';
 import 'package:city_guide_app/screens/profile/profile_screen.dart';
 import 'package:city_guide_app/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
@@ -81,14 +83,14 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
   // Helper to check if a place is open now based on openHours
   bool _isOpenNow(String openHours) {
     if (openHours.isEmpty) return true; // Default to open if no hours specified
-    
+
     try {
       final now = DateTime.now();
       final currentTime = DateFormat('HH:mm').format(now);
       final currentDay = DateFormat('EEEE').format(now);
-      
+
       final hoursLower = openHours.toLowerCase();
-      
+
       // Check if today is in the open days
       if (hoursLower.contains('mon') && currentDay == 'Monday') {
         return _parseTimeRange(hoursLower, currentTime);
@@ -105,24 +107,24 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
       } else if (hoursLower.contains('sun') && currentDay == 'Sunday') {
         return _parseTimeRange(hoursLower, currentTime);
       }
-      
+
       return true;
     } catch (e) {
       print('Error parsing open hours: $e');
       return true;
     }
   }
-  
+
   bool _parseTimeRange(String hours, String currentTime) {
     final timeRegex = RegExp(r'(\d{1,2}:\d{2}\s*(?:AM|PM))\s*-\s*(\d{1,2}:\d{2}\s*(?:AM|PM))');
     final match = timeRegex.firstMatch(hours);
-    
+
     if (match != null) {
       try {
         final openTime = _parseTimeToMinutes(match.group(1)!);
         final closeTime = _parseTimeToMinutes(match.group(2)!);
         final current = _parseTimeToMinutes(currentTime);
-        
+
         return current >= openTime && current <= closeTime;
       } catch (e) {
         return true;
@@ -130,7 +132,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
     }
     return true;
   }
-  
+
   int _parseTimeToMinutes(String timeStr) {
     final format = DateFormat('h:mm a');
     final date = format.parse(timeStr);
@@ -216,17 +218,24 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
           final data = doc.data();
 
           final name = _safeString(data['name']) ?? 'Unnamed';
-          final details = _safeString(data['details']) ?? 
-                          _safeString(data['description']) ?? 
-                          'No description available';
-          
-          double lat = 0.0, lng = 0.0;
-          if (data['location'] is Map) {
-            final loc = data['location'] as Map;
-            lat = _safeDouble(loc['latitude']) ?? 0.0;
-            lng = _safeDouble(loc['longitude']) ?? 0.0;
+          final details = _safeString(data['details']) ??
+              _safeString(data['description']) ??
+              'No description available';
+
+          // ✅ FIX: Make lat/lng nullable and only set if location exists
+          double? lat, lng;
+          final locationData = data['location'];
+          if (locationData != null) {
+            if (locationData is GeoPoint) {
+              lat = locationData.latitude;
+              lng = locationData.longitude;
+            } else if (locationData is Map) {
+              // Fallback for legacy data stored as Map
+              lat = (locationData['latitude'] as num?)?.toDouble();
+              lng = (locationData['longitude'] as num?)?.toDouble();
+            }
           }
-          
+
           List<String> extraImages = [];
           if (data['extraImages'] != null) {
             if (data['extraImages'] is List) {
@@ -242,19 +251,21 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
                   .toList();
             }
           }
-          
+
           final address = _safeString(data['address']) ?? '';
           final phone = _safeString(data['phoneNumber']) ?? '';
           final openHours = _safeString(data['openHours']) ?? '';
           final price = _safeString(data['price']) ?? '';
-          final rating = _safeDouble(data['rating']) ?? 
-                         _safeDouble(data['averageRating']) ?? 
-                         0.0;
+          final rating = _safeDouble(data['rating']) ??
+              _safeDouble(data['averageRating']) ??
+              0.0;
           final reviewCount = _safeInt(data['reviewCount']) ?? 0;
           final hashtag = _safeString(data['hashtag']) ?? '';
           final website = _safeString(data['website']) ?? '';
 
-          final mainImage = extraImages.isNotEmpty ? extraImages.first : 'https://via.placeholder.com/400x300';
+          final mainImage = extraImages.isNotEmpty
+              ? extraImages.first
+              : 'https://via.placeholder.com/400x300';
           final priceLevel = _priceLevelFromString(price);
 
           // Extract category based on main category
@@ -290,8 +301,8 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
             isOpen: isOpen,
             reviewCount: reviewCount,
             address: address,
-            latitude: lat,
-            longitude: lng,
+            latitude: lat,   // ✅ now nullable
+            longitude: lng,  // ✅ now nullable
             city: widget.cityName,
           ));
         } catch (e) {
@@ -339,7 +350,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         };
         for (var entry in attractionKeywords.entries) {
           for (var keyword in entry.value) {
-            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+            if (lowerName.contains(keyword) ||
+                lowerHashtag.contains(keyword) ||
+                lowerDesc.contains(keyword)) {
               return entry.key;
             }
           }
@@ -363,7 +376,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         };
         for (var entry in cuisineKeywords.entries) {
           for (var keyword in entry.value) {
-            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+            if (lowerName.contains(keyword) ||
+                lowerHashtag.contains(keyword) ||
+                lowerDesc.contains(keyword)) {
               return entry.key;
             }
           }
@@ -376,7 +391,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         if (priceLevel == '\$\$\$') return 'Upscale';
         if (priceLevel == '\$\$') return 'Mid-Range';
         if (priceLevel == '\$') return 'Budget';
-        
+
         final Map<String, List<String>> hotelKeywords = {
           'Resort': ['resort', 'spa', 'beachfront', 'all-inclusive'],
           'Boutique': ['boutique', 'design', 'stylish'],
@@ -387,7 +402,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         };
         for (var entry in hotelKeywords.entries) {
           for (var keyword in entry.value) {
-            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+            if (lowerName.contains(keyword) ||
+                lowerHashtag.contains(keyword) ||
+                lowerDesc.contains(keyword)) {
               return entry.key;
             }
           }
@@ -407,7 +424,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         };
         for (var entry in eventKeywords.entries) {
           for (var keyword in entry.value) {
-            if (lowerName.contains(keyword) || lowerHashtag.contains(keyword) || lowerDesc.contains(keyword)) {
+            if (lowerName.contains(keyword) ||
+                lowerHashtag.contains(keyword) ||
+                lowerDesc.contains(keyword)) {
               return entry.key;
             }
           }
@@ -458,7 +477,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
 
   // ---------- FILTER BUTTON BUILDERS ----------
   List<Widget> _buildFilterButtons() {
-    final ratingOptions = ['Any Rating'] + 
+    final ratingOptions = ['Any Rating'] +
         List.generate(5, (index) => '${index + 1}.0+').reversed.toList();
 
     return [
@@ -468,14 +487,14 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         options: _availableCategories,
         onSelected: (value) => setState(() => _selectedCategoryFilter = value!),
       ),
-      
+
       // Open Now toggle
       _buildToggleButton(
         label: 'Open Now',
         value: _openNow,
         onChanged: (value) => setState(() => _openNow = value),
       ),
-      
+
       // Rating filter
       _buildDropdownButton(
         label: _selectedRatingFilter,
@@ -543,7 +562,9 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: value ? const Color.fromARGB(255, 190, 197, 231) : Colors.grey.shade100,
+            color: value
+                ? const Color.fromARGB(255, 190, 197, 231)
+                : Colors.grey.shade100,
             borderRadius: BorderRadius.circular(13),
             border: Border.all(
               color: value ? AppTheme.primaryBlue : Colors.grey.shade300,
@@ -592,13 +613,7 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.grey.shade800),
           onPressed: () => Navigator.pop(context),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.grey.shade800),
-            onPressed: () {},
-          ),
-        ],
+        )
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -710,14 +725,26 @@ class _AttractionListScreenState extends State<AttractionListScreen> {
       bottomNavigationBar: FloatingBottomNavBar(
         currentIndex: -1,
         onTap: (index) {
-           if (index == 3) {
+          if (index == 3) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ProfileScreen()),
             );
           }
+           if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+            );
+          }
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllPlacesMapScreen()),
+            );
+          }
           if (index == 0) {
-              Navigator.push(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const CityListScreen()),
             );
@@ -746,7 +773,7 @@ class _AttractionCard extends StatefulWidget {
 
 class _AttractionCardState extends State<_AttractionCard> {
   bool isFavorited = false;
-  
+
   String _getItemType(String listingType) {
     switch (listingType) {
       case 'attractions':
@@ -986,7 +1013,7 @@ class _AttractionCardState extends State<_AttractionCard> {
 }
 
 // ------------------------------------------------------------
-// Data Model
+// Data Model - UPDATED: latitude & longitude are now nullable
 // ------------------------------------------------------------
 class AttractionItem {
   final String id;
@@ -1006,8 +1033,8 @@ class AttractionItem {
   final bool isOpen;
   final int reviewCount;
   final String address;
-  final double latitude;
-  final double longitude;
+  final double? latitude;   // ✅ now nullable
+  final double? longitude;  // ✅ now nullable
   final String city;
   final List<String>? additionalImages;
 
@@ -1029,8 +1056,8 @@ class AttractionItem {
     required this.isOpen,
     required this.reviewCount,
     required this.address,
-    required this.latitude,
-    required this.longitude,
+    this.latitude,          // ✅ now optional
+    this.longitude,         // ✅ now optional
     required this.city,
     this.additionalImages,
   });
