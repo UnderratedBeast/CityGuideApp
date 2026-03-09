@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   text: const TextSpan(
                     children: [
                       TextSpan(
-                        text: "City",
+                        text: "Citi",
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,

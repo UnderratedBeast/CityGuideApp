@@ -214,11 +214,17 @@ void initState() {
   _priceLevel.text = d['priceLevel']?.toString() ?? '0';
   _rating.text = d['rating']?.toString() ?? '0';
 
-  _latitude.text =
-    (d['location'] != null) ? d['location'].latitude.toString() : '';
+  final location = d['location'];
 
-_longitude.text =
-    (d['location'] != null) ? d['location'].longitude.toString() : '';
+if (location != null) {
+  if (location is GeoPoint) {
+    _latitude.text = location.latitude.toString();
+    _longitude.text = location.longitude.toString();
+  } else if (location is Map<String, dynamic>) {
+    _latitude.text = location['latitude']?.toString() ?? '';
+    _longitude.text = location['longitude']?.toString() ?? '';
+  }
+}
 }
 
   @override
@@ -239,26 +245,53 @@ _longitude.text =
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
-    final data = {
-      'name': _name.text.trim(),
-      'description': _description.text.trim(),
-      'address': _address.text.trim(),
-      'website': _website.text.trim(),
-      'imageUrl': _imageUrl.text.trim(),
-      'additionalImages': _additionalImages.text
-          .split(',')
-          .map((e) => e.trim())
-          .where((e) => e.isNotEmpty)
-          .toList(),
-      'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
-      'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
-      'location': GeoPoint(
-        double.tryParse(_latitude.text.trim()) ?? 0,
-        double.tryParse(_longitude.text.trim()) ?? 0,
-  ),
+  //   final data = {
+  //     'name': _name.text.trim(),
+  //     'description': _description.text.trim(),
+  //     'address': _address.text.trim(),
+  //     'website': _website.text.trim(),
+  //     'imageUrl': _imageUrl.text.trim(),
+  //     'additionalImages': _additionalImages.text
+  //         .split(',')
+  //         .map((e) => e.trim())
+  //         .where((e) => e.isNotEmpty)
+  //         .toList(),
+  //     'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
+  //     'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
+  //     'location': GeoPoint(
+  //       double.tryParse(_latitude.text.trim()) ?? 0,
+  //       double.tryParse(_longitude.text.trim()) ?? 0,
+  // ),
 
-      'updatedAt': FieldValue.serverTimestamp(),
-    };
+  //     'updatedAt': FieldValue.serverTimestamp(),
+  //   };
+
+  final lat = double.tryParse(_latitude.text.trim());
+final lng = double.tryParse(_longitude.text.trim());
+
+if (lat == null || lng == null) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Invalid latitude or longitude')),
+  );
+  return;
+}
+
+final data = {
+  'name': _name.text.trim(),
+  'description': _description.text.trim(),
+  'address': _address.text.trim(),
+  'website': _website.text.trim(),
+  'imageUrl': _imageUrl.text.trim(),
+  'additionalImages': _additionalImages.text
+      .split(',')
+      .map((e) => e.trim())
+      .where((e) => e.isNotEmpty)
+      .toList(),
+  'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
+  'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
+  'location': GeoPoint(lat, lng),
+  'updatedAt': FieldValue.serverTimestamp(),
+};
 
     try {
       if (widget.listingId != null) {
