@@ -150,7 +150,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/admin_notification_service.dart';
@@ -171,61 +170,58 @@ class AdminListingFormScreen extends StatefulWidget {
   });
 
   @override
-  State<AdminListingFormScreen> createState() =>
-      _AdminListingFormScreenState();
+  State<AdminListingFormScreen> createState() => _AdminListingFormScreenState();
 }
 
-class _AdminListingFormScreenState
-    extends State<AdminListingFormScreen> {
-
+class _AdminListingFormScreenState extends State<AdminListingFormScreen> {
   final _formKey = GlobalKey<FormState>();
   late CollectionReference listingsRef;
 
   // Controllers
-final TextEditingController _name = TextEditingController();
-final TextEditingController _description = TextEditingController();
-final TextEditingController _address = TextEditingController();
-final TextEditingController _website = TextEditingController();
-final TextEditingController _imageUrl = TextEditingController();
-final TextEditingController _additionalImages = TextEditingController();
-final TextEditingController _priceLevel = TextEditingController();
-final TextEditingController _rating = TextEditingController();
-final TextEditingController _latitude = TextEditingController();
-final TextEditingController _longitude = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _description = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _website = TextEditingController();
+  final TextEditingController _imageUrl = TextEditingController();
+  final TextEditingController _additionalImages = TextEditingController();
+  final TextEditingController _priceLevel = TextEditingController();
+  final TextEditingController _rating = TextEditingController();
+  final TextEditingController _latitude = TextEditingController();
+  final TextEditingController _longitude = TextEditingController();
 
   @override
-void initState() {
-  super.initState();
+  void initState() {
+    super.initState();
 
-  listingsRef = FirebaseFirestore.instance
-      .collection('cities')
-      .doc(widget.cityId)
-      .collection(widget.collectionName);
+    listingsRef = FirebaseFirestore.instance
+        .collection('cities')
+        .doc(widget.cityId)
+        .collection(widget.collectionName);
 
-  final d = widget.existingData ?? {};
+    final d = widget.existingData ?? {};
 
-  _name.text = d['name'] ?? '';
-  _description.text = d['description'] ?? '';
-  _address.text = d['address'] ?? '';
-  _website.text = d['website'] ?? '';
-  _imageUrl.text = d['imageUrl'] ?? '';
-  _additionalImages.text =
-      (d['additionalImages'] as List<dynamic>?)?.join(', ') ?? '';
-  _priceLevel.text = d['priceLevel']?.toString() ?? '0';
-  _rating.text = d['rating']?.toString() ?? '0';
+    _name.text = d['name'] ?? '';
+    _description.text = d['description'] ?? '';
+    _address.text = d['address'] ?? '';
+    _website.text = d['website'] ?? '';
+    _imageUrl.text = d['imageUrl'] ?? '';
+    _additionalImages.text =
+        (d['additionalImages'] as List<dynamic>?)?.join(', ') ?? '';
+    _priceLevel.text = d['priceLevel']?.toString() ?? '0';
+    _rating.text = d['rating']?.toString() ?? '0';
 
-  final location = d['location'];
+    final location = d['location'];
 
-if (location != null) {
-  if (location is GeoPoint) {
-    _latitude.text = location.latitude.toString();
-    _longitude.text = location.longitude.toString();
-  } else if (location is Map<String, dynamic>) {
-    _latitude.text = location['latitude']?.toString() ?? '';
-    _longitude.text = location['longitude']?.toString() ?? '';
+    if (location != null) {
+      if (location is GeoPoint) {
+        _latitude.text = location.latitude.toString();
+        _longitude.text = location.longitude.toString();
+      } else if (location is Map<String, dynamic>) {
+        _latitude.text = location['latitude']?.toString() ?? '';
+        _longitude.text = location['longitude']?.toString() ?? '';
+      }
+    }
   }
-}
-}
 
   @override
   void dispose() {
@@ -245,53 +241,53 @@ if (location != null) {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
-  //   final data = {
-  //     'name': _name.text.trim(),
-  //     'description': _description.text.trim(),
-  //     'address': _address.text.trim(),
-  //     'website': _website.text.trim(),
-  //     'imageUrl': _imageUrl.text.trim(),
-  //     'additionalImages': _additionalImages.text
-  //         .split(',')
-  //         .map((e) => e.trim())
-  //         .where((e) => e.isNotEmpty)
-  //         .toList(),
-  //     'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
-  //     'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
-  //     'location': GeoPoint(
-  //       double.tryParse(_latitude.text.trim()) ?? 0,
-  //       double.tryParse(_longitude.text.trim()) ?? 0,
-  // ),
+    //   final data = {
+    //     'name': _name.text.trim(),
+    //     'description': _description.text.trim(),
+    //     'address': _address.text.trim(),
+    //     'website': _website.text.trim(),
+    //     'imageUrl': _imageUrl.text.trim(),
+    //     'additionalImages': _additionalImages.text
+    //         .split(',')
+    //         .map((e) => e.trim())
+    //         .where((e) => e.isNotEmpty)
+    //         .toList(),
+    //     'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
+    //     'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
+    //     'location': GeoPoint(
+    //       double.tryParse(_latitude.text.trim()) ?? 0,
+    //       double.tryParse(_longitude.text.trim()) ?? 0,
+    // ),
 
-  //     'updatedAt': FieldValue.serverTimestamp(),
-  //   };
+    //     'updatedAt': FieldValue.serverTimestamp(),
+    //   };
 
-  final lat = double.tryParse(_latitude.text.trim());
-final lng = double.tryParse(_longitude.text.trim());
+    final lat = double.tryParse(_latitude.text.trim());
+    final lng = double.tryParse(_longitude.text.trim());
 
-if (lat == null || lng == null) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text('Invalid latitude or longitude')),
-  );
-  return;
-}
+    if (lat == null || lng == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Invalid latitude or longitude')),
+      );
+      return;
+    }
 
-final data = {
-  'name': _name.text.trim(),
-  'description': _description.text.trim(),
-  'address': _address.text.trim(),
-  'website': _website.text.trim(),
-  'imageUrl': _imageUrl.text.trim(),
-  'additionalImages': _additionalImages.text
-      .split(',')
-      .map((e) => e.trim())
-      .where((e) => e.isNotEmpty)
-      .toList(),
-  'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
-  'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
-  'location': GeoPoint(lat, lng),
-  'updatedAt': FieldValue.serverTimestamp(),
-};
+    final data = {
+      'name': _name.text.trim(),
+      'description': _description.text.trim(),
+      'address': _address.text.trim(),
+      'website': _website.text.trim(),
+      'imageUrl': _imageUrl.text.trim(),
+      'additionalImages': _additionalImages.text
+          .split(',')
+          .map((e) => e.trim())
+          .where((e) => e.isNotEmpty)
+          .toList(),
+      'priceLevel': int.tryParse(_priceLevel.text.trim()) ?? 0,
+      'rating': double.tryParse(_rating.text.trim()) ?? 0.0,
+      'location': GeoPoint(lat, lng),
+      'updatedAt': FieldValue.serverTimestamp(),
+    };
 
     try {
       if (widget.listingId != null) {
@@ -383,19 +379,16 @@ final data = {
               _field(_address, 'Address'),
               _field(_website, 'Website'),
               _field(_imageUrl, 'Main Image URL'),
-              _field(_additionalImages,
-                  'Additional Image URLs (comma separated)'),
+              _field(
+                  _additionalImages, 'Additional Image URLs (comma separated)'),
               _field(_priceLevel, 'Price Level',
                   inputType: TextInputType.number),
-              _field(_rating, 'Rating',
-                  inputType: TextInputType.number),
-              
+              _field(_rating, 'Rating', inputType: TextInputType.number),
               _field(
-                  _latitude,
-                  'Latitude',
-                  inputType: TextInputType.number,
-                ),
-
+                _latitude,
+                'Latitude',
+                inputType: TextInputType.number,
+              ),
               _field(
                 _longitude,
                 'Longitude',
@@ -403,20 +396,21 @@ final data = {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    backgroundColor: const Color(0xFF1565C0),
-    foregroundColor: Colors.white,
-    padding: const EdgeInsets.symmetric(vertical: 14),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
-  ),
-  onPressed: _save,
-  child: Text(
-    isEdit ? 'Update Listing' : 'Create Listing',
-    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-  ),
-),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1565C0),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: _save,
+                child: Text(
+                  isEdit ? 'Update Listing' : 'Create Listing',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),
@@ -436,36 +430,35 @@ final data = {
         controller: controller,
         keyboardType: inputType,
         maxLines: maxLines,
-        validator: (v) =>
-            v == null || v.isEmpty ? 'Required' : null,
+        validator: (v) => v == null || v.isEmpty ? 'Required' : null,
         decoration: InputDecoration(
-  labelText: label,
-  filled: true,
-  fillColor: const Color(0xFFF5F9FF), // very light blue background
+          labelText: label,
+          filled: true,
+          fillColor: const Color(0xFFF5F9FF), // very light blue background
 
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
-  ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
 
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
-    borderSide: const BorderSide(
-      color: Color(0xFFBBDEFB), // light blue border
-    ),
-  ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Color(0xFFBBDEFB), // light blue border
+            ),
+          ),
 
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
-    borderSide: const BorderSide(
-      color: Color(0xFF1565C0), // strong blue when focused
-      width: 2,
-    ),
-  ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Color(0xFF1565C0), // strong blue when focused
+              width: 2,
+            ),
+          ),
 
-  labelStyle: const TextStyle(
-    color: Color(0xFF1565C0),
-  ),
-),
+          labelStyle: const TextStyle(
+            color: Color(0xFF1565C0),
+          ),
+        ),
       ),
     );
   }

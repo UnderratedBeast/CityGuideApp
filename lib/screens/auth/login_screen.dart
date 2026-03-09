@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "CityGuide",
+                        "CitiGuide",
                         style: TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.w800,
